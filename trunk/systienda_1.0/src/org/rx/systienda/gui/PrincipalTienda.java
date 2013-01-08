@@ -154,8 +154,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jSeparator5 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem16 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
@@ -465,16 +463,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
             }
         });
         jMenu6.add(jMenuItem3);
-        jMenu6.add(jSeparator5);
-
-        jMenuItem16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/beta.png"))); // NOI18N
-        jMenuItem16.setText("Administrar Producto Beta");
-        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem16ActionPerformed(evt);
-            }
-        });
-        jMenu6.add(jMenuItem16);
         jMenu6.add(jSeparator2);
 
         jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/box_open_min.png"))); // NOI18N
@@ -681,10 +669,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
        bcpr.setIconImage(icon.getImage());
        bcpr.validaRestauracionBackUp();
     }//GEN-LAST:event_jMenuItem18ActionPerformed
-
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-       insertarInternalFrame(adm_prod);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     public void salir(){
      int op =  JOptionPane.showConfirmDialog(this,"Esta seguro que desea Salir del Sitema.","Atencion",JOptionPane.YES_NO_OPTION);
@@ -904,7 +888,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
@@ -924,7 +907,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JPopupMenu.Separator jSeparator4;
-    private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
 
