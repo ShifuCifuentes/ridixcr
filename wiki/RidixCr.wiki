@@ -6,4 +6,4 @@ Esta pagina contiene todos los recursos utilizados para el desarrollo de aplicac
 
 Actualmente están disponible los siguientes recursos:
   * *RxCrUtil* : Librería Utilizada en todos los proyectos
-  * *SysTienda* : Proyecto Actualmente desarrollado en su primera versión.
+  * *SysTienda* : Proyecto Actualmente en desarrollado.
