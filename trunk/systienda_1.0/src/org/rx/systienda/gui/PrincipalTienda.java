@@ -68,7 +68,7 @@ public final class PrincipalTienda extends javax.swing.JFrame {
         maximizar(this); 
         centreaVentana(this);
         personalizaFondoEscritorio(jDesktopPane1);
-        jdConf = new ConfigAdmin(this,"sysbotica");
+        jdConf = new ConfigAdmin(this,"systienda");
         jdConf.setUserTable("dbo.cuenta");
         setConf(jdConf.getConfig());
         if (!jdConf.isValidDBStructure()) {  
