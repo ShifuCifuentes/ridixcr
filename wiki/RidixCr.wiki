@@ -5,5 +5,5 @@ Esta pagina contiene todos los recursos utilizados para el desarrollo de aplicac
 = Especificaciones =
 
 Actualmente están disponible los siguientes recuros:
-  * _*RxCrUtil*_ Libreria Utilizada en todos los proyectos
-  * _*SysTienda*_ Proyecto Actualmente desarrollado en su primera version.
+  * *RxCrUtil* : Libreria Utilizada en todos los proyectos
+  * *SysTienda* : Proyecto Actualmente desarrollado en su primera version.
