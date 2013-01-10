@@ -17,7 +17,7 @@ public class DAOPersonal extends DAOAbstract<BEPersonal> {
     @Override
     public int registrar(BEPersonal bean) {           
         try {           
-            setStoreProcedure("dbo.registrar_empleado(?,?,?,?,?,?)");             
+            setStoreProcedure("dbo.registrar_personal(?,?,?,?,?,?)");             
             setParameterString(1,bean.getNombres());
             setParameterString(2,bean.getAp_paterno());
             setParameterString(3,bean.getAp_maternno());   
