@@ -5,9 +5,9 @@ import org.rx.cr.table.AbstractTableModel;
 import static org.rx.cr.util.Utilitarios.*;
 import org.rx.systienda.bean.BECategoria;
 
-public class ModeloAdministrarGenero extends AbstractTableModel<BECategoria> {    
+public class ModeloAdministrarCategoria extends AbstractTableModel<BECategoria> {    
     
-    public ModeloAdministrarGenero() {
+    public ModeloAdministrarCategoria() {
         super.setTitles(new String[]{"ID","Genero"});
     }
     

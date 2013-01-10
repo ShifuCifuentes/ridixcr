@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import static org.rx.cr.util.Utilitarios.*;
 import org.rx.systienda.bean.BECategoria;
 import org.rx.systienda.bl.BLCategoria;
-import org.rx.systienda.gui.model.ModeloAdministrarGenero;
+import org.rx.systienda.gui.model.ModeloAdministrarCategoria;
 
 public final class AdministrarCategoria extends javax.swing.JInternalFrame {
     private BLCategoria bl;
@@ -18,12 +18,12 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
     private PrincipalTienda root;
     private int invocador=0;
     private BECategoria beang;
-    private ModeloAdministrarGenero modelo;
+    private ModeloAdministrarCategoria modelo;
     
     public AdministrarCategoria(PrincipalTienda root) {
         initComponents();
         this.root=root;
-        modelo = new ModeloAdministrarGenero();
+        modelo = new ModeloAdministrarCategoria();
         jTable1.setModel(modelo);
         personalizaTabla();
         jTextField4.setEnabled(false);
@@ -178,7 +178,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
         });
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel3.setText("Denominacion Genero :");
+        jLabel3.setText("Denominacion Categoria :");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -187,7 +187,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -315,7 +315,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        listarGenero();
+        listarCategoria();
         jButton3.setEnabled(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -417,7 +417,6 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
         
     public void llenarCampos(){
         beang=modelo.get(jTable1.getSelectedRow());
-        //jTextField5.setText(""+bean.getId_proveedor());
         jTextField4.setText(beang.getDenominacion_categoria());
         jTextField1.setText(beang.getCod_resumen_categoria());
         jButton1.setEnabled(true);       
@@ -482,7 +481,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
             bl.registrar(beang);            
             limpiaCampos();
             desabilitaCampos();
-            listarGenero();
+            listarCategoria();
         } catch (Exception ex) {
             Logger.getLogger(AdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);           
         }
@@ -494,7 +493,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
         jButton3.setEnabled(true);
         jButton2.setEnabled(true);        
     }     
-    public void listarGenero(){
+    public void listarCategoria(){
         try {
             bl = new BLCategoria(root.getConf());        
             ArrayList<BECategoria> list=bl.buscarReferencia(jTextField3.getText().trim());
@@ -522,7 +521,7 @@ public final class AdministrarCategoria extends javax.swing.JInternalFrame {
             desabilitaCampos();
             jButton2.setEnabled(false);            
             jButton4.setEnabled(false);
-            listarGenero();
+            listarCategoria();
         } catch (Exception ex) {
             Logger.getLogger(AdministrarCategoria.class.getName()).log(Level.SEVERE, null, ex);            
         }
