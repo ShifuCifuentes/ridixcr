@@ -19,6 +19,10 @@ public class DAOAlmacenPrimario extends DAOAbstract<BEProducto> {
             setParameterInt(2,bean.getStock());
             setParameterInt(3,bean.getStock_fraccionario());
             setParameterInt(4,bean.getStock_fraccionario_unitario());   
+//            System.out.println(bean.getId_producto());
+//            System.out.println(bean.getStock());
+//            System.out.println(bean.getStock_fraccionario());
+//            System.out.println(bean.getStock_fraccionario_unitario());
             return Integer.parseInt(commit().toString());
         }
         catch (SQLException ex) {

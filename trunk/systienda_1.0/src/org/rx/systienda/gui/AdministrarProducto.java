@@ -22,8 +22,7 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
     private PrincipalTienda root=null;   
     private BLProducto bl1;
     private BLAlmacenPrimario bl2;
-    private BEProducto bean=null;
-    private BEAlmacenPrimario beanap=null;
+    private BEProducto bean=null;    
     private ModeloAdministrarProducto modelo=null;
     public static final int ADMIN_PRODUCTO=1;
     public static final int ADMIN_MARCA=1;
@@ -312,7 +311,6 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         jSpinner3.setEnabled(false);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -391,14 +389,12 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("S.Fracc. :");
 
-        jSpinner4.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         jSpinner4.setEnabled(false);
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("S.Sub. Frac. :");
 
-        jSpinner5.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
         jSpinner5.setEnabled(false);
 
         jTextField3.setEnabled(false);
@@ -636,7 +632,7 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton4)
                             .addComponent(jButton2)
@@ -683,7 +679,6 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         guargarModificaciones();
-        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -867,8 +862,7 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
        try {
             bl1 = new BLProducto(root.getConf());
             bl2 = new BLAlmacenPrimario(root.getConf());
-            bean = new BEProducto();
-            beanap = new BEAlmacenPrimario();
+            bean = new BEProducto();            
             bean.setNom_comercial(jTextField13.getText().trim());
             bean.setDenominacion_generico(jTextField3.getText().trim());            
             bean.setPresentacion(jTextField2.getText().trim());
@@ -884,11 +878,8 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
             bean.setPorcentaje_utilidad(Double.parseDouble(jSpinner1.getValue().toString().trim()));            
             bean.setId_proveedor(beanp.getId_proveedor());
             bean.setFecha_vencimiento(castDate_UTIL_SQL(jDateChooser1.getDate()));                 
-            int id = bl1.registrar(bean);
-            bean.setId_producto(id);
-            beanap.setStock(Integer.parseInt(jSpinner3.getValue().toString().trim()));
-            beanap.setStock_fraccionario_referencia(Integer.parseInt(jSpinner4.getValue().toString().trim()));
-            beanap.setStock_fraccionario_unitario_referencia(Integer.parseInt(jSpinner5.getValue().toString().trim()));
+            int id = bl1.registrar(bean);            
+            bean.setId_producto(id);            
             bl2.registrar(bean);
             jButton3.setEnabled(false);
             jButton5.setEnabled(false);
@@ -1014,9 +1005,13 @@ public final class AdministrarProducto extends javax.swing.JInternalFrame {
       jTextField11.setText("");
       jTextField5.setText("");
       jTextField4.setText(""); 
-      jSpinner3.setValue(((SpinnerNumberModel)jSpinner3.getModel()).getMinimum());
-      jSpinner4.setValue(((SpinnerNumberModel)jSpinner4.getModel()).getMinimum());
-      jSpinner5.setValue(((SpinnerNumberModel)jSpinner5.getModel()).getMinimum());
+//      jSpinner3.setValue(((SpinnerNumberModel)jSpinner3.getModel()).getMinimum());
+//      jSpinner4.setValue(((SpinnerNumberModel)jSpinner4.getModel()).getMinimum());
+//      jSpinner5.setValue(((SpinnerNumberModel)jSpinner5.getModel()).getMinimum());
+//      jSpinner1.setValue(((SpinnerNumberModel)jSpinner1.getModel()).getMinimum());
+      jSpinner3.setValue(0);
+      jSpinner4.setValue(0);
+      jSpinner5.setValue(0);
       jSpinner1.setValue(((SpinnerNumberModel)jSpinner1.getModel()).getMinimum());
       jTextField8.setText("");   
       jDateChooser2.setDate(new Date());

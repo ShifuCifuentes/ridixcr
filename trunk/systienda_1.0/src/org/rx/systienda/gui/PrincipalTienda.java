@@ -1,7 +1,6 @@
 package org.rx.systienda.gui;
 
-import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
-import de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel;
+import de.javasoft.plaf.synthetica.*;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -175,8 +174,6 @@ public final class PrincipalTienda extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("SYSTIENDA - ESTANDAR");
-        setBackground(new java.awt.Color(244, 241, 189));
-        setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -845,9 +842,10 @@ public final class PrincipalTienda extends javax.swing.JFrame {
         }
     }  
     
-    public static void main(String args[]) throws ParseException, UnsupportedLookAndFeelException{
+    public static void main(String args[]) throws ParseException, UnsupportedLookAndFeelException, ClassNotFoundException, InstantiationException, IllegalAccessException{
        
-        UIManager.setLookAndFeel(new SyntheticaClassyLookAndFeel());        
+        //UIManager.setLookAndFeel(new SyntheticaBlackEyeLookAndFeel());        
+        UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

@@ -15,20 +15,19 @@ public class DAOProducto extends DAOAbstract<BEProducto> {
     @Override
     public int registrar(BEProducto bean) {
         try {           
-            setStoreProcedure("dbo.registrar_producto(?,?,?,?,?,?,?,?,?,?,?,?,?)");             
-            setParameterInt(1,bean.getId_proveedor());
-            setParameterInt(2,bean.getId_marca());
-            setParameterInt(3,bean.getId_categoria());
-            setParameterString(4,bean.getNom_comercial());
-            setParameterString(5,bean.getPresentacion());
-            setParameterString(6,bean.getLaboratorio());
-            setParameterDate(7,bean.getFecha_vencimiento());
-            setParameterString(8,bean.getDenominacion_generico());
-            setParameterString(9,bean.getEspecificacion());
-            setParameterDouble(10,bean.getPrecio_compra());
-            setParameterDouble(11,bean.getPorcentaje_utilidad());
-            setParameterString(12,bean.getNum_lote());
-            setParameterString(13,bean.getUnidad_medida());
+            setStoreProcedure("dbo.registrar_producto(?,?,?,?,?,?,?,?,?,?,?,?)");             
+            setParameterString(1,bean.getNom_comercial());
+            setParameterString(2,bean.getPresentacion());
+            setParameterDate(3,bean.getFecha_vencimiento());
+            setParameterString(4,bean.getDenominacion_generico());
+            setParameterString(5,bean.getEspecificacion());
+            setParameterDouble(6,bean.getPrecio_compra());
+            setParameterDouble(7,bean.getPorcentaje_utilidad());            
+            setParameterInt(8,bean.getId_proveedor());
+            setParameterInt(9,bean.getId_marca());
+            setParameterInt(10,bean.getId_categoria());
+            setParameterString(11,bean.getNum_lote());
+            setParameterString(12,bean.getUnidad_medida());
             return Integer.parseInt(commit().toString());
         }
         catch (SQLException ex) {
@@ -39,21 +38,20 @@ public class DAOProducto extends DAOAbstract<BEProducto> {
     @Override
     public int actualizarRegistro(BEProducto bean) {        
         try {
-            setStoreProcedure("dbo.actualizar_producto(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");            
+            setStoreProcedure("dbo.actualizar_producto(?,?,?,?,?,?,?,?,?,?,?,?,?)");            
             setParameterInt(1,bean.getId_producto());
             setParameterString(2,bean.getNom_comercial());
             setParameterString(3,bean.getPresentacion());
-            setParameterString(4,bean.getLaboratorio());
-            setParameterDate(5,bean.getFecha_vencimiento());
-            setParameterString(6,bean.getDenominacion_generico());
-            setParameterString(7,bean.getEspecificacion());
-            setParameterDouble(8,bean.getPrecio_compra());
-            setParameterDouble(9,bean.getPorcentaje_utilidad());
-            setParameterInt(10,bean.getId_proveedor());
-            setParameterInt(11,bean.getId_marca());
-            setParameterInt(12,bean.getId_categoria());
-            setParameterString(13,bean.getNum_lote());
-            setParameterString(14,bean.getUnidad_medida());                      
+            setParameterDate(4,bean.getFecha_vencimiento());
+            setParameterString(5,bean.getDenominacion_generico());
+            setParameterString(6,bean.getEspecificacion());
+            setParameterDouble(7,bean.getPrecio_compra());
+            setParameterDouble(8,bean.getPorcentaje_utilidad());
+            setParameterInt(9,bean.getId_proveedor());
+            setParameterInt(10,bean.getId_marca());
+            setParameterInt(11,bean.getId_categoria());
+            setParameterString(12,bean.getNum_lote());
+            setParameterString(13,bean.getUnidad_medida());                      
             return Integer.parseInt(commit().toString());
         }catch (SQLException ex) {
            return rollback(ex);
