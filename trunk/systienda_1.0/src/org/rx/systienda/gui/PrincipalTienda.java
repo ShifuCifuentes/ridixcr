@@ -1,6 +1,7 @@
 package org.rx.systienda.gui;
 
-import de.javasoft.plaf.synthetica.SyntheticaBlackEyeLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaAluOxideLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaClassyLookAndFeel;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Insets;
@@ -9,7 +10,6 @@ import java.beans.PropertyVetoException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -446,7 +446,7 @@ public final class PrincipalTienda extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem4);
 
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/prod_min.png"))); // NOI18N
+        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/cat_min.png"))); // NOI18N
         jMenuItem13.setText("Administrar Categoria");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -847,14 +847,7 @@ public final class PrincipalTienda extends javax.swing.JFrame {
     
     public static void main(String args[]) throws ParseException, UnsupportedLookAndFeelException{
        
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-            
-        UIManager.setLookAndFeel(new SyntheticaBlackEyeLookAndFeel());        
+        UIManager.setLookAndFeel(new SyntheticaClassyLookAndFeel());        
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

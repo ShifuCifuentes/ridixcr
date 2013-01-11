@@ -160,7 +160,7 @@ public class JP_AdministrarProducto extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/producto_50x50.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/systienda/resource/botiquin_min.png"))); // NOI18N
         jLabel6.setText("Administrar Productos");
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N

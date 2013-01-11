@@ -159,7 +159,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem13">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/org/rx/systienda/resource/prod_min.png"/>
+                  <Image iconType="3" name="/org/rx/systienda/resource/cat_min.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Administrar Categoria"/>
               </Properties>
