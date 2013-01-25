@@ -1257,8 +1257,8 @@ public final class Utilitarios extends JLabel implements Runnable{
       byte[] bytes = new byte[(int)src.length()];
       try {          
           new FileInputStream(src).read(bytes);
-      } catch (Exception e) {
-          e.printStackTrace();
+      } catch (Exception ex) {
+          Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
       }      
       return new ByteArrayInputStream(bytes);
     }
