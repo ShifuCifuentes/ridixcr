@@ -45,7 +45,7 @@ public class JHourChooser extends javax.swing.JPanel {
         return js_horario.getValue().toString();
     }
     public String getTime(){
-        return Utilitarios.numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##")+":"+Utilitarios.numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##")+js_horario.getValue().toString();
+        return Utilitarios.numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##")+":"+Utilitarios.numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##")+" "+js_horario.getValue().toString();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
