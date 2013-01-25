@@ -1253,7 +1253,15 @@ public final class Utilitarios extends JLabel implements Runnable{
     private static byte[] readLineBytes(DataInputStream dis) throws IOException{        
       return readLineChars(dis).getBytes();
     }  
-    
+    public static InputStream encodeFileBinaryBASE64(File src){
+      byte[] bytes = new byte[(int)src.length()];
+      try {          
+          new FileInputStream(src).read(bytes);
+      } catch (Exception e) {
+          e.printStackTrace();
+      }      
+      return new ByteArrayInputStream(bytes);
+    }
     public static byte[] encodeBinaryHexa(byte[] data){
         String encoded = DatatypeConverter.printHexBinary(data);
         return encoded.getBytes();

@@ -1,4 +1,5 @@
 package org.rx.cr.dao;
+import java.io.File;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,6 +29,12 @@ public abstract class DAOAbstract<Tipo> implements DAOGeneric<Tipo>{
     public void setParameterBinaryStream(String ref,InputStream dat) throws SQLException{
       sprp.setBinaryStream(ref,dat);
     }    
+    public void setParameterBinaryStream(int index,File file) throws SQLException{
+      sprp.setBinaryStream(index,encodeFileBinaryBASE64(file),(int)file.length());      
+    }
+    public void setParameterBinaryStream(String ref,File file) throws SQLException{
+      sprp.setBinaryStream(ref,encodeFileBinaryBASE64(file),(int)file.length());
+    }
     public void setParameterBinaryStream(int index,InputStream dat,long size) throws SQLException{
       sprp.setBinaryStream(index, dat, size);      
     }
