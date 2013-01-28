@@ -23,6 +23,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
+import org.rx.cr.util.gui.ShapeDecorated;
+import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
 
 public final class Utilitarios extends JLabel implements Runnable{
@@ -675,6 +677,21 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static boolean isMaximizado(Frame ref){
           return ref.getExtendedState()==Frame.MAXIMIZED_BOTH;
       } 
+      public static void adaptarMovimiento(JDialog win){
+         new UndecoratedMove().MoveAdapter(win);
+      }
+      public static void adaptarMovimiento(JFrame win){
+         new UndecoratedMove().MoveAdapter(win);
+      }
+      public static void adaptarMovimiento(JInternalFrame win){
+         new UndecoratedMove().MoveAdapter(win);
+      }
+      public static void adaptarForma(JDialog win,float aw,float ah){
+          new ShapeDecorated().applyShape(win, aw, ah);
+      }
+      public static void adaptarForma(JFrame win,float aw,float ah){
+          new ShapeDecorated().applyShape(win, aw, ah);
+      }
       //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Imprecion Util">
       public static void imprimirSilencioso(Printable prntbl) throws PrinterException{
