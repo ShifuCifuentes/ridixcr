@@ -1372,9 +1372,8 @@ public final class Utilitarios extends JLabel implements Runnable{
       src.renameTo(new File(src.getParentFile().getPath(),nname));
     }
     public static String encodeRx(String data){return encodeBinaryBASE64(encodeBinaryHexa(encodeBinaryBASE64(data)));}
-    public static String decodeRx(String data){return decodeBASE64Binary(decodeHexBinary(decodeBASE64Binary(data)));}
-    public static String _$xRx$_int(String _$$_int){return encodeRx(_$$_int);}
-    public static String _$xRx$_int_(String _$$_int){return decodeRx(_$$_int);}
+    public static String decodeRx(String data){return decodeBASE64Binary(decodeHexBinary(decodeBASE64Binary(data)));}    
+    public static String _int_$(String _$$_int){return decodeRx(_$$_int);}
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Resumen HASH Util">
     public static String resumenHash(byte[] data, String algoritmo){
