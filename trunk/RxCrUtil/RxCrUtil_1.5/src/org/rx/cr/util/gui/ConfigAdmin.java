@@ -64,7 +64,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
                 try {
                     conn.close();
                     pst.close();                                   
-                } catch (SQLException ex1) {
+                } catch (Exception ex1) {
                     Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex1);
                 }
                Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex);
