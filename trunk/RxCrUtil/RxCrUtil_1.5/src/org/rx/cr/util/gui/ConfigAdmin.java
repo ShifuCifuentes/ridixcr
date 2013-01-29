@@ -64,10 +64,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
                 try {
                     conn.close();
                     pst.close();                                   
-                } catch (Exception ex1) {
-                    //Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex1);
-                }
-               //Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex1) {}
                return false;
             }   
         }else{
@@ -79,7 +76,6 @@ public class ConfigAdmin extends javax.swing.JDialog {
             }else{
               System.exit(0);
             }
-            Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null,"Conneccion Nula");
             return false;
         } 
       }else{
