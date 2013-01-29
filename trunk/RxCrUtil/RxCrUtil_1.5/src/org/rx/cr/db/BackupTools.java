@@ -21,7 +21,13 @@ public class BackupTools {
         
         this.conf = conf;        
         pg_dump_file = new File(new File(new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe");
+        if (!pg_dump_file.exists()) {
+           pg_dump_file = new File(new File(new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe"); 
+        }
         pg_restore_file = new File(new File(new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe");
+        if (!pg_restore_file.exists()) {
+           pg_restore_file = new File(new File(new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe"); 
+        }        
     }
        
     public String pg_dump_file(){
