@@ -65,9 +65,9 @@ public class ConfigAdmin extends javax.swing.JDialog {
                     conn.close();
                     pst.close();                                   
                 } catch (Exception ex1) {
-                    Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex1);
+                    //Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex1);
                 }
-               Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex);
+               //Logger.getLogger(ConfigAdmin.class.getName()).log(Level.SEVERE, null, ex);
                return false;
             }   
         }else{
