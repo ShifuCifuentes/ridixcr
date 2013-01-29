@@ -1,5 +1,6 @@
 package org.rx.cr.util;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -158,6 +159,9 @@ public final class SystemInfo {
         }
       return programfilesdir;
     }
+    public static String getDirectorioArchivosProgramaX86(){      
+      return getDirectorioArchivosPrograma()+" (x86)";
+    }
     private static void setNombrePlataformaEjecuccion(String NombrePlataformaEjecuccion) {
         SystemInfo.NombrePlataformaEjecuccion = NombrePlataformaEjecuccion;
     }
@@ -280,5 +284,9 @@ public final class SystemInfo {
                +" Pais Usuario : "+getPaisUsuario()+"\n"
                +" Huso Horario : "+getHusoHorario()+"\n";
       return SI;
+    }
+    public static void main(String[] args) {
+        System.out.println(new File(getDirectorioArchivosPrograma()).exists());
+        System.out.println(new File(getDirectorioArchivosProgramaX86()).exists());
     }
 }

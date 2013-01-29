@@ -1214,6 +1214,9 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     public static void ejecutarMicrosoftOffice(String program) throws IOException{
             File fl = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"Microsoft Office");
+            if (!fl.exists()) {
+               fl = new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"Microsoft Office");
+            }
             File[] f = fl.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File pathname) {
