@@ -1277,7 +1277,7 @@ public final class Utilitarios extends JLabel implements Runnable{
       } catch (Exception ex) {
           Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
       }      
-      return new ByteArrayInputStream(bytes);
+      return new ByteArrayInputStream(encodeBinaryBASE64(bytes));
     }
     public static byte[] encodeBinaryHexa(byte[] data){
         String encoded = DatatypeConverter.printHexBinary(data);
