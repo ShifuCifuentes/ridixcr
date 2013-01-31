@@ -1279,8 +1279,18 @@ public final class Utilitarios extends JLabel implements Runnable{
           new FileInputStream(src).read(bytes);
       } catch (Exception ex) {
           Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-      }      
+      }
       return new ByteArrayInputStream(encodeBinaryBASE64(bytes));
+    }
+    public static Object[] encodeFileBinaryBASE64_C(File src){  
+      byte[] bytes = new byte[(int)src.length()];
+      try {          
+          new FileInputStream(src).read(bytes);
+      } catch (Exception ex) {
+          Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      byte[] data_encode = encodeBinaryBASE64(bytes);
+      return new Object[]{new ByteArrayInputStream(data_encode),data_encode.length};
     }
     public static byte[] encodeBinaryHexa(byte[] data){
         String encoded = DatatypeConverter.printHexBinary(data);

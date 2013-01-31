@@ -19,15 +19,14 @@ public class BackupTools {
     private File pg_db_file=null;
     public BackupTools(Config conf) {       
         
-        this.conf = conf;        
-        pg_dump_file = new File(new File(new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe");
-        if (!pg_dump_file.exists()) {
-           pg_dump_file = new File(new File(new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe"); 
+        this.conf = conf;       
+        File root_postgres = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL");
+        if (!root_postgres.exists()) {
+            root_postgres = new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL");
         }
-        pg_restore_file = new File(new File(new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe");
-        if (!pg_restore_file.exists()) {
-           pg_restore_file = new File(new File(new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL").listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe"); 
-        }        
+        pg_dump_file = new File(new File(root_postgres.listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe");        
+        pg_restore_file = new File(new File(root_postgres.listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe");
+               
     }
        
     public String pg_dump_file(){
@@ -97,7 +96,10 @@ public class BackupTools {
       
     }
     public void deletePostgresAppDataInfo(){
-      deleteFile(new File(postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf").getAbsolutePath());
+      File pgpass = new File(postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf");
+      if(!pgpass.exists()){
+          deleteFile(pgpass.getAbsolutePath());
+      }      
     }
 
     public File getPg_db_file() {

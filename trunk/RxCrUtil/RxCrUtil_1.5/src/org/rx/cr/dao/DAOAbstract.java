@@ -1,5 +1,8 @@
 package org.rx.cr.dao;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -30,10 +33,30 @@ public abstract class DAOAbstract<Tipo> implements DAOGeneric<Tipo>{
       sprp.setBinaryStream(ref,dat);
     }    
     public void setParameterBinaryStream(int index,File file) throws SQLException{
-      sprp.setBinaryStream(index,encodeFileBinaryBASE64(file),(int)file.length());      
+      Object[] tmp = encodeFileBinaryBASE64_C(file); 
+      InputStream is = (InputStream)tmp[0];
+      int length = Integer.parseInt(tmp[1].toString());
+      sprp.setBinaryStream(index,is,length);      
     }
     public void setParameterBinaryStream(String ref,File file) throws SQLException{
-      sprp.setBinaryStream(ref,encodeFileBinaryBASE64(file),(int)file.length());
+      Object[] tmp = encodeFileBinaryBASE64_C(file); 
+      InputStream is = (InputStream)tmp[0];
+      int length = Integer.parseInt(tmp[1].toString());
+      sprp.setBinaryStream(ref,is,length);  
+    }
+    public void setParameterBinaryStream(int index,File file,String refnf) throws SQLException{       
+        try {            
+            File tmp = encodeFileBinaryBASE64(file, refnf).getAbsoluteFile();
+            FileInputStream fis = new FileInputStream(tmp);
+            sprp.setBinaryStream(index,fis,(int)tmp.length());  
+        }catch (Exception ex) {} 
+    }
+    public void setParameterBinaryStream(String ref,File file,String refnf) throws SQLException{
+      try {
+            File tmp = encodeFileBinaryBASE64(file, refnf).getAbsoluteFile();
+            FileInputStream fis = new FileInputStream(tmp);
+            sprp.setBinaryStream(ref,fis,(int)tmp.length());  
+        }catch (Exception ex) {} 
     }
     public void setParameterBinaryStream(int index,InputStream dat,long size) throws SQLException{
       sprp.setBinaryStream(index, dat, size);      
