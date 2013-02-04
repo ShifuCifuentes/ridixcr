@@ -9,6 +9,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import org.rx.cr.util.Utilitarios;
 
 public class PanelRelojAnalogico extends JPanel implements Runnable {
 
@@ -42,11 +43,15 @@ public class PanelRelojAnalogico extends JPanel implements Runnable {
   private double xh, yh, xm, ym, xs, ys, xm1, xm2, ym1, ym2, mm, xcenter,ycenter;
   private Line2D.Double line;
 
-  public PanelRelojAnalogico() {    
+  public PanelRelojAnalogico(int theme) {    
     setOpaque(false);   
+      if (theme == PanelGadget.THEME_DARK) {
+          primaryColor = Color.BLACK;
+      }else if(theme == PanelGadget.THEME_LIGHT){
+          primaryColor = Color.WHITE;
+      }
     timer = new Thread(this);
     timer.start();
-
   }
   
   public void setContainer(JPanel panel){
@@ -147,7 +152,7 @@ public class PanelRelojAnalogico extends JPanel implements Runnable {
     g.draw(oval);
     
     Shape shape1 = new Ellipse2D.Float(2,2,130,130);
-    g.setColor(Color.WHITE); 
+    g.setColor(getPrimaryColor()); 
     g.draw(shape1);
   }
   

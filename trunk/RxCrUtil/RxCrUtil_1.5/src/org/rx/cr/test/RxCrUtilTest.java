@@ -36,14 +36,14 @@ public final class RxCrUtilTest extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         jPanel2 = new PanelGadget(PanelGadget.THEME_LIGHT);
-        jPanel3 = new PanelRelojAnalogico();
+        jPanel3 = new PanelRelojAnalogico(PanelGadget.THEME_LIGHT);
         jPanel6 = new javax.swing.JPanel();
         jProgressBar1 = new javax.swing.JProgressBar();
         jPanel8 = new PanelGadget(PanelGadget.THEME_LIGHT);
         jLabel2 = new  Utilitarios(Utilitarios.HORA_SISTEMA);
         jLabel3 = new  Utilitarios(Utilitarios.FECHA_SISTEMA);
         jPanel4 = new PanelGadget(PanelGadget.THEME_DARK);
-        jPanel5 = new PanelRelojAnalogico();
+        jPanel5 = new PanelRelojAnalogico(PanelGadget.THEME_DARK);
         jPanel9 = new PanelGadget(PanelGadget.THEME_DARK);
         jLabel4 = new  Utilitarios(Utilitarios.HORA_SISTEMA);
         jLabel5 = new  Utilitarios(Utilitarios.FECHA_SISTEMA);
