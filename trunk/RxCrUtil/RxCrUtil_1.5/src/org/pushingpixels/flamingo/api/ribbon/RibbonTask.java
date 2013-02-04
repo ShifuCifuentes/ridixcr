@@ -184,10 +184,9 @@ public class RibbonTask {
 	 *            The associated ribbon.
 	 */
 	void setRibbon(JRibbon ribbon) {
-		if (this.ribbon != null) {
-			throw new IllegalStateException(
-					"The task already belongs to another ribbon");
-		}
+//		if (this.ribbon != null) {
+//			throw new IllegalStateException("The task already belongs to another ribbon");
+//		}
 		this.ribbon = ribbon;
 	}
 
