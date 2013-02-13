@@ -40,6 +40,7 @@ public class TestUtilitarios {
         
         System.out.println(sha1("RidixCr.{import java.*}"));
         
-        System.exit(0);  
+        System.exit(0); 
+        /***/
     }
 }
