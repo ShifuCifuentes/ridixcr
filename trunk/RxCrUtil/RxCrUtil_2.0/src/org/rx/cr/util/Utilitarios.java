@@ -1234,13 +1234,59 @@ public final class Utilitarios extends JLabel implements Runnable{
             fl=null;
             f=null;
     }
+    public static void ejecutarMSWord(){
+        try {
+               Utilitarios.ejecutarMicrosoftOffice("winword.exe");
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"Microsoft Word no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+            }
+    }
+    public static void ejecutarMSExcel(){
+        try {
+                Utilitarios.ejecutarMicrosoftOffice("excel.exe");        
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"Microsoft Excel no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+            }
+    }
+    public static void ejecutarMSPowerPoint(){
+        try {
+                Utilitarios.ejecutarMicrosoftOffice("powerpnt.exe");           
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null,"Microsoft PowerPoint no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+            }
+    }
     public static void ejecutarNotepad_Mas_Mas() throws IOException{
             File fl = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"Notepad++");            
-            if (fl!=null && fl.exists()) {
-               Utilitarios.ejecutaComando(fl.getAbsolutePath()+File.separator+"notepad++.exe");
-            }
-            fl=null;            
+            if (!fl.exists()) {
+               fl = new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"Notepad++");
+            }         
+            Utilitarios.ejecutaComando(fl.getAbsolutePath()+File.separator+"notepad++.exe");
     }    
+    public static void ejecutarNotepad(){
+        try {
+                Utilitarios.ejecutarNotepad_Mas_Mas();            
+            } catch (IOException ex) {
+                try {
+                    Utilitarios.ejecutaComando("notepad.exe");
+                } catch (IOException ex1) {
+                    JOptionPane.showMessageDialog(null,"Bloc de Notas no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                }            
+            }
+    }    
+    public static void ejecutarWordPad(){
+        try {
+                 Utilitarios.ejecutaComando("write.exe");
+             } catch (IOException ex) {
+                 JOptionPane.showMessageDialog(null,"WordPad no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+             }
+    } 
+    public static void ejecutarCalc(){
+        try {
+                 Utilitarios.ejecutaComando("calc.exe");
+             } catch (IOException ex) {
+                 JOptionPane.showMessageDialog(null,"Calculadora no esta Instalado","Atencion",JOptionPane.INFORMATION_MESSAGE);
+             }
+    } 
     public static String getFileName(String fna) { 
       return fna.lastIndexOf(".") != -1?fna.substring(0,fna.lastIndexOf(".")):fna;      
     }
