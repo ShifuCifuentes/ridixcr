@@ -60,19 +60,9 @@ public class ReportGeneric {
     }
     public JPanel mkReport(String nomRef,Map prmt) throws JRException{
         try {
-            JPanel reportPanel = null;
-            JasperReport jasperReport = null;
-            URL urlReport = null;
-            JasperPrint jasperPrint=null;
-            Map paramet =null;
-            
-            urlReport = getClass().getResource(getReportParent()+nomRef+".jasper");
-            jasperReport = (JasperReport)JRLoader.loadObject(urlReport);
-            paramet = prmt;     
-            jasperPrint = JasperFillManager.fillReport(jasperReport, paramet,connection);
-            reportPanel = new JRViewer(jasperPrint);
+            JasperReport jasperReport = (JasperReport)JRLoader.loadObject(getClass().getResource(getReportParent()+nomRef+".jasper"));                   
             connection.close();
-            return reportPanel;
+            return new JRViewer(JasperFillManager.fillReport(jasperReport, prmt,connection));
         } catch (SQLException ex) {
             try {
                 connection.close();
