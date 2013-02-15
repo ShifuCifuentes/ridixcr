@@ -255,7 +255,7 @@ public final class DesktopPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/edessco/sysrent/resource/Refresh.png"))); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/Refresh.png"))); // NOI18N
         jMenuItem1.setText("Actualizar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -290,7 +290,7 @@ public final class DesktopPanel extends javax.swing.JPanel {
         );
 
         jPanel3.add(jPanel2);
-        jPanel2.setBounds(5, 5, 0, 0);
+        jPanel2.setBounds(5, 5, 135, 135);
 
         jPanel3.setBounds(710, 10, 145, 145);
         jDesktopPane1.add(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -323,15 +323,14 @@ public final class DesktopPanel extends javax.swing.JPanel {
         jPanel8.setBounds(710, 170, 145, 55);
         jDesktopPane1.add(jPanel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/edessco/sysrent/resource/SysRent.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
         jLabel1.setBounds(10, 170, 260, 250);
         jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("SysRent");
+        jLabel4.setText("APP Name");
         jLabel4.setBounds(10, 420, 260, 40);
         jDesktopPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
