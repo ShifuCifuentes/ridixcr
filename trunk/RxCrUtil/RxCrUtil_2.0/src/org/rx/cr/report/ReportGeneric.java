@@ -33,20 +33,9 @@ public class ReportGeneric {
 
     public JPanel mkReport(String nomRef) throws JRException{
         try {
-            JPanel reportPanel = null;
-            JasperReport jasperReport = null;
-            URL urlReport = null;
-            JasperPrint jasperPrint = null;   
-            Map parametro = null;
-                
-                urlReport = getClass().getResource(getReportParent()+nomRef + ".jasper");
-                jasperReport = (JasperReport) JRLoader.loadObject(urlReport);
-                parametro = new HashMap();
-                //paramet.put("keyn",valor);
-                jasperPrint = JasperFillManager.fillReport(jasperReport, parametro, connection);
-                reportPanel = new JRViewer(jasperPrint);    
-                connection.close();
-             return reportPanel;
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(getClass().getResource(getReportParent()+nomRef + ".jasper"));                                              
+            connection.close();
+            return new JRViewer(JasperFillManager.fillReport(jasperReport,new HashMap(), connection));
         } catch (SQLException ex) {
             try {
                 connection.close();
@@ -109,16 +98,8 @@ public class ReportGeneric {
     }
     public JPanel mkReport(String nomRef,String[] keys,Object[] values) throws JRException, Exception{
         try {
-            JPanel reportPanel = null;
-            JasperReport jasperReport = null;
-            URL urlReport = null;
-            JasperPrint jasperPrint=null;
-            Map paramet =null;
-
-            urlReport = getClass().getResource(getReportParent()+nomRef+".jasper");
-            jasperReport = (JasperReport)JRLoader.loadObject(urlReport);
-
-            paramet = new HashMap();
+            JasperReport jasperReport = (JasperReport)JRLoader.loadObject(getClass().getResource(getReportParent()+nomRef+".jasper"));
+            Map paramet = new HashMap();
               if (keys.length == values.length && keys!=null && values!=null) {
                   for (int i = 0; i < values.length; i++) {
                      paramet.put(keys[i],values[i]);
@@ -127,10 +108,8 @@ public class ReportGeneric {
                 connection.close();
                 throw new Exception("Parametros Invalidos(Llaves y Valores cantidades diferentes) o Nulos");
               }      
-            jasperPrint = JasperFillManager.fillReport(jasperReport, paramet,connection);
-            reportPanel = new JRViewer(jasperPrint);
             connection.close();
-            return reportPanel;
+            return new JRViewer(JasperFillManager.fillReport(jasperReport,paramet,connection));
         } catch (SQLException ex) {
             try {
                 connection.close();
