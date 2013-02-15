@@ -1,6 +1,9 @@
 
 package org.rx.cr.report;
 
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.beans.PropertyVetoException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -79,6 +83,39 @@ public class ReportGeneric {
             Logger.getLogger(ReportGeneric.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    public JInternalFrame mkReport(String report_name,String[] keys,Object[] values,String frame_title){
+        JInternalFrame reportFrame=null;
+        try {
+            JPanel report_panel = mkReport(report_name, keys, values); 
+            reportFrame= new JInternalFrame();            
+            //reportFrame.setFrameIcon(im);
+            reportFrame.setClosable(true);
+            reportFrame.setIconifiable(true);
+            reportFrame.getContentPane().add(report_panel);
+            reportFrame.setTitle(frame_title);
+            reportFrame.addComponentListener(new ComponentListener() {
+                @Override
+                public void componentResized(ComponentEvent e) {}
+                @Override
+                public void componentMoved(ComponentEvent e) {}
+                @Override
+                public void componentShown(ComponentEvent e) {
+                    try {
+                        JInternalFrame tmp = (JInternalFrame)e.getComponent();
+                        tmp.setMaximum(true);
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(ReportGeneric.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                @Override
+                public void componentHidden(ComponentEvent e) {}
+            });
+            
+        }catch (Exception ex) {
+            Logger.getLogger(ReportGeneric.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reportFrame;
     }
     public JPanel mkReport(String nomRef,String[] keys,Object[] values) throws JRException, Exception{
         try {
