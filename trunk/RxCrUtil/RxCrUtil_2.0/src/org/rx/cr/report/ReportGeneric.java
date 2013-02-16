@@ -1,8 +1,12 @@
 
 package org.rx.cr.report;
 
+import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.beans.PropertyVetoException;
 import java.net.URL;
 import java.sql.Connection;
@@ -11,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import net.sf.jasperreports.engine.JRException;
@@ -19,6 +24,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
+import org.rx.cr.util.Utilitarios;
 
 public class ReportGeneric {
     
@@ -63,7 +69,7 @@ public class ReportGeneric {
             return null;
         }
     }
-    public JInternalFrame mkReport(String report_name,String[] keys,Object[] values,String frame_title){
+    public JInternalFrame mkReportToInternalFrame(String report_name,String[] keys,Object[] values,String frame_title){
         JInternalFrame reportFrame=null;
         try {
             JPanel report_panel = mkReport(report_name, keys, values); 
@@ -89,6 +95,35 @@ public class ReportGeneric {
                 }
                 @Override
                 public void componentHidden(ComponentEvent e) {}
+            });
+            
+        }catch (Exception ex) {
+            Logger.getLogger(ReportGeneric.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return reportFrame;
+    }
+    public JFrame mkReportToFrame(String report_name,String[] keys,Object[] values,String frame_title){
+        JFrame reportFrame=null;
+        try {
+            JPanel report_panel = mkReport(report_name, keys, values); 
+            reportFrame= new JFrame();   
+            reportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+            reportFrame.getContentPane().add(report_panel);
+            reportFrame.setTitle(frame_title);
+            reportFrame.setSize(800,600);
+            reportFrame.addComponentListener(new ComponentAdapter(){                
+                @Override
+                public void componentShown(ComponentEvent e) {
+                    JFrame tmp = (JFrame)e.getComponent();
+                    Utilitarios.maximizar(tmp);
+                }
+            });
+            reportFrame.addWindowListener(new WindowAdapter() {               
+                @Override
+                public void windowClosing(WindowEvent e) {
+                    JFrame tmp = (JFrame)e.getComponent();
+                    tmp.dispose();
+                } 
             });
             
         }catch (Exception ex) {
