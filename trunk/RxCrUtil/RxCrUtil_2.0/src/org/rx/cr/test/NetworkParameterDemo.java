@@ -1,5 +1,7 @@
 package org.rx.cr.test;
 
+import java.io.FileWriter;
+import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -12,12 +14,24 @@ public class NetworkParameterDemo {
     Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces();
     while (en.hasMoreElements()) {
       NetworkInterface ni = en.nextElement();
-      if(ni.isVirtual()){          
-        printParameter(ni);
-      }
+//      if(ni.isVirtual()){          
+//        printParameter(ni);
+//      }
+      printParameter(ni);
     }
   }
-
+  public static String getMAC(NetworkInterface a){  
+    try {   
+      byte[] mac = a.getHardwareAddress();   
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < mac.length; i++) {
+       sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));  
+      }  
+      return sb.toString();
+    } catch (Exception e) {
+      return "00-00-00-00-00-00";
+    }
+ }
   public static void printParameter(NetworkInterface ni) throws SocketException {
     System.out.println(" Nombre = " + ni.getName());
     System.out.println(" Nombre a mostrar= " + ni.getDisplayName());
@@ -26,7 +40,7 @@ public class NetworkParameterDemo {
     System.out.println(" Es loopback = " + ni.isLoopback());
     System.out.println(" Es virtual = " + ni.isVirtual());
     System.out.println(" Es punto a punto = " + ni.isPointToPoint());
-    System.out.println(" Dirección MAC = " + ni.getHardwareAddress());    
+    System.out.println(" Dirección MAC = " + getMAC(ni));    
     System.out.println(" MTU = " + ni.getMTU());
 
     System.out.println("\nLista de direcciones de interfaz:");
