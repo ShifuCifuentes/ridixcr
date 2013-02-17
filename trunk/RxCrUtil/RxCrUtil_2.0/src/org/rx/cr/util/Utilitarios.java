@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 import java.awt.print.*;
 import java.beans.PropertyVetoException;
 import java.io.*;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
@@ -616,26 +618,28 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="GUI Frame Util">
-      public static void insertaInternalFrame(JInternalFrame jf,JDesktopPane jd) throws PropertyVetoException{
-       if(!jf.isShowing()){
-           if (jf.isIcon()) {
-              jf.setIcon(false); 
-           }else{
-            jf.pack();   
-               try {
-                 jd.add(jf);  
-               } catch (IllegalArgumentException e) {                
-                 jd.remove(jf);                 
-                 jd.add(jf); 
-               }            
-            jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
-            jf.show();
-            jf.toFront();
-           }        
-       }
-       else{
-         jf.toFront();
-       }
+      public static void insertaInternalFrame(JInternalFrame jf,JDesktopPane jd){
+        try {
+            if(!jf.isShowing()){
+                if (jf.isIcon()) {
+                   jf.setIcon(false); 
+                }else{
+                 jf.pack();   
+                    try {
+                      jd.add(jf);  
+                    } catch (IllegalArgumentException e) {                
+                      jd.remove(jf);                 
+                      jd.add(jf); 
+                    }            
+                 jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
+                 jf.show();
+                 jf.toFront();
+                }        
+            }
+            else{
+              jf.toFront();
+            }
+        }catch (Exception e) {}
        //jd.updateUI();
     }
      public static void closeInternalFrame(JInternalFrame jf,JDesktopPane jd) throws PropertyVetoException{
@@ -657,6 +661,12 @@ public final class Utilitarios extends JLabel implements Runnable{
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
       public static void maximizar(Frame ref){
+          Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+          screenSize.height=screenSize.height-40;
+          screenSize.width=screenSize.width-10;
+          ref.setSize(screenSize);
+      }
+      public static void maximizar(Dialog ref){
           Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
           screenSize.height=screenSize.height-40;
           screenSize.width=screenSize.width-10;
@@ -1506,6 +1516,22 @@ public final class Utilitarios extends JLabel implements Runnable{
            JOptionPane.showMessageDialog(null,"Fichero no Integro","Error",JOptionPane.ERROR_MESSAGE); 
         }
     }    
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="Networking">
+    public static String getMACLocal(){
+        NetworkInterface ni;
+        try {
+         ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+         byte[] mac = ni.getHardwareAddress();
+         StringBuilder sb = new StringBuilder();
+         for (int i = 0; i < mac.length; i++) {
+          sb.append(String.format("%02X%s", mac[i], (i < mac.length - 1) ? "-" : ""));  
+         } 
+          return sb.toString();
+        } catch (Exception e) {
+         return "00-00-00-00-00-00";
+        }
+   }
     //</editor-fold>
     //</editor-fold>
 }

@@ -1,10 +1,5 @@
 package org.rx.cr.test;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -15,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class PrincipalMAC extends JFrame {
+public final class PrincipalMAC extends JFrame {
  
  JLabel lmac=new JLabel();
  
@@ -27,10 +22,10 @@ public class PrincipalMAC extends JFrame {
  }
  
  public void conseguirMAC(){
-  NetworkInterface a;
+  NetworkInterface ni;
   try {
-   a = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
-   byte[] mac = a.getHardwareAddress();
+   ni = NetworkInterface.getByInetAddress(InetAddress.getLocalHost());
+   byte[] mac = ni.getHardwareAddress();
    
    StringBuilder sb = new StringBuilder();
    for (int i = 0; i < mac.length; i++) {

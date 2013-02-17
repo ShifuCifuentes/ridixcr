@@ -142,11 +142,7 @@ public final class DesktopPanel extends javax.swing.JPanel {
     }
     
     public void insertarInternalFrame(JInternalFrame jif){
-        try {
-            Utilitarios.insertaInternalFrame(jif,jDesktopPane1);
-        } catch (PropertyVetoException ex) {
-            //Logger.getLogger(JF_Principal.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Utilitarios.insertaInternalFrame(jif,jDesktopPane1);
     }
     
     public void closeInternalFrame(JInternalFrame jif){
