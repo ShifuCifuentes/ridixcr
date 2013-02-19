@@ -1,7 +1,7 @@
 package org.rx.cr.test;
 
 import org.RidixCr;
-import org.rx.cr.table.AbstractTableModel;
+import org.rx.cr.gui.table.AbstractTableModel;
 import static org.rx.cr.util.Utilitarios.*;
 
 public class TableModelTest extends AbstractTableModel<Object> {  
