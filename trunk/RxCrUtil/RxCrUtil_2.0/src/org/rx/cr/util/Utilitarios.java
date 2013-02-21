@@ -501,7 +501,7 @@ public final class Utilitarios extends JLabel implements Runnable{
           table.getColumnModel().getColumn(index).setWidth(size); 
           table.getColumnModel().getColumn(index).setMaxWidth(size);
       }
-      public static void formateaColumnaResidimensionable(int index,JTable table,int size){
+      public static void formateaColumnaRedimencionable(int index,JTable table,int size){
           table.getColumnModel().getColumn(index).setResizable(true);
           table.getColumnModel().getColumn(index).setMinWidth(size);       
           table.getColumnModel().getColumn(index).setMaxWidth(size+100);
