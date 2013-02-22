@@ -43,8 +43,10 @@ public abstract class AbstractTableModel<Tipo> extends javax.swing.table.Abstrac
     }
     @RidixCr(author=RidixCr)
     public void add(Tipo obj){
-     listObjects.add(obj);
-     actualizarEstructuraTabla();
+        if (!listObjects.contains(obj)) {
+          listObjects.add(obj);
+          actualizarEstructuraTabla();  
+        }     
     }
     @RidixCr(author=RidixCr)
     public void clear(){
@@ -71,6 +73,10 @@ public abstract class AbstractTableModel<Tipo> extends javax.swing.table.Abstrac
     @RidixCr(author=RidixCr)
     public void setTitles(String[] titles) {
         this.titles = titles;
+    }
+    @RidixCr(author=RidixCr)
+    public ArrayList<Tipo> getList() {
+        return listObjects;
     }
 
 }
