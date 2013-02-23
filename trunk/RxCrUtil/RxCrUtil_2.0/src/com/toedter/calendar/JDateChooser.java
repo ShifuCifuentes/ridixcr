@@ -221,13 +221,12 @@ public class JDateChooser extends JPanel implements ActionListener,
 
 		popup = new JPopupMenu() {
 			private static final long serialVersionUID = -6078272560337577761L;
-
+                        @Override
 			public void setVisible(boolean b) {
 				Boolean isCanceled = (Boolean) getClientProperty("JPopupMenu.firePopupMenuCanceled");
 				if (b
 						|| (!b && dateSelected)
-						|| ((isCanceled != null) && !b && isCanceled
-								.booleanValue())) {
+						|| ((isCanceled != null) && !b && isCanceled.booleanValue())) {
 					super.setVisible(b);
 				}
 			}
@@ -246,25 +245,22 @@ public class JDateChooser extends JPanel implements ActionListener,
 		// podiatanapraia:
 		changeListener = new ChangeListener() {
 			boolean hasListened = false;
-
+                        @Override
 			public void stateChanged(ChangeEvent e) {
 				if (hasListened) {
 					hasListened = false;
 					return;
 				}
 				if (popup.isVisible()
-						&& JDateChooser.this.jcalendar.monthChooser
-								.getComboBox().hasFocus()) {
-					MenuElement[] me = MenuSelectionManager.defaultManager()
-							.getSelectedPath();
+                                        && JDateChooser.this.jcalendar.monthChooser.getComboBox().hasFocus()) {
+					MenuElement[] me = MenuSelectionManager.defaultManager().getSelectedPath();
 					MenuElement[] newMe = new MenuElement[me.length + 1];
 					newMe[0] = popup;
 					for (int i = 0; i < me.length; i++) {
 						newMe[i + 1] = me[i];
 					}
 					hasListened = true;
-					MenuSelectionManager.defaultManager()
-							.setSelectedPath(newMe);
+					MenuSelectionManager.defaultManager().setSelectedPath(newMe);
 				}
 			}
 		};
@@ -426,6 +422,7 @@ public class JDateChooser extends JPanel implements ActionListener,
 	 * @param enabled
 	 *            the new enabled value
 	 */
+        @Override
 	public void setEnabled(boolean enabled) {
 		super.setEnabled(enabled);
 		if (dateEditor != null) {
@@ -439,6 +436,7 @@ public class JDateChooser extends JPanel implements ActionListener,
 	 * 
 	 * @return true, if enabled.
 	 */
+        @Override
 	public boolean isEnabled() {
 		return super.isEnabled();
 	}
@@ -459,6 +457,7 @@ public class JDateChooser extends JPanel implements ActionListener,
 	 * @param font
 	 *            the new font
 	 */
+        @Override
 	public void setFont(Font font) {
 		if (isInitialized) {
 			dateEditor.getUiComponent().setFont(font);
@@ -552,6 +551,7 @@ public class JDateChooser extends JPanel implements ActionListener,
 		changeListener = null;
 	}
 
+        @Override
 	public boolean requestFocusInWindow() {
 		if (dateEditor instanceof JComponent) {
 			return ((JComponent) dateEditor).requestFocusInWindow();

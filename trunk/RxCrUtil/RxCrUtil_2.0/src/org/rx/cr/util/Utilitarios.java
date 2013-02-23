@@ -1,9 +1,21 @@
 package org.rx.cr.util;
 
 //<editor-fold defaultstate="collapsed" desc="Importaciones">
+import com.toedter.calendar.JDateChooser;
 import java.awt.*;
+import java.awt.event.ComponentListener;
+import java.awt.event.HierarchyBoundsListener;
+import java.awt.event.HierarchyEvent;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 import java.awt.print.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.io.*;
 import java.net.InetAddress;
@@ -18,6 +30,8 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
@@ -1108,21 +1122,178 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Util">
-    public static boolean paintTxfVacio(JTextField txf){
-        if(txf.getText().trim().equals("")){
-           //txf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 2));
-            txf.setBackground(new java.awt.Color(204, 0, 0));
-            txf.requestFocus();
-           return true;
+    public static void  addValidadorResetAlert(Object[] lObj){
+        for (Object object : lObj) {
+            if (object instanceof JTextField) {
+                JTextField tmp = (JTextField)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JTextArea){
+                JTextArea tmp = (JTextArea)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JTextPane){
+                JTextPane tmp = (JTextPane)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JComboBox){
+                JComboBox tmp = (JComboBox)object;
+                addValidadorResetAlert(tmp);
+            }else if(object instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)object;
+                addValidadorResetAlert(tmp);
+            }
+        }
+    }
+    private static void addValidadorResetAlert(final JTextField txt){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                resetControl(txt);
+            }            
+        });
+    }
+    private static void addValidadorResetAlert(final JPasswordField txt){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                resetControl(txt);
+            }            
+        });
+    }
+    private static void addValidadorResetAlert(final JTextArea txt){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                resetControl(txt);
+            }            
+        });
+    }
+    private static void addValidadorResetAlert(final JTextPane txt){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                resetControl(txt);
+            }            
+        });
+    }
+    private static void addValidadorResetAlert(final JEditorPane txt){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                resetControl(txt);
+            }            
+        });
+    }
+    private static void addValidadorResetAlert(final JComboBox jcb){   
+        jcb.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                resetControl(jcb);
+            }
+        });
+    }
+    private static void addValidadorResetAlert(final JDateChooser jdc){     
+        jdc.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent e) {                
+                resetControl(jdc);
+            }
+        });
+    }
+    
+    public static boolean isValidoDatosControl(JTextField jtx,String msg){
+        return !(alertControl(jtx)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JTextArea jta,String msg){
+        return !(alertControl(jta)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JTextPane jta,String msg){
+        return !(alertControl(jta)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JPasswordField jpf,String msg){
+        return !(alertControl(jpf)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JEditorPane jpf,String msg){
+        return !(alertControl(jpf)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JComboBox jcbx,String msg){
+        return !(alertControl(jcbx)?setMsj(msg):false);
+    }
+    public static boolean isValidoDatosControl(JDateChooser jdc,String msg){
+        return !(alertControl(jdc)?setMsj(msg):false);
+    }
+    public static boolean setMsj(String msj) {
+        JOptionPane.showMessageDialog(null,msj,"Atencion",JOptionPane.INFORMATION_MESSAGE); 
+        return true;
+    }
+    
+     public static boolean alertControl(JDateChooser jdc){
+        if(jdc.getDate()==null){          
+            jdc.getDateEditor().getUiComponent().setBackground(Color.red);
+            jdc.requestFocus();
+            return true;
         }else{
-            //txf.setBorder(null);
-            txf.setBackground(new java.awt.Color(255, 255, 255));
+            jdc.getDateEditor().getUiComponent().setBackground(Color.WHITE);
             return false;
         }
     }
-    public  static boolean paintCbxVacio(JComboBox cbx){
-        if(cbx.getSelectedIndex()==0){
-            cbx.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
+    public static boolean alertControl(JTextField txf){
+        if(txf.getText().trim().length()<=0){
+            txf.setBackground(Color.RED);
+            txf.requestFocus();
+           return true;
+        }else{
+            txf.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    public static boolean alertControl(JPasswordField txf){
+        if(txf.getText().trim().length()<=0){
+            txf.setBackground(Color.RED);
+            txf.requestFocus();
+           return true;
+        }else{
+            txf.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    public static boolean alertControl(JTextArea txf){
+        if(txf.getText().trim().length()<=0){
+            txf.setBackground(Color.RED);
+            txf.requestFocus();
+           return true;
+        }else{
+            txf.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    public static boolean alertControl(JEditorPane txf){
+        if(txf.getText().trim().length()<=0){
+            txf.setBackground(Color.RED);
+            txf.requestFocus();
+           return true;
+        }else{
+            txf.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    public static boolean alertControl(JTextPane txf){
+        if(txf.getText().trim().length()<=0){
+            txf.setBackground(Color.RED);
+            txf.requestFocus();
+           return true;
+        }else{
+            txf.setBackground(Color.WHITE);
+            return false;
+        }
+    }
+    public  static boolean alertControl(JComboBox cbx){
+        if(cbx.getSelectedIndex()<=0){
+            cbx.setBorder(new javax.swing.border.LineBorder(Color.RED, 2, true));
             cbx.requestFocus();
             return true;
         }else{
@@ -1131,15 +1302,51 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
     }
     
-    public static  void resetPaintTxf(JTextField txf){
-        if(txf.getText().trim().equals("")){
-            txf.setBackground(new java.awt.Color(255, 255, 255));
-        }
-        txf.setBackground(new java.awt.Color(255, 255, 255));
+    public static  void resetControl(JTextField txf){
+        if(txf.getText().trim().length()>0){
+            txf.setBackground(Color.WHITE);
+        }else{
+            txf.setBackground(Color.RED);
+        }        
     }
-    public static  void resetPaintCbx(JComboBox cbx){
-        cbx.setBorder(null);
+    public static  void resetControl(JTextArea txf){
+        if(txf.getText().trim().length()>0){
+            txf.setBackground(Color.WHITE);
+        }else{
+            txf.setBackground(Color.RED);
+        }  
+    }
+    public static  void resetControl(JEditorPane txf){
+        if(txf.getText().trim().length()>0){
+            txf.setBackground(Color.WHITE);
+        }else{
+            txf.setBackground(Color.RED);
+        }  
+    }
+    public static  void resetControl(JTextPane txf){
+        if(txf.getText().trim().length()>0){
+            txf.setBackground(Color.WHITE);
+        }else{
+            txf.setBackground(Color.RED);
+        }  
+    }
+    public static  void resetControl(JComboBox cbx){
+        if(cbx.getSelectedIndex()>0){
+            cbx.setBorder(null);
+        }else{
+            cbx.setBorder(new javax.swing.border.LineBorder(Color.RED, 2, true));
+            cbx.requestFocus();
+        }          
     }    
+    public static  void resetControl(JDateChooser jdc){
+        if(jdc.getDate()!=null){
+            jdc.getDateEditor().getUiComponent().setBackground(Color.WHITE);
+        }else{
+            jdc.getDateEditor().getUiComponent().setBackground(Color.RED);
+            jdc.requestFocus();
+        }          
+    }
+    
     public static void saltoLineaTextArea(JTextArea txa){
         txa.setLineWrap(true);
         txa.setWrapStyleWord(true);
