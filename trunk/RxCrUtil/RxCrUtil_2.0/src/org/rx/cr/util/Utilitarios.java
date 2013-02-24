@@ -1123,6 +1123,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Util">
     public static void  addValidadorResetAlert(Object[] lObj){
+        //<editor-fold defaultstate="collapsed" desc="addValidadorResetAlert">
         for (Object object : lObj) {
             if (object instanceof JTextField) {
                 JTextField tmp = (JTextField)object;
@@ -1147,7 +1148,74 @@ public final class Utilitarios extends JLabel implements Runnable{
                 addValidadorResetAlert(tmp);
             }
         }
+        //</editor-fold>
     }
+    public static boolean isDatosLlenos(Object[][] lObj){
+        //<editor-fold defaultstate="collapsed" desc="isDatosLlenos">
+        boolean resp = true,rsp_tmp;
+        for (int i = 0; i < lObj.length; i++) {            
+            if (lObj[i][0] instanceof JTextField) {
+                JTextField tmp = (JTextField)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                }                
+            }else if(lObj[i][0] instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JTextArea){
+                JTextArea tmp = (JTextArea)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JTextPane){
+                JTextPane tmp = (JTextPane)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JComboBox){
+                JComboBox tmp = (JComboBox)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }
+        }
+        return resp;
+        //</editor-fold>
+    }
+    //<editor-fold defaultstate="collapsed" desc="addValidadorResetAlert"> 
     private static void addValidadorResetAlert(final JTextField txt){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
@@ -1204,33 +1272,35 @@ public final class Utilitarios extends JLabel implements Runnable{
             }
         });
     }
-    
-    public static boolean isValidoDatosControl(JTextField jtx,String msg){
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="isValidoDatosControl">   
+    private static boolean isValidoDatosControl(JTextField jtx,String msg){
         return !(alertControl(jtx)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JTextArea jta,String msg){
+    private static boolean isValidoDatosControl(JTextArea jta,String msg){
         return !(alertControl(jta)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JTextPane jta,String msg){
+    private static boolean isValidoDatosControl(JTextPane jta,String msg){
         return !(alertControl(jta)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JPasswordField jpf,String msg){
+    private static boolean isValidoDatosControl(JPasswordField jpf,String msg){
         return !(alertControl(jpf)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JEditorPane jpf,String msg){
+    private static boolean isValidoDatosControl(JEditorPane jpf,String msg){
         return !(alertControl(jpf)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JComboBox jcbx,String msg){
+    private static boolean isValidoDatosControl(JComboBox jcbx,String msg){
         return !(alertControl(jcbx)?setMsj(msg):false);
     }
-    public static boolean isValidoDatosControl(JDateChooser jdc,String msg){
+    private static boolean isValidoDatosControl(JDateChooser jdc,String msg){
         return !(alertControl(jdc)?setMsj(msg):false);
     }
-    public static boolean setMsj(String msj) {
-        JOptionPane.showMessageDialog(null,msj,"Atencion",JOptionPane.INFORMATION_MESSAGE); 
+    //</editor-fold>
+    private static boolean setMsj(String msj) {
+        JOptionPane.showMessageDialog(null,msj,"Atencion",JOptionPane.ERROR_MESSAGE); 
         return true;
     }
-    
+    //<editor-fold defaultstate="collapsed" desc="alertControl">  
      public static boolean alertControl(JDateChooser jdc){
         if(jdc.getDate()==null){          
             jdc.getDateEditor().getUiComponent().setBackground(Color.red);
@@ -1301,7 +1371,8 @@ public final class Utilitarios extends JLabel implements Runnable{
             return false;
         }
     }
-    
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="resetControl">   
     public static  void resetControl(JTextField txf){
         if(txf.getText().trim().length()>0){
             txf.setBackground(Color.WHITE);
@@ -1346,7 +1417,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             jdc.requestFocus();
         }          
     }
-    
+    //</editor-fold>
     public static void saltoLineaTextArea(JTextArea txa){
         txa.setLineWrap(true);
         txa.setWrapStyleWord(true);

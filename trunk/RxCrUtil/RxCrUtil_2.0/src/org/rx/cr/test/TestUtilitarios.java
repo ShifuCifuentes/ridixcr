@@ -29,9 +29,9 @@ public class TestUtilitarios {
 //                    }
 //                }
             }
-        File file = new File(getCurentPath()+File.separator+"dist"+File.separator+"RxCrUtil_1.0.jar");
+        File file = new File(getCurentPath()+File.separator+"dist"+File.separator+"RxCrUtil_2.0.jar");
         if (!file.exists()) {
-            file = new File(getCurentPath()+File.separator+"RxCrUtil_1.0.jar");
+            file = new File(getCurentPath()+File.separator+"RxCrUtil_2.0.jar");
         }
         String md5 = md5(file);
         String sha1 = sha1(file);
