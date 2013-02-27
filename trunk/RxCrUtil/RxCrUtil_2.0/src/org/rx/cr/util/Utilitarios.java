@@ -3,6 +3,8 @@ package org.rx.cr.util;
 //<editor-fold defaultstate="collapsed" desc="Importaciones">
 import com.toedter.calendar.JDateChooser;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyEvent;
@@ -12,6 +14,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
@@ -38,6 +41,7 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
+import javax.swing.text.JTextComponent;
 import javax.xml.bind.DatatypeConverter;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
@@ -1122,7 +1126,152 @@ public final class Utilitarios extends JLabel implements Runnable{
           return inf.substring((inf.indexOf("="))+1,inf.length());
     }
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="GUI Control Util">
+    //<editor-fold defaultstate="collapsed" desc="GUI Control Util">    
+    public static void addEnterFocusEvent(Object[][] lObj){
+        //<editor-fold defaultstate="collapsed" desc="addEnterFocus">        
+        for (int i = 0; i < lObj.length; i++) {            
+            if (lObj[i][0] instanceof JTextField) {
+                JTextField tmp = (JTextField)lObj[i][0]; 
+                //<editor-fold defaultstate="collapsed" desc="IF 1">
+                if (lObj[i][1] instanceof JTextField) {
+                    final JTextField tmp2 = (JTextField)lObj[i][1];                    
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JPasswordField){
+                    final JPasswordField tmp2 = (JPasswordField)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JTextArea){
+                    final JTextArea tmp2 = (JTextArea)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JTextPane){
+                    final JTextPane tmp2 = (JTextPane)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JEditorPane){
+                    final JEditorPane tmp2 = (JEditorPane)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JComboBox){
+                    final JComboBox tmp2 = (JComboBox)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JDateChooser){
+                    final JDateChooser tmp2 = (JDateChooser)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JSpinner){
+                    final JSpinner tmp2 = (JSpinner)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }                   
+                //</editor-fold>                
+            }else if(lObj[i][0] instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)lObj[i][0];
+                //<editor-fold defaultstate="collapsed" desc="IF 2">
+                 if (lObj[i][1] instanceof JTextField) {
+                    final JTextField tmp2 = (JTextField)lObj[i][1];                    
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JPasswordField){
+                    final JPasswordField tmp2 = (JPasswordField)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JTextArea){
+                    final JTextArea tmp2 = (JTextArea)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JTextPane){
+                    final JTextPane tmp2 = (JTextPane)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JEditorPane){
+                    final JEditorPane tmp2 = (JEditorPane)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JComboBox){
+                    final JComboBox tmp2 = (JComboBox)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JDateChooser){
+                    final JDateChooser tmp2 = (JDateChooser)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj[i][1] instanceof JSpinner){
+                    final JSpinner tmp2 = (JSpinner)lObj[i][1];
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }     
+                //</editor-fold>
+            }
+        }
+        //</editor-fold>
+    }
     public static void  addValidadorResetAlert(Object[] lObj){
         //<editor-fold defaultstate="collapsed" desc="addValidadorResetAlert">
         for (Object object : lObj) {
