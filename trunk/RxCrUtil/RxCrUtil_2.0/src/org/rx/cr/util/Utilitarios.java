@@ -647,11 +647,12 @@ public final class Utilitarios extends JLabel implements Runnable{
                     }            
                  jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
                  jf.show();
-                 jf.toFront();
+                 jf.toFront();                 
                 }        
             }
             else{
               jf.toFront();
+              jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
             }
         }catch (Exception e) {}
        //jd.updateUI();
