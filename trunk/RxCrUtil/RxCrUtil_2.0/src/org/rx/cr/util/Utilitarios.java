@@ -65,8 +65,11 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static final int FECHA_SISTEMA=1;
     private static TableRowSorter<AbstractTableModel> clasificador;    
     private static JTextField tftxt;
+   
     private int op=-1;    
     private Thread hilo;
+    
+    public static int ALFABETICO_NUMERICO=1,ALFABETICO=2,ALFABETICO_CM=3,ALFABETICO_NUMERICO_SPB=4,NUMERICO_MONEDA=5,NUMERICO=6;
     //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="Constructor">   
     static{AUTOR=decodeRx(AUTOR);}
@@ -135,6 +138,42 @@ public final class Utilitarios extends JLabel implements Runnable{
          }
          txt.setText(textAux);	   
     }
+    public static void validaNumeroCaracteres(JTextArea txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JTextPane txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JEditorPane txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JPasswordField txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
     public static int getNumeroCaracteres(JTextField txt){  
        return txt.getText().length();	   
     }
@@ -184,6 +223,19 @@ public final class Utilitarios extends JLabel implements Runnable{
         }   
     }
     public static void validaCaracterNumerico(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JPasswordField txt){
      Character caract = new Character(e.getKeyChar());
         if (!esNumerico(caract)) {
             String textAux="";
@@ -261,6 +313,19 @@ public final class Utilitarios extends JLabel implements Runnable{
             //getToolkit().beep();
         }  
     }
+    public static void validaCaracterAlfabetico(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
     public static boolean esAlfabetico(Character caracter){
       char caract = caracter.charValue();
       if ( !(Character.isLetter(caract) 
@@ -314,6 +379,19 @@ public final class Utilitarios extends JLabel implements Runnable{
         }  
     }
     public static void validaCaracterAlfabeticoCM(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JPasswordField txt){
      Character caract = new Character(e.getKeyChar());
         if (!esAlfabeticoCM(caract)) {
             String textAux="";
@@ -392,6 +470,19 @@ public final class Utilitarios extends JLabel implements Runnable{
             //getToolkit().beep();
         }   
     }
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
     public static boolean esAlfabeticoNumerico(Character caracter){
       char caract = caracter.charValue();
       if ( !(Character.isDigit(caract) 
@@ -458,6 +549,19 @@ public final class Utilitarios extends JLabel implements Runnable{
             //getToolkit().beep();
         }   
     }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
     public static boolean esAlfabeticoNumericoSPB(Character caracter){
       char caract = caracter.charValue();
       if ( !(Character.isDigit(caract) 
@@ -479,6 +583,58 @@ public final class Utilitarios extends JLabel implements Runnable{
       }					
     }
     public static void validaCaracterNumericoMoneda(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JPasswordField txt){
      Character caract = new Character(e.getKeyChar());
         if (!esCaracterNumericoMoneda(caract)) {
             String textAux="";
@@ -1127,147 +1283,37 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Util">    
+    public static void addCharacterValidatorEvent(Object[][] lObj){
+        //<editor-fold defaultstate="collapsed" desc="addEnterFocus">    
+        for (int i = 0; i < lObj.length; i++) {
+            if (lObj[i][0] instanceof JTextField) {
+                JTextField tmp = (JTextField)lObj[i][0];
+                addCharacterValidator(tmp,Integer.parseInt(lObj[i][1].toString()),Integer.parseInt(lObj[i][2].toString()));                
+            }else if(lObj[i][0] instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)lObj[i][0];
+                addCharacterValidator(tmp,Integer.parseInt(lObj[i][1].toString()),Integer.parseInt(lObj[i][2].toString()));  
+            }else if(lObj[i][0] instanceof JTextArea){
+                JTextArea tmp = (JTextArea)lObj[i][0];
+                addCharacterValidator(tmp,Integer.parseInt(lObj[i][1].toString()),Integer.parseInt(lObj[i][2].toString()));  
+            }else if(lObj[i][0] instanceof JTextPane){
+                JTextPane tmp = (JTextPane)lObj[i][0];
+                addCharacterValidator(tmp,Integer.parseInt(lObj[i][1].toString()),Integer.parseInt(lObj[i][2].toString()));  
+            }else if(lObj[i][0] instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)lObj[i][0];
+                addCharacterValidator(tmp,Integer.parseInt(lObj[i][1].toString()),Integer.parseInt(lObj[i][2].toString()));  
+            }
+        }        
+        //</editor-fold>
+    }
     public static void addEnterFocusEvent(Object[][] lObj){
         //<editor-fold defaultstate="collapsed" desc="addEnterFocus">        
         for (int i = 0; i < lObj.length; i++) {            
             if (lObj[i][0] instanceof JTextField) {
                 JTextField tmp = (JTextField)lObj[i][0]; 
-                //<editor-fold defaultstate="collapsed" desc="IF 1">
-                if (lObj[i][1] instanceof JTextField) {
-                    final JTextField tmp2 = (JTextField)lObj[i][1];                    
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JPasswordField){
-                    final JPasswordField tmp2 = (JPasswordField)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JTextArea){
-                    final JTextArea tmp2 = (JTextArea)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JTextPane){
-                    final JTextPane tmp2 = (JTextPane)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JEditorPane){
-                    final JEditorPane tmp2 = (JEditorPane)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JComboBox){
-                    final JComboBox tmp2 = (JComboBox)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JDateChooser){
-                    final JDateChooser tmp2 = (JDateChooser)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JSpinner){
-                    final JSpinner tmp2 = (JSpinner)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }                   
-                //</editor-fold>                
+                addEnterFocusEvent(tmp,lObj[i][1]);                  
             }else if(lObj[i][0] instanceof JPasswordField){
                 JPasswordField tmp = (JPasswordField)lObj[i][0];
-                //<editor-fold defaultstate="collapsed" desc="IF 2">
-                 if (lObj[i][1] instanceof JTextField) {
-                    final JTextField tmp2 = (JTextField)lObj[i][1];                    
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JPasswordField){
-                    final JPasswordField tmp2 = (JPasswordField)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JTextArea){
-                    final JTextArea tmp2 = (JTextArea)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JTextPane){
-                    final JTextPane tmp2 = (JTextPane)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JEditorPane){
-                    final JEditorPane tmp2 = (JEditorPane)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JComboBox){
-                    final JComboBox tmp2 = (JComboBox)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JDateChooser){
-                    final JDateChooser tmp2 = (JDateChooser)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }else if(lObj[i][1] instanceof JSpinner){
-                    final JSpinner tmp2 = (JSpinner)lObj[i][1];
-                    tmp.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tmp2.requestFocus();
-                        }
-                     });
-                }     
-                //</editor-fold>
+                addEnterFocusEvent(tmp,lObj[i][1]);
             }
         }
         //</editor-fold>
@@ -1365,6 +1411,144 @@ public final class Utilitarios extends JLabel implements Runnable{
         return resp;
         //</editor-fold>
     }
+    private static void addEnterFocusEvent(JTextField tmp, Object lObj) {
+         //<editor-fold defaultstate="collapsed" desc="addEnterFocusEvent Sub">
+        if (lObj instanceof JTextField) {
+                    final JTextField tmp2 = (JTextField)lObj;                    
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JPasswordField){
+                    final JPasswordField tmp2 = (JPasswordField)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JTextArea){
+                    final JTextArea tmp2 = (JTextArea)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JTextPane){
+                    final JTextPane tmp2 = (JTextPane)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JEditorPane){
+                    final JEditorPane tmp2 = (JEditorPane)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JComboBox){
+                    final JComboBox tmp2 = (JComboBox)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JDateChooser){
+                    final JDateChooser tmp2 = (JDateChooser)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JSpinner){
+                    final JSpinner tmp2 = (JSpinner)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }  
+        //</editor-fold>
+    }
+    private static void addEnterFocusEvent(JPasswordField tmp, Object lObj) {
+         //<editor-fold defaultstate="collapsed" desc="addEnterFocusEvent Sub">
+        if (lObj instanceof JTextField) {
+                    final JTextField tmp2 = (JTextField)lObj;                    
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JPasswordField){
+                    final JPasswordField tmp2 = (JPasswordField)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JTextArea){
+                    final JTextArea tmp2 = (JTextArea)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JTextPane){
+                    final JTextPane tmp2 = (JTextPane)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JEditorPane){
+                    final JEditorPane tmp2 = (JEditorPane)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JComboBox){
+                    final JComboBox tmp2 = (JComboBox)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JDateChooser){
+                    final JDateChooser tmp2 = (JDateChooser)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }else if(lObj instanceof JSpinner){
+                    final JSpinner tmp2 = (JSpinner)lObj;
+                    tmp.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tmp2.requestFocus();
+                        }
+                     });
+                }  
+        //</editor-fold>
+    }
     //<editor-fold defaultstate="collapsed" desc="addValidadorResetAlert"> 
     private static void addValidadorResetAlert(final JTextField txt){       
         txt.addKeyListener(new KeyAdapter() {
@@ -1444,6 +1628,138 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     private static boolean isValidoDatosControl(JDateChooser jdc,String msg){
         return !(alertControl(jdc)?setMsj(msg):false);
+    }
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="addCharacterValidator">
+    private static void addCharacterValidator(final JTextField txt,final int tp_chr,final int nro_chr){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (tp_chr==Utilitarios.NUMERICO) {
+                    validaCaracterNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                    validaCaracterNumericoMoneda(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO){
+                    validaCaracterAlfabetico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_CM){
+                    validaCaracterAlfabeticoCM(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO){
+                    validaCaracterAlfabeticoNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
+                    validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }
+            }            
+        });
+    }
+    private static void addCharacterValidator(final JTextArea txt,final int tp_chr,final int nro_chr){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (tp_chr==Utilitarios.NUMERICO) {
+                    validaCaracterNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                    validaCaracterNumericoMoneda(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO){
+                    validaCaracterAlfabetico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_CM){
+                    validaCaracterAlfabeticoCM(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO){
+                    validaCaracterAlfabeticoNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
+                    validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }
+            }            
+        });
+    }
+    private static void addCharacterValidator(final JTextPane txt,final int tp_chr,final int nro_chr){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (tp_chr==Utilitarios.NUMERICO) {
+                    validaCaracterNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                    validaCaracterNumericoMoneda(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO){
+                    validaCaracterAlfabetico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_CM){
+                    validaCaracterAlfabeticoCM(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO){
+                    validaCaracterAlfabeticoNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
+                    validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }
+            }            
+        });
+    }
+    private static void addCharacterValidator(final JEditorPane txt,final int tp_chr,final int nro_chr){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (tp_chr==Utilitarios.NUMERICO) {
+                    validaCaracterNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                    validaCaracterNumericoMoneda(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO){
+                    validaCaracterAlfabetico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_CM){
+                    validaCaracterAlfabeticoCM(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO){
+                    validaCaracterAlfabeticoNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
+                    validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }
+            }            
+        });
+    }
+    private static void addCharacterValidator(final JPasswordField txt,final int tp_chr,final int nro_chr){       
+        txt.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (tp_chr==Utilitarios.NUMERICO) {
+                    validaCaracterNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                    validaCaracterNumericoMoneda(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO){
+                    validaCaracterAlfabetico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_CM){
+                    validaCaracterAlfabeticoCM(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO){
+                    validaCaracterAlfabeticoNumerico(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
+                    validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }
+            }            
+        });
     }
     //</editor-fold>
     private static boolean setMsj(String msj) {
