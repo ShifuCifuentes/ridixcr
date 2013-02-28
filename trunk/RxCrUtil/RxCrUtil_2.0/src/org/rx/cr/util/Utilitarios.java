@@ -753,33 +753,33 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static void removeValidatorEvent(Object[] lObj){
         for (Object object : lObj) {
             if (object instanceof JTextField) {
-                JTextField tmp = (JTextField)object;
+                JTextField tmp = (JTextField)object;                
+                removeValidatorEvent(tmp);  
                 tmp.setText("");
-                removeValidatorEvent(tmp);            
             }else if(object instanceof JPasswordField){
-                JPasswordField tmp = (JPasswordField)object;
-                tmp.setText("");
+                JPasswordField tmp = (JPasswordField)object;                
                 removeValidatorEvent(tmp); 
+                tmp.setText("");
             }else if(object instanceof JTextArea){
-                JTextArea tmp = (JTextArea)object;
-                tmp.setText("");
+                JTextArea tmp = (JTextArea)object;                
                 removeValidatorEvent(tmp); 
+                tmp.setText("");
             }else if(object instanceof JTextPane){
-                JTextPane tmp = (JTextPane)object;
-                tmp.setText("");
+                JTextPane tmp = (JTextPane)object;                
                 removeValidatorEvent(tmp); 
+                tmp.setText("");
             }else if(object instanceof JEditorPane){
-                JEditorPane tmp = (JEditorPane)object;
+                JEditorPane tmp = (JEditorPane)object;                
+                removeValidatorEvent(tmp); 
                 tmp.setText("");
-                removeValidatorEvent(tmp); 
             }else if(object instanceof JComboBox){
-                JComboBox tmp = (JComboBox)object;
+                JComboBox tmp = (JComboBox)object;                
+                removeValidatorEvent(tmp); 
                 tmp.setSelectedIndex(0);
-                removeValidatorEvent(tmp); 
             }else if(object instanceof JDateChooser){
-                JDateChooser tmp = (JDateChooser)object;
-                tmp.setDate(null);
+                JDateChooser tmp = (JDateChooser)object;                
                 removeValidatorEvent(tmp); 
+                tmp.setDate(null);
             }
         }
     }
