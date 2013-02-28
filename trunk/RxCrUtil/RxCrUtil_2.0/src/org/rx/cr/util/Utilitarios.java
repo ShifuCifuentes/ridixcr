@@ -1454,9 +1454,10 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     public static  void resetControl(JComboBox cbx){
         if(cbx.getSelectedIndex()>0){
-            cbx.setBorder(null);
+            //cbx.setBorder(null);
+            cbx.setBorder(new javax.swing.border.LineBorder(Color.WHITE, 0, true));
         }else{
-            //cbx.setBorder(new javax.swing.border.LineBorder(Color.RED, 2, true));
+            cbx.setBorder(new javax.swing.border.LineBorder(Color.WHITE, 0, true));
             cbx.requestFocus();
         }          
     }    
