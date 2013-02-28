@@ -850,6 +850,10 @@ public final class Utilitarios extends JLabel implements Runnable{
         for (PropertyChangeListener propertyChangeListener : prop_event) {
             txt.removePropertyChangeListener(propertyChangeListener);
         }
+        ItemListener ietn_event[] = txt.getItemListeners();
+        for (ItemListener itemListener : ietn_event) {
+            txt.removeItemListener(itemListener);
+        }
     } 
     private static void removeValidatorEvent(JDateChooser txt){        
         KeyListener key_event[] = txt.getKeyListeners();
