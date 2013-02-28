@@ -127,541 +127,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         DecimalFormat df = new DecimalFormat(fmt);
         return df.format(src);
     }
-    //</editor-fold>    
-    //<editor-fold defaultstate="collapsed" desc="GUI Control Validadores">
-    public static void validaNumeroCaracteres(JTextField txt,int cant){  
-         String textAux="";
-         for (int i = 0; i < txt.getText().length(); i++) {
-               if (textAux.length()<cant){
-                 textAux += txt.getText().charAt(i);
-               }							
-         }
-         txt.setText(textAux);	   
-    }
-    public static void validaNumeroCaracteres(JTextArea txt,int cant){  
-         String textAux="";
-         for (int i = 0; i < txt.getText().length(); i++) {
-               if (textAux.length()<cant){
-                 textAux += txt.getText().charAt(i);
-               }							
-         }
-         txt.setText(textAux);	   
-    }
-    public static void validaNumeroCaracteres(JTextPane txt,int cant){  
-         String textAux="";
-         for (int i = 0; i < txt.getText().length(); i++) {
-               if (textAux.length()<cant){
-                 textAux += txt.getText().charAt(i);
-               }							
-         }
-         txt.setText(textAux);	   
-    }
-    public static void validaNumeroCaracteres(JEditorPane txt,int cant){  
-         String textAux="";
-         for (int i = 0; i < txt.getText().length(); i++) {
-               if (textAux.length()<cant){
-                 textAux += txt.getText().charAt(i);
-               }							
-         }
-         txt.setText(textAux);	   
-    }
-    public static void validaNumeroCaracteres(JPasswordField txt,int cant){  
-         String textAux="";
-         for (int i = 0; i < txt.getText().length(); i++) {
-               if (textAux.length()<cant){
-                 textAux += txt.getText().charAt(i);
-               }							
-         }
-         txt.setText(textAux);	   
-    }
-    public static int getNumeroCaracteres(JTextField txt){  
-       return txt.getText().length();	   
-    }
-    public static int getNumeroCaracteres(JTextArea txt){  
-       return txt.getText().length();	   
-    }
-    public static int getNumeroCaracteres(JTextPane txt){  
-       return txt.getText().length();	   
-    }
-    public static void validaCaracterNumerico(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumerico(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumerico(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumerico(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumerico(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static boolean esNumerico(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isDigit(caract) 
-          || caract == KeyEvent.VK_SPACE 
-          || caract == KeyEvent.VK_BACK_SPACE
-          || caract == KeyEvent.VK_ENTER
-          || caract == KeyEvent.VK_LEFT
-          || caract == KeyEvent.VK_RIGHT)){
-          return false;
-      }else{
-          return true;
-      }					
-    }  
-    public static void validaCaracterAlfabetico(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabetico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabetico(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabetico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabetico(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabetico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabetico(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabetico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabetico(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabetico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static boolean esAlfabetico(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isLetter(caract) 
-           || caract == KeyEvent.VK_SPACE 
-           || caract == KeyEvent.VK_BACK_SPACE
-           || caract == KeyEvent.VK_ENTER
-           || caract == KeyEvent.VK_LEFT
-           || caract == KeyEvent.VK_RIGHT)){
-          return false;
-      }else{
-          return true;
-      }					
-    }  
-    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoCM(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoCM(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoCM(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabeticoCM(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoCM(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static void validaCaracterAlfabeticoCM(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoCM(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }  
-    }
-    public static boolean esAlfabeticoCM(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isLetter(caract) 
-           || caract == KeyEvent.VK_SPACE 
-           || caract == KeyEvent.VK_BACK_SPACE
-           || caract == KeyEvent.VK_ENTER
-           || caract == KeyEvent.VK_COMMA
-           || caract == KeyEvent.VK_LEFT
-           || caract == KeyEvent.VK_RIGHT)){
-          return false;
-      }else{
-          return true;
-      }					
-    }  
-    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumerico(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static boolean esAlfabeticoNumerico(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isDigit(caract) 
-              || Character.isLetter(caract)
-              || caract == KeyEvent.VK_SPACE 
-              || caract == KeyEvent.VK_BACK_SPACE
-              || caract == KeyEvent.VK_ENTER
-              || caract == KeyEvent.VK_LEFT
-              || caract == KeyEvent.VK_RIGHT)){
-          return false;
-      }else{
-          return true;
-      }					
-    }
-    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumericoSPB(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumericoSPB(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumericoSPB(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumericoSPB(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esAlfabeticoNumericoSPB(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static boolean esAlfabeticoNumericoSPB(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isDigit(caract) 
-              || Character.isLetter(caract)
-              || caract == KeyEvent.VK_SPACE //espacio
-              || caract == KeyEvent.VK_BACK_SPACE //retroceso
-              || caract == KeyEvent.VK_COMMA //coma
-              || caract == KeyEvent.VK_PERIOD //punto
-              || caract == KeyEvent.VK_COLON //dos puntos
-              || caract == KeyEvent.VK_SEMICOLON // punto y coma
-              || caract == KeyEvent.VK_ENTER
-              || caract == KeyEvent.VK_SLASH
-              || caract == KeyEvent.VK_MINUS
-              || caract == KeyEvent.VK_LEFT
-              || caract == KeyEvent.VK_RIGHT)){
-          return false;
-      }else{
-          return true;
-      }					
-    }
-    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esCaracterNumericoMoneda(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextArea txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esCaracterNumericoMoneda(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumericoMoneda(KeyEvent e,JEditorPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esCaracterNumericoMoneda(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextPane txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esCaracterNumericoMoneda(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static void validaCaracterNumericoMoneda(KeyEvent e,JPasswordField txt){
-     Character caract = new Character(e.getKeyChar());
-        if (!esCaracterNumericoMoneda(caract)) {
-            String textAux="";
-            for (int i = 0; i < txt.getText().length(); i++) {
-               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
-                 textAux += txt.getText().charAt(i);
-               }							
-            }
-            txt.setText(textAux);
-            //getToolkit().beep();
-        }   
-    }
-    public static boolean esCaracterNumericoMoneda(Character caracter){
-      char caract = caracter.charValue();
-      if ( !(Character.isDigit(caract)             
-              || caract == KeyEvent.VK_SPACE //espacio
-              || caract == KeyEvent.VK_BACK_SPACE //retroceso              
-              || caract == KeyEvent.VK_PERIOD //punto                        
-              || caract == KeyEvent.VK_ENTER
-              || caract == KeyEvent.VK_LEFT
-              || caract == KeyEvent.VK_RIGHT)){ 
-          return false;
-      }else{
-          return true;
-      }					
-    }
-    //</editor-fold>
+    //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="GUI Table Util">
     public static void inmovilizaColumnas(JTable table){
           /*table.getTableHeader().disable();
@@ -1282,7 +748,7 @@ public final class Utilitarios extends JLabel implements Runnable{
           return inf.substring((inf.indexOf("="))+1,inf.length());
     }
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="GUI Control Util">    
+    //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">    
     public static void addCharacterValidatorEvent(Object[][] lObj){
         //<editor-fold defaultstate="collapsed" desc="addEnterFocus">    
         for (int i = 0; i < lObj.length; i++) {
@@ -1888,6 +1354,540 @@ public final class Utilitarios extends JLabel implements Runnable{
         txa.setLineWrap(true);
         txa.setWrapStyleWord(true);
     }
+    //<editor-fold defaultstate="collapsed" desc="Sub Validadores">
+    public static void validaNumeroCaracteres(JTextField txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JTextArea txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JTextPane txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JEditorPane txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static void validaNumeroCaracteres(JPasswordField txt,int cant){  
+         String textAux="";
+         for (int i = 0; i < txt.getText().length(); i++) {
+               if (textAux.length()<cant){
+                 textAux += txt.getText().charAt(i);
+               }							
+         }
+         txt.setText(textAux);	   
+    }
+    public static int getNumeroCaracteres(JTextField txt){  
+       return txt.getText().length();	   
+    }
+    public static int getNumeroCaracteres(JTextArea txt){  
+       return txt.getText().length();	   
+    }
+    public static int getNumeroCaracteres(JTextPane txt){  
+       return txt.getText().length();	   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumerico(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static boolean esNumerico(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isDigit(caract) 
+          || caract == KeyEvent.VK_SPACE 
+          || caract == KeyEvent.VK_BACK_SPACE
+          || caract == KeyEvent.VK_ENTER
+          || caract == KeyEvent.VK_LEFT
+          || caract == KeyEvent.VK_RIGHT)){
+          return false;
+      }else{
+          return true;
+      }					
+    }  
+    public static void validaCaracterAlfabetico(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabetico(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabetico(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabetico(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabetico(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabetico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabetico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static boolean esAlfabetico(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isLetter(caract) 
+           || caract == KeyEvent.VK_SPACE 
+           || caract == KeyEvent.VK_BACK_SPACE
+           || caract == KeyEvent.VK_ENTER
+           || caract == KeyEvent.VK_LEFT
+           || caract == KeyEvent.VK_RIGHT)){
+          return false;
+      }else{
+          return true;
+      }					
+    }  
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static void validaCaracterAlfabeticoCM(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoCM(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoCM(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }  
+    }
+    public static boolean esAlfabeticoCM(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isLetter(caract) 
+           || caract == KeyEvent.VK_SPACE 
+           || caract == KeyEvent.VK_BACK_SPACE
+           || caract == KeyEvent.VK_ENTER
+           || caract == KeyEvent.VK_COMMA
+           || caract == KeyEvent.VK_LEFT
+           || caract == KeyEvent.VK_RIGHT)){
+          return false;
+      }else{
+          return true;
+      }					
+    }  
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumerico(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumerico(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumerico(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static boolean esAlfabeticoNumerico(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isDigit(caract) 
+              || Character.isLetter(caract)
+              || caract == KeyEvent.VK_SPACE 
+              || caract == KeyEvent.VK_BACK_SPACE
+              || caract == KeyEvent.VK_ENTER
+              || caract == KeyEvent.VK_LEFT
+              || caract == KeyEvent.VK_RIGHT)){
+          return false;
+      }else{
+          return true;
+      }					
+    }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterAlfabeticoNumericoSPB(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esAlfabeticoNumericoSPB(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esAlfabeticoNumericoSPB(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static boolean esAlfabeticoNumericoSPB(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isDigit(caract) 
+              || Character.isLetter(caract)
+              || caract == KeyEvent.VK_SPACE //espacio
+              || caract == KeyEvent.VK_BACK_SPACE //retroceso
+              || caract == KeyEvent.VK_COMMA //coma
+              || caract == KeyEvent.VK_PERIOD //punto
+              || caract == KeyEvent.VK_COLON //dos puntos
+              || caract == KeyEvent.VK_SEMICOLON // punto y coma
+              || caract == KeyEvent.VK_ENTER
+              || caract == KeyEvent.VK_SLASH
+              || caract == KeyEvent.VK_MINUS
+              || caract == KeyEvent.VK_LEFT
+              || caract == KeyEvent.VK_RIGHT)){
+          return false;
+      }else{
+          return true;
+      }					
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextArea txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JEditorPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JTextPane txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static void validaCaracterNumericoMoneda(KeyEvent e,JPasswordField txt){
+     Character caract = new Character(e.getKeyChar());
+        if (!esCaracterNumericoMoneda(caract)) {
+            String textAux="";
+            for (int i = 0; i < txt.getText().length(); i++) {
+               if (esCaracterNumericoMoneda(new Character(txt.getText().charAt(i)))){
+                 textAux += txt.getText().charAt(i);
+               }							
+            }
+            txt.setText(textAux);
+            //getToolkit().beep();
+        }   
+    }
+    public static boolean esCaracterNumericoMoneda(Character caracter){
+      char caract = caracter.charValue();
+      if ( !(Character.isDigit(caract)             
+              || caract == KeyEvent.VK_SPACE //espacio
+              || caract == KeyEvent.VK_BACK_SPACE //retroceso              
+              || caract == KeyEvent.VK_PERIOD //punto                        
+              || caract == KeyEvent.VK_ENTER
+              || caract == KeyEvent.VK_LEFT
+              || caract == KeyEvent.VK_RIGHT)){ 
+          return false;
+      }else{
+          return true;
+      }					
+    }
+    //</editor-fold>    
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Font Util">
     public Font getErikaTypeBold(float sz){
