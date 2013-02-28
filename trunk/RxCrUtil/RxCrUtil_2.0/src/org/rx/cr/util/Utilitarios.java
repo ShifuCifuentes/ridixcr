@@ -35,6 +35,7 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
@@ -749,6 +750,117 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">    
+    public static void removeValidatorEvent(Object[] lObj){
+        for (Object object : lObj) {
+            if (object instanceof JTextField) {
+                JTextField tmp = (JTextField)object;
+                tmp.setText("");
+                removeValidatorEvent(tmp);            
+            }else if(object instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)object;
+                tmp.setText("");
+                removeValidatorEvent(tmp); 
+            }else if(object instanceof JTextArea){
+                JTextArea tmp = (JTextArea)object;
+                tmp.setText("");
+                removeValidatorEvent(tmp); 
+            }else if(object instanceof JTextPane){
+                JTextPane tmp = (JTextPane)object;
+                tmp.setText("");
+                removeValidatorEvent(tmp); 
+            }else if(object instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)object;
+                tmp.setText("");
+                removeValidatorEvent(tmp); 
+            }else if(object instanceof JComboBox){
+                JComboBox tmp = (JComboBox)object;
+                tmp.setSelectedIndex(0);
+                removeValidatorEvent(tmp); 
+            }else if(object instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)object;
+                tmp.setDate(null);
+                removeValidatorEvent(tmp); 
+            }
+        }
+    }
+    private static void removeValidatorEvent(JTextField txt){
+        ActionListener action_event[] = txt.getActionListeners();
+        for (ActionListener actionListener : action_event) {
+            txt.removeActionListener(actionListener);
+        }
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }         
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    }
+    private static void removeValidatorEvent(JPasswordField txt){
+        ActionListener action_event[] = txt.getActionListeners();
+        for (ActionListener actionListener : action_event) {
+            txt.removeActionListener(actionListener);
+        }
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }   
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    }
+    private static void removeValidatorEvent(JTextArea txt){        
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }    
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    }
+    private static void removeValidatorEvent(JTextPane txt){        
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }   
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }        
+    }
+    private static void removeValidatorEvent(JEditorPane txt){        
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }   
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    }    
+    private static void removeValidatorEvent(JComboBox txt){        
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }   
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    } 
+    private static void removeValidatorEvent(JDateChooser txt){        
+        KeyListener key_event[] = txt.getKeyListeners();
+        for (KeyListener keyListener : key_event) {
+            txt.removeKeyListener(keyListener);
+        }   
+        PropertyChangeListener prop_event[] = txt.getPropertyChangeListeners();
+        for (PropertyChangeListener propertyChangeListener : prop_event) {
+            txt.removePropertyChangeListener(propertyChangeListener);
+        }
+    } 
     public static void addCharacterValidatorEvent(Object[][] lObj){
         //<editor-fold defaultstate="collapsed" desc="addEnterFocus">    
         for (int i = 0; i < lObj.length; i++) {
