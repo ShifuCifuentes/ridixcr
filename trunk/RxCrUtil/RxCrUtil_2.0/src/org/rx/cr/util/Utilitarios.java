@@ -750,27 +750,30 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">    
+    public static void resetComponents(Object[] lObj){
+        removeValidatorEvent(lObj);
+    }
     public static void removeValidatorEvent(Object[] lObj){
         for (Object object : lObj) {
             if (object instanceof JTextField) {
                 JTextField tmp = (JTextField)object;                
-                removeValidatorEvent(tmp);  
+                //removeValidatorEvent(tmp);  
                 tmp.setText("");
             }else if(object instanceof JPasswordField){
                 JPasswordField tmp = (JPasswordField)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setText("");
             }else if(object instanceof JTextArea){
                 JTextArea tmp = (JTextArea)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setText("");
             }else if(object instanceof JTextPane){
                 JTextPane tmp = (JTextPane)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setText("");
             }else if(object instanceof JEditorPane){
                 JEditorPane tmp = (JEditorPane)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setText("");
             }else if(object instanceof JComboBox){
                 JComboBox tmp = (JComboBox)object;                
@@ -778,7 +781,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 tmp.setSelectedIndex(0);
             }else if(object instanceof JDateChooser){
                 JDateChooser tmp = (JDateChooser)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setDate(null);
             }
         }
@@ -1453,7 +1456,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         if(cbx.getSelectedIndex()>0){
             cbx.setBorder(null);
         }else{
-            cbx.setBorder(new javax.swing.border.LineBorder(Color.RED, 2, true));
+            //cbx.setBorder(new javax.swing.border.LineBorder(Color.RED, 2, true));
             cbx.requestFocus();
         }          
     }    
@@ -1461,7 +1464,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         if(jdc.getDate()!=null){
             jdc.getDateEditor().getUiComponent().setBackground(Color.WHITE);
         }else{
-            jdc.getDateEditor().getUiComponent().setBackground(Color.RED);
+            //jdc.getDateEditor().getUiComponent().setBackground(Color.RED);
             jdc.requestFocus();
         }          
     }
