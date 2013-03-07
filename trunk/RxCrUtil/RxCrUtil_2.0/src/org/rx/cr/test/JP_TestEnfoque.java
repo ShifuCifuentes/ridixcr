@@ -1,9 +1,11 @@
 package org.rx.cr.test;
 
+import org.rx.cr.util.Utilitarios;
+
 public class JP_TestEnfoque extends javax.swing.JPanel {
 
     public JP_TestEnfoque() {
-        initComponents();
+        initComponents();        
     }
 
     @SuppressWarnings("unchecked")

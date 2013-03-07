@@ -44,6 +44,9 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.swing.text.JTextComponent;
 import javax.xml.bind.DatatypeConverter;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
@@ -291,13 +294,17 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void centreaVentana(Window vent){
           vent.setLocationRelativeTo(null);
       }
-      public void setIconoVentana(Window vent,String resourcePath){
-          Image icon = Toolkit.getDefaultToolkit().createImage(getClass().getResource(resourcePath));
-          vent.setIconImage(icon);
+      public static void setIconoVentana(Window vent,String resourcePath){
+          //Image icon = Toolkit.getDefaultToolkit().createImage(Class.class.getClass().getResource(resourcePath));
+          //ImageIcon icon =  new ImageIcon(Class.class.getClass().getResource(resourcePath)); 
+          vent.setIconImage(getIconFromResource(resourcePath).getImage());
       }
-      public void setIconoVentana(JInternalFrame vent,String resourcePath){
-          ImageIcon icon =  new ImageIcon(getClass().getResource(resourcePath)); 
-          vent.setFrameIcon(icon);
+      public static void setIconoVentana(JInternalFrame vent,String resourcePath){           
+          vent.setFrameIcon(getIconFromResource(resourcePath));
+      }
+      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
+          vent.setIconImage(getIconFromResource(resourcePath).getImage());
+          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
       }
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
@@ -343,6 +350,18 @@ public final class Utilitarios extends JLabel implements Runnable{
       }
       public static void adaptarForma(JFrame win,float aw,float ah){
           new ShapeDecorated().applyShape(win, aw, ah);
+      }
+      public static ImageIcon getIconFromResource(String resource) { 
+        return new ImageIcon(Class.class.getClass().getResource(resource));
+      }
+      public static ResizableIcon getResizableIconFromResource(String resource) {      
+        return getResizableIconFromResource(resource,48,48);
+      }
+      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
+        return getResizableIconFromResource(resource,size,size);
+      }
+      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
+        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
       }
       //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Imprecion Util">
@@ -749,7 +768,99 @@ public final class Utilitarios extends JLabel implements Runnable{
           return inf.substring((inf.indexOf("="))+1,inf.length());
     }
     //</editor-fold>
-    //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">    
+    //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">   
+    public static void enableComponent(Object[] lObj){
+        for (Object object : lObj) {
+            if (object instanceof JTextField) {
+                JTextField tmp = (JTextField)object; 
+                tmp.setEnabled(true);
+                tmp.setEditable(true);
+            }else if(object instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)object;                
+                tmp.setEnabled(true);
+                tmp.setEditable(true);
+            }else if(object instanceof JTextArea){
+                JTextArea tmp = (JTextArea)object;                
+               tmp.setEnabled(true);
+               tmp.setEditable(true);
+            }else if(object instanceof JTextPane){
+                JTextPane tmp = (JTextPane)object;                
+                tmp.setEnabled(true);
+                tmp.setEditable(true);
+            }else if(object instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)object;                
+                tmp.setEnabled(true);
+                tmp.setEditable(true);
+            }else if(object instanceof JComboBox){
+                JComboBox tmp = (JComboBox)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JSpinner){
+                JSpinner tmp = (JSpinner)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JButton){
+                JButton tmp = (JButton)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JTable){
+                JTable tmp = (JTable)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JCheckBox){
+                JCheckBox tmp = (JCheckBox)object;                
+                tmp.setEnabled(true);
+            }else if(object instanceof JRadioButton){
+                JRadioButton tmp = (JRadioButton)object;                
+                tmp.setEnabled(true);
+            }
+        }
+    }
+    public static void disableComponent(Object[] lObj){
+        for (Object object : lObj) {
+            if (object instanceof JTextField) {
+                JTextField tmp = (JTextField)object; 
+                tmp.setEnabled(false);
+                tmp.setEditable(false);
+            }else if(object instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)object;                
+                tmp.setEnabled(false);
+                tmp.setEditable(false);
+            }else if(object instanceof JTextArea){
+                JTextArea tmp = (JTextArea)object;                
+               tmp.setEnabled(false);
+               tmp.setEditable(false);
+            }else if(object instanceof JTextPane){
+                JTextPane tmp = (JTextPane)object;                
+                tmp.setEnabled(false);
+                tmp.setEditable(false);
+            }else if(object instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)object;                
+                tmp.setEnabled(false);
+                tmp.setEditable(false);
+            }else if(object instanceof JComboBox){
+                JComboBox tmp = (JComboBox)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JSpinner){
+                JSpinner tmp = (JSpinner)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JButton){
+                JButton tmp = (JButton)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JTable){
+                JTable tmp = (JTable)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JCheckBox){
+                JCheckBox tmp = (JCheckBox)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JRadioButton){
+                JRadioButton tmp = (JRadioButton)object;                
+                tmp.setEnabled(false);
+            }
+        }
+    }
     public static void resetComponents(Object[] lObj){
         removeValidatorEvent(lObj);
     }
@@ -777,7 +888,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 tmp.setText("");
             }else if(object instanceof JComboBox){
                 JComboBox tmp = (JComboBox)object;                
-                removeValidatorEvent(tmp); 
+                //removeValidatorEvent(tmp); 
                 tmp.setSelectedIndex(0);
             }else if(object instanceof JDateChooser){
                 JDateChooser tmp = (JDateChooser)object;                
@@ -2010,15 +2121,15 @@ public final class Utilitarios extends JLabel implements Runnable{
     //</editor-fold>    
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Font Util">
-    public Font getErikaTypeBold(float sz){
+    public static Font getErikaTypeBold(float sz){
       //return getCustomFont("/org/edessco/sisregcivil/resource/font/Erika_Type_Bold.ttf",sz);
         return getCustomFont("font/Erika_Type_Bold.ttf",sz);
     }
-     public Font getArialBold(float sz){
+     public static Font getArialBold(float sz){
       //return getCustomFont("/org/edessco/sisregcivil/resource/font/ariblk.ttf",sz);
       return getCustomFont("font/ariblk.ttf",sz);
     }
-    public Font getCustomFont(String ref,float sz){
+    public static Font getCustomFont(String ref,float sz){
       Font font=null;
       try {
               font = Font.createFont(Font.TRUETYPE_FONT,new File(Utilitarios.getCurentPath()+File.separator+File.separator+ref));

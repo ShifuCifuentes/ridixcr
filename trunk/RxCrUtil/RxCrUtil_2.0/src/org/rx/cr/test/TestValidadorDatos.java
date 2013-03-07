@@ -20,6 +20,7 @@ public class TestValidadorDatos extends javax.swing.JFrame {
             addValidadorResetAlert(new Object[]{jTextField1,jTextArea1,jTextPane1,jEditorPane1,jComboBox1,jDateChooser1});
             jScrollPane4.setViewportView(panel);
             centreaVentana(this);
+            setIconoVentana(this,"/org/rx/cr/resource/IconRx.png");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(TestValidadorDatos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
