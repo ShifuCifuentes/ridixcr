@@ -5,17 +5,12 @@ import com.toedter.calendar.JDateChooser;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentListener;
-import java.awt.event.HierarchyBoundsListener;
-import java.awt.event.HierarchyEvent;
-import java.awt.event.InputMethodEvent;
-import java.awt.event.InputMethodListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -33,20 +28,13 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
-import javax.swing.event.ChangeListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
-import javax.swing.text.JTextComponent;
 import javax.xml.bind.DatatypeConverter;
-import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
@@ -260,6 +248,14 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
        clasificador.setRowFilter(Filtrador_Filas);
     }
+    public static int seleccionarFila(MouseEvent evt) {
+        JTable tablaReferencia = (JTable) evt.getComponent();
+        Point puntoReferencia = evt.getPoint();
+        int filaSeleccionada = tablaReferencia.rowAtPoint(puntoReferencia);
+        ListSelectionModel modeloTabla = tablaReferencia.getSelectionModel();
+        modeloTabla.setSelectionInterval(filaSeleccionada, filaSeleccionada);
+        return filaSeleccionada;
+    }
     //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="GUI Frame Util">
       public static void insertaInternalFrame(JInternalFrame jf,JDesktopPane jd){
@@ -267,6 +263,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             if(!jf.isShowing()){
                 if (jf.isIcon()) {
                    jf.setIcon(false); 
+                   jf.toFront();
                 }else{
                  jf.pack();   
                     try {
@@ -274,17 +271,19 @@ public final class Utilitarios extends JLabel implements Runnable{
                     } catch (IllegalArgumentException e) {                
                       jd.remove(jf);                 
                       jd.add(jf); 
+                      e.printStackTrace();
                     }            
                  jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
                  jf.show();
                  jf.toFront();                 
                 }        
-            }
-            else{
+            }else{              
               jf.toFront();
               jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
             }
-        }catch (Exception e) {}
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
        //jd.updateUI();
     }
      public static void closeInternalFrame(JInternalFrame jf,JDesktopPane jd) throws PropertyVetoException{
@@ -302,10 +301,10 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void setIconoVentana(JInternalFrame vent,String resourcePath){           
           vent.setFrameIcon(getIconFromResource(resourcePath));
       }
-      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
-          vent.setIconImage(getIconFromResource(resourcePath).getImage());
-          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
-      }
+//      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
+//          vent.setIconImage(getIconFromResource(resourcePath).getImage());
+//          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
+//      }
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
@@ -354,15 +353,15 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static ImageIcon getIconFromResource(String resource) { 
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
-      public static ResizableIcon getResizableIconFromResource(String resource) {      
-        return getResizableIconFromResource(resource,48,48);
-      }
-      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
-        return getResizableIconFromResource(resource,size,size);
-      }
-      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
-        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-      }
+//      public static ResizableIcon getResizableIconFromResource(String resource) {      
+//        return getResizableIconFromResource(resource,48,48);
+//      }
+//      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
+//        return getResizableIconFromResource(resource,size,size);
+//      }
+//      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
+//        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
+//      }
       //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Imprecion Util">
       public static void imprimirSilencioso(Printable prntbl) throws PrinterException{
@@ -2278,14 +2277,14 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static String getFileName(File src){
         return src.exists()?getFileName(src.getName().trim()):"";
     }    
-    public static String getExtencion(String str){
-        return str.lastIndexOf(".")!=-1?str.substring(str.lastIndexOf("."),str.length()):"";        
+    public static String getFileExtencion(String str){
+        return str.lastIndexOf(".")!=-1?str.substring(str.lastIndexOf(".")+1,str.length()):"";        
     }
-    public static String getExtencion(File fl) throws FileNotFoundException{
-        return fl.exists() && fl.isFile()?getExtencion(fl.getName().trim()):"";        
+    public static String getFileExtencion(File fl) throws FileNotFoundException{
+        return fl.exists() && fl.isFile()?getFileExtencion(fl.getName().trim()):"";        
     }
     public static String fileExtencion(File src){
-        return src.exists() && src.isFile()?getExtencion(src.getName().trim()):"";
+        return src.exists() && src.isFile()?getFileExtencion(src.getName().trim()):"";
     }
     private static String readLineChars(DataInputStream dis) throws IOException{
         String tmp_ln="";
@@ -2429,7 +2428,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     }   
       
     public static void renameFile(File src,String nname) throws FileNotFoundException{      
-      nname=nname+"."+getExtencion(src);
+      nname=nname+"."+getFileExtencion(src);
       src.renameTo(new File(src.getParentFile().getPath(),nname));
     }
     public static String encodeRx(String data){return encodeBinaryBASE64(encodeBinaryHexa(encodeBinaryBASE64(data)));}

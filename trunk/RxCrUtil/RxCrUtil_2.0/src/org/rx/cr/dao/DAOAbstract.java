@@ -2,6 +2,7 @@ package org.rx.cr.dao;
 import org.rx.cr.generic.MVCGeneric;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.RidixCr;
 import org.rx.cr.generic.BeanAbstractUtil;
+import org.rx.cr.util.Utilitarios;
 import static org.rx.cr.util.Utilitarios.*;
 /* 
  * 
@@ -107,7 +109,18 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     }
     public InputStream getDataBinaryStream(int index) throws SQLException{
      return rs.getBinaryStream(index);
-    }     
+    }  
+    public File getDataBinaryStream(int index,String ref) throws SQLException{
+        if (getDataBytesStream(index)!=null) {
+          try {                    
+             return Utilitarios.decodeFileBASE64Binary(getDataBytesStream(index),ref);
+          } catch (IOException ex) {
+              Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+              return null;
+          } 
+        }
+        throw null;
+    }
     public byte[] getDataBytesStream(int index) throws SQLException{
       return rs.getBytes(index);
     }

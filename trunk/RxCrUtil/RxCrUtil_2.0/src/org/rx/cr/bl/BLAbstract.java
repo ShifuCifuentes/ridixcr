@@ -10,6 +10,7 @@ import static org.rx.cr.util.Utilitarios.*;
 public abstract class BLAbstract<Tipo> implements MVCGeneric<Tipo>{
     private Config conf=null;
     private DSConeccion ds = null;
+    private String appContextPath=null;
     
     public void setDSConeccion(DSConeccion ds){
         this.ds = ds;
@@ -27,5 +28,13 @@ public abstract class BLAbstract<Tipo> implements MVCGeneric<Tipo>{
     @Deprecated
     public Tipo autenticarUsuario(String user,String password){
         throw new UnsupportedOperationException("Implementar si se requiere!");
+    }
+
+    public String getAppContextPath() {
+        return appContextPath;
+    }
+
+    public void setAppContextPath(String appContextPath) {
+        this.appContextPath = appContextPath;
     }
 }
