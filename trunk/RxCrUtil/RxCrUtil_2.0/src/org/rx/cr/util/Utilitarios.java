@@ -219,10 +219,10 @@ public final class Utilitarios extends JLabel implements Runnable{
         TableRowSorter trs = new TableRowSorter<AbstractTableModel>(mdl);
         tb.setModel(mdl);
         tb.setRowSorter(trs);  
-        actualizadorFiltrado(txt,trs);
+        aplicarFiltrador(txt,trs);
     }
     
-    private static void actualizadorFiltrado(final JTextField txt,final TableRowSorter trs){
+    private static void aplicarFiltrador(final JTextField txt,final TableRowSorter trs){
         txt.getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
