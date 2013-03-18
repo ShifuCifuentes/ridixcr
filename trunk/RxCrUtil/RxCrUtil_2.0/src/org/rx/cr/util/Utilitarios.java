@@ -33,6 +33,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
@@ -215,37 +216,37 @@ public final class Utilitarios extends JLabel implements Runnable{
         };
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
-    public static void filtradorBusqueda(AbstractTableModel mdl,JTable tb,JTextField txt){     
-        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(mdl);
-        tb.setModel(mdl);
+    public static void filtradorBusqueda(JTable tb,JTextField txt,int... index){  
+        AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
+        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
         tb.setRowSorter(trs);  
-        aplicarFiltrador(txt,trs);
+        aplicarFiltrador(txt,trs,index);
     }
     
-    private static void aplicarFiltrador(final JTextField txt,final TableRowSorter trs){
+    private static void aplicarFiltrador(final JTextField txt,final TableRowSorter trs,final int... index){
         txt.getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs);                        
+                        nuevoFiltradoFilas(txt,trs,index);                        
                     }
                     @Override
                     public void insertUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs);
+                        nuevoFiltradoFilas(txt,trs,index);
                     }
                     @Override
                     public void removeUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs);
+                        nuevoFiltradoFilas(txt,trs,index);
                     }
                 });            
    }
-    private static void nuevoFiltradoFilas(JTextField txt,TableRowSorter trs) {
+   private static void nuevoFiltradoFilas(JTextField txt,TableRowSorter trs,int... index) {
         RowFilter<AbstractTableModel,Object> rf;
         try {
-            rf = RowFilter.regexFilter(txt.getText(),0);
+            rf = RowFilter.regexFilter(txt.getText(),index);            
             trs.setRowFilter(rf);
-        } catch (java.util.regex.PatternSyntaxException e) {}
-    }
-    public static int seleccionarFila(MouseEvent evt) {
+        } catch (java.util.regex.PatternSyntaxException ex) {}
+   }
+   public static int seleccionarFila(MouseEvent evt) {
         JTable tablaReferencia = (JTable) evt.getComponent();
         Point puntoReferencia = evt.getPoint();
         int filaSeleccionada = tablaReferencia.rowAtPoint(puntoReferencia);
