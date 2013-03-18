@@ -193,7 +193,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         };
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
-      public static void alinearDatosColumnaTablaIzquierda(int index,JTable table){
+ public static void alinearDatosColumnaTablaIzquierda(int index,JTable table){
        TableCellRenderer render = new DefaultTableCellRenderer() {
          @Override
          public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
@@ -204,7 +204,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         };
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
-      public static void alinearDatosColumnaTablaCentro(int index,JTable table){
+  public static void alinearDatosColumnaTablaCentro(int index,JTable table){
        TableCellRenderer render = new DefaultTableCellRenderer() {
          @Override
          public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
@@ -215,31 +215,30 @@ public final class Utilitarios extends JLabel implements Runnable{
         };
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
-      public static void filtradorBusqueda(AbstractTableModel mdl,JTable tb,JTextField txt){     
-      TableRowSorter trs = new TableRowSorter<AbstractTableModel>(mdl);
-      tb.setModel(mdl);
-      tb.setRowSorter(trs);  
-      actualizadorFiltrado(txt,trs);
+    public static void filtradorBusqueda(AbstractTableModel mdl,JTable tb,JTextField txt){     
+        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(mdl);
+        tb.setModel(mdl);
+        tb.setRowSorter(trs);  
+        actualizadorFiltrado(txt,trs);
     }
     
     private static void actualizadorFiltrado(final JTextField txt,final TableRowSorter trs){
-        txt.getDocument().addDocumentListener(
-                new DocumentListener() {
+        txt.getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos(txt,trs);                        
+                        nuevoFiltradoFilas(txt,trs);                        
                     }
                     @Override
                     public void insertUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos(txt,trs);
+                        nuevoFiltradoFilas(txt,trs);
                     }
                     @Override
                     public void removeUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos(txt,trs);
+                        nuevoFiltradoFilas(txt,trs);
                     }
                 });            
    }
-    private static void nuevoFiltradoProductos(JTextField txt,TableRowSorter trs) {
+    private static void nuevoFiltradoFilas(JTextField txt,TableRowSorter trs) {
         RowFilter<AbstractTableModel,Object> rf;
         try {
             rf = RowFilter.regexFilter(txt.getText(),0);
