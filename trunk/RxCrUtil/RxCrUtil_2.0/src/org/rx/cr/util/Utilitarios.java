@@ -35,6 +35,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
@@ -301,10 +304,10 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void setIconoVentana(JInternalFrame vent,String resourcePath){           
           vent.setFrameIcon(getIconFromResource(resourcePath));
       }
-//      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
-//          vent.setIconImage(getIconFromResource(resourcePath).getImage());
-//          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
-//      }
+      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
+          vent.setIconImage(getIconFromResource(resourcePath).getImage());
+          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
+      }
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
@@ -353,15 +356,15 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static ImageIcon getIconFromResource(String resource) { 
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
-//      public static ResizableIcon getResizableIconFromResource(String resource) {      
-//        return getResizableIconFromResource(resource,48,48);
-//      }
-//      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
-//        return getResizableIconFromResource(resource,size,size);
-//      }
-//      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
-//        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-//      }
+      public static ResizableIcon getResizableIconFromResource(String resource) {      
+        return getResizableIconFromResource(resource,48,48);
+      }
+      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
+        return getResizableIconFromResource(resource,size,size);
+      }
+      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
+        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
+      }
       //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Imprecion Util">
       public static void imprimirSilencioso(Printable prntbl) throws PrinterException{
@@ -1000,6 +1003,31 @@ public final class Utilitarios extends JLabel implements Runnable{
         }        
         //</editor-fold>
     }
+    public static void addEnterDoclickEvent(Object[][] lObj){
+        //<editor-fold defaultstate="collapsed" desc="addEnterFocus">        
+        for (int i = 0; i < lObj.length; i++) {            
+            if (lObj[i][0] instanceof JTextField) {
+                JTextField tmp = (JTextField)lObj[i][0]; 
+                final JButton tmp2 = (JButton)lObj[i][1];     
+                tmp.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        tmp2.doClick();
+                    }
+                 });              
+            }else if(lObj[i][0] instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)lObj[i][0];
+                final JButton tmp2 = (JButton)lObj[i][1];     
+                tmp.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        tmp2.doClick();
+                    }
+                 });  
+            }
+        }
+        //</editor-fold>
+    }
     public static void addEnterFocusEvent(Object[][] lObj){
         //<editor-fold defaultstate="collapsed" desc="addEnterFocus">        
         for (int i = 0; i < lObj.length; i++) {            
@@ -1105,7 +1133,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
         return resp;
         //</editor-fold>
-    }
+    }    
     private static void addEnterFocusEvent(JTextField tmp, Object lObj) {
          //<editor-fold defaultstate="collapsed" desc="addEnterFocusEvent Sub">
         if (lObj instanceof JTextField) {
