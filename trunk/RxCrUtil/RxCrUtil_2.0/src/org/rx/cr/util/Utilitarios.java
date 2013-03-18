@@ -58,9 +58,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static String[] Horario = {"a.m.","p.m."};
     public static final int HORA_SISTEMA=0;
     public static final int FECHA_SISTEMA=1;
-    private static TableRowSorter<AbstractTableModel> clasificador;    
-    private static JTextField tftxt;
-   
+  
     private int op=-1;    
     private Thread hilo;
     
@@ -218,38 +216,35 @@ public final class Utilitarios extends JLabel implements Runnable{
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
       public static void filtradorBusqueda(AbstractTableModel mdl,JTable tb,JTextField txt){     
-      clasificador = new TableRowSorter<AbstractTableModel>(mdl);
+      TableRowSorter trs = new TableRowSorter<AbstractTableModel>(mdl);
       tb.setModel(mdl);
-      tb.setRowSorter(clasificador);  
-      actualizadorFiltrado(txt);
+      tb.setRowSorter(trs);  
+      actualizadorFiltrado(txt,trs);
     }
     
-    public static void actualizadorFiltrado(JTextField txt){
-     tftxt=txt;
-     txt.getDocument().addDocumentListener(
+    private static void actualizadorFiltrado(final JTextField txt,final TableRowSorter trs){
+        txt.getDocument().addDocumentListener(
                 new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos();                        
+                        nuevoFiltradoProductos(txt,trs);                        
                     }
                     @Override
                     public void insertUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos();
+                        nuevoFiltradoProductos(txt,trs);
                     }
                     @Override
                     public void removeUpdate(DocumentEvent e) {
-                        nuevoFiltradoProductos();
+                        nuevoFiltradoProductos(txt,trs);
                     }
                 });            
    }
-    private static void nuevoFiltradoProductos() {
-         RowFilter<AbstractTableModel,Object> Filtrador_Filas = null;
+    private static void nuevoFiltradoProductos(JTextField txt,TableRowSorter trs) {
+        RowFilter<AbstractTableModel,Object> rf;
         try {
-            Filtrador_Filas = RowFilter.regexFilter(tftxt.getText(),0);
-        } catch (java.util.regex.PatternSyntaxException e) {
-            return;
-        }
-       clasificador.setRowFilter(Filtrador_Filas);
+            rf = RowFilter.regexFilter(txt.getText(),0);
+            trs.setRowFilter(rf);
+        } catch (java.util.regex.PatternSyntaxException e) {}
     }
     public static int seleccionarFila(MouseEvent evt) {
         JTable tablaReferencia = (JTable) evt.getComponent();
