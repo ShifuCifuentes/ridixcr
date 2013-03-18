@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -219,7 +220,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static void filtradorBusqueda(JTable tb,JTextField txt,int... index){  
         AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
         TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
-        tb.setRowSorter(trs);  
+        tb.setRowSorter(trs); 
         aplicarFiltrador(txt,trs,index);
     }
     
@@ -242,7 +243,8 @@ public final class Utilitarios extends JLabel implements Runnable{
    private static void nuevoFiltradoFilas(JTextField txt,TableRowSorter trs,int... index) {
         RowFilter<AbstractTableModel,Object> rf;
         try {
-            rf = RowFilter.regexFilter(txt.getText(),index);            
+            rf = RowFilter.regexFilter("(?i)"+txt.getText(),index);            
+           // rf = RowFilter.regexFilter(Pattern.compile(txt.getText(),Pattern.CASE_INSENSITIVE).toString(),index);            
             trs.setRowFilter(rf);
         } catch (java.util.regex.PatternSyntaxException ex) {}
    }
