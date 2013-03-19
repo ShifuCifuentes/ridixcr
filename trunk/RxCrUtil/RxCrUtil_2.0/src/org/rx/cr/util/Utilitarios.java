@@ -130,13 +130,13 @@ public final class Utilitarios extends JLabel implements Runnable{
          table.setRowSelectionAllowed(false);
          table.getTableHeader().setReorderingAllowed(false);
       }
-      public static void formateaColumna(int index,JTable table,int size){
+      public static void formateaAnchoColumnaTabla(int index,JTable table,int size){
           table.getColumnModel().getColumn(index).setResizable(false);
           table.getColumnModel().getColumn(index).setMinWidth(size);
           table.getColumnModel().getColumn(index).setWidth(size); 
           table.getColumnModel().getColumn(index).setMaxWidth(size);
       }
-      public static void formateaCabecerasTabla(JTable table,int size){
+      public static void formateaAlturaCabecerasTabla(JTable table,int size){
           table.getTableHeader().setPreferredSize(new Dimension(table.getTableHeader().getWidth(),size));
       }
       public static void formateaColumnaRedimencionable(int index,JTable table,int size){
