@@ -27,14 +27,12 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Pattern;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
@@ -79,6 +77,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     public Utilitarios() {}
     //</editor-fold>  
     //<editor-fold defaultstate="collapsed" desc="Funciones Base">
+    //<editor-fold defaultstate="collapsed" desc="RUN">
     @Override
     public void run() {
         while (true) {            
@@ -95,22 +94,8 @@ public final class Utilitarios extends JLabel implements Runnable{
             try {Thread.sleep(100);} 
             catch (InterruptedException ex) {}
         }
-    } 
-    //<editor-fold defaultstate="collapsed" desc="GUI Util">
-    public static java.util.Date castDate_SQL_UTIL(java.sql.Date df){
-      return new java.util.Date(df.getTime());
-    }
-    public static java.sql.Date castDate_UTIL_SQL(java.util.Date df){
-      return new java.sql.Date(df.getTime());
-    }
-    public static java.sql.Timestamp castTimestamp_UTIL_SQL(java.util.Date df){
-      Date dat = new Date();
-      df.setHours(dat.getHours());
-      df.setMinutes(dat.getMinutes());
-      df.setSeconds(dat.getSeconds());
-      return new java.sql.Timestamp(df.getTime());
-    }
-    //</editor-fold>   
+    }  
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Number Format Util">
     public static String numberFormat(double src,String fmt){//Format : ###.####        
         fmt=fmt.replaceAll("#","0");
@@ -398,6 +383,19 @@ public final class Utilitarios extends JLabel implements Runnable{
       }
       //</editor-fold>    
     //<editor-fold defaultstate="collapsed" desc="Fecha y Numeros Util">
+    public static java.util.Date castDate_SQL_UTIL(java.sql.Date df){
+      return new java.util.Date(df.getTime());
+    }
+    public static java.sql.Date castDate_UTIL_SQL(java.util.Date df){
+      return new java.sql.Date(df.getTime());
+    }
+    public static java.sql.Timestamp castTimestamp_UTIL_SQL(java.util.Date df){
+      Date dat = new Date();
+      df.setHours(dat.getHours());
+      df.setMinutes(dat.getMinutes());
+      df.setSeconds(dat.getSeconds());
+      return new java.sql.Timestamp(df.getTime());
+    }
       public static String getFechaUltimaModificacionCorto(File fl){
          Date dt = new Date(fl.lastModified());
          Calendar gc = new GregorianCalendar();
@@ -864,7 +862,33 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
     }
     public static void resetComponents(Object[] lObj){
-        removeValidatorEvent(lObj);
+        for (Object object : lObj) {
+            if (object instanceof JTextField) {
+                JTextField tmp = (JTextField)object; 
+                tmp.setText("");
+            }else if(object instanceof JPasswordField){
+                JPasswordField tmp = (JPasswordField)object; 
+                tmp.setText("");
+            }else if(object instanceof JLabel){
+                JLabel tmp = (JLabel)object; 
+                tmp.setText("");
+            }else if(object instanceof JTextArea){
+                JTextArea tmp = (JTextArea)object;  
+                tmp.setText("");
+            }else if(object instanceof JTextPane){
+                JTextPane tmp = (JTextPane)object;  
+                tmp.setText("");
+            }else if(object instanceof JEditorPane){
+                JEditorPane tmp = (JEditorPane)object;
+                tmp.setText("");
+            }else if(object instanceof JComboBox){
+                JComboBox tmp = (JComboBox)object;   
+                tmp.setSelectedIndex(0);
+            }else if(object instanceof JDateChooser){
+                JDateChooser tmp = (JDateChooser)object; 
+                tmp.setDate(null);
+            }
+        }
     }
     public static void removeValidatorEvent(Object[] lObj){
         for (Object object : lObj) {
