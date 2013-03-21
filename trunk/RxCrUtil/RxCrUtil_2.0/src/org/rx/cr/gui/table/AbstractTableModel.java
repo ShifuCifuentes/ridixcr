@@ -43,10 +43,12 @@ public abstract class AbstractTableModel<Tipo> extends javax.swing.table.Abstrac
     }
     @RidixCr(author=RidixCr)
     public void add(Tipo obj){
-        if (!listObjects.contains(obj)) {
-          listObjects.add(obj);
-          actualizarEstructuraTabla();  
-        }     
+//        if (!listObjects.contains(obj)) {
+//          listObjects.add(obj);
+//          actualizarEstructuraTabla();  
+//        }     
+        listObjects.add(obj);
+        actualizarEstructuraTabla();          
     }
     @RidixCr(author=RidixCr)
     public void clear(){
