@@ -216,26 +216,44 @@ public final class Utilitarios extends JLabel implements Runnable{
         txt.getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs,index);                        
+                        nuevoFiltradoFilas(txt.getText(),trs,index);                        
                     }
                     @Override
                     public void insertUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs,index);
+                        nuevoFiltradoFilas(txt.getText(),trs,index);
                     }
                     @Override
                     public void removeUpdate(DocumentEvent e) {
-                        nuevoFiltradoFilas(txt,trs,index);
+                        nuevoFiltradoFilas(txt.getText(),trs,index);
                     }
                 });            
    }
-   private static void nuevoFiltradoFilas(JTextField txt,TableRowSorter trs,int... index) {
+    
+    public static void filtradorBusqueda(JTable tb,JComboBox cbx,int... index){  
+        AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
+        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
+        tb.setRowSorter(trs); 
+        aplicarFiltrador(cbx,trs,index);
+    }
+    
+    private static void aplicarFiltrador(final JComboBox cbx,final TableRowSorter trs,final int... index){
+        cbx.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nuevoFiltradoFilas(cbx.getSelectedItem().toString(),trs,index);
+            }
+        });             
+   }
+    
+    private static void nuevoFiltradoFilas(String msg,TableRowSorter trs,int... index) {
         RowFilter<AbstractTableModel,Object> rf;
         try {
-            rf = RowFilter.regexFilter("(?i)"+txt.getText(),index);            
+            rf = RowFilter.regexFilter("(?i)"+msg,index);            
            // rf = RowFilter.regexFilter(Pattern.compile(txt.getText(),Pattern.CASE_INSENSITIVE).toString(),index);            
             trs.setRowFilter(rf);
         } catch (java.util.regex.PatternSyntaxException ex) {}
    }
+    
    public static int seleccionarFila(MouseEvent evt) {
         JTable tablaReferencia = (JTable) evt.getComponent();
         Point puntoReferencia = evt.getPoint();
