@@ -71,7 +71,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
           int op = JOptionPane.showConfirmDialog(this,"Verifique que el servidor este correctamente configurado, activo.\nDesea corregir los datos de configuracion local?","Atencion - No se puede obtener una coneccion",JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE);
             if (op==JOptionPane.YES_OPTION) {
                 //JOptionPane.showMessageDialog(this,"Por favor corrija datos del servidor","Atencion",JOptionPane.ERROR_MESSAGE);           
-                preCargaDatosConfiguracion(conf);
+                preCargaDatosConfiguracion();
                 setVisible(true);        
             }else{
               System.exit(0);
@@ -189,7 +189,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
         jLabel3.setText("Base de Dato :");
 
         jSpinner1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(111), Integer.valueOf(111), null, Integer.valueOf(1)));
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(5432), Integer.valueOf(0), null, Integer.valueOf(1)));
         jSpinner1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jSpinner1KeyPressed(evt);
@@ -205,6 +205,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField1.setText("127.0.0.1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -284,6 +285,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Super Usuario Servidor", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField4.setText("postgres");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -536,7 +538,9 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         seleccionarBackUpDir();
     }//GEN-LAST:event_jButton3ActionPerformed
-
+/*
+ 
+ */
     public void salir(){
      int op =  JOptionPane.showConfirmDialog(this,"¿Desea salir de la configuracion? ","Atencion",JOptionPane.YES_NO_OPTION);
         
@@ -575,11 +579,10 @@ public class ConfigAdmin extends javax.swing.JDialog {
                create_role_create_database_municipio(); 
             }
           conf.saveConf();
-          resetComponet();
-          JOptionPane.showMessageDialog(null,"Los datos fueron  correctamente actualizados, vuelva a iniciar el sistema.","Atencion",JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(this,"Los datos fueron  correctamente actualizados, vuelva a iniciar el sistema.","Atencion",JOptionPane.INFORMATION_MESSAGE);
           System.exit(0);
         }else{
-          JOptionPane.showMessageDialog(null,"Seleccione un directorio valido para guardar las copias de respaldo","Atencion",JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(this,"Seleccione un directorio valido para guardar las copias de respaldo","Atencion",JOptionPane.INFORMATION_MESSAGE);
         }   
     }    
     
@@ -612,7 +615,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
-    public void preCargaDatosConfiguracion(Config conf) {
+    public void preCargaDatosConfiguracion() {
         jTextField1.setText(conf.getHost());
         jSpinner1.setValue(Integer.parseInt(conf.getPort()));
         jTextField2.setText(conf.getDb());

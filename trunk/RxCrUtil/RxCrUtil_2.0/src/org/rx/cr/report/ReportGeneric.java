@@ -28,7 +28,6 @@ public class ReportGeneric {
     
     private String reportParent;
     private Connection connection;
-    private Utilitarios util=null;
 
     public ReportGeneric(Connection connection) {
         this.connection = connection;
@@ -73,8 +72,7 @@ public class ReportGeneric {
         try {
             JPanel report_panel = mkReport(report_name); 
             reportFrame= new JInternalFrame(); 
-            util = new Utilitarios();
-            util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+            Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setClosable(true);
             reportFrame.setResizable(true);
             reportFrame.setIconifiable(true);
@@ -102,9 +100,8 @@ public class ReportGeneric {
         JInternalFrame reportFrame=null;
         try {
             JPanel report_panel = mkReport(report_name, keys, values); 
-            reportFrame= new JInternalFrame();            
-            util = new Utilitarios();
-            util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+            reportFrame= new JInternalFrame();                        
+            Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setClosable(true);
             reportFrame.setIconifiable(true);
             reportFrame.setResizable(true);
@@ -131,8 +128,7 @@ public class ReportGeneric {
     public JDialog mkReportToDialog(String report_name,String frame_title,Frame parent){                
         JPanel report_panel = mkReport(report_name); 
         JDialog reportFrame= new JDialog(parent, true); 
-        util = new Utilitarios();
-        util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+        Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             reportFrame.getContentPane().add(report_panel);
             reportFrame.setTitle(frame_title);            
@@ -159,8 +155,7 @@ public class ReportGeneric {
         try {
             JPanel report_panel = mkReport(report_name, keys, values); 
             reportFrame= new JDialog(parent, true); 
-            util = new Utilitarios();
-            util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+            Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             reportFrame.getContentPane().add(report_panel);
             reportFrame.setTitle(frame_title);
@@ -189,9 +184,8 @@ public class ReportGeneric {
     }
     public JFrame mkReportToFrame(String report_name,String frame_title){                
         JPanel report_panel = mkReport(report_name); 
-        JFrame reportFrame= new JFrame();   
-            util = new Utilitarios();
-            util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+        JFrame reportFrame= new JFrame();
+            Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             reportFrame.getContentPane().add(report_panel);
             reportFrame.setTitle(frame_title);            
@@ -217,9 +211,8 @@ public class ReportGeneric {
         JFrame reportFrame=null;
         try {
             JPanel report_panel = mkReport(report_name, keys, values); 
-            reportFrame= new JFrame();  
-            util = new Utilitarios();
-            util.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
+            reportFrame= new JFrame(); 
+            Utilitarios.setIconoVentana(reportFrame,"/org/rx/cr/resource/report.png");
             reportFrame.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             reportFrame.getContentPane().add(report_panel);
             reportFrame.setTitle(frame_title);

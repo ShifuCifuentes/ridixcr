@@ -28,16 +28,21 @@ import org.rx.cr.util.Utilitarios;
 import org.rx.cr.util.gui.PanelGadget;
 import org.rx.cr.util.gui.PanelRelojAnalogico;
 
-public final class DesktopPanel extends javax.swing.JPanel {
+public final class DesktopPanel extends javax.swing.JPanel{
     protected RenderingHints hints;
     protected int counter = 0;
     protected Color color_inicio = Color.BLACK;//new Color(0,153,255);
     protected Color color_fin = new Color(255, 255, 255, 0);
+    private double memoria_total = 0.0;
+    private double memoria_libre = 0.0;
     
     public DesktopPanel() {
         initComponents();
         hints = createRenderingHints();
+        reubicaGadguets();
         iniciaAnimacionCurvas();
+        preparaMonitorMemoria();
+        iniciarSondeoMemoria();
     }
     public void setColorInicioCurva(Color color){
         this.color_inicio = color;
@@ -70,7 +75,23 @@ public final class DesktopPanel extends javax.swing.JPanel {
         });
         timer.start();
     }
+    private void iniciarSondeoMemoria() {
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sondearMemoria();
+            }
+        });
+        timer.start();
+    }
 
+    private void sondearMemoria() {
+              memoria_libre = (Utilitarios.memoriaLibreMV()/1024.0)/1024.0;
+              monitorMemoria.setString((int)(memoria_libre)+" MB de "+(int)(memoria_total)+" MB");              
+              monitorMemoria.setValue(((int)memoria_libre));
+            
+         
+    }
     protected RenderingHints createRenderingHints() {
         RenderingHints renderHints = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
                        renderHints.put(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
@@ -152,7 +173,22 @@ public final class DesktopPanel extends javax.swing.JPanel {
             Logger.getLogger(DesktopPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    private void preparaMonitorMemoria() {
+        
+        memoria_total = ((Utilitarios.memoriaTotalMV()>Utilitarios.memoriaMaximaMV()?Utilitarios.memoriaTotalMV():Utilitarios.memoriaMaximaMV())/1024.0)/1024.0;        
+        monitorMemoria.setMaximum(((int)memoria_total));
+    }
+
+    private void reubicaGadguets() {
+        ////////////////// GADGUET'S ///////////////////////
+       jPanel8.setBounds(jDesktopPane1.getWidth()-(jPanel8.getWidth()+10),jPanel3.getHeight()+10,jPanel8.getWidth(),jPanel8.getHeight());       
+       jPanel3.setBounds(jDesktopPane1.getWidth()-(jPanel3.getWidth()+10),5,jPanel3.getWidth(),jPanel3.getHeight());  
+       ///////////////////APP ICON  + NAME ///////////////
+       jLabel1.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel1.getHeight()+30),jLabel1.getWidth(),jLabel1.getHeight()); 
+       jLabel4.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel4.getHeight()),jLabel4.getWidth(),jLabel4.getHeight()); 
+    }
+
     public class DesktopPaneBackground implements Border{
     private final BufferedImage image;
 
@@ -241,13 +277,13 @@ public final class DesktopPanel extends javax.swing.JPanel {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel3 = new PanelGadget(PanelGadget.THEME_DARK);
         jPanel2 = new PanelRelojAnalogico(PanelGadget.THEME_DARK);
         jPanel8 = new PanelGadget(PanelGadget.THEME_DARK);
         jLabel2 = new  Utilitarios(Utilitarios.HORA_SISTEMA);
         jLabel3 = new  Utilitarios(Utilitarios.FECHA_SISTEMA);
+        monitorMemoria = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -259,7 +295,6 @@ public final class DesktopPanel extends javax.swing.JPanel {
             }
         });
         jPopupMenu1.add(jMenuItem1);
-        jPopupMenu1.add(jSeparator1);
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
@@ -295,6 +330,16 @@ public final class DesktopPanel extends javax.swing.JPanel {
 
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
 
+        monitorMemoria.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        monitorMemoria.setToolTipText("Memoria disponible");
+        monitorMemoria.setString("Sondeo de Memoria");
+        monitorMemoria.setStringPainted(true);
+        monitorMemoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                monitorMemoriaMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -305,6 +350,10 @@ public final class DesktopPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(monitorMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,21 +362,23 @@ public final class DesktopPanel extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(monitorMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel8.setBounds(710, 170, 145, 55);
+        jPanel8.setBounds(710, 170, 145, 80);
         jDesktopPane1.add(jPanel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
-        jLabel1.setBounds(10, 170, 260, 250);
+        jLabel1.setBounds(750, 310, 100, 100);
         jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("APP Name");
-        jLabel4.setBounds(10, 420, 260, 40);
+        jLabel4.setBounds(750, 420, 100, 40);
         jDesktopPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -343,16 +394,22 @@ public final class DesktopPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
-       jPanel8.setBounds(jDesktopPane1.getWidth()-(jPanel8.getWidth()+10),jPanel3.getHeight()+10,jPanel8.getWidth(),jPanel8.getHeight());       
-       jPanel3.setBounds(jDesktopPane1.getWidth()-(jPanel3.getWidth()+10),5,jPanel3.getWidth(),jPanel3.getHeight());  
-       jLabel1.setBounds(10,jDesktopPane1.getHeight()-(jLabel1.getHeight()+50),jLabel1.getWidth(),jLabel1.getHeight()); 
-       jLabel4.setBounds(10,jDesktopPane1.getHeight()-(jLabel4.getHeight()+10),jLabel4.getWidth(),jLabel4.getHeight()); 
+       reubicaGadguets();
     }//GEN-LAST:event_formComponentResized
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-       Utilitarios.refrescarMemoria();
+       refrescarMemoria();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void monitorMemoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_monitorMemoriaMouseClicked
+        refrescarMemoria();
+    }//GEN-LAST:event_monitorMemoriaMouseClicked
+
+    
+    private void refrescarMemoria(){
+        Utilitarios.refrescarMemoria();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -364,6 +421,6 @@ public final class DesktopPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JProgressBar monitorMemoria;
     // End of variables declaration//GEN-END:variables
 }

@@ -86,7 +86,7 @@ public class BackupRestore extends javax.swing.JDialog{
         jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Restauracion de Copias de Respaldo SysBotica");
+        setTitle("Restauracion de Copias de Respaldo");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -339,8 +339,13 @@ public class BackupRestore extends javax.swing.JDialog{
             int op =  JOptionPane.showConfirmDialog(this,"Esta seguro que desea cancelar\nel proceso de restauracin de respaldos.","Atencion",JOptionPane.YES_NO_OPTION);        
             if (op==JOptionPane.YES_OPTION) {            
                 dispose();
-                cancelarBackUpRestore();
-                System.exit(0);
+                try {
+                    cancelarBackUpRestore();
+                    System.exit(0);
+                } catch (Exception e) {
+                    System.exit(0);
+                }
+                
             } 
         }        
     }//GEN-LAST:event_formWindowClosing
@@ -354,7 +359,12 @@ public class BackupRestore extends javax.swing.JDialog{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      cancelarBackUpRestore();
+        try {
+            cancelarBackUpRestore();
+            System.exit(0);
+        } catch (Exception ex) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -402,12 +412,14 @@ public class BackupRestore extends javax.swing.JDialog{
     private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 
-    private void cancelarBackUpRestore() {
+    private void cancelarBackUpRestore() throws Exception  {
        finalizarProceso("pg_dump.exe");
        finalizarProceso("cmd.exe");
        deleteFile("mk_back_up_db.bat");
        deleteFile("restore_back_up_db.bat");
        bpc.deletePostgresAppDataInfo();
+       dispose();
+       System.exit(0);
     }
 
     private void ejecutaProceso() {
@@ -443,7 +455,7 @@ public class BackupRestore extends javax.swing.JDialog{
                 reiniciarSistemaOperativo();
             }                
         } catch (IOException ex) {
-            Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

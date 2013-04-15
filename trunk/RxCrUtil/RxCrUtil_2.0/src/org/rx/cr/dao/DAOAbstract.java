@@ -76,6 +76,13 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
       bean_parameter.setSize(0);
       list_parameter.add(bean_parameter);
     }
+    public void setParameterLong(long dat) throws SQLException{
+      pre_format_str_pro();
+      bean_parameter = new BeanAbstractUtil();
+      bean_parameter.setData(dat);
+      bean_parameter.setSize(0);
+      list_parameter.add(bean_parameter);
+    }
     public void setParameterDouble(double dat) throws SQLException{
       pre_format_str_pro();
       bean_parameter = new BeanAbstractUtil();
@@ -129,6 +136,9 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     }
     public int getDataInt(int index) throws SQLException{
       return rs.getInt(index);
+    }
+    public long getDataLong(int index) throws SQLException{
+      return rs.getLong(index);
     }
     public double getDataDouble(int index) throws SQLException{
       return rs.getDouble(index);
@@ -191,12 +201,12 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     public void setConnection(Connection conn){
         this.conection=conn;
     }    
-    private void commitTransaction() throws SQLException{
+    private void commitTransaction() throws Exception{
         sprp.execute();
         rs = sprp.getResultSet();
         conection.commit();
     }
-    private void rollbackTransaction() throws SQLException{
+    private void rollbackTransaction() throws Exception{
         conection.rollback();
     }
     private void conectionClose(){
@@ -204,9 +214,7 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
             conection.close();
             sprp.close();
             rs.close();
-        } catch (Exception ex) {
-            Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {}
     }     
     private ResultSet getResultSet(){
         return rs;
@@ -290,26 +298,16 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
         JOptionPane.showMessageDialog(null,msg,"Atencion",JOptionPane.INFORMATION_MESSAGE);
         return TRANSACCION_EXITOSA;
     }
-    public int rollback(Exception ex){
-        try{
-            Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
-            rollbackTransaction();
-            close();
-        } catch (Exception ex1) {
-           //Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex1);
-        } 
+    public int rollback(Exception ex) throws Exception{
+        Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+        rollbackTransaction();
         close();
        return TRANSACCION_FALLIDA;
     }
-    public int rollback(Exception ex,String msg){
-        try{
-            Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
-            rollbackTransaction();
-            close();
-        } catch (Exception ex1) {
-           Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex1);
-        } 
-        close();
+    public int rollback(Exception ex,String msg) throws Exception{
+       Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+       rollbackTransaction();
+       close();
        JOptionPane.showMessageDialog(null,msg,"Error",JOptionPane.INFORMATION_MESSAGE);
        return TRANSACCION_FALLIDA;
     }
@@ -320,7 +318,10 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     private void mk_str_parameter() throws SQLException {
         for (int i = 0; i < list_parameter.size(); i++) {
             bean_parameter = list_parameter.get(i);
-            if (bean_parameter.getData() instanceof Integer) {                
+            if (bean_parameter.getData() instanceof Long) {                
+                Long tmp = (Long) bean_parameter.getData();
+                sprp.setLong((i+1),tmp);
+            }else if (bean_parameter.getData() instanceof Integer) {                
                 Integer tmp = (Integer) bean_parameter.getData();
                 sprp.setInt((i+1),tmp);
             }else if(bean_parameter.getData() instanceof Double){

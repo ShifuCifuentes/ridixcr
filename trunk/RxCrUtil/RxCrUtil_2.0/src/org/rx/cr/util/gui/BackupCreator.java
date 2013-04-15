@@ -60,7 +60,7 @@ public class BackupCreator extends javax.swing.JDialog{
         jRadioButton3 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Creacion de Copias de Respaldo SysBotica");
+        setTitle("Creacion de Copias de Respaldo");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -293,7 +293,9 @@ public class BackupCreator extends javax.swing.JDialog{
             int op =  JOptionPane.showConfirmDialog(this,"Esta seguro que desea cancelar\nel proceso de creacion de respaldos.","Atencion",JOptionPane.YES_NO_OPTION);        
             if (op==JOptionPane.YES_OPTION) {            
             dispose();
-            cancelarBackUp();
+                try {
+                    cancelarBackUp();
+                } catch (Exception ex) {}
             } 
         }        
     }//GEN-LAST:event_formWindowClosing
@@ -303,7 +305,9 @@ public class BackupCreator extends javax.swing.JDialog{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      cancelarBackUp();
+        try {
+            cancelarBackUp();
+        } catch (Exception ex) {}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -334,7 +338,7 @@ public class BackupCreator extends javax.swing.JDialog{
     private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 
-    private void cancelarBackUp() {
+    private void cancelarBackUp() throws Exception {
        finalizarProceso("pg_dump.exe");
        finalizarProceso("cmd.exe");
        deleteFile("mk_back_up_db.bat");

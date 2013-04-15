@@ -25,11 +25,14 @@ import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.filechooser.FileFilter;
+import org.rx.cr.util.Utilitarios;
 
 public class VisorPDF extends JFrame
         implements KeyListener, TreeSelectionListener,
         PageChangeListener {
 
+    private String manual_name = null;
+    private File manual_file = null;
     public final static String TITLE = "Visor";
     /** The current PDFFile */
     PDFFile curFile;
@@ -114,6 +117,14 @@ public class VisorPDF extends JFrame
             doQuit();
         }
     };
+
+    public String getManual_name() {
+        return manual_name;
+    }
+
+    public void setManual_name(String manual_name) {
+        this.manual_name = manual_name;
+    }
 
     class ZoomAction extends AbstractAction {
 
@@ -237,6 +248,7 @@ public class VisorPDF extends JFrame
     }
     public VisorPDF(){
       this(true);
+      Utilitarios.adaptarForma(this,15,15);
     }
 
     /**
@@ -921,30 +933,32 @@ public class VisorPDF extends JFrame
 
         @Override
         public void run() {
-            fspp = new PagePanel();
-            fspp.setBackground(Color.black);
-            page.showPage(null);
-            pum = new JPopupMenu();        
-            JMenuItem jmi = new JMenuItem("Salir de pantalla completa");
-            jmi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sun/pdfview/resource/close_min.png")));
-                jmi.addActionListener(new java.awt.event.ActionListener() {
-                    @Override
-                    public void actionPerformed(java.awt.event.ActionEvent evt) {
-                        if (fullScreen!=null) {
-                            fullScreen.close(); 
-                            fspp = null;
-                            fullScreen = null;
-                            gotoPage(curpage);
-                            fullScreenButton.setSelected(false);
+            try {
+                fspp = new PagePanel();
+                fspp.setBackground(Color.black);
+                page.showPage(null);
+                pum = new JPopupMenu();        
+                JMenuItem jmi = new JMenuItem("Salir de pantalla completa");
+                jmi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/sun/pdfview/resource/close_min.png")));
+                    jmi.addActionListener(new java.awt.event.ActionListener() {
+                        @Override
+                        public void actionPerformed(java.awt.event.ActionEvent evt) {
+                            if (fullScreen!=null) {
+                                fullScreen.close(); 
+                                fspp = null;
+                                fullScreen = null;
+                                gotoPage(curpage);
+                                fullScreenButton.setSelected(false);
+                            }
                         }
-                    }
-            });
-            pum.add(jmi);
-            fspp.setComponentPopupMenu(pum);
-            fullScreen = new FullScreenWindow(fspp, force);
-            fspp.addKeyListener(VisorPDF.this);            
-            gotoPage(curpage);
-            fullScreenAction.setEnabled(true);
+                });
+                pum.add(jmi);
+                fspp.setComponentPopupMenu(pum);
+                fullScreen = new FullScreenWindow(fspp, force);
+                fspp.addKeyListener(VisorPDF.this);            
+                gotoPage(curpage);
+                fullScreenAction.setEnabled(true);
+            } catch (Exception e) {}
         }
     }
     
@@ -1099,5 +1113,23 @@ public class VisorPDF extends JFrame
                 ioe.printStackTrace();
             }
         }
+    }
+    
+    public void visualizarManual() {
+      try {
+       manual_file = new File(Utilitarios.getCurentPath()+File.separator+"help");
+       if(!manual_file.exists()){
+         manual_file.mkdir();
+       }
+       manual_file = new File(Utilitarios.getCurentPath()+File.separator+"help"+File.separator+getManual_name());
+        if (manual_file.exists()) {            
+            openFile(manual_file);
+            setVisible(true);            
+        }else {
+          JOptionPane.showMessageDialog(this,"No existe ningun archivo de ayuda asociado al sistema.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
+        }
+       }catch (IOException ex) {
+          Logger.getLogger(VisorPDF.class.getName()).log(Level.SEVERE, null, ex);
+       }
     }
 }

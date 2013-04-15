@@ -95,7 +95,7 @@ public class BackupTools {
         }
       
     }
-    public void deletePostgresAppDataInfo(){
+    public void deletePostgresAppDataInfo() throws IOException{
       File pgpass = new File(postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf");
       if(!pgpass.exists()){
           deleteFile(pgpass.getAbsolutePath());

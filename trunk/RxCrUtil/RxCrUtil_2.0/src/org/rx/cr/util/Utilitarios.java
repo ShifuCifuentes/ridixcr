@@ -2,6 +2,7 @@ package org.rx.cr.util;
 
 //<editor-fold defaultstate="collapsed" desc="Importaciones">
 import com.toedter.calendar.JDateChooser;
+import com.toedter.calendar.JYearChooser;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,11 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -38,6 +43,7 @@ import javax.xml.bind.DatatypeConverter;
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+import org.rx.cr.util.gui.AWTUtilitiesWrapper;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
@@ -48,9 +54,9 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static String AUTOR=RidixCr;
     private static final String[] UNIDADES = {"", "uno ", "dos ", "tres ", "cuatro ", "cinco ", "seis ", "siete ", "ocho ", "nueve "};
     private static final String[] DECENAS = {"diez ", "once ", "doce ", "trece ", "catorce ", "quince ", "dieciseis ","diecisiete ",
-                           "dieciocho ", "diecinueve", "veinte ", "treinta ", "cuarenta ","cincuenta ", "sesenta ", "setenta ", "ochenta ", "noventa "};
+                                             "dieciocho ", "diecinueve", "veinte ", "treinta ", "cuarenta ","cincuenta ", "sesenta ", "setenta ", "ochenta ", "noventa "};
     private static final String[] CENTENAS = {"", "ciento ", "doscientos ", "trecientos ", "cuatrocientos ", "quinientos ", "seiscientos ",
-                           "setecientos ", "ochocientos ", "novecientos "};
+                                              "setecientos ", "ochocientos ", "novecientos "};
     
     public static String[] Dias_Semana = {"Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"};
     public static String[] Meses_Anio = {"Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Setiembre","Octubre","Noviembre","Diciembre"};
@@ -62,7 +68,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     private int op=-1;    
     private Thread hilo;
     
-    public static int ALFABETICO_NUMERICO=1,ALFABETICO=2,ALFABETICO_CM=3,ALFABETICO_NUMERICO_SPB=4,NUMERICO_MONEDA=5,NUMERICO=6;
+    public static int ALFABETICO_NUMERICO=1,ALFABETICO=2,ALFABETICO_CM=3,ALFABETICO_NUMERICO_SPB=4,NUMERICO_REAL=5,NUMERICO=6,CARACTERES_COMPLETOS=7;
     //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="Constructor">   
     static{AUTOR=decodeRx(AUTOR);}
@@ -110,11 +116,14 @@ public final class Utilitarios extends JLabel implements Runnable{
     //</editor-fold>   
     //<editor-fold defaultstate="collapsed" desc="GUI Table Util">
     public static void inmovilizaColumnas(JTable table){
-          /*table.getTableHeader().disable();
-          table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);*/
-         table.setRowSelectionAllowed(false);
+          table.getTableHeader().disable();
+          /*table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);*/
+         //table.setRowSelectionAllowed(false);
          table.getTableHeader().setReorderingAllowed(false);
-      }
+    }
+    public static void desabilitaCabecerasColumnas(JTable table){
+          table.getTableHeader().disable();
+    }
       public static void formateaAnchoColumnaTabla(int index,JTable table,int size){
           table.getColumnModel().getColumn(index).setResizable(false);
           table.getColumnModel().getColumn(index).setMinWidth(size);
@@ -175,9 +184,20 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void alinearDatosColumnaTablaDerecha(int index,JTable table){
          TableCellRenderer render = new DefaultTableCellRenderer() {
          @Override
-         public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
-          JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                 componet.setHorizontalAlignment(SwingConstants.RIGHT);       
+         public Component getTableCellRendererComponent(final JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
+          final JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                 componet.setHorizontalAlignment(SwingConstants.RIGHT);   
+                 componet.setOpaque(true);
+                 componet.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        componet.setBackground(table.getSelectionBackground());
+                    }
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        componet.setBackground(table.getBackground());
+                    }
+                 });
           return componet;
          }
         };
@@ -186,9 +206,20 @@ public final class Utilitarios extends JLabel implements Runnable{
  public static void alinearDatosColumnaTablaIzquierda(int index,JTable table){
        TableCellRenderer render = new DefaultTableCellRenderer() {
          @Override
-         public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
-          JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                 componet.setHorizontalAlignment(SwingConstants.LEFT);       
+         public Component getTableCellRendererComponent(final JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
+          final JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                 componet.setHorizontalAlignment(SwingConstants.LEFT); 
+                 componet.setOpaque(true);
+                 componet.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        componet.setBackground(table.getSelectionBackground());
+                    }
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        componet.setBackground(table.getBackground());
+                    }
+                 });
           return componet;
          }
         };
@@ -197,22 +228,34 @@ public final class Utilitarios extends JLabel implements Runnable{
   public static void alinearDatosColumnaTablaCentro(int index,JTable table){
        TableCellRenderer render = new DefaultTableCellRenderer() {
          @Override
-         public Component getTableCellRendererComponent(JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
-          JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                 componet.setHorizontalAlignment(SwingConstants.CENTER);       
+         public Component getTableCellRendererComponent(final JTable table, Object value,boolean isSelected, boolean hasFocus, int row, int column) {
+          final JLabel componet = (JLabel)super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                 componet.setHorizontalAlignment(SwingConstants.CENTER);
+                 componet.setOpaque(true);
+                 componet.addMouseListener(new MouseAdapter() {
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        componet.setBackground(table.getSelectionBackground());
+                    }
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+                        componet.setBackground(table.getBackground());
+                    }
+                 });
           return componet;
          }
         };
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
-    public static void filtradorBusqueda(JTable tb,JTextField txt,int... index){  
+    public static TableRowSorter filtradorBusqueda(JTable tb,JTextField txt,int... index){  
         AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
         TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
         tb.setRowSorter(trs); 
         aplicarFiltrador(txt,trs,index);
+        return trs;
     }
     
-    private static void aplicarFiltrador(final JTextField txt,final TableRowSorter trs,final int... index){
+    public static void aplicarFiltrador(final JTextField txt,final TableRowSorter trs,final int... index){
         txt.getDocument().addDocumentListener(new DocumentListener() {
                     @Override
                     public void changedUpdate(DocumentEvent e) {
@@ -227,16 +270,16 @@ public final class Utilitarios extends JLabel implements Runnable{
                         nuevoFiltradoFilas(txt.getText(),trs,index);
                     }
                 });            
-   }
+   }    
     
-    public static void filtradorBusqueda(JTable tb,JComboBox cbx,int... index){  
+    public static TableRowSorter filtradorBusqueda(JTable tb,JComboBox cbx,int... index){  
         AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
         TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
         tb.setRowSorter(trs); 
         aplicarFiltrador(cbx,trs,index);
+        return trs;
     }
-    
-    private static void aplicarFiltrador(final JComboBox cbx,final TableRowSorter trs,final int... index){
+    public static void aplicarFiltrador(final JComboBox cbx,final TableRowSorter trs,final int... index){
         cbx.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -367,6 +410,9 @@ public final class Utilitarios extends JLabel implements Runnable{
       }
       public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
         return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
+      }
+      public static void aplicaTransparencia(Window window){
+          AWTUtilitiesWrapper.setWindowOpaque(window,false);
       }
       //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Imprecion Util">
@@ -830,6 +876,9 @@ public final class Utilitarios extends JLabel implements Runnable{
             }else if(object instanceof JRadioButton){
                 JRadioButton tmp = (JRadioButton)object;                
                 tmp.setEnabled(true);
+            }else if(object instanceof JYearChooser){
+                JYearChooser tmp = (JYearChooser)object;                
+                tmp.setEnabled(true);
             }
         }
     }
@@ -875,6 +924,9 @@ public final class Utilitarios extends JLabel implements Runnable{
                 tmp.setEnabled(false);
             }else if(object instanceof JRadioButton){
                 JRadioButton tmp = (JRadioButton)object;                
+                tmp.setEnabled(false);
+            }else if(object instanceof JYearChooser){
+                JYearChooser tmp = (JYearChooser)object;                
                 tmp.setEnabled(false);
             }
         }
@@ -1403,7 +1455,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 if (tp_chr==Utilitarios.NUMERICO) {
                     validaCaracterNumerico(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
-                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                }else if(tp_chr==Utilitarios.NUMERICO_REAL){
                     validaCaracterNumericoMoneda(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO){
@@ -1417,6 +1469,9 @@ public final class Utilitarios extends JLabel implements Runnable{
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
                     validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.CARACTERES_COMPLETOS){
+                    //validaCaracterAlfabeticoNumericoSPB(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }
             }            
@@ -1429,7 +1484,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 if (tp_chr==Utilitarios.NUMERICO) {
                     validaCaracterNumerico(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
-                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                }else if(tp_chr==Utilitarios.NUMERICO_REAL){
                     validaCaracterNumericoMoneda(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO){
@@ -1443,6 +1498,8 @@ public final class Utilitarios extends JLabel implements Runnable{
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
                     validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.CARACTERES_COMPLETOS){
                     validaNumeroCaracteres(txt,nro_chr);
                 }
             }            
@@ -1455,7 +1512,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 if (tp_chr==Utilitarios.NUMERICO) {
                     validaCaracterNumerico(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
-                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                }else if(tp_chr==Utilitarios.NUMERICO_REAL){
                     validaCaracterNumericoMoneda(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO){
@@ -1469,6 +1526,8 @@ public final class Utilitarios extends JLabel implements Runnable{
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
                     validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.CARACTERES_COMPLETOS){
                     validaNumeroCaracteres(txt,nro_chr);
                 }
             }            
@@ -1481,7 +1540,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 if (tp_chr==Utilitarios.NUMERICO) {
                     validaCaracterNumerico(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
-                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                }else if(tp_chr==Utilitarios.NUMERICO_REAL){
                     validaCaracterNumericoMoneda(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO){
@@ -1495,6 +1554,8 @@ public final class Utilitarios extends JLabel implements Runnable{
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
                     validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.CARACTERES_COMPLETOS){
                     validaNumeroCaracteres(txt,nro_chr);
                 }
             }            
@@ -1507,7 +1568,7 @@ public final class Utilitarios extends JLabel implements Runnable{
                 if (tp_chr==Utilitarios.NUMERICO) {
                     validaCaracterNumerico(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
-                }else if(tp_chr==Utilitarios.NUMERICO_MONEDA){
+                }else if(tp_chr==Utilitarios.NUMERICO_REAL){
                     validaCaracterNumericoMoneda(e,txt);
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO){
@@ -1521,6 +1582,8 @@ public final class Utilitarios extends JLabel implements Runnable{
                     validaNumeroCaracteres(txt,nro_chr);
                 }else if(tp_chr==Utilitarios.ALFABETICO_NUMERICO_SPB){
                     validaCaracterAlfabeticoNumericoSPB(e,txt);
+                    validaNumeroCaracteres(txt,nro_chr);
+                }else if(tp_chr==Utilitarios.CARACTERES_COMPLETOS){
                     validaNumeroCaracteres(txt,nro_chr);
                 }
             }            
@@ -1653,6 +1716,11 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static void saltoLineaTextArea(JTextArea txa){
         txa.setLineWrap(true);
         txa.setWrapStyleWord(true);
+    }
+    public static void escapeExit(KeyEvent evt){
+      if (evt.getKeyCode()==KeyEvent.VK_ESCAPE) {
+            System.exit(0);
+      }
     }
     //<editor-fold defaultstate="collapsed" desc="Sub Validadores">
     public static void validaNumeroCaracteres(JTextField txt,int cant){  
@@ -2212,6 +2280,16 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>  
     //<editor-fold defaultstate="collapsed" desc="SO, Stream Util">
+    public static long memoriaLibreMV(){
+        return Runtime.getRuntime().freeMemory();
+    }
+    public static long memoriaMaximaMV(){        
+        return Runtime.getRuntime().maxMemory();
+    }
+    public static long memoriaTotalMV(){        
+        return Runtime.getRuntime().totalMemory();
+    }
+    
     public static String getCurentPath(){
          String os = System.getProperty("os.name");
          String path = System.getProperty("user.dir");
@@ -2224,12 +2302,8 @@ public final class Utilitarios extends JLabel implements Runnable{
          }
        return path;
      }  
-    public static void finalizarProceso(String processName){
-          try {
-              ejecutaComando("taskkill /F /T /IM "+processName.trim());
-          } catch (IOException ex) {
-              Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-          }
+    public static void finalizarProceso(String processName) throws IOException{
+          ejecutaComando("taskkill /F /T /IM "+processName.trim());
     }
     public static Process ejecutaComando(String comand) throws IOException{
         return Runtime.getRuntime().exec(comand.trim());
@@ -2238,33 +2312,17 @@ public final class Utilitarios extends JLabel implements Runnable{
         Runtime.getRuntime().gc();
     }
 
-    public static void deleteFile(String path_src){
-          try {
-              ejecutaComando("cmd.exe /C del /F /Q \""+path_src+"\"");
-          } catch (IOException ex) {
-              Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-          }
+    public static void deleteFile(String path_src) throws IOException{
+           ejecutaComando("cmd.exe /C del /F /Q \""+path_src+"\"");
     }
-    public static void renameFile(String path_src){
-          try {
-              ejecutaComando("cmd.exe /C ren \""+path_src+"\" *.xxx");
-          } catch (IOException ex) {
-              Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-          }
+    public static void renameFile(String path_src) throws IOException{
+          ejecutaComando("cmd.exe /C ren \""+path_src+"\" *.xxx");
     }
-    public static void apagarSistemaOperativo(){
-          try {
-              ejecutaComando("shutdown /s /f /t 00");
-          } catch (IOException ex) {
-              Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-          }
+    public static void apagarSistemaOperativo() throws IOException{
+          ejecutaComando("shutdown /s /f /t 00");
     }
-    public static void reiniciarSistemaOperativo(){
-          try {
-              ejecutaComando("shutdown /r /f /t 00");
-          } catch (IOException ex) {
-              Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
-          }
+    public static void reiniciarSistemaOperativo() throws IOException{
+          ejecutaComando("shutdown /r /f /t 00");
     }
     public static void ejecutarMicrosoftOffice(String program) throws IOException{
             File fl = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"Microsoft Office");

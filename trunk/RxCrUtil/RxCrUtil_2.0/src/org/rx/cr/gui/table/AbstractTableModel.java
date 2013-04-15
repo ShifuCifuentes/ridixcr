@@ -65,6 +65,10 @@ public abstract class AbstractTableModel<Tipo> extends javax.swing.table.Abstrac
      return listObjects.get(index);
     }
     @RidixCr(author=RidixCr)
+    public Tipo set(int index,Tipo obj){
+      return listObjects.set(index, obj);
+    }
+    @RidixCr(author=RidixCr)
     public int size() {
         return listObjects.size();
     }
