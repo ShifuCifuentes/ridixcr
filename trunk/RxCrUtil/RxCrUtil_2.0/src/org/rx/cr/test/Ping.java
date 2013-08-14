@@ -6,7 +6,7 @@ import java.net.UnknownHostException;
 
 public class Ping {
     public static void main(String[] args) throws UnknownHostException, IOException {
-        InetAddress in = InetAddress.getByName("190.40.16.85"); 
+        InetAddress in = InetAddress.getByName("192.168.1.33"); 
         if (in.isReachable(2000)) { 
            System.out.println("Dirección accesible! :) "); 
         }else{ 

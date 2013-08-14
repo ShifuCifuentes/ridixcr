@@ -1,17 +1,21 @@
 package org.rx.cr.util.gui;
 
-import java.awt.Color;
 import java.util.Date;
-import org.rx.cr.util.Utilitarios;
+import static org.rx.cr.util.Utilitarios.*;
 
-public class JHourChooser extends javax.swing.JPanel {
+public final class JHourChooser extends javax.swing.JPanel {
     private Date current_time = null;
     public JHourChooser() {
         initComponents();   
         setCurrentTime(); 
        
     }
-
+    @Override
+    public void setEnabled(boolean enable){
+        js_hour.setEnabled(enable);
+        js_minute.setEnabled(enable);
+        js_horario.setEnabled(enable);
+    }
     public void setCurrentTime(){
      current_time= new Date();
      if (current_time.getHours()>=00 && current_time.getHours()<12) {
@@ -36,16 +40,16 @@ public class JHourChooser extends javax.swing.JPanel {
     }
     
     public String getHour(){
-        return Utilitarios.numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##");
+        return numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##");
     }
     public String getMinute(){
-        return Utilitarios.numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##");
+        return numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##");
     }
     public String getHorario(){
         return js_horario.getValue().toString();
     }
     public String getTime(){
-        return Utilitarios.numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##")+":"+Utilitarios.numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##")+" "+js_horario.getValue().toString();
+        return numberFormat(Integer.parseInt(js_hour.getValue().toString().trim()),"##")+":"+numberFormat(Integer.parseInt(js_minute.getValue().toString().trim()),"##")+" "+js_horario.getValue().toString();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -11,12 +11,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.rx.cr.conf.Config;
-import org.rx.cr.db.BackupTools;
+import org.rx.cr.db.PG_DBM_Tools;
 import static org.rx.cr.util.Utilitarios.*;
 
 public class BackupCreator extends javax.swing.JDialog{
     
-    private BackupTools bpc=null;
+    private PG_DBM_Tools bpc=null;
     private Config conf=null;
     private Process process=null;
     private boolean isFinsh=false;
@@ -25,7 +25,9 @@ public class BackupCreator extends javax.swing.JDialog{
         super(parent,true);
         initComponents();
         this.conf = conf;
-        bpc = new BackupTools(conf);
+        adaptarMovimiento(this);
+        adaptarForma(this,15,15);
+        bpc = new PG_DBM_Tools(conf);
         setLocationRelativeTo(null);
     }
 

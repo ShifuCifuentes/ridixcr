@@ -24,6 +24,8 @@ public class Config {
     private String user_db_root;
     private String passworddb_root;
     private String dir_backup_db;
+    private String dir_db;
+    private String max_clientes;
     
     public Config(){      
         try {
@@ -69,9 +71,11 @@ public class Config {
             }else if(line.startsWith("passworddb_root=")){
                 setPassword_db_root(getInfoConf(line));
             }else if(line.startsWith("dir_backup_db=")){
-                setDir_backup_db(getInfoConf(line));                  
-                ftmp.delete();
-                ftmp=null;
+                setDir_backup_db(getInfoConf(line)); 
+            }else if(line.startsWith("dir_db=")){
+                setDir_db(getInfoConf(line));  
+            }else if(line.startsWith("max_clients=")){
+                setMax_clientes(getInfoConf(line));   
             }else{
               throw new Exception("Error de Sintaxis Archivo Erroneo");
             }          
@@ -122,6 +126,8 @@ public class Config {
       osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
       osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
       osw.write(encodeStringASSCIIBase64("dir_backup_db="+getDir_backup_db())+"\n");       
+      osw.write(encodeStringASSCIIBase64("dir_db="+getDir_db())+"\n");       
+      osw.write(encodeStringASSCIIBase64("max_clients="+getMax_clientes())+"\n");       
     }
 
     
@@ -180,7 +186,8 @@ public class Config {
             +"\nPass : "+getPassword()
             +"\nUser Root : "+getUser_db_root()
             +"\nPass Root : "+getPassword_db_root()
-            +"\nDB BackUp Dir : "+getDir_backup_db();
+            +"\nDB BackUp Dir : "+getDir_backup_db()
+            +"\nDB Dir : "+getDir_db();
     }
 
     public String getUser_db_root() {
@@ -215,5 +222,21 @@ public class Config {
     }
     public void setApp_name(String app_name) {
         this.app_name = app_name;
+    }
+
+    public String getDir_db() {
+        return dir_db;
+    }
+
+    public void setDir_db(String dir_db) {
+        this.dir_db = dir_db;
+    }
+
+    public String getMax_clientes() {
+        return max_clientes;
+    }
+
+    public void setMax_clientes(String max_clientes) {
+        this.max_clientes = max_clientes;
     }
 }

@@ -201,9 +201,12 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     public void setConnection(Connection conn){
         this.conection=conn;
     }    
-    private void commitTransaction() throws Exception{
-        sprp.execute();
-        rs = sprp.getResultSet();
+    private void commitTransaction() throws SQLException{
+        sprp.execute();        
+        try {
+         //rs = sprp.executeQuery();
+         rs = sprp.getResultSet();   
+        } catch (Exception e) {}        
         conection.commit();
     }
     private void rollbackTransaction() throws Exception{
@@ -213,14 +216,16 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
         try {
             conection.close();
             sprp.close();
-            rs.close();
+            if(rs!=null){
+             rs.close();
+            }            
         } catch (Exception ex) {}
     }     
     private ResultSet getResultSet(){
         return rs;
     }
     public boolean existResult() throws Exception{
-        return getResultSet().next();
+        return getResultSet()!=null?getResultSet().next():false;
     }    
     public CallableStatement getCallableStatement(){
         return sprp;

@@ -13,13 +13,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import org.rx.cr.conf.Config;
-import org.rx.cr.db.BackupTools;
+import org.rx.cr.db.PG_DBM_Tools;
 import static org.rx.cr.util.Utilitarios.*;
 
 
 public class BackupRestore extends javax.swing.JDialog{
     
-    private BackupTools bpc=null;
+    private PG_DBM_Tools bpc=null;
     private Config conf=null;
     private Process process=null;
     private final JFileChooser jfc;
@@ -29,8 +29,9 @@ public class BackupRestore extends javax.swing.JDialog{
         super(parent,true);
         initComponents();
         this.conf = conf; 
-        
-        bpc = new BackupTools(conf);
+        adaptarMovimiento(this);
+        adaptarForma(this,15,15);
+        bpc = new PG_DBM_Tools(conf);
         setLocationRelativeTo(null);
         jfc = new JFileChooser();
         jfc.setFileFilter(new FileFilter() {
@@ -324,7 +325,7 @@ public class BackupRestore extends javax.swing.JDialog{
             } else {
               JOptionPane.showMessageDialog(null,"La restauracion de copias de seguridad\ndebe ser ejecutada en el Servidor.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
               dispose();
-              System.exit(0);
+              //System.exit(0);
             }
         } catch (UnknownHostException ex) {
             Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
@@ -334,16 +335,15 @@ public class BackupRestore extends javax.swing.JDialog{
         if (isFinsh) {
             JOptionPane.showMessageDialog(this,"Por Favor no olvide crear periodicamente sus copias de respaldo.","Atencion",JOptionPane.YES_NO_OPTION);        
             dispose(); 
-            System.exit(0);
+            //System.exit(0);
         } else {
             int op =  JOptionPane.showConfirmDialog(this,"Esta seguro que desea cancelar\nel proceso de restauracin de respaldos.","Atencion",JOptionPane.YES_NO_OPTION);        
-            if (op==JOptionPane.YES_OPTION) {            
-                dispose();
+            if (op==JOptionPane.YES_OPTION) {        
                 try {
                     cancelarBackUpRestore();
-                    System.exit(0);
+                    dispose();
                 } catch (Exception e) {
-                    System.exit(0);
+                    dispose();
                 }
                 
             } 
@@ -361,9 +361,11 @@ public class BackupRestore extends javax.swing.JDialog{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             cancelarBackUpRestore();
-            System.exit(0);
+            //System.exit(0);
+            dispose();
         } catch (Exception ex) {
-            System.exit(0);
+//            System.exit(0);
+            dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -12,6 +12,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerNumberModel;
 import org.rx.cr.conf.Config;
+import org.rx.cr.db.PG_DBM_Tools;
 import org.rx.cr.ds.DSConeccion;
 import static org.rx.cr.util.Utilitarios.*;
 
@@ -21,13 +22,17 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private boolean existConfFile = false;
     
     private File dir_backup_db=null;
+    private File dir_db=null;
     private final JFileChooser jfc;
     
     private String userTable;
+    private PG_DBM_Tools tools = null;
     
     public ConfigAdmin(Frame parent,String app_name) {
         super(parent,true);
         initComponents();
+        adaptarMovimiento(this);
+        adaptarForma(this,15,15);
         setLocationRelativeTo(null);        
         conf = new Config();
         conf.setApp_name(app_name);
@@ -45,6 +50,18 @@ public class ConfigAdmin extends javax.swing.JDialog {
         }else{
           dir_backup_db = null;
           jTextField5.setText("");
+        }
+    }
+    public void seleccionarDBDir(){
+      jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        
+        int op = jfc.showOpenDialog(this);
+        if (op==JFileChooser.APPROVE_OPTION) {
+          dir_db = jfc.getSelectedFile();          
+          jTextField6.setText(dir_db.getPath());
+        }else{
+          dir_db = null;
+          jTextField6.setText("");
         }
     }
     
@@ -135,9 +152,16 @@ public class ConfigAdmin extends javax.swing.JDialog {
         jTextField5 = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jSpinner2 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Configuracion Sysbotica");
+        setTitle("Configuracion");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -398,6 +422,69 @@ public class ConfigAdmin extends javax.swing.JDialog {
 
         jCheckBox1.setText("Crear Roles y  BD");
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Directorio de Base de Datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setText("Directorio :");
+
+        jTextField6.setEditable(false);
+
+        jButton4.setText("...");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton4))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos coneccion del nro clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        jLabel12.setText("Max. Nro Clientes :");
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), Integer.valueOf(10), null, Integer.valueOf(1)));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 9, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -420,6 +507,8 @@ public class ConfigAdmin extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addContainerGap())))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -433,6 +522,10 @@ public class ConfigAdmin extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -463,8 +556,7 @@ public class ConfigAdmin extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
-        validaCaracterAlfabeticoNumerico(evt, jTextField2);
-        validaNumeroCaracteres(jTextField2, 20);
+      validaNumeroCaracteres(jTextField2, 20);
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
@@ -538,6 +630,10 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         seleccionarBackUpDir();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        seleccionarDBDir();
+    }//GEN-LAST:event_jButton4ActionPerformed
 /*
  
  */
@@ -573,16 +669,20 @@ public class ConfigAdmin extends javax.swing.JDialog {
         conf.setPassword(jPasswordField1.getText().trim());
         conf.setUser_db_root(jTextField4.getText().trim());
         conf.setPassword_db_root(jPasswordField2.getText().trim());
-        if (dir_backup_db!=null && dir_backup_db.exists()) {
+        if (dir_backup_db!=null && dir_backup_db.exists() && dir_db!=null && dir_db.exists()) {
           conf.setDir_backup_db(dir_backup_db.getAbsolutePath());           
-            if (jCheckBox1.isSelected()) {
-               create_role_create_database_municipio(); 
-            }
+          conf.setDir_db(dir_db.getAbsolutePath());    
+          conf.setMax_clientes(jSpinner2.getValue().toString());
           conf.saveConf();
+          if (jCheckBox1.isSelected()) {
+               tools = new PG_DBM_Tools(conf);
+               tools.configurar_ip_s_cliente();
+               create_role_create_database_municipio(); 
+          }          
           JOptionPane.showMessageDialog(this,"Los datos fueron  correctamente actualizados, vuelva a iniciar el sistema.","Atencion",JOptionPane.INFORMATION_MESSAGE);
           System.exit(0);
         }else{
-          JOptionPane.showMessageDialog(this,"Seleccione un directorio valido para guardar las copias de respaldo","Atencion",JOptionPane.INFORMATION_MESSAGE);
+          JOptionPane.showMessageDialog(this,"Seleccione un directorio valido\npara:\n - Las copias de respaldo.\n - La base de datos.","Atencion",JOptionPane.INFORMATION_MESSAGE);
         }   
     }    
     
@@ -590,9 +690,12 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -605,14 +708,18 @@ public class ConfigAdmin extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 
     public void preCargaDatosConfiguracion() {
@@ -628,6 +735,14 @@ public class ConfigAdmin extends javax.swing.JDialog {
           dir_backup_db=null;  
           jTextField5.setText(""); 
         }
+        dir_db=new File(conf.getDir_db());
+        if (dir_db.exists()) {
+          jTextField6.setText(conf.getDir_db()); 
+        } else {
+          dir_db=null;  
+          jTextField6.setText(""); 
+        }
+        jSpinner2.setValue(Integer.parseInt(conf.getMax_clientes()));
         
     }
 

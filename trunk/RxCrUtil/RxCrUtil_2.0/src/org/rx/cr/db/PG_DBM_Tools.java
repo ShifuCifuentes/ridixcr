@@ -1,6 +1,7 @@
 package org.rx.cr.db;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -10,22 +11,24 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.util.SystemInfo;
 import static org.rx.cr.util.Utilitarios.*;
 
-public class BackupTools {
+public class PG_DBM_Tools {
 
     private Config conf=null;
     private File pg_dump_file=null;
     private File pg_restore_file=null;
     private File postgres_dir_appdata=null;  
-    private File pg_db_file=null;
-    public BackupTools(Config conf) {       
+    private File pg_hba_conf=null;
+    private File root_postgres=null;
+    public PG_DBM_Tools(Config conf) {       
         
         this.conf = conf;       
-        File root_postgres = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL");
+        root_postgres = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL");
         if (!root_postgres.exists()) {
             root_postgres = new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL");
         }
         pg_dump_file = new File(new File(root_postgres.listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_dump.exe");        
         pg_restore_file = new File(new File(root_postgres.listFiles()[0].getAbsolutePath()+File.separator+"bin").getAbsolutePath()+File.separator+"pg_restore.exe");
+        pg_hba_conf = new File(conf.getDir_db()+File.separator+"pg_hba.conf");
                
     }
        
@@ -91,7 +94,7 @@ public class BackupTools {
               fos.close();
               //Utilitarios.ejecutaComando("cmd.exe /C echo "+conf.getHost()+":"+conf.getPort()+":"+conf.getDb()+":"+conf.getUser_db_root()+":"+conf.getPassword_db_root()+">"+postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf");              
         } catch (IOException ex) {
-            Logger.getLogger(BackupTools.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PG_DBM_Tools.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }
@@ -103,10 +106,51 @@ public class BackupTools {
     }
 
     public File getPg_db_file() {
-        return pg_db_file;
+        return pg_hba_conf;
     }
 
     public void setPg_db_file(File pg_db_file) {
-        this.pg_db_file = pg_db_file;
+        this.pg_hba_conf = pg_db_file;
+    }
+    public void configurar_ip_s_cliente(){
+        try {
+            FileOutputStream pg_hba;
+            if (pg_hba_conf!=null && pg_hba_conf.exists()) {
+                pg_hba = new FileOutputStream(pg_hba_conf);
+                String pg_hba_conf_content="# TYPE  DATABASE        USER            CIDR-ADDRESS            METHOD\n";
+                pg_hba_conf_content+="\n";
+                pg_hba_conf_content+="# IPv4 local connections:\n";
+                pg_hba_conf_content+="host    all             all             127.0.0.1/32            md5\n";
+                int max_nro_clientes = Integer.parseInt(conf.getMax_clientes());
+                for (int i = 1; i <= max_nro_clientes; i++) {
+                    pg_hba_conf_content+="host    all             all             "+conf.getHost().substring(0,conf.getHost().lastIndexOf("."))+"."+i+"/32            md5\n";
+                }
+                pg_hba_conf_content+="host    all             all             "+conf.getHost()+"/32            md5\n";
+                pg_hba_conf_content+="# IPv6 local connections:\n";
+                pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";
+                pg_hba.write(pg_hba_conf_content.getBytes());
+                pg_hba.close();
+            }else{
+                pg_hba_conf= new File(root_postgres.listFiles()[0].getAbsolutePath()+File.separator+"data"+File.separator+"pg_hba.conf");
+                if (pg_hba_conf!=null && pg_hba_conf.exists()) {
+                    pg_hba = new FileOutputStream(pg_hba_conf);
+                    String pg_hba_conf_content="# TYPE  DATABASE        USER            CIDR-ADDRESS            METHOD\n";
+                    pg_hba_conf_content+="\n";
+                    pg_hba_conf_content+="# IPv4 local connections:\n";
+                    pg_hba_conf_content+="host    all             all             127.0.0.1/32            md5\n";
+                    int max_nro_clientes = Integer.parseInt(conf.getMax_clientes());
+                    for (int i = 1; i <= max_nro_clientes; i++) {
+                        pg_hba_conf_content+="host    all             all             "+conf.getHost().substring(0,conf.getHost().lastIndexOf("."))+"."+i+"/32            md5\n";
+                    }
+                    pg_hba_conf_content+="host    all             all             "+conf.getHost()+"/32            md5\n";
+                    pg_hba_conf_content+="# IPv6 local connections:\n";
+                    pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";
+                    pg_hba.write(pg_hba_conf_content.getBytes());
+                    pg_hba.close();
+                }
+            }             
+        } catch (Exception ex) {
+            Logger.getLogger(PG_DBM_Tools.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

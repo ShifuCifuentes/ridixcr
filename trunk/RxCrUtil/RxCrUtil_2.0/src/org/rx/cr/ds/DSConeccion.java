@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.rx.cr.conf.Config;
+import static org.rx.cr.db.DBA.*;
 
 public final class DSConeccion {
     private String user=null;
@@ -21,6 +22,21 @@ public final class DSConeccion {
         setUser(usuario);
         setPass(clave); 
         defaultPostgreSql();            
+     }
+     public DSConeccion(int dba,String host, String puerto, String db,String usuario,String clave) {
+        setHost(host);
+        setPort(puerto);
+        setDb(db);
+        setUser(usuario);
+        setPass(clave); 
+        switch(dba){
+            case DERBY: defaultDerby(); break;
+            case DB2: defaultDB2(); break;
+            case MYSQL: defaultMySql(); break;
+            case ORACLE: defaultOracle(); break;
+            case POSTGRESQL: defaultPostgreSql(); break;
+            case SQLSERVER: defaultMSSql(); break;
+        }         
      }
      public DSConeccion(Config conf) {
         setHost(conf.getHost());
@@ -61,7 +77,10 @@ public final class DSConeccion {
     public void setUrl(String url) {
         this.url = url;
     }
-
+    public void defaultDerby(){
+     setDriver("org.apache.derby.jdbc.ClientDriver");
+     setUrl("jdbc:derby://"+getHost()+":"+getPort()+"/"+getDb());
+    }  
     public void defaultPostgreSql(){
      setDriver("org.postgresql.Driver");
      setUrl("jdbc:postgresql://"+getHost()+":"+getPort()+"/"+getDb());
@@ -78,6 +97,10 @@ public final class DSConeccion {
      setDriver("com.mysql.jdbc.Driver");
      setUrl("jdbc:mysql://"+getHost()+":"+getPort()+"/"+getDb());
     }
+    public void defaultDB2(){
+     setDriver("com.ibm.db2.jcc.DB2Driver");     
+     setUrl("jdbc:db2://"+getHost()+":"+getPort()+"/"+getDb());
+    }  
     public Connection getConeccion(){
         try {
             Class.forName(getDriver()).newInstance();

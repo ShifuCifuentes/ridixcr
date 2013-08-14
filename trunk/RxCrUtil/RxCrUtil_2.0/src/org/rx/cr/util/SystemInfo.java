@@ -286,7 +286,8 @@ public final class SystemInfo {
       return SI;
     }
     public static void main(String[] args) {
-        System.out.println(new File(getDirectorioArchivosPrograma()).exists());
-        System.out.println(new File(getDirectorioArchivosProgramaX86()).exists());
+//        System.out.println(new File(getDirectorioArchivosPrograma()).exists());
+//        System.out.println(new File(getDirectorioArchivosProgramaX86()).exists());
+        System.out.println(toStringInfo());
     }
 }

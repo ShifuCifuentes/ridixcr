@@ -22,15 +22,19 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
+import org.rx.cr.conf.Config;
+import org.rx.cr.ds.DSConeccion;
 import org.rx.cr.util.Utilitarios;
 
 public class ReportGeneric {    
     
     private String reportParent;
     private Connection connection;
-
     public ReportGeneric(Connection connection) {
         this.connection = connection;
+    }
+    public ReportGeneric(Config conf) {
+        this.connection=(new DSConeccion(conf.getHost(),conf.getPort(),conf.getDb(),conf.getUser(),conf.getPassword())).getConeccion();
     }
     
     public JPanel mkReport(String nomRef){

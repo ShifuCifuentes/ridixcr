@@ -13,9 +13,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseWheelListener;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -35,15 +32,16 @@ import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
+/*
 import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;*/
 import org.rx.cr.util.gui.AWTUtilitiesWrapper;
+import org.rx.cr.util.gui.JHourChooser;
 import org.rx.cr.util.gui.ShapeDecorated;
 import org.rx.cr.util.gui.UndecoratedMove;
 //</editor-fold>
@@ -248,8 +246,8 @@ public final class Utilitarios extends JLabel implements Runnable{
         table.getColumnModel().getColumn(index).setCellRenderer(render);
       }
     public static TableRowSorter filtradorBusqueda(JTable tb,JTextField txt,int... index){  
-        AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
-        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
+        javax.swing.table.AbstractTableModel tbm = (javax.swing.table.AbstractTableModel)tb.getModel();
+        TableRowSorter trs = new TableRowSorter<javax.swing.table.AbstractTableModel>(tbm);
         tb.setRowSorter(trs); 
         aplicarFiltrador(txt,trs,index);
         return trs;
@@ -273,8 +271,8 @@ public final class Utilitarios extends JLabel implements Runnable{
    }    
     
     public static TableRowSorter filtradorBusqueda(JTable tb,JComboBox cbx,int... index){  
-        AbstractTableModel tbm = (AbstractTableModel)tb.getModel();
-        TableRowSorter trs = new TableRowSorter<AbstractTableModel>(tbm);
+        javax.swing.table.AbstractTableModel tbm = (javax.swing.table.AbstractTableModel)tb.getModel();
+        TableRowSorter trs = new TableRowSorter<javax.swing.table.AbstractTableModel>(tbm);
         tb.setRowSorter(trs); 
         aplicarFiltrador(cbx,trs,index);
         return trs;
@@ -289,7 +287,7 @@ public final class Utilitarios extends JLabel implements Runnable{
    }
     
     private static void nuevoFiltradoFilas(String msg,TableRowSorter trs,int... index) {
-        RowFilter<AbstractTableModel,Object> rf;
+        RowFilter<javax.swing.table.AbstractTableModel,Object> rf;
         try {
             rf = RowFilter.regexFilter("(?i)"+msg,index);            
            // rf = RowFilter.regexFilter(Pattern.compile(txt.getText(),Pattern.CASE_INSENSITIVE).toString(),index);            
@@ -335,6 +333,12 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
        //jd.updateUI();
     }
+    public static void salir(Component parent){     
+       int op =  JOptionPane.showConfirmDialog(parent,"Esta seguro que desea salir del sistema.","Atencion",JOptionPane.YES_NO_OPTION);        
+       if (op==JOptionPane.YES_OPTION) {
+            System.exit(0);
+       } 
+    }
      public static void closeInternalFrame(JInternalFrame jf,JDesktopPane jd) throws PropertyVetoException{
        jf.doDefaultCloseAction();
        jd.remove(jf);
@@ -350,10 +354,11 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void setIconoVentana(JInternalFrame vent,String resourcePath){           
           vent.setFrameIcon(getIconFromResource(resourcePath));
       }
+      /*
       public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
           vent.setIconImage(getIconFromResource(resourcePath).getImage());
           vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
-      }
+      }*/
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
@@ -402,6 +407,7 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static ImageIcon getIconFromResource(String resource) { 
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
+      /*
       public static ResizableIcon getResizableIconFromResource(String resource) {      
         return getResizableIconFromResource(resource,48,48);
       }
@@ -410,7 +416,7 @@ public final class Utilitarios extends JLabel implements Runnable{
       }
       public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
         return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-      }
+      }****/
       public static void aplicaTransparencia(Window window){
           AWTUtilitiesWrapper.setWindowOpaque(window,false);
       }
@@ -879,6 +885,9 @@ public final class Utilitarios extends JLabel implements Runnable{
             }else if(object instanceof JYearChooser){
                 JYearChooser tmp = (JYearChooser)object;                
                 tmp.setEnabled(true);
+            }else if(object instanceof JHourChooser){
+                JHourChooser tmp = (JHourChooser)object;                
+                tmp.setEnabled(true);
             }
         }
     }
@@ -928,6 +937,9 @@ public final class Utilitarios extends JLabel implements Runnable{
             }else if(object instanceof JYearChooser){
                 JYearChooser tmp = (JYearChooser)object;                
                 tmp.setEnabled(false);
+            }else if(object instanceof JHourChooser){
+                JHourChooser tmp = (JHourChooser)object;                
+                tmp.setEnabled(false);
             }
         }
     }
@@ -957,9 +969,16 @@ public final class Utilitarios extends JLabel implements Runnable{
             }else if(object instanceof JDateChooser){
                 JDateChooser tmp = (JDateChooser)object; 
                 tmp.setDate(null);
+            }else if(object instanceof JCheckBox){
+                JCheckBox tmp = (JCheckBox)object; 
+                tmp.setSelected(false);
+            }else if(object instanceof JTable){
+                JTable tmp = (JTable)object; 
+                ((org.rx.cr.gui.table.AbstractTableModel)tmp.getModel()).clear();                
             }
         }
     }
+    //<editor-fold defaultstate="collapsed" desc="removeValidatorEvent">
     public static void removeValidatorEvent(Object[] lObj){
         for (Object object : lObj) {
             if (object instanceof JTextField) {
@@ -1075,6 +1094,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             txt.removePropertyChangeListener(propertyChangeListener);
         }
     } 
+    //</editor-fold>
     public static void addCharacterValidatorEvent(Object[][] lObj){
         //<editor-fold defaultstate="collapsed" desc="addEnterFocus">    
         for (int i = 0; i < lObj.length; i++) {
@@ -1223,9 +1243,27 @@ public final class Utilitarios extends JLabel implements Runnable{
                 } else {
                     return false;
                 } 
+            }else if(lObj[i][0] instanceof JTable){
+                JTable tmp = (JTable)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
             }
         }
         return resp;
+        //</editor-fold>
+    }    
+    public static boolean isAlgunaOpcionElegida(JCheckBox[] lst,String msg){
+        //<editor-fold defaultstate="collapsed" desc="isDatosLlenos">
+        boolean rsp = true;
+        int sz = lst.length;
+        for (int i = 0; i < sz ; i++) {           
+            rsp|=lst[i].isSelected();
+        }        
+        return isValidoDatosControl(rsp,msg);
         //</editor-fold>
     }    
     private static void addEnterFocusEvent(JTextField tmp, Object lObj) {
@@ -1431,6 +1469,9 @@ public final class Utilitarios extends JLabel implements Runnable{
     private static boolean isValidoDatosControl(JTextArea jta,String msg){
         return !(alertControl(jta)?setMsj(msg):false);
     }
+    private static boolean isValidoDatosControl(boolean rsp,String msg){
+        return !(!rsp?setMsj(msg):false);
+    }
     private static boolean isValidoDatosControl(JTextPane jta,String msg){
         return !(alertControl(jta)?setMsj(msg):false);
     }
@@ -1442,6 +1483,9 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     private static boolean isValidoDatosControl(JComboBox jcbx,String msg){
         return !(alertControl(jcbx)?setMsj(msg):false);
+    }
+    private static boolean isValidoDatosControl(JTable tab,String msg){
+        return !(alertControl(tab)?setMsj(msg):false);
     }
     private static boolean isValidoDatosControl(JDateChooser jdc,String msg){
         return !(alertControl(jdc)?setMsj(msg):false);
@@ -1662,6 +1706,15 @@ public final class Utilitarios extends JLabel implements Runnable{
             return true;
         }else{
             cbx.setBorder(null);
+            return false;
+        }
+    }
+    public  static boolean alertControl(JTable tab){            
+        if(((org.rx.cr.gui.table.AbstractTableModel)tab.getModel()).size()>0){
+            tab.setBackground(Color.WHITE);
+            return true;
+        }else{
+            tab.setBackground(Color.RED);
             return false;
         }
     }

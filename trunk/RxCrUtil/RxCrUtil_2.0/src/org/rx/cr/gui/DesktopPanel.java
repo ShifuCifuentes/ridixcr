@@ -24,7 +24,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import org.rx.cr.util.SystemInfo;
 import org.rx.cr.util.Utilitarios;
+import org.rx.cr.util.gui.MonitorMemoria;
 import org.rx.cr.util.gui.PanelGadget;
 import org.rx.cr.util.gui.PanelRelojAnalogico;
 
@@ -35,14 +37,16 @@ public final class DesktopPanel extends javax.swing.JPanel{
     protected Color color_fin = new Color(255, 255, 255, 0);
     private double memoria_total = 0.0;
     private double memoria_libre = 0.0;
-    
+    private MonitorMemoria monitor_memoria = null;
     public DesktopPanel() {
         initComponents();
         hints = createRenderingHints();
+        monitor_memoria = new MonitorMemoria();
         reubicaGadguets();
         iniciaAnimacionCurvas();
         preparaMonitorMemoria();
         iniciarSondeoMemoria();
+        cargarInfoBasico();        
     }
     public void setColorInicioCurva(Color color){
         this.color_inicio = color;
@@ -189,6 +193,24 @@ public final class DesktopPanel extends javax.swing.JPanel{
        jLabel4.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel4.getHeight()),jLabel4.getWidth(),jLabel4.getHeight()); 
     }
 
+    private void cargarInfoBasico() {
+        jlb_so.setText(SystemInfo.getNombreSO().toUpperCase());
+        jlb_escritorio.setText(SystemInfo.getEscritorioOS().toUpperCase());
+        jlb_arquitectura.setText(SystemInfo.getArquitecturaSO().toUpperCase()+" - "+SystemInfo.getArquitecturaModeloDatosSO().toUpperCase()+" Bits");
+        jlb_version.setText(SystemInfo.getVersionSO().toUpperCase());
+        jlb_pais.setText(SystemInfo.getPaisUsuario().toUpperCase());
+        jlb_lenguaje.setText(SystemInfo.getLenguajeUsuario().toUpperCase());
+        jlb_nombre_jre.setText(SystemInfo.getNombrePlataformaEjecuccion().toUpperCase());
+        jlb_version_jre.setText(SystemInfo.getVersionEspecificaJava().toUpperCase());
+        jlb_nombre_jvm.setText(SystemInfo.getNombreMaquinaVirtual().toUpperCase());
+        jlb_version_jvm.setText(SystemInfo.getVersionEspecificaMaquinaVirtual().toUpperCase());
+        jlb_propietario.setText(SystemInfo.getVendedorMaquinaVirtual().toUpperCase());
+        jlb_web.setText(SystemInfo.getURLVendedor().toUpperCase());
+        
+        jPanel9.add(monitor_memoria, java.awt.BorderLayout.CENTER);
+        monitor_memoria.surf.start();
+    }
+
     public class DesktopPaneBackground implements Border{
     private final BufferedImage image;
 
@@ -286,6 +308,36 @@ public final class DesktopPanel extends javax.swing.JPanel{
         monitorMemoria = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jlb_so = new javax.swing.JLabel();
+        jlb_escritorio = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jlb_arquitectura = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jlb_version = new javax.swing.JLabel();
+        jlb_pais = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jlb_lenguaje = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jlb_nombre_jre = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jlb_version_jre = new javax.swing.JLabel();
+        jlb_nombre_jvm = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jlb_version_jvm = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jlb_propietario = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jlb_web = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/Refresh.png"))); // NOI18N
         jMenuItem1.setText("Actualizar");
@@ -381,6 +433,152 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jLabel4.setBounds(750, 420, 100, 40);
         jDesktopPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
+        jSplitPane1.setDividerLocation(180);
+        jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane1.setEnabled(false);
+        jSplitPane1.setOpaque(false);
+
+        jPanel5.setOpaque(false);
+        jPanel5.setLayout(null);
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("S.O. :");
+        jPanel5.add(jLabel5);
+        jLabel5.setBounds(10, 11, 80, 13);
+
+        jlb_so.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_so);
+        jlb_so.setBounds(93, 11, 100, 14);
+
+        jlb_escritorio.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_escritorio);
+        jlb_escritorio.setBounds(93, 31, 100, 14);
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel8.setText("Escritorio :");
+        jPanel5.add(jLabel8);
+        jLabel8.setBounds(10, 31, 80, 13);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel9.setText("Arquitec. :");
+        jPanel5.add(jLabel9);
+        jLabel9.setBounds(10, 51, 80, 13);
+
+        jlb_arquitectura.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_arquitectura);
+        jlb_arquitectura.setBounds(93, 51, 100, 14);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel10.setText("Version :");
+        jPanel5.add(jLabel10);
+        jLabel10.setBounds(10, 71, 80, 13);
+
+        jlb_version.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_version);
+        jlb_version.setBounds(93, 71, 100, 14);
+
+        jlb_pais.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_pais);
+        jlb_pais.setBounds(93, 91, 100, 14);
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel11.setText("Pais :");
+        jPanel5.add(jLabel11);
+        jLabel11.setBounds(10, 91, 80, 13);
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Lenguaje :");
+        jPanel5.add(jLabel12);
+        jLabel12.setBounds(10, 111, 80, 13);
+
+        jlb_lenguaje.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel5.add(jlb_lenguaje);
+        jlb_lenguaje.setBounds(93, 111, 100, 14);
+
+        jTabbedPane1.addTab("Info. S.O.", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel5); // NOI18N
+
+        jPanel6.setOpaque(false);
+        jPanel6.setLayout(null);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("Nom. JRE:");
+        jPanel6.add(jLabel6);
+        jLabel6.setBounds(10, 11, 53, 13);
+
+        jlb_nombre_jre.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_nombre_jre);
+        jlb_nombre_jre.setBounds(70, 10, 120, 14);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel7.setText("Ver. JRE:");
+        jPanel6.add(jLabel7);
+        jLabel7.setBounds(10, 31, 53, 13);
+
+        jlb_version_jre.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_version_jre);
+        jlb_version_jre.setBounds(70, 30, 120, 14);
+
+        jlb_nombre_jvm.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_nombre_jvm);
+        jlb_nombre_jvm.setBounds(70, 50, 120, 14);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setText("Nom. JVM:");
+        jPanel6.add(jLabel13);
+        jLabel13.setBounds(10, 51, 53, 13);
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel14.setText("Ver. JVM:");
+        jPanel6.add(jLabel14);
+        jLabel14.setBounds(10, 71, 53, 13);
+
+        jlb_version_jvm.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_version_jvm);
+        jlb_version_jvm.setBounds(70, 70, 120, 14);
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel15.setText("Vendedor :");
+        jPanel6.add(jLabel15);
+        jLabel15.setBounds(10, 91, 53, 13);
+
+        jlb_propietario.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_propietario);
+        jlb_propietario.setBounds(70, 90, 120, 14);
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel16.setText("Web :");
+        jPanel6.add(jLabel16);
+        jLabel16.setBounds(10, 111, 53, 13);
+
+        jlb_web.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jPanel6.add(jlb_web);
+        jlb_web.setBounds(70, 110, 120, 14);
+
+        jTabbedPane1.addTab("Info. Java", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel6); // NOI18N
+
+        jSplitPane1.setTopComponent(jTabbedPane1);
+
+        jPanel9.setOpaque(false);
+        jPanel9.setLayout(new java.awt.BorderLayout());
+        jTabbedPane2.addTab("Info. Memoria", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel9); // NOI18N
+
+        jSplitPane1.setRightComponent(jTabbedPane2);
+
+        jSplitPane1.setBounds(0, 0, 210, 360);
+        jDesktopPane1.add(jSplitPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -413,14 +611,44 @@ public final class DesktopPanel extends javax.swing.JPanel{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JLabel jlb_arquitectura;
+    private javax.swing.JLabel jlb_escritorio;
+    private javax.swing.JLabel jlb_lenguaje;
+    private javax.swing.JLabel jlb_nombre_jre;
+    private javax.swing.JLabel jlb_nombre_jvm;
+    private javax.swing.JLabel jlb_pais;
+    private javax.swing.JLabel jlb_propietario;
+    private javax.swing.JLabel jlb_so;
+    private javax.swing.JLabel jlb_version;
+    private javax.swing.JLabel jlb_version_jre;
+    private javax.swing.JLabel jlb_version_jvm;
+    private javax.swing.JLabel jlb_web;
     private javax.swing.JProgressBar monitorMemoria;
     // End of variables declaration//GEN-END:variables
 }
