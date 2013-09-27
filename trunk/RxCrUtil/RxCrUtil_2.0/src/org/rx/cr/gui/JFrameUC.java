@@ -94,10 +94,19 @@ public abstract class JFrameUC extends JFrame implements GenericFunctionUC{
             public void actionPerformed(ActionEvent e) {
                 try {
                     if(_isDatosValidosBE()){
-                        _guardarCambiosOperacion();
-                        b_nuevo.setEnabled(true);                        
-                        b_modificar.setEnabled(false);                        
-                        b_guardar.setEnabled(false);
+                        int rsp = _guardarCambiosOperacion();
+                        if(rsp>=0){            
+                            _resetControls();
+                            _deshabilitarControlesDatos();
+                            _OPERACION=_DESCONOCIDO;
+                            _listarBEs();
+                            b_nuevo.setEnabled(true);                        
+                            b_guardar.setEnabled(false);
+                            b_cancelar.setEnabled(false);
+                            JOptionPane.showMessageDialog(JFrameUC.this,"Operacion exitosa.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(JFrameUC.this,"Error operacion fallida.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }          
                     }            
                 } catch (Exception ex) {
                     Logger.getLogger(JFrameUC.class.getName()).log(Level.SEVERE, null,ex);

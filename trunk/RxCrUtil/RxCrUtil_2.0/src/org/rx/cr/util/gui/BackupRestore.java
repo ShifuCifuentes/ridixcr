@@ -1,5 +1,6 @@
 package org.rx.cr.util.gui;
 
+import java.awt.Dialog;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
@@ -25,7 +26,39 @@ public class BackupRestore extends javax.swing.JDialog{
     private final JFileChooser jfc;
     private File archivoBackup = null;
     private boolean isFinsh=false;
+    private String backupFileName;
+    private String backupDirectory;
     public BackupRestore(Frame parent,Config conf) {
+        super(parent,true);
+        initComponents();
+        setIconoVentana(this,"/org/rx/cr/resource/advancedsettings_min.png");
+        this.conf = conf; 
+        adaptarMovimiento(this);
+        adaptarForma(this,15,15);
+        bpc = new PG_DBM_Tools(conf);
+        setLocationRelativeTo(null);
+        jfc = new JFileChooser();
+        jfc.setFileFilter(new FileFilter() {
+            @Override
+            public boolean accept(File f) {
+                if (f.isDirectory()) {
+                    return true;
+                } else {
+                    if (f.getName().endsWith(".backup")) {
+                        return true;
+                    } else {
+                         return false;
+                    }
+                }
+            }
+
+            @Override
+            public String getDescription() {
+                return "Archivo Backup Postgres";
+            }
+        });
+    }
+    public BackupRestore(Dialog parent,Config conf) {
         super(parent,true);
         initComponents();
         this.conf = conf; 
@@ -320,7 +353,7 @@ public class BackupRestore extends javax.swing.JDialog{
               jTextField1.setText(conf.getDb());
               jTextField2.setText(conf.getHost());
               jTextField3.setText(conf.getPort());              
-              jDateChooser1.setDate(new Date());
+              jDateChooser1.setDate(new Date());              
               setVisible(true);  
             } else {
               JOptionPane.showMessageDialog(null,"La restauracion de copias de seguridad\ndebe ser ejecutada en el Servidor.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
@@ -331,6 +364,33 @@ public class BackupRestore extends javax.swing.JDialog{
             Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void restauraDBLocalBackUp(){
+       try {
+            if (conf.getHost().equals(InetAddress.getLocalHost().getHostAddress().trim())) {
+              jTextField1.setText(conf.getDb());
+              jTextField2.setText(conf.getHost());
+              jTextField3.setText(conf.getPort());              
+              jDateChooser1.setDate(new Date());     
+              archivoBackup = new File(getCurentPath()+File.separator+getBackupDirectory()+File.separator+getBackupFileName());
+              if (archivoBackup.exists()){                    
+                ejecutaProceso();
+                jTextField5.setText(archivoBackup.getName());
+              }else{     
+                archivoBackup=null;
+                jTextField5.setText("");
+              }           
+              setVisible(true);  
+            } else {
+              JOptionPane.showMessageDialog(null,"La restauracion de copias de seguridad\ndebe ser ejecutada en el Servidor.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
+              dispose();
+              //System.exit(0);
+            }
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
+        }             
+    }
+            
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         if (isFinsh) {
             JOptionPane.showMessageDialog(this,"Por Favor no olvide crear periodicamente sus copias de respaldo.","Atencion",JOptionPane.YES_NO_OPTION);        
@@ -459,5 +519,21 @@ public class BackupRestore extends javax.swing.JDialog{
         } catch (IOException ex) {
            // Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public String getBackupFileName() {
+        return backupFileName;
+    }
+
+    public void setBackupFileName(String backupFileName) {
+        this.backupFileName = backupFileName;
+    }
+
+    public String getBackupDirectory() {
+        return backupDirectory;
+    }
+
+    public void setBackupDirectory(String backupDirectory) {
+        this.backupDirectory = backupDirectory;
     }
 }

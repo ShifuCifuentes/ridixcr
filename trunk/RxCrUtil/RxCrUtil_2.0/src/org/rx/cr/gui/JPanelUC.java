@@ -75,6 +75,7 @@ public abstract class JPanelUC extends JPanel implements GenericFunctionUC{
                 _OPERACION=_NUEVO;
                 b_nuevo.setEnabled(false);
                 b_guardar.setEnabled(true);
+                b_cancelar.setEnabled(true);
                 _habilitarControlesDatos();
                 _resetControls();
             }
@@ -85,43 +86,7 @@ public abstract class JPanelUC extends JPanel implements GenericFunctionUC{
                 _OPERACION=_MODIFICAR;
                 b_modificar.setEnabled(false);
                 b_guardar.setEnabled(true);
-                _habilitarControlesDatos();
-            }
-        });
-        b_guardar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    if(_isDatosValidosBE()){
-                        _guardarCambiosOperacion();
-                        b_nuevo.setEnabled(true);                        
-                        b_modificar.setEnabled(false);                        
-                        b_guardar.setEnabled(false);
-                    }            
-                } catch (Exception ex) {
-                    Logger.getLogger(JPanelUC.class.getName()).log(Level.SEVERE, null,ex);
-                }
-            }
-        });
-        b_cancelar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                b_modificar.setEnabled(false);
-                b_nuevo.setEnabled(true);
-                b_guardar.setEnabled(false);
-                _resetControls();
-                _deshabilitarControlesDatos();
-                _OPERACION=_DESCONOCIDO;
-            }
-        });
-    }
-    public void _addOperationEventsButtons(final JButton b_nuevo,final JButton b_guardar,final JButton b_cancelar){
-        b_nuevo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                _OPERACION=_NUEVO;
-                b_nuevo.setEnabled(false);
-                b_guardar.setEnabled(true);
+                b_cancelar.setEnabled(true);
                 _habilitarControlesDatos();
             }
         });
@@ -138,6 +103,55 @@ public abstract class JPanelUC extends JPanel implements GenericFunctionUC{
                             _listarBEs();
                             b_nuevo.setEnabled(true);                        
                             b_guardar.setEnabled(false);
+                            b_cancelar.setEnabled(false);
+                            JOptionPane.showMessageDialog(JPanelUC.this,"Operacion exitosa.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(JPanelUC.this,"Error operacion fallida.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }          
+                    }            
+                } catch (Exception ex) {
+                    Logger.getLogger(JPanelUC.class.getName()).log(Level.SEVERE, null,ex);
+                }
+            }
+        });
+        b_cancelar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                b_modificar.setEnabled(false);
+                b_nuevo.setEnabled(true);
+                b_guardar.setEnabled(false);
+                b_cancelar.setEnabled(false);
+                _resetControls();
+                _deshabilitarControlesDatos();
+                _OPERACION=_DESCONOCIDO;
+            }
+        });
+    }
+    public void _addOperationEventsButtons(final JButton b_nuevo,final JButton b_guardar,final JButton b_cancelar){
+        b_nuevo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                _OPERACION=_NUEVO;
+                b_nuevo.setEnabled(false);
+                b_guardar.setEnabled(true);
+                b_cancelar.setEnabled(true);
+                _habilitarControlesDatos();
+            }
+        });
+        b_guardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    if(_isDatosValidosBE()){
+                        int rsp = _guardarCambiosOperacion();
+                        if(rsp>=0){            
+                            _resetControls();
+                            _deshabilitarControlesDatos();
+                            _OPERACION=_DESCONOCIDO;
+                            _listarBEs();
+                            b_nuevo.setEnabled(true);                        
+                            b_guardar.setEnabled(false);
+                            b_cancelar.setEnabled(false);
                             JOptionPane.showMessageDialog(JPanelUC.this,"Operacion exitosa.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(JPanelUC.this,"Error operacion fallida.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -153,6 +167,7 @@ public abstract class JPanelUC extends JPanel implements GenericFunctionUC{
             public void actionPerformed(ActionEvent e) {
                 b_nuevo.setEnabled(true);
                 b_guardar.setEnabled(false);
+                b_cancelar.setEnabled(false);
                 _resetControls();
                 _deshabilitarControlesDatos();
                 _OPERACION=_DESCONOCIDO;

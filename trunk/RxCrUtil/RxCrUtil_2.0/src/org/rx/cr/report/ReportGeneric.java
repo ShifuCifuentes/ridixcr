@@ -23,6 +23,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 import org.rx.cr.conf.Config;
+import org.rx.cr.db.DBA;
 import org.rx.cr.ds.DSConeccion;
 import org.rx.cr.util.Utilitarios;
 

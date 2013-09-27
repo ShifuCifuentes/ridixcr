@@ -3,6 +3,7 @@ package org.rx.cr.test;
 import java.util.ArrayList;
 import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
+import org.rx.cr.db.DBA;
 
 public class BLTest extends BLAbstract<Object>{
     DAOTest dao = null;

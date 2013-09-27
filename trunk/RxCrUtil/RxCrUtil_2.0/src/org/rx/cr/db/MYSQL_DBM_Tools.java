@@ -11,7 +11,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.util.SystemInfo;
 import static org.rx.cr.util.Utilitarios.*;
 
-public class PG_DBM_Tools {
+public class MYSQL_DBM_Tools {
 
     private Config conf=null;
     private File pg_dump_file=null;
@@ -19,7 +19,7 @@ public class PG_DBM_Tools {
     private File postgres_dir_appdata=null;  
     private File pg_hba_conf=null;
     private File root_postgres=null;
-    public PG_DBM_Tools(Config conf) {       
+    public MYSQL_DBM_Tools(Config conf) {       
         
         this.conf = conf;       
         root_postgres = new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL");
@@ -94,7 +94,7 @@ public class PG_DBM_Tools {
               fos.close();
               //Utilitarios.ejecutaComando("cmd.exe /C echo "+conf.getHost()+":"+conf.getPort()+":"+conf.getDb()+":"+conf.getUser_db_root()+":"+conf.getPassword_db_root()+">"+postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf");              
         } catch (IOException ex) {
-            Logger.getLogger(PG_DBM_Tools.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MYSQL_DBM_Tools.class.getName()).log(Level.SEVERE, null, ex);
         }
       
     }

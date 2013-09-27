@@ -6,14 +6,17 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.bind.DatatypeConverter;
+import org.rx.cr.util.ResourceMetadataDB;
 import org.rx.cr.util.Utilitarios;
 
-public class Config {
-    public static final int NUEVALINEA=10;
+public final class Config {
+    public static final int NUEVALINEA=10,SERVER=1,CLIENT=2,META_DATOS_SOFT=3;
     private InputStreamReader isr;
     private OutputStreamWriter osw;
     private String app_name;
     private final String NAME_CONF_FILE="APP.conf";
+    private String install_mode;
+    
     private String user;
     private String password;
     private String port;
@@ -26,9 +29,11 @@ public class Config {
     private String dir_backup_db;
     private String dir_db;
     private String max_clientes;
-    
-    public Config(){      
+    private int invocador;
+        
+    public Config(int invocador){      
         try {
+            setInvocador(invocador);
             ip = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException ex) {
             Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,14 +46,8 @@ public class Config {
             load();           
             isr.close();
             return true;
-        }catch (FileNotFoundException ex) {
-            //System.err.println(ex);
-            return false;
-        }catch (IOException ex) {
-            //System.err.println(ex);
-            return false;
         }catch(Exception ex){
-            //System.err.println(ex);
+            //Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -56,29 +55,68 @@ public class Config {
         String line;  
         while (isr.ready()) {
             line = decodeStringBase64ASSCII(readLine().trim());            
-            if(line.startsWith("host=")){
-                setHost(getInfoConf(line));                
-            }else if(line.startsWith("port=")){
-                setPort(getInfoConf(line));                 
-            }else if(line.startsWith("db=")){
-                setDb(getInfoConf(line));                 
-            }else if(line.startsWith("user=")){
-                setUser(getInfoConf(line));                 
-            }else if(line.startsWith("password=")){
-                setPassword(getInfoConf(line)); 
-            }else if(line.startsWith("user_db_root=")){
-                setUser_db_root(getInfoConf(line)); 
-            }else if(line.startsWith("passworddb_root=")){
-                setPassword_db_root(getInfoConf(line));
-            }else if(line.startsWith("dir_backup_db=")){
-                setDir_backup_db(getInfoConf(line)); 
-            }else if(line.startsWith("dir_db=")){
-                setDir_db(getInfoConf(line));  
-            }else if(line.startsWith("max_clients=")){
-                setMax_clientes(getInfoConf(line));   
-            }else{
-              throw new Exception("Error de Sintaxis Archivo Erroneo");
-            }          
+            line=line.trim();
+            switch(getInvocador()){
+                case SERVER:
+                        //<editor-fold defaultstate="collapsed" desc="Server">    
+                        if(line.startsWith("host=")){
+                            setHost(getInfoConf(line));                
+                        }else if(line.startsWith("port=")){
+                            setPort(getInfoConf(line));                 
+                        }else if(line.startsWith("db=")){
+                            setDb(getInfoConf(line));                 
+                        }else if(line.startsWith("user=")){
+                            setUser(getInfoConf(line));                 
+                        }else if(line.startsWith("password=")){
+                            setPassword(getInfoConf(line)); 
+                        }else if(line.startsWith("user_db_root=")){
+                            setUser_db_root(getInfoConf(line)); 
+                        }else if(line.startsWith("passworddb_root=")){
+                            setPassword_db_root(getInfoConf(line));
+                        }else if(line.startsWith("dir_backup_db=")){
+                            setDir_backup_db(getInfoConf(line)); 
+                        }else if(line.startsWith("dir_db=")){
+                            setDir_db(getInfoConf(line));  
+                        }else if(line.startsWith("max_clients=")){
+                            setMax_clientes(getInfoConf(line));   
+                        }else{
+                          throw new Exception("Error de Sintaxis Archivo Erroneo");
+                        }          
+                    break;
+                    //</editor-fold>
+                case CLIENT: 
+                        //<editor-fold defaultstate="collapsed" desc="Client">
+                        if(line.startsWith("host=")){
+                            setHost(getInfoConf(line));                
+                        }else if(line.startsWith("port=")){
+                            setPort(getInfoConf(line));                 
+                        }else if(line.startsWith("db=")){
+                            setDb(getInfoConf(line));                 
+                        }else if(line.startsWith("user=")){
+                            setUser(getInfoConf(line));                 
+                        }else if(line.startsWith("password=")){
+                            setPassword(getInfoConf(line)); 
+                        }else{                           
+                         throw new Exception("Error de Sintaxis Archivo Erroneo");
+                        }         
+                    break;  
+                    //</editor-fold>
+               case META_DATOS_SOFT: 
+                        if(line.startsWith("db=")){
+                            setDb(getInfoConf(line));                 
+                        }else if(line.startsWith("user=")){
+                            setUser(getInfoConf(line));                 
+                        }else if(line.startsWith("password=")){
+                            setPassword(getInfoConf(line)); 
+                        }else if(line.startsWith("user_db_root=")){
+                            setUser_db_root(getInfoConf(line)); 
+                        }else if(line.startsWith("passworddb_root=")){
+                            setPassword_db_root(getInfoConf(line));
+                        }else{
+                          throw new Exception("Error de Sintaxis Archivo Erroneo");
+                        }         
+                    break;  
+            }                
         }
     }
     private String readLine() throws IOException{
@@ -118,16 +156,34 @@ public class Config {
         catch (IOException ex) {}
     }
     private void save() throws IOException{
-      osw.write(encodeStringASSCIIBase64("host="+getHost()) +"\n");      
-      osw.write(encodeStringASSCIIBase64("port="+getPort()) +"\n");
-      osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
-      osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
-      osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");
-      osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
-      osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
-      osw.write(encodeStringASSCIIBase64("dir_backup_db="+getDir_backup_db())+"\n");       
-      osw.write(encodeStringASSCIIBase64("dir_db="+getDir_db())+"\n");       
-      osw.write(encodeStringASSCIIBase64("max_clients="+getMax_clientes())+"\n");       
+      switch(getInvocador()){
+          case SERVER:      
+                osw.write(encodeStringASSCIIBase64("host="+getHost()) +"\n");      
+                osw.write(encodeStringASSCIIBase64("port="+getPort()) +"\n");
+                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
+                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
+                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");
+                osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
+                osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
+                osw.write(encodeStringASSCIIBase64("dir_backup_db="+getDir_backup_db())+"\n");       
+                osw.write(encodeStringASSCIIBase64("dir_db="+getDir_db())+"\n");       
+                osw.write(encodeStringASSCIIBase64("max_clients="+getMax_clientes())+"\n");       
+              break;
+          case CLIENT:   
+                osw.write(encodeStringASSCIIBase64("host="+getHost()) +"\n");      
+                osw.write(encodeStringASSCIIBase64("port="+getPort()) +"\n");
+                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
+                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
+                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");                
+              break;  
+          case META_DATOS_SOFT: 
+                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
+                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
+                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");   
+                osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
+                osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
+              break;  
+      }    
     }
 
     
@@ -179,15 +235,25 @@ public class Config {
     
     @Override
     public String toString(){
-      return "\nHost : "+getHost()
-            +"\nPort : "+getPort()
-            +"\nDb : "+getDb()
-            +"\nUser : "+getUser()
-            +"\nPass : "+getPassword()
-            +"\nUser Root : "+getUser_db_root()
-            +"\nPass Root : "+getPassword_db_root()
-            +"\nDB BackUp Dir : "+getDir_backup_db()
-            +"\nDB Dir : "+getDir_db();
+      switch(getInvocador()){
+          case SERVER: 
+              return "\nHost : "+getHost()
+                    +"\nPort : "+getPort()
+                    +"\nDb : "+getDb()
+                    +"\nUser : "+getUser()
+                    +"\nPass : "+getPassword()
+                    +"\nUser Root : "+getUser_db_root()
+                    +"\nPass Root : "+getPassword_db_root()
+                    +"\nDB BackUp Dir : "+getDir_backup_db()
+                    +"\nDB Dir : "+getDir_db();
+          case CLIENT: 
+              return "\nHost : "+getHost()
+                    +"\nPort : "+getPort()
+                    +"\nDb : "+getDb()
+                    +"\nUser : "+getUser()
+                    +"\nPass : "+getPassword();
+          default: return "";
+      }      
     }
 
     public String getUser_db_root() {
@@ -227,16 +293,27 @@ public class Config {
     public String getDir_db() {
         return dir_db;
     }
-
     public void setDir_db(String dir_db) {
         this.dir_db = dir_db;
     }
-
     public String getMax_clientes() {
         return max_clientes;
     }
-
     public void setMax_clientes(String max_clientes) {
         this.max_clientes = max_clientes;
+    }
+    public int getInvocador() {
+        return invocador;
+    }
+    public void setInvocador(int invocador) {
+        this.invocador = invocador;
+    }
+
+    public String getInstall_mode() {
+        return install_mode;
+    }
+
+    public void setInstall_mode(String install_mode) {
+        this.install_mode = install_mode;
     }
 }

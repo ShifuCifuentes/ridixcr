@@ -24,6 +24,7 @@ public class BackupCreator extends javax.swing.JDialog{
     public BackupCreator(Frame parent,Config conf) {
         super(parent,true);
         initComponents();
+        setIconoVentana(this,"/org/rx/cr/resource/advancedsettings_min.png");
         this.conf = conf;
         adaptarMovimiento(this);
         adaptarForma(this,15,15);

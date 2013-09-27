@@ -64,7 +64,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
         addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                t_referencia.requestFocus();
+                t_referencia.requestFocus();                
             }
         });
     }
@@ -75,6 +75,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
                 _OPERACION=_NUEVO;
                 b_nuevo.setEnabled(false);
                 b_guardar.setEnabled(true);
+                b_cancelar.setEnabled(true);
                 _habilitarControlesDatos();
                 _resetControls();
             }
@@ -85,6 +86,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
                 _OPERACION=_MODIFICAR;
                 b_modificar.setEnabled(false);
                 b_guardar.setEnabled(true);
+                b_cancelar.setEnabled(true);
                 _habilitarControlesDatos();
             }
         });
@@ -93,10 +95,19 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
             public void actionPerformed(ActionEvent e) {
                 try {
                     if(_isDatosValidosBE()){
-                        _guardarCambiosOperacion();
-                        b_nuevo.setEnabled(true);                        
-                        b_modificar.setEnabled(false);                        
-                        b_guardar.setEnabled(false);
+                        int rsp = _guardarCambiosOperacion();
+                        if(rsp>=0){            
+                            _resetControls();
+                            _deshabilitarControlesDatos();
+                            _OPERACION=_DESCONOCIDO;
+                            _listarBEs();
+                            b_nuevo.setEnabled(true);                        
+                            b_guardar.setEnabled(false);
+                            b_cancelar.setEnabled(false);
+                            JOptionPane.showMessageDialog(JInternalFrameUC.this,"Operacion exitosa.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                        }else{
+                            JOptionPane.showMessageDialog(JInternalFrameUC.this,"Error operacion fallida.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }        
                     }            
                 } catch (Exception ex) {
                     Logger.getLogger(JInternalFrameUC.class.getName()).log(Level.SEVERE, null,ex);
@@ -109,6 +120,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
                 b_modificar.setEnabled(false);
                 b_nuevo.setEnabled(true);
                 b_guardar.setEnabled(false);
+                b_cancelar.setEnabled(false);
                 _resetControls();
                 _deshabilitarControlesDatos();
                 _OPERACION=_DESCONOCIDO;
@@ -121,6 +133,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
             public void actionPerformed(ActionEvent e) {
                 _OPERACION=_NUEVO;
                 b_nuevo.setEnabled(false);
+                b_cancelar.setEnabled(true);
                 b_guardar.setEnabled(true);
                 _habilitarControlesDatos();
             }
@@ -138,6 +151,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
                             _listarBEs();
                             b_nuevo.setEnabled(true);                        
                             b_guardar.setEnabled(false);
+                            b_cancelar.setEnabled(false);
                             JOptionPane.showMessageDialog(JInternalFrameUC.this,"Operacion exitosa.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
                         }else{
                             JOptionPane.showMessageDialog(JInternalFrameUC.this,"Error operacion fallida.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -153,6 +167,7 @@ public abstract class JInternalFrameUC extends JInternalFrame implements Generic
             public void actionPerformed(ActionEvent e) {
                 b_nuevo.setEnabled(true);
                 b_guardar.setEnabled(false);
+                b_cancelar.setEnabled(false);
                 _resetControls();
                 _deshabilitarControlesDatos();
                 _OPERACION=_DESCONOCIDO;

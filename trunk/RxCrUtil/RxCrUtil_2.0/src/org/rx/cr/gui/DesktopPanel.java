@@ -42,6 +42,9 @@ public final class DesktopPanel extends javax.swing.JPanel{
         initComponents();
         hints = createRenderingHints();
         monitor_memoria = new MonitorMemoria();
+        jSplitPane1.setVisible(false);
+        jPanel3.setVisible(false);
+        jPanel8.setVisible(false);
         reubicaGadguets();
         iniciaAnimacionCurvas();
         preparaMonitorMemoria();
@@ -238,7 +241,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
         BufferedImage imagen = null;       
         URL path = getClass().getResource(ref);        
         try {
-            imagen = ImageIO.read(path);
+            imagen = ImageIO.read(path);            
             dp.setBorder(new DesktopPaneBackground(imagen));
             
         } catch (java.io.IOException e) {

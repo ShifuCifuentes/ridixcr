@@ -117,10 +117,21 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
     public InputStream getDataBinaryStream(int index) throws SQLException{
      return rs.getBinaryStream(index);
     }  
+//    public File getDataBinaryStream(int index,String ref) throws SQLException{
+//        if (getDataBytesStream(index)!=null) {
+//          try {                    
+//             return Utilitarios.decodeFileBASE64Binary(getDataBytesStream(index),ref);
+//          } catch (IOException ex) {
+//              Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+//              return null;
+//          } 
+//        }
+//        throw null;
+//    }
     public File getDataBinaryStream(int index,String ref) throws SQLException{
         if (getDataBytesStream(index)!=null) {
           try {                    
-             return Utilitarios.decodeFileBASE64Binary(getDataBytesStream(index),ref);
+             return Utilitarios.byteToFile(getDataBytesStream(index),ref);
           } catch (IOException ex) {
               Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
               return null;
@@ -346,7 +357,7 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
                 sprp.setString((i+1),tmp);
             }else if(bean_parameter.getData() instanceof File){
                 File file = (File) bean_parameter.getData();                
-                Object[] tmp = encodeFileBinaryBASE64_C(file); 
+                Object[] tmp = encodeFileToByte(file); 
                 InputStream is = (InputStream)tmp[0];
                 int length = Integer.parseInt(tmp[1].toString());
                 sprp.setBinaryStream((i+1),is,length);                

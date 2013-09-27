@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import org.rx.cr.conf.Config;
+import org.rx.cr.db.DBA;
 import static org.rx.cr.db.DBA.*;
 
 public final class DSConeccion {
@@ -15,14 +16,6 @@ public final class DSConeccion {
     private String db=null;
     private String sid=null;
    
-     public DSConeccion(String host, String puerto, String db,String usuario,String clave) {
-        setHost(host);
-        setPort(puerto);
-        setDb(db);
-        setUser(usuario);
-        setPass(clave); 
-        defaultPostgreSql();            
-     }
      public DSConeccion(int dba,String host, String puerto, String db,String usuario,String clave) {
         setHost(host);
         setPort(puerto);
@@ -38,13 +31,50 @@ public final class DSConeccion {
             case SQLSERVER: defaultMSSql(); break;
         }         
      }
+     public DSConeccion(String host, String puerto, String db,String usuario,String clave) {
+        setHost(host);
+        setPort(puerto);
+        setDb(db);
+        setUser(usuario);
+        setPass(clave); 
+        switch(DBA.selectedDBA()){
+            case DERBY: defaultDerby(); break;
+            case DB2: defaultDB2(); break;
+            case MYSQL: defaultMySql(); break;
+            case ORACLE: defaultOracle(); break;
+            case POSTGRESQL: defaultPostgreSql(); break;
+            case SQLSERVER: defaultMSSql(); break;
+        }         
+     }
+     public DSConeccion(int dba,Config conf) {
+        setHost(conf.getHost());
+        setPort(conf.getPort());
+        setDb(conf.getDb());
+        setUser(conf.getUser());
+        setPass(conf.getPassword()); 
+        switch(dba){
+            case DERBY: defaultDerby(); break;
+            case DB2: defaultDB2(); break;
+            case MYSQL: defaultMySql(); break;
+            case ORACLE: defaultOracle(); break;
+            case POSTGRESQL: defaultPostgreSql(); break;
+            case SQLSERVER: defaultMSSql(); break;
+        }                   
+     }
      public DSConeccion(Config conf) {
         setHost(conf.getHost());
         setPort(conf.getPort());
         setDb(conf.getDb());
         setUser(conf.getUser());
         setPass(conf.getPassword()); 
-        defaultPostgreSql();            
+        switch(DBA.selectedDBA()){
+            case DERBY: defaultDerby(); break;
+            case DB2: defaultDB2(); break;
+            case MYSQL: defaultMySql(); break;
+            case ORACLE: defaultOracle(); break;
+            case POSTGRESQL: defaultPostgreSql(); break;
+            case SQLSERVER: defaultMSSql(); break;
+        }                   
      }
      
     public String getUser() {

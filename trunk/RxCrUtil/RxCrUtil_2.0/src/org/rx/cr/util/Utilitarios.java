@@ -6,6 +6,8 @@ import com.toedter.calendar.JYearChooser;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentListener;
+import java.awt.event.ContainerListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
@@ -13,13 +15,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import java.io.*;
 import java.net.InetAddress;
+import java.net.MalformedURLException;
 import java.net.NetworkInterface;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
@@ -30,16 +35,14 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
-/*
-import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;*/
 import org.rx.cr.util.gui.AWTUtilitiesWrapper;
 import org.rx.cr.util.gui.JHourChooser;
 import org.rx.cr.util.gui.ShapeDecorated;
@@ -337,6 +340,12 @@ public final class Utilitarios extends JLabel implements Runnable{
        int op =  JOptionPane.showConfirmDialog(parent,"Esta seguro que desea salir del sistema.","Atencion",JOptionPane.YES_NO_OPTION);        
        if (op==JOptionPane.YES_OPTION) {
             System.exit(0);
+       } 
+    }
+    public static void cerrar(JDialog parent){     
+       int op =  JOptionPane.showConfirmDialog(parent,"Esta seguro que desea cerrar.","Atencion",JOptionPane.YES_NO_OPTION);        
+       if (op==JOptionPane.YES_OPTION) {
+            parent.dispose();
        } 
     }
      public static void closeInternalFrame(JInternalFrame jf,JDesktopPane jd) throws PropertyVetoException{
@@ -1492,7 +1501,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="addCharacterValidator">
-    private static void addCharacterValidator(final JTextField txt,final int tp_chr,final int nro_chr){       
+    public static void addCharacterValidator(final JTextField txt,final int tp_chr,final int nro_chr){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1521,7 +1530,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             }            
         });
     }
-    private static void addCharacterValidator(final JTextArea txt,final int tp_chr,final int nro_chr){       
+    public static void addCharacterValidator(final JTextArea txt,final int tp_chr,final int nro_chr){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1549,7 +1558,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             }            
         });
     }
-    private static void addCharacterValidator(final JTextPane txt,final int tp_chr,final int nro_chr){       
+    public static void addCharacterValidator(final JTextPane txt,final int tp_chr,final int nro_chr){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1577,7 +1586,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             }            
         });
     }
-    private static void addCharacterValidator(final JEditorPane txt,final int tp_chr,final int nro_chr){       
+    public static void addCharacterValidator(final JEditorPane txt,final int tp_chr,final int nro_chr){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -1605,7 +1614,7 @@ public final class Utilitarios extends JLabel implements Runnable{
             }            
         });
     }
-    private static void addCharacterValidator(final JPasswordField txt,final int tp_chr,final int nro_chr){       
+    public static void addCharacterValidator(final JPasswordField txt,final int tp_chr,final int nro_chr){       
         txt.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -2495,13 +2504,28 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     public static Object[] encodeFileBinaryBASE64_C(File src){  
       byte[] bytes = new byte[(int)src.length()];
+      FileInputStream fis = null;
       try {          
-          new FileInputStream(src).read(bytes);
+          fis=new FileInputStream(src);
+          fis.read(bytes);
+          fis.close();
       } catch (Exception ex) {
           Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
       }
       byte[] data_encode = encodeBinaryBASE64(bytes);
       return new Object[]{new ByteArrayInputStream(data_encode),data_encode.length};
+    }
+    public static Object[] encodeFileToByte(File src){  
+      byte[] bytes = new byte[(int)src.length()];
+      FileInputStream fis = null;
+      try {          
+          fis=new FileInputStream(src);
+          fis.read(bytes);
+          fis.close();
+      } catch (Exception ex) {
+          Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
+      }
+      return new Object[]{new ByteArrayInputStream(bytes),bytes.length};
     }
     public static byte[] encodeBinaryHexa(byte[] data){
         String encoded = DatatypeConverter.printHexBinary(data);
@@ -2546,7 +2570,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         FileInputStream fis = new FileInputStream(src);
         byte[] bytes = new byte[(int)src.length()];
         fis.read(bytes);        
-        bytes = encodeBinaryBASE64(bytes);        
+        bytes = encodeBinaryBASE64(bytes);         
         fis.close();
 
         File feb64 = new File(nRef);
@@ -2570,7 +2594,18 @@ public final class Utilitarios extends JLabel implements Runnable{
         File bin = new File(nomRef);
         FileOutputStream fos = new FileOutputStream(bin);
         fos.write(decoded);
+        fos.flush();
         fos.close();        
+        refrescarMemoria();
+        return bin;
+    }
+    public static File byteToFile(byte[] data,String nomRef) throws IOException{
+        File bin = new File(nomRef);
+        FileOutputStream fos = new FileOutputStream(bin);
+        fos.write(data);
+        fos.flush();
+        fos.close();        
+        refrescarMemoria();
         return bin;
     }
     public static String decodeBASE64Binary(String data){
@@ -2687,6 +2722,139 @@ public final class Utilitarios extends JLabel implements Runnable{
          return "00-00-00-00-00-00";
         }
    }
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="GUI Icon">
+    public static ImageIcon resizeIcon(byte[]  data,int w,int h){        
+        ImageIcon icon = new ImageIcon(data);
+        Image img = icon.getImage() ;  
+        Image newimg = img.getScaledInstance(w,h, java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon(newimg);
+       return icon;
+    }
+    public static ImageIcon resizeIcon(String path,int w,int h){        
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage() ;  
+        Image newimg = img.getScaledInstance(w,h, java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon(newimg);
+       return icon;
+    }
+    public static ImageIcon resizeIcon(File file,int w,int h){        
+        try {
+            ImageIcon icon = new ImageIcon(file.toURL());
+            Image img = icon.getImage() ;  
+            Image newimg = img.getScaledInstance(w,h, java.awt.Image.SCALE_SMOOTH ) ;  
+            icon = new ImageIcon(newimg);
+           return icon;
+        } catch (MalformedURLException ex) {
+            return null;
+        }
+    }    
+    public static ImageIcon resizeIcon(URL url,int w,int h){        
+        ImageIcon icon = new ImageIcon(url);
+        Image img = icon.getImage() ;  
+        Image newimg = img.getScaledInstance(w,h, java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon(newimg);
+       return icon;
+    }    
+    public static ImageIcon resizeIcon(Image imag,int w,int h){  
+        ImageIcon icon = new ImageIcon(imag);
+        Image img = icon.getImage() ;  
+        Image newimg = img.getScaledInstance(w,h,java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon(newimg);
+       return icon;
+    }
+    public static ImageIcon resizeIcon(ImageIcon icon,int w,int h){        
+        Image img = icon.getImage() ;  
+        Image newimg = img.getScaledInstance(w,h, java.awt.Image.SCALE_SMOOTH ) ;  
+        icon = new ImageIcon(newimg);
+       return icon;
+    }
+    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="GUI Control Miselanius">
+    public static void addHobberText(JTextField txf,final String marca_agua){
+        JTextField n_txf = new JTextField(){
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                if(isEnabled() && getText().isEmpty() && !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)){
+                    Graphics2D g2 = (Graphics2D)g.create();
+                    g2.setColor(Color.gray);
+                    g2.setFont(getFont().deriveFont(Font.ITALIC));
+                    g2.drawString(marca_agua,5,18);
+                    g2.dispose();
+                }
+            }
+        };
+        n_txf.setText(txf.getText());
+        n_txf.setToolTipText(txf.getToolTipText());
+        n_txf.setEditable(txf.isEditable());
+        n_txf.setEnabled(txf.isEnabled());
+        n_txf.setRequestFocusEnabled(txf.isRequestFocusEnabled());   
+        //<editor-fold defaultstate="collapsed" desc="Event Listener's">
+        ActionListener[] al = txf.getActionListeners();
+        for (ActionListener l : al) {
+            n_txf.addActionListener(l);
+        }        
+        MouseListener[] ml = txf.getMouseListeners();
+        for (MouseListener l : ml) {
+            n_txf.addMouseListener(l);
+        }
+        KeyListener[] kl = txf.getKeyListeners();
+        for (KeyListener l : kl) {
+            n_txf.addKeyListener(l);
+        }
+        AncestorListener[] acl = txf.getAncestorListeners();
+        for (AncestorListener l : acl) {
+            n_txf.addAncestorListener(l);
+        }        
+        CaretListener[] cl = txf.getCaretListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        ComponentListener[] cnl = txf.getComponentListeners();
+        for (ComponentListener l : cnl) {
+            n_txf.addComponentListener(l);
+        }   
+        ContainerListener[] cntl = txf.getContainerListeners();
+        for (ContainerListener l : cntl) {
+            n_txf.addContainerListener(l);
+        }   
+        
+        txf.getFocusListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyBoundsListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getInputMethodListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseMotionListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseWheelListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getPropertyChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getVetoableChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        //</editor-fold>
+        //txf=n_txf;
+    }
     //</editor-fold>
     //</editor-fold>
 }
