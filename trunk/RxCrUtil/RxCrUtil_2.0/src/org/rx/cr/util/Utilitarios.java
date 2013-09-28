@@ -2771,7 +2771,7 @@ public final class Utilitarios extends JLabel implements Runnable{
     }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Miselanius">
-    public static void addHobberText(JTextField txf,final String marca_agua){
+    public static void addPlaceholder(JTextField txf,final String marca_agua){
         JTextField n_txf = new JTextField(){
             @Override
             protected void paintComponent(java.awt.Graphics g) {
@@ -2795,6 +2795,170 @@ public final class Utilitarios extends JLabel implements Runnable{
         for (ActionListener l : al) {
             n_txf.addActionListener(l);
         }        
+        MouseListener[] ml = txf.getMouseListeners();
+        for (MouseListener l : ml) {
+            n_txf.addMouseListener(l);
+        }
+        KeyListener[] kl = txf.getKeyListeners();
+        for (KeyListener l : kl) {
+            n_txf.addKeyListener(l);
+        }
+        AncestorListener[] acl = txf.getAncestorListeners();
+        for (AncestorListener l : acl) {
+            n_txf.addAncestorListener(l);
+        }        
+        CaretListener[] cl = txf.getCaretListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        ComponentListener[] cnl = txf.getComponentListeners();
+        for (ComponentListener l : cnl) {
+            n_txf.addComponentListener(l);
+        }   
+        ContainerListener[] cntl = txf.getContainerListeners();
+        for (ContainerListener l : cntl) {
+            n_txf.addContainerListener(l);
+        }   
+        
+        txf.getFocusListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyBoundsListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getInputMethodListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseMotionListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseWheelListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getPropertyChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getVetoableChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        //</editor-fold>
+        //txf=n_txf;
+    }
+    public static void addPlaceholder(JPasswordField txf,final String marca_agua){
+        JPasswordField n_txf = new JPasswordField(){
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                if(isEnabled() && getText().isEmpty() && !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)){
+                    Graphics2D g2 = (Graphics2D)g.create();
+                    g2.setColor(Color.gray);
+                    g2.setFont(getFont().deriveFont(Font.ITALIC));
+                    g2.drawString(marca_agua,5,18);
+                    g2.dispose();
+                }
+            }
+        };
+        n_txf.setText(txf.getText());
+        n_txf.setToolTipText(txf.getToolTipText());
+        n_txf.setEditable(txf.isEditable());
+        n_txf.setEnabled(txf.isEnabled());
+        n_txf.setRequestFocusEnabled(txf.isRequestFocusEnabled());   
+        //<editor-fold defaultstate="collapsed" desc="Event Listener's">
+        ActionListener[] al = txf.getActionListeners();
+        for (ActionListener l : al) {
+            n_txf.addActionListener(l);
+        }        
+        MouseListener[] ml = txf.getMouseListeners();
+        for (MouseListener l : ml) {
+            n_txf.addMouseListener(l);
+        }
+        KeyListener[] kl = txf.getKeyListeners();
+        for (KeyListener l : kl) {
+            n_txf.addKeyListener(l);
+        }
+        AncestorListener[] acl = txf.getAncestorListeners();
+        for (AncestorListener l : acl) {
+            n_txf.addAncestorListener(l);
+        }        
+        CaretListener[] cl = txf.getCaretListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        ComponentListener[] cnl = txf.getComponentListeners();
+        for (ComponentListener l : cnl) {
+            n_txf.addComponentListener(l);
+        }   
+        ContainerListener[] cntl = txf.getContainerListeners();
+        for (ContainerListener l : cntl) {
+            n_txf.addContainerListener(l);
+        }   
+        
+        txf.getFocusListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyBoundsListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getHierarchyListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getInputMethodListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseMotionListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getMouseWheelListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getPropertyChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        txf.getVetoableChangeListeners();
+        for (CaretListener l : cl) {
+            n_txf.addCaretListener(l);
+        }   
+        //</editor-fold>
+        //txf=n_txf;
+    }
+    public static void addPlaceholder(JTextArea txf,final String marca_agua){
+        JTextArea n_txf = new JTextArea(){
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                if(isEnabled() && getText().isEmpty() && !(FocusManager.getCurrentKeyboardFocusManager().getFocusOwner() == this)){
+                    Graphics2D g2 = (Graphics2D)g.create();
+                    g2.setColor(Color.gray);
+                    g2.setFont(getFont().deriveFont(Font.ITALIC));
+                    g2.drawString(marca_agua,5,18);
+                    g2.dispose();
+                }
+            }
+        };
+        n_txf.setText(txf.getText());
+        n_txf.setToolTipText(txf.getToolTipText());
+        n_txf.setEditable(txf.isEditable());
+        n_txf.setEnabled(txf.isEnabled());
+        n_txf.setRequestFocusEnabled(txf.isRequestFocusEnabled());   
+        //<editor-fold defaultstate="collapsed" desc="Event Listener's">          
         MouseListener[] ml = txf.getMouseListeners();
         for (MouseListener l : ml) {
             n_txf.addMouseListener(l);
