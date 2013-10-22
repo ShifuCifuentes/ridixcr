@@ -39,5 +39,6 @@ public class ResourceMetadataDB{
         File bf = new File(Utilitarios.getCurentPath()+File.separator+RSC_BACKUP_FILE);
         System.out.println(bf.getAbsolutePath());
         System.out.println(bf.exists()?"Existe":"No Existe");
+        
     }
 }
