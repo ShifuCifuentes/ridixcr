@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a5a56abd-5125-4d02-8059-000d9eb9701e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select 
+upper(LOC.nombre) as local,
+upper(CNT.valor||' '||LOC.direccion) as direccion,
+upper(UB.nombre_region) as departamento,
+upper(UB.nombre_provincia) as provincia,
+upper(UB.nombre_distrito) as distrito,
+LOC.nro,
+upper(LOC.mazana) as manzana,
+LOC.lote,
+upper(CNT2.nombre) as propiedad,
+upper(TPC.nombre_tipo) as tipo_cuenta,
+CTA.nro_cuenta_contable,
+upper(CNT3.nombre) as tipo_moneda,
+LOC.valor_contable,
+LOC.tomo,
+LOC.fojas,
+LOC.asiento,
+LOC.codigo_predio as codigo,
+LOC.partida_electoral,
+LOC.registro_sinabip,
+LOC.beneficiario
+from dbo.local LOC
+inner join dbo.contenedor CNT
+on LOC.tipo_direccion=CNT.id_contenedor
+inner join dbo.ubigeo UB
+on LOC.id_ubigeo=UB.id_ubigeo
+inner join dbo.contenedor CNT2
+on LOC.tipo_propiedad=CNT2.id_contenedor
+inner join dbo.cuenta_contable CTA
+on LOC.id_cuenta=CTA.id_cuenta_contable
+inner join dbo.tipo_cuenta TPC
+on CTA.id_tipo=TPC.id_tipo
+inner join dbo.contenedor CNT3
+on LOC.tipo_moneda=CNT3.id_contenedor]]>
+	</queryString>
+	<field name="local" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="departamento" class="java.lang.String"/>
+	<field name="provincia" class="java.lang.String"/>
+	<field name="distrito" class="java.lang.String"/>
+	<field name="nro" class="java.lang.String"/>
+	<field name="manzana" class="java.lang.String"/>
+	<field name="lote" class="java.lang.String"/>
+	<field name="propiedad" class="java.lang.String"/>
+	<field name="tipo_cuenta" class="java.lang.String"/>
+	<field name="nro_cuenta_contable" class="java.lang.String"/>
+	<field name="tipo_moneda" class="java.lang.String"/>
+	<field name="valor_contable" class="java.lang.String"/>
+	<field name="tomo" class="java.lang.String"/>
+	<field name="fojas" class="java.lang.String"/>
+	<field name="asiento" class="java.lang.String"/>
+	<field name="codigo" class="java.lang.String"/>
+	<field name="partida_electoral" class="java.lang.String"/>
+	<field name="registro_sinabip" class="java.lang.String"/>
+	<field name="beneficiario" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="70fcc3ba-4db9-49ff-9544-62542e3f1f32" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="82ba15b3-04e1-4231-889d-6342cd52db66" x="20" y="20" width="444" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[LOCALES DE LA ENTIDAD]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="1b6cbe34-6391-43b5-9a3e-414e67b67f8a" x="20" y="63" width="189" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte detallado de Locales]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="3"/>
+	</pageHeader>
+	<detail>
+		<band height="227">
+			<rectangle>
+				<reportElement uuid="a6b89887-cf03-49fa-9a30-760b73f9ecc0" x="2" y="21" width="553" height="100" forecolor="#006699"/>
+			</rectangle>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c4008e80-724d-4255-967e-f70c7aa17816" x="70" y="21" width="490" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{local}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="142472ae-5610-4379-9c1a-ab01aca9c157" mode="Transparent" x="8" y="21" width="60" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOCAL :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1fc44755-b7eb-48dc-a0eb-1f2953f8e205" mode="Transparent" x="6" y="41" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="fa39a8d4-1390-4c93-b90c-98f9c61e182d" x="100" y="41" width="460" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b11acef5-6301-4b16-babf-a43cdd7886b1" mode="Transparent" x="8" y="61" width="127" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPARTAMENTO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a7b35bf2-8fd8-4c3a-9ab7-a4de8cef8d52" x="139" y="61" width="130" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="df636f6a-8139-417c-be0d-295c926fd163" mode="Transparent" x="269" y="61" width="92" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3f7635ea-90e7-483e-8e75-be55bda478b8" x="365" y="61" width="195" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{provincia}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="01b3747b-8017-4780-a4ef-4660953a0112" mode="Transparent" x="8" y="81" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DISTRITO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="40b72126-729f-42b2-b9be-5ef379b02e43" x="85" y="81" width="475" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{distrito}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="e60befb3-8198-42aa-9d9b-92f348125a98" mode="Transparent" x="8" y="101" width="41" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="47326acb-32d5-4b01-bc21-fb48df699531" x="51" y="101" width="56" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="41d56974-ed09-4291-9d40-1440ef0e41e9" mode="Transparent" x="105" y="101" width="89" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MANZANA :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="8636f28b-243b-4acd-afee-01ce9620ab6e" x="196" y="101" width="75" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{manzana}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3cbe5a6a-f310-4b97-b9d3-1e802066c88e" mode="Transparent" x="272" y="101" width="54" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7c45cbc3-b66b-4b10-8ea1-a52c365d156b" x="329" y="101" width="54" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3d67a470-7030-4a74-b9d1-c4e06c7cf7d1" mode="Transparent" x="387" y="101" width="95" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROPIEDAD :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ff06806a-14b2-4e9e-9272-b647381e28c5" x="484" y="101" width="66" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{propiedad}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement uuid="a1317f2b-c7a8-4c85-afc4-1141f99b6992" x="3" y="1" width="109" height="20" forecolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6b2189ac-c094-4cd9-989a-3c4689012617" x="14" y="1" width="86" height="20" forecolor="#006699"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS BASICOS]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="a1317f2b-c7a8-4c85-afc4-1141f99b6992" x="3" y="125" width="136" height="20" forecolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="6b2189ac-c094-4cd9-989a-3c4689012617" x="14" y="125" width="111" height="20" forecolor="#006699"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS ADICIONALES]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="8decf235-35c5-4734-b84c-d70f515b2505" x="2" y="145" width="553" height="80" forecolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="a67030bb-3132-42d8-83dd-163f99689781" mode="Transparent" x="8" y="145" width="104" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO CUENTA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e08f30cf-0109-4884-9c68-b3cbf3bcc60b" mode="Transparent" x="191" y="145" width="108" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRO CUENTA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5d980269-f178-445f-a2ed-fd6e2bf0ee16" mode="Transparent" x="371" y="145" width="115" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO MONEDA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f89d8fc9-d706-4d38-9d5f-d73331cb6548" mode="Transparent" x="8" y="165" width="141" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR CONTABLE :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="40b967ff-c717-48a4-98c5-924ecae097bd" mode="Transparent" x="207" y="165" width="62" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOMO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="849b9492-1282-40d9-be1e-31a388000018" mode="Transparent" x="326" y="165" width="57" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOJAS :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9a09cb77-410b-4988-b4bd-90f05947ce55" mode="Transparent" x="431" y="165" width="71" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIENTO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c88f0fd-1ba0-4a31-91db-ad860aa8968c" mode="Transparent" x="8" y="185" width="127" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CODIGO PREDIO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5a326360-c0ff-4d3d-ac26-c0773decf690" mode="Transparent" x="272" y="185" width="186" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PARTIDA ELECTRONICA :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="65973635-90e8-4cd9-96ad-9db48de8dcc4" mode="Transparent" x="8" y="205" width="151" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REGISTRO SINABIP :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="19a38913-5523-4b5e-90b1-572b42ca4b50" mode="Transparent" x="272" y="205" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BENEFICIARIO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ea93d7c8-1c5d-4544-9da0-012aa2f893c3" x="114" y="145" width="75" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_cuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="0ba8275d-6266-46f6-b638-bc7132cb12ae" x="299" y="145" width="78" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_cuenta_contable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="699ec204-dd15-4624-ad15-dbe7446ca19d" x="487" y="145" width="68" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_moneda}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="f02098ec-df65-43a1-bc7d-fcde363b07fb" x="149" y="165" width="58" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_contable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="2605d884-8fa3-40f7-bf7d-cdd9b9ea4fe0" x="269" y="165" width="57" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tomo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="b15b35ed-d41a-4112-bdbe-cdff61a29008" x="383" y="165" width="48" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fojas}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="e44941b6-f110-4a87-9fea-9422652ee034" x="502" y="165" width="53" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asiento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7c5a976c-1700-4967-8629-9207688e095f" x="135" y="185" width="134" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="9c8126ef-0de2-468f-876d-4a29d15aacdf" x="460" y="185" width="95" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partida_electoral}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c692da0c-e4a8-4945-9a30-626c6ab09fde" x="159" y="205" width="110" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{registro_sinabip}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="583b89fd-b518-4b51-84bf-41392f238a3c" x="387" y="205" width="168" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{beneficiario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="4e9cac41-0d2b-4dd7-a07f-89314d36eb53" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="54c14173-b1db-46d6-8ee7-1d7a3fcec8da" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="36e2ce87-3ca4-47b4-b965-4f41b245a62f" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="dc61b866-46f8-47d6-ac4b-c8707b4bc142" positionType="FixRelativeToBottom" x="0" y="1" width="555" height="1" forecolor="#006699"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

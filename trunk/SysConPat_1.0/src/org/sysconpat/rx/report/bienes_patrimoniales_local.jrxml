@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="26682a5a-8085-4be0-8a02-ec4f3cafb9cb">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_id_local" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["I:\\SysConPat_1.0\\src\\org\\sysconpat\\rx\\report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     upper(LOC.nombre) as local,
+     upper(CNT.valor) as tipo_direccion,
+     upper(LOC.direccion) as direccion,
+     LOC.nro,     
+     upper(LOC.mazana) as manzana,
+     LOC.lote
+FROM dbo.local LOC
+inner join dbo.contenedor CNT
+on LOC.tipo_direccion=CNT.id_contenedor
+where LOC.id_local=$P{p_id_local}]]>
+	</queryString>
+	<field name="local" class="java.lang.String"/>
+	<field name="tipo_direccion" class="java.lang.String"/>
+	<field name="direccion" class="java.lang.String"/>
+	<field name="nro" class="java.lang.String"/>
+	<field name="manzana" class="java.lang.String"/>
+	<field name="lote" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="aa5621b1-936f-4811-87ce-a33eb9e1e2b0" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="879ae1e6-1f19-4e43-b363-cadb0f884b06" x="20" y="20" width="430" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[BIENES PATRIMONIALES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="78573843-b471-4105-bb4f-da12f92b0d59" x="21" y="63" width="317" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Reporte de Bienes por Local]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="105">
+			<line>
+				<reportElement uuid="b645ec0e-001e-4525-a982-0c12c2bf0689" x="-20" y="104" width="595" height="1" forecolor="#006699"/>
+			</line>
+			<rectangle radius="10">
+				<reportElement uuid="e184d989-439d-4b7b-83d0-33217cebfe87" x="11" y="14" width="532" height="87" forecolor="#006699"/>
+			</rectangle>
+			<rectangle radius="10">
+				<reportElement uuid="7eecfefe-9cce-46df-b962-1c099dc1cd4f" x="17" y="4" width="176" height="20" forecolor="#006699"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8bad303e-c0d9-4d23-b0f7-031b40f83633" x="28" y="4" width="151" height="20" forecolor="#006699"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL LOCAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="25a4d644-4147-49cb-ac90-020e5aa9f94c" mode="Transparent" x="20" y="29" width="49" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOCAL :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="9c134d92-64a1-4157-ade9-21cb6daf74a3" x="70" y="29" width="462" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{local}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="affa6133-3c09-4581-9692-bb2c6b14b808" mode="Transparent" x="20" y="49" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DIRECCION :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="be13972f-89ee-4927-8d62-5f6d3e853a65" x="147" y="49" width="227" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{direccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="03ef781f-4457-46cd-9541-7a4455f6b5c0" mode="Transparent" x="375" y="49" width="39" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRO :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a7f6aa74-5f31-4e73-a9c3-1c1c16bbb106" x="414" y="49" width="118" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="ed6c3fde-3ce0-4e5c-87fb-9eb8cebd40e7" x="95" y="49" width="52" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_direccion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d0b4932f-e00e-42a7-9a8f-34b1ce7c9a9a" mode="Transparent" x="20" y="69" width="68" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MANZANA :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7940eb60-7245-4d69-8da7-06b3acdd27ec" x="89" y="69" width="78" height="20" forecolor="#999999"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{manzana}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="7f3d63b3-012c-4fc8-9b4b-876b30e9a682" mode="Transparent" x="170" y="69" width="43" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LOTE :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="6ad82b6d-ba2e-4b0e-9c27-c35d099ad129" x="216" y="69" width="158" height="20" forecolor="#999999"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lote}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="100">
+			<subreport>
+				<reportElement uuid="e0c4f7d5-01c3-47c7-b0fb-bf751cbeba00" x="0" y="0" width="555" height="100"/>
+				<subreportParameter name="p_id_local">
+					<subreportParameterExpression><![CDATA[$P{p_id_local}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[Class.class.getClass().getResource("/org/sysconpat/rx/report/bienes_patrimoniales_local_sub.jasper")]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<line>
+				<reportElement uuid="6f301a79-24c7-415a-8df6-edf0e1ae2294" positionType="FixRelativeToBottom" x="0" y="1" width="555" height="1" forecolor="#006699"/>
+			</line>
+			<textField>
+				<reportElement uuid="f4f561f0-2bd1-4ee8-9744-3f7a84bfa541" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a2640e97-43c9-4f0e-9f49-057a18cb03b0" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="6beec591-b019-487e-8c5c-da7ca701ac12" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="27b6412d-cdc6-407e-845d-c5b5b8a7cfd7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_referencia" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+codigo_patrimonial,
+denominacion,
+clasificador
+FROM dbo.catalogo
+where dbo.prepara_referencia(codigo_patrimonial||denominacion) like dbo.prepara_referencia('%'||$P{p_referencia}||'%')
+order by codigo_patrimonial,denominacion]]>
+	</queryString>
+	<field name="codigo_patrimonial" class="java.lang.String"/>
+	<field name="denominacion" class="java.lang.String"/>
+	<field name="clasificador" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="eeaf0333-8211-4e13-ac14-ba207bb10431" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="af387468-3a3d-4614-bd30-f0f6a15679f4" x="20" y="20" width="389" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CATALOGO DE BIENES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5a96776d-6b69-44b9-a610-f69bf48ecc2b" x="20" y="63" width="283" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Por COD. PATRIMONIAL / DENOMINACION]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="13"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="ef1b3c65-e7b4-451e-804b-2e8f6d192401" x="-20" y="20" width="595" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="7876eeee-ed1e-4a4b-ac2b-f53bb44ee58a" mode="Opaque" x="0" y="0" width="139" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD. PATRIMONIAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="70ab3b41-55fe-439f-859c-6fabdc40e26c" mode="Opaque" x="139" y="0" width="303" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DENOMINACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ee9f1a49-3ae1-467d-9d6f-8b1fa8937428" mode="Opaque" x="442" y="0" width="113" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASIFICADOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="0167f62a-6a28-4a04-bc6d-22bdbfd9e130" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="1afc5f72-0193-4175-9311-38b7647a83f6" x="0" y="0" width="139" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_patrimonial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cdb39e36-ece3-4497-bc96-73430e5fab8a" x="139" y="0" width="303" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{denominacion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="672cc2c2-1bcb-46dd-bf39-c1a719b78ee2" x="442" y="0" width="113" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clasificador}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="6759cdd7-0a28-4529-a602-fe5976b79715" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="2cb6530c-1abd-4ccc-abef-43ec314e58e7" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="c6173af3-f79e-453d-8b9a-321353daec85" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

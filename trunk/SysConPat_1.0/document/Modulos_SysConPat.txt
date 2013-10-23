@@ -1,0 +1,60 @@
+Locales
+	Locales de entidad
+	Areas de entidad
+	Oficinas de entidad
+	Personal de entidad
+Bienes Activos
+	Registro de bienes
+	Modificacion de bienes
+	Traslado de bienes
+Baja de Bienes
+	Registro de baja
+	Modificacion de baja
+Reportes
+	Formato de asignacion de bienes
+	Formato de datos de bienes
+	Bienes Activos
+		General 
+		Detallado
+		Otros reportes
+	Formato de bienes
+		Activos fijos
+		Cuentas de orden
+		Bienes en transito
+		Inventario general
+	Bienes por local
+	Bienes datos de baja
+		General 
+		Detallado 
+		Consolidado
+		Otros reportes
+	Locales de la entidad
+	Areas por local
+	Personas de la entidad
+	Estadisticas
+Contabilidad
+	Depreciacion
+	Depreciacion anual
+	Depreciacion Individual
+	Resumen de depreciacion
+	Resumen contable
+	Vehiculos 
+	Activos fijos
+	Cuentas de orden
+	Consolidacion
+Catalogo
+	Consulta de catalogo
+	Listado de bienes
+		Ordenado por denominacion
+		Ordenados por codigo
+	Listado de clasificadores
+	Buscar Clasificador
+	Actualizacion de catalogo
+	Etiquedado anual
+Servicios
+	Generara una copia de seguridad
+	Restaurar la copia de seguridad
+Ayuda
+	About
+	Manual
+	Inicio

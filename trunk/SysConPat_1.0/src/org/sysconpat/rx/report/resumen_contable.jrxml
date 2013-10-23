@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="400" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ce2023c-29c6-4989-89ae-3fd1c2b35171">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+upper(TCTA.nombre_tipo) as tipo_uso,
+(CTA.nro_cuenta_contable||' '||CTA.nombre_cuenta_contable) as cuenta_contable, 
+count(BP.id_bien_patrimonial) as nro_bienes,
+sum(BP.valor_adquisicion) as sub_total,
+sum(
+case
+    when BP.valor_neto is null then
+         0
+    else
+        BP.valor_neto
+end
+) as valor_neto
+from dbo.bien_patrimonial BP
+inner join dbo.cuenta_contable CTA
+on BP.id_cta_contable=CTA.id_cuenta_contable
+inner join dbo.tipo_cuenta TCTA
+on BP.tipo_cuenta=TCTA.id_tipo
+WHERE BP.entransito=true
+and (TCTA.nombre_tipo<>'Activo Fijo' or TCTA.nombre_tipo<>'Cuenta de Orden' or TCTA.nombre_tipo<>'Disgregado')
+group by CTA.nro_cuenta_contable,CTA.nombre_cuenta_contable,TCTA.nombre_tipo
+order by TCTA.nombre_tipo,CTA.nro_cuenta_contable]]>
+	</queryString>
+	<field name="tipo_uso" class="java.lang.String"/>
+	<field name="cuenta_contable" class="java.lang.String"/>
+	<field name="nro_bienes" class="java.lang.Long"/>
+	<field name="sub_total" class="java.lang.Double"/>
+	<field name="valor_neto" class="java.lang.Double"/>
+	<variable name="nro_bienes_SUM" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{nro_bienes}]]></variableExpression>
+	</variable>
+	<variable name="sub_total_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sub_total}]]></variableExpression>
+	</variable>
+	<variable name="valor_neto_SUM" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_neto}]]></variableExpression>
+	</variable>
+	<group name="tipo_uso">
+		<groupExpression><![CDATA[$F{tipo_uso}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<line>
+					<reportElement uuid="9c3fdf0a-af72-4136-a71b-386dde6049be" x="0" y="16" width="555" height="1" forecolor="#666666"/>
+				</line>
+				<staticText>
+					<reportElement uuid="6baedaf4-92dc-4190-be87-7fdc0c73940f" mode="Opaque" x="0" y="0" width="199" height="16" forecolor="#666666" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUENTAS CONTABLES DE USO ]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="f4a0962e-dd1a-421c-aa91-dab06b887eea" mode="Opaque" x="199" y="0" width="356" height="16" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipo_uso}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="4b0a03ea-4c29-4e82-83bd-fe8734ae5fae" mode="Opaque" x="0" y="17" width="326" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUENTA CONTABLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="8eab2261-9dfa-48cd-b5e6-2e39e1910f21" mode="Opaque" x="326" y="17" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NRO BIENES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="78bff255-726a-4396-a646-ddd5376a7384" mode="Opaque" x="403" y="17" width="75" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SUB. TOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="29e72a0b-0930-4ce3-9b77-d724f785577f" mode="Opaque" x="478" y="17" width="77" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR NETO]]></text>
+				</staticText>
+				<line>
+					<reportElement uuid="12204a88-ccf5-4d6c-9536-01da0d2a27c4" x="-1" y="0" width="1" height="37"/>
+				</line>
+				<line>
+					<reportElement uuid="33b5b666-2c89-406d-8587-d38fc1cb4aa3" x="556" y="0" width="1" height="37"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="48accffb-6180-43ba-b29d-2419e7a8a99d" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="682b10f1-b996-4fc4-a38e-28978d903ca9" x="20" y="20" width="386" height="43" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RESUMEN CONTABLE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="26a118e3-6c8a-4f63-85b5-0d1709502d61" x="20" y="63" width="552" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="false"/>
+					</textElement>
+					<text><![CDATA[General segun el uso de la cuenta]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="10">
+			<line>
+				<reportElement uuid="233c1d44-fea5-4124-b129-f2bbde9fab3c" x="-20" y="9" width="595" height="1" forecolor="#666666"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="4eb3cd55-acc4-4ce1-98de-c8631bf7945c" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="afc607ec-51c2-461b-be83-c4a7f38403ae" x="0" y="0" width="326" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuenta_contable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="d2f6fc1a-f41b-4da4-81ce-c52b60aaa245" x="326" y="0" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nro_bienes}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="c2836aa0-0a86-4c30-a66c-99c529681efc" x="403" y="0" width="75" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_total}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="6f67aa1b-4c93-4d93-a274-a7448961544d" x="478" y="0" width="77" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_neto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="ce0480dd-c806-4111-a881-379a995db0e5" x="-1" y="0" width="1" height="19"/>
+			</line>
+			<line>
+				<reportElement uuid="053950b7-f76d-423e-82fa-28068d0cee8c" x="556" y="0" width="1" height="20"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="31">
+			<textField>
+				<reportElement uuid="f3fefa14-6a84-40f6-a355-408b0c391fd2" mode="Opaque" x="0" y="18" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="3c79f1a5-d63f-4829-8829-3b8da91fee8e" mode="Opaque" x="515" y="18" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="c9f7c28d-da53-4709-973a-5a32c36bd848" x="0" y="18" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="">
+				<reportElement uuid="9faed2a0-4b6a-4ba0-8bdf-ab939fe2529b" x="326" y="0" width="77" height="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($V{nro_bienes_SUM}.doubleValue() )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="cebbffaa-d964-43d7-a7b0-f23543831c67" x="275" y="0" width="51" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL :]]></text>
+			</staticText>
+			<textField evaluationTime="Auto" pattern="">
+				<reportElement uuid="7a80d08c-e52e-4526-ad11-f8614e975185" x="403" y="0" width="75" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($V{sub_total_SUM}.doubleValue())]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Auto" pattern="">
+				<reportElement uuid="cdb86c5f-1d87-491b-86d0-58b08d536e79" x="478" y="0" width="77" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Double($V{valor_neto_SUM}.doubleValue())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
