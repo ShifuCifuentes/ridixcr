@@ -58,6 +58,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jTable3.setModel(model3);
         cargarCombos();
         agregaValidadoresControl();
+        personalizarVistaTabla();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -82,7 +83,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txt_ult_correlativo = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
@@ -304,7 +305,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("ULT. CORR. :");
 
-        jTextField6.setEnabled(false);
+        txt_ult_correlativo.setEnabled(false);
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("TIPO DE CUENTA :");
@@ -483,7 +484,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6)
+                                    .addComponent(txt_ult_correlativo)
                                     .addComponent(jTextField4)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -548,7 +549,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_ult_correlativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -1398,9 +1399,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txt_ult_correlativo;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
     
@@ -1422,7 +1423,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     }
     private void resetControl(){
         resetComponents(new Object[]{            
-            jTextField2,jTextField3,jTextField4,jTextField5,jTextField6,jComboBox9,jTextField8,
+            jTextField2,jTextField3,jTextField4,jTextField5,txt_ult_correlativo,jComboBox9,jTextField8,
             jTextField11,jTextField9,jComboBox1,jComboBox10,jDateChooser1,jTextField13,jComboBox2,
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
@@ -1434,7 +1435,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     }
     private void habilitar_controles_datos(){  
        enableComponent(new Object[]{
-            jTextField6,jComboBox9,jTextField8,
+            jComboBox9,jTextField8,
             jTextField9,jComboBox1,jComboBox10,jDateChooser1,jTextField13,jComboBox2,
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
@@ -1447,7 +1448,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     }
     private void deshabilitar_controles_datos(){
         disableComponent(new Object[]{
-            jTextField6,jComboBox9,jTextField8,
+            jComboBox9,jTextField8,
             jTextField9,jComboBox1,jComboBox10,jDateChooser1,jTextField13,jComboBox2,
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
@@ -1460,7 +1461,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     }
      private boolean isDatosValidos(){
         return isDatosLlenos(new Object[][]{
-            {jTextField6,"Ingrese ultimo correlativo."},    
+            {txt_ult_correlativo,"Ingrese ultimo correlativo."},    
             {jComboBox9,"Seleccione el tipo de cuenta."},    
             {jTextField8,"Ingrese valor de adquisicion"},            
             {jTextField9,"Ingrese la cantidad."},                   
@@ -1498,7 +1499,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             {jTextField16,jButton2}
         });
         addCharacterValidatorEvent(new Object[][]{
-            {jTextField6,NUMERICO,8},
+            {txt_ult_correlativo,NUMERICO,8},
             {jTextField8,NUMERICO_REAL,8},            
             {jTextField9,NUMERICO,8},            
             {jTextField13,CARACTERES_COMPLETOS,100},            
@@ -1539,7 +1540,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 jTextField3.setText(be2.getGrupo_generico());
                 jTextField4.setText(be2.getClase_bien());
                 jTextField5.setText(be2.getCodigo_patrimonial());
-                jTextField6.setText(""+be2.getUl_correlativo());
+                txt_ult_correlativo.setText(""+be2.getUl_correlativo());
                 utilContenedor.seleccionarItemComboTipoCuenta(jComboBox9,be2.getTipo_cuenta());
                 jTextField8.setText(""+be2.getValor_adquisicion());
                 jTextField11.setText(be2.getClasificador());
@@ -1597,7 +1598,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         for (int i = 0; i < cant; i++) {
            be2 = new BEBienPatrimonial();
            be2.setId_entidad(0);      
-           be2.setUl_correlativo(Integer.parseInt(jTextField6.getText().trim())+i);
+           be2.setUl_correlativo(Integer.parseInt(txt_ult_correlativo.getText().trim())+i);
            be2.setTipo_cuenta(((BETipoCuenta)jComboBox9.getSelectedItem()).getId_tipo());
            be2.setId_catalogo(be1.getId_catalogo());
            be2.setValor_adquisicion(Double.parseDouble(jTextField8.getText().trim()));
@@ -1660,7 +1661,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private void guardar_cambios_bien_patrimonial() throws Exception {
         bl = new BLBienPatrimonial(root.getConfig());       
         be2.setId_entidad(0);      
-        be2.setUl_correlativo(Integer.parseInt(jTextField6.getText().trim()));
+        be2.setUl_correlativo(Integer.parseInt(txt_ult_correlativo.getText().trim()));
         be2.setTipo_cuenta(((BETipoCuenta)jComboBox9.getSelectedItem()).getId_tipo());
         be2.setValor_adquisicion(Double.parseDouble(jTextField8.getText().trim()));
         be2.setCantidad(Integer.parseInt(jTextField9.getText().trim()));    
@@ -1725,6 +1726,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             bl = new BLBienPatrimonial(root.getConfig());
             ArrayList<BEBienPatrimonial> lista = bl.buscarReferencia(jTextField16.getText().trim());
             model.addAll(lista);
+            personalizarVistaTabla();
         } catch (Exception ex) {
             Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1761,6 +1763,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jTextField4.setText(be1.getClase());
             jTextField5.setText(be1.getCodigo_patrimonial());
             jTextField11.setText(be1.getClasificador());
+            buscarUltimoCorrelativo(be1.getCodigo_patrimonial(),0,0);
         }        
     }
 
@@ -1787,6 +1790,23 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             BLCatalogo blc = new BLCatalogo(root.getConfig());
             ArrayList<BECatalogo> lista =blc.buscarReferencia(jTextField1.getText().trim());
             model2.addAll(lista);
+            personalizarVistaTabla();
+        } catch (Exception ex) {
+            Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void personalizarVistaTabla() {
+        alinearDatosColumnaTablaCentro(0, jTable1);
+        formateaAnchoColumnaTabla(0,jTable1,70);
+        alinearDatosColumnaTablaCentro(0, jTable2);
+        formateaAnchoColumnaTabla(0,jTable2,70);
+    }
+
+    private void buscarUltimoCorrelativo(String  cp,int cc, int cgg){
+        try {
+            BLCatalogo blc = new BLCatalogo();
+            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(cp, cgg, cc),"####"));
         } catch (Exception ex) {
             Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
         }

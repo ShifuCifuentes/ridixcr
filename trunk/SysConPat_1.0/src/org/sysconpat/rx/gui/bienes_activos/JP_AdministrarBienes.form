@@ -261,7 +261,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTextField6" max="32767" attributes="0"/>
+                                      <Component id="txt_ult_correlativo" max="32767" attributes="0"/>
                                       <Component id="jTextField4" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jTextField8" min="-2" pref="69" max="-2" attributes="0"/>
@@ -345,7 +345,7 @@
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txt_ult_correlativo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -462,7 +462,7 @@
             <Property name="text" type="java.lang.String" value="ULT. CORR. :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField6">
+        <Component class="javax.swing.JTextField" name="txt_ult_correlativo">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
