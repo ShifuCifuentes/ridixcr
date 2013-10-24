@@ -82,5 +82,21 @@ public class DACatalogo extends DAOAbstract<BECatalogo>{
             return rollback(ex);
         } 
     }
-    
+     public int ultimo_correlativo_bien_patrimonial(String cod_pat,int cod_gg,int cod_clase) throws Exception {
+        try { 
+            int ul_correlativo=0;
+            setStoreProcedure("dbo.ultimo_correlativo_bien_patrimonial"); 
+            setParameterString(cod_pat);
+            setParameterInt(cod_gg);
+            setParameterInt(cod_clase);
+            commitc();
+            while (existResult()) {
+                ul_correlativo=getDataInt(1);
+            }
+            close();
+           return ul_correlativo;
+        } catch (Exception ex) {
+            return rollback(ex);      
+        }
+    }   
 }
