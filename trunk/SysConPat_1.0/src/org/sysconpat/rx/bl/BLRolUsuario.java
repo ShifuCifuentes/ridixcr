@@ -8,6 +8,7 @@ import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BERolUsuario;
 import org.sysconpat.rx.be.BEUsuario;
 import org.sysconpat.rx.da.DARolUsuario;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLRolUsuario extends BLAbstract<BERolUsuario> {
 
@@ -16,9 +17,10 @@ public class BLRolUsuario extends BLAbstract<BERolUsuario> {
     public BLRolUsuario(Config conf) {
         setConfig(conf);
     }
-     public BLRolUsuario(DSConeccion ds) {
-        setDSConeccion(ds);
-    }
+
+    public BLRolUsuario() {
+        setDSConeccion(_DSConneccion());
+    }   
     
     @Override
     public int registrar(BERolUsuario tipo) throws Exception {

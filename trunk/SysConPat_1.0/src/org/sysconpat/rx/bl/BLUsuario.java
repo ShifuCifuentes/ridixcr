@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import org.sysconpat.rx.be.BEUsuario;
 import org.sysconpat.rx.da.DAUsuario;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLUsuario extends BLAbstract<BEUsuario> {
 
@@ -14,10 +15,11 @@ public class BLUsuario extends BLAbstract<BEUsuario> {
     public BLUsuario(Config conf) {
         setConfig(conf);
     }
-     public BLUsuario(DSConeccion ds) {
-        setDSConeccion(ds);
+
+    public BLUsuario() {
+        setDSConeccion(_DSConneccion());
     }
-    
+        
     @Override
     public int registrar(BEUsuario tipo) throws Exception {
         dao = new DAUsuario(getConeccion());

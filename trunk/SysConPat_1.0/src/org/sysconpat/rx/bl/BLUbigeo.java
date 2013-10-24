@@ -5,12 +5,18 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEUbigeo;
 import org.sysconpat.rx.da.DAOUbigeo;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLUbigeo extends BLAbstract<BEUbigeo> {
     private DAOUbigeo dao = null;
     public BLUbigeo(Config conf) {
         setConfig(conf);
     }
+
+    public BLUbigeo() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="Funciones No Utilizadas">
     @Override
     public int registrar(BEUbigeo bean) throws Exception {

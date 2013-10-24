@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.da.DAArea;
+import static org.sysconpat.rx.ds.DSUtil.*;
 
 public class BLArea extends BLAbstract<BEArea> {
 
@@ -13,6 +14,9 @@ public class BLArea extends BLAbstract<BEArea> {
     
     public BLArea(Config conf) {
         setConfig(conf);
+    }
+    public BLArea() {
+       setDSConeccion(_DSConneccion());
     }
     
     @Override

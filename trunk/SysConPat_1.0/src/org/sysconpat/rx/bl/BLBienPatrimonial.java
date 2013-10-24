@@ -6,6 +6,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEBienPatrimonial;
 import org.sysconpat.rx.da.DABienPatrimonial;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLBienPatrimonial extends BLAbstract<BEBienPatrimonial>{
     
@@ -14,6 +15,11 @@ public class BLBienPatrimonial extends BLAbstract<BEBienPatrimonial>{
     public BLBienPatrimonial(Config conf) {
         setConfig(conf);
     }
+
+    public BLBienPatrimonial() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     
     @Override
     public int registrar(BEBienPatrimonial bean) throws Exception {

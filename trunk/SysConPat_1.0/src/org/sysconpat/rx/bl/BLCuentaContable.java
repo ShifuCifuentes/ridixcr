@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BECuentaContable;
 import org.sysconpat.rx.da.DAArea;
 import org.sysconpat.rx.da.DACuentaContable;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLCuentaContable extends BLAbstract<BECuentaContable> {
     
@@ -13,6 +14,10 @@ public class BLCuentaContable extends BLAbstract<BECuentaContable> {
     
     public BLCuentaContable(Config conf) {
         setConfig(conf);
+    }
+
+    public BLCuentaContable() {
+        setDSConeccion(_DSConneccion());
     }
     
     

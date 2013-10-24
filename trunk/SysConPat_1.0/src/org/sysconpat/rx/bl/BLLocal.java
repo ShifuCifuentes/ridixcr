@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.da.DALocal;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLLocal extends BLAbstract<BELocal> {
 
@@ -14,6 +15,12 @@ public class BLLocal extends BLAbstract<BELocal> {
     public BLLocal(Config conf) {
         setConfig(conf);
     }
+
+    public BLLocal() {
+        setDSConeccion(_DSConneccion());
+    }
+    
+    
     @Override
     public int registrar(BELocal bean) throws Exception {
         dao = new DALocal(getConeccion());

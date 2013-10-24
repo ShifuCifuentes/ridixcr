@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.da.DAOficina;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLOficina extends BLAbstract<BEOficina> {
 
@@ -14,6 +15,11 @@ public class BLOficina extends BLAbstract<BEOficina> {
     public BLOficina(Config conf) {
         setConfig(conf);
     }
+
+    public BLOficina() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     @Override
     public int registrar(BEOficina bean) throws Exception {
         dao = new DAOficina(getConeccion());

@@ -5,6 +5,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEDivicionBienPatrimonial;
 import org.sysconpat.rx.da.DADivicionBienPatrimonial;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLDivicionBienPatrimonial extends BLAbstract<BEDivicionBienPatrimonial>{
 
@@ -13,6 +14,11 @@ public class BLDivicionBienPatrimonial extends BLAbstract<BEDivicionBienPatrimon
     public BLDivicionBienPatrimonial(Config conf) {
         setConfig(conf);
     }
+
+    public BLDivicionBienPatrimonial() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     
     @Override
     public int registrar(BEDivicionBienPatrimonial bean) throws Exception {

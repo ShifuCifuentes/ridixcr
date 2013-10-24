@@ -5,6 +5,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEGrupoGenerico;
 import org.sysconpat.rx.da.DAGrupoGenerico;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLGrupoGenerico  extends BLAbstract<BEGrupoGenerico>{
     
@@ -12,6 +13,10 @@ public class BLGrupoGenerico  extends BLAbstract<BEGrupoGenerico>{
     
     public BLGrupoGenerico(Config conf) {
         setConfig(conf);
+    }
+
+    public BLGrupoGenerico() {
+        setDSConeccion(_DSConneccion());
     }
     
     @Override

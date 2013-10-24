@@ -5,6 +5,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEPersonal;
 import org.sysconpat.rx.da.DAPersonal;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLPersonal extends BLAbstract<BEPersonal> {
 
@@ -13,6 +14,11 @@ public class BLPersonal extends BLAbstract<BEPersonal> {
     public BLPersonal(Config conf) {
         setConfig(conf);
     }
+
+    public BLPersonal() {
+        setDSConeccion(_DSConneccion());
+    }
+        
     @Override
     public int registrar(BEPersonal bean) throws Exception {
         dao = new DAPersonal(getConeccion());

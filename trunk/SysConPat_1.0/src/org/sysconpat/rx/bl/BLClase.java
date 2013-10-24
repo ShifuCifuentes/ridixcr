@@ -5,6 +5,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEClase;
 import org.sysconpat.rx.da.DAClase;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLClase extends BLAbstract<BEClase> {
     
@@ -13,6 +14,11 @@ public class BLClase extends BLAbstract<BEClase> {
     public BLClase(Config conf) {
         setConfig(conf);
     }
+
+    public BLClase() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     
     @Override
     public int registrar(BEClase bean) throws Exception {

@@ -5,6 +5,7 @@ import org.rx.cr.bl.BLAbstract;
 import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BECatalogo;
 import org.sysconpat.rx.da.DACatalogo;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLCatalogo extends BLAbstract<BECatalogo>{
     
@@ -12,6 +13,10 @@ public class BLCatalogo extends BLAbstract<BECatalogo>{
     
     public BLCatalogo(Config conf) {
         setConfig(conf);
+    }
+
+    public BLCatalogo() {
+        setDSConeccion(_DSConneccion());
     }
     
     @Override
@@ -52,6 +57,10 @@ public class BLCatalogo extends BLAbstract<BECatalogo>{
     public int actualizar(BECatalogo be) throws Exception{
         dao = new DACatalogo(getConeccion());
         return dao.actualizar(be);
+    }
+    public int ultimo_correlativo_bien_patrimonial(String cod_pat,int cod_gg,int cod_clase) throws Exception{
+        dao = new DACatalogo(getConeccion());
+        return dao.ultimo_correlativo_bien_patrimonial(cod_pat, cod_gg, cod_clase);
     }
     
 }

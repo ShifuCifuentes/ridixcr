@@ -6,6 +6,7 @@ import org.rx.cr.conf.Config;
 import org.sysconpat.rx.be.BEBajaBienPatrimonial;
 import org.sysconpat.rx.be.BEBienPatrimonial;
 import org.sysconpat.rx.da.DABajaBienPatrimonial;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLBajaBienPatrimonial extends BLAbstract<BEBajaBienPatrimonial>{
 
@@ -13,6 +14,11 @@ public class BLBajaBienPatrimonial extends BLAbstract<BEBajaBienPatrimonial>{
     public BLBajaBienPatrimonial(Config conf) {
         setConfig(conf);
     }
+
+    public BLBajaBienPatrimonial() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     
     @Override
     public int registrar(BEBajaBienPatrimonial bean) throws Exception {

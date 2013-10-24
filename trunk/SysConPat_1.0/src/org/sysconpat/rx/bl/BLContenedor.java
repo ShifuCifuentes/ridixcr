@@ -8,14 +8,20 @@ import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BECuentaContable;
 import org.sysconpat.rx.be.BETipoCuenta;
 import org.sysconpat.rx.da.DAContenedor;
+import static org.sysconpat.rx.ds.DSUtil._DSConneccion;
 
 public class BLContenedor  extends BLAbstract<BEContenedor>{
     
      private DAContenedor dao = null;
     
-     public BLContenedor(Config conf) {
+    public BLContenedor(Config conf) {
         setConfig(conf);
     }
+
+    public BLContenedor() {
+        setDSConeccion(_DSConneccion());
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="Funciones No Utilizadas">
     @Deprecated
     @Override
