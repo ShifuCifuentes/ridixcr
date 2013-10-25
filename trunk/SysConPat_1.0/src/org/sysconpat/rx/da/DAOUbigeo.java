@@ -2,10 +2,10 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEUbigeo;
 
-public class DAOUbigeo extends DAOAbstract<BEUbigeo> {
+public class DAOUbigeo extends DAAbstract<BEUbigeo> {
 
     public DAOUbigeo(Connection conn) {
         setConnection(conn);

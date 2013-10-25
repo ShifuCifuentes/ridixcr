@@ -39,7 +39,6 @@ import org.rx.cr.util.Utilitarios;
 import static org.rx.cr.util.Utilitarios.*;
 import org.rx.cr.util.gui.BackupCreator;
 import org.rx.cr.util.gui.BackupRestore;
-import org.rx.cr.util.gui.ConfigAdmin;
 import org.rx.cr.util.gui.VisorPDF;
 import org.sysconpat.rx.SysConPat;
 import org.sysconpat.rx.be.BEContenedor;
@@ -84,7 +83,7 @@ public class Principal  extends JRibbonFrame{
     private RibbonApplicationMenuEntryPrimary menu_session=null;
     private RibbonApplicationMenuEntrySecondary menu_session_items[]=null;
        
-    public ConfigAdmin configAdmin;   
+    //public ConfigAdmin configAdmin;   
        
     private RibbonTask locales=null;
     private RibbonTask bienes_activos=null;

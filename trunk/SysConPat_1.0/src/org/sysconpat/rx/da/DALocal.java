@@ -2,10 +2,10 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BELocal;
 
-public class DALocal extends DAOAbstract<BELocal>{
+public class DALocal extends DAAbstract<BELocal>{
 
     public DALocal(Connection conn) {
         setConnection(conn);

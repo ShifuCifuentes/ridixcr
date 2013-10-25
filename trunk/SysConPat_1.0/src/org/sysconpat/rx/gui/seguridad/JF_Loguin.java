@@ -14,7 +14,6 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import static org.rx.cr.util.Utilitarios.*;
 import org.rx.cr.util.gui.BackupRestore;
-import org.rx.cr.util.gui.ConfigAdmin;
 import org.rx.cr.util.gui.PanelCurvas;
 import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BEUsuario;
@@ -30,7 +29,7 @@ public final class JF_Loguin extends javax.swing.JFrame {
             SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());      
         }
     private Config config;   
-    public ConfigAdmin configAdmin;   
+    //public ConfigAdmin configAdmin;   
     private BackupRestore bcpr = null;  
     private Connection connection = null;
         
@@ -53,30 +52,31 @@ public final class JF_Loguin extends javax.swing.JFrame {
             connection = new DSConeccion(getConfig()).getConeccion();
             if(connection!=null){
                 try {connection.close();} catch (SQLException ex) {}
-                if (!configAdmin.isValidDBStructure()) {  
-                    bcpr = new BackupRestore(this,getConfig());
-                    setIconoVentana(bcpr,"/org/sysconpat/rx/resource/SysRent_Min.png");
-                    bcpr.validaRestauracionBackUp();
-                }else{
-                    setVisible(true); 
-                } 
+//                if (!configAdmin.isValidDBStructure()) {  
+//                    bcpr = new BackupRestore(this,getConfig());
+//                    setIconoVentana(bcpr,"/org/sysconpat/rx/resource/SysRent_Min.png");
+//                    bcpr.validaRestauracionBackUp();
+//                }else{
+//                    setVisible(true); 
+//                }
+                 setVisible(true); 
             }else{
                 JOptionPane.showMessageDialog(this,"El archivo de configuracion posee datos\nerroneos por favor corrijalos!.","Atencion",JOptionPane.ERROR_MESSAGE);
-                configAdmin.setVisible(true); 
-                configAdmin.preCargaDatosConfiguracion();
+//                configAdmin.setVisible(true); 
+//                configAdmin.preCargaDatosConfiguracion();
             }
             //</editor-fold>
         }else{
             JOptionPane.showMessageDialog(this,"Configure datos del servidor","Atencion",JOptionPane.ERROR_MESSAGE);
-            configAdmin.setVisible(true);
+            //configAdmin.setVisible(true);
         }          
     }    
     private void verificaConfiguracion() {
-        configAdmin = new ConfigAdmin(null,ResourceIDVendor.APP_ID);
-        configAdmin.setModal(false);
-        setIconoVentana(configAdmin,"/org/sysconpat/rx/resource/SysRent_Min.png");
-        configAdmin.setUserTable("dbo.usuario");
-        setConfig(configAdmin.getConfig()); 
+//        configAdmin = new ConfigAdmin(null,ResourceIDVendor.APP_ID);
+//        configAdmin.setModal(false);
+//        setIconoVentana(configAdmin,"/org/sysconpat/rx/resource/SysRent_Min.png");
+//        configAdmin.setUserTable("dbo.usuario");
+//        setConfig(configAdmin.getConfig()); 
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

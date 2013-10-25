@@ -2,11 +2,11 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.be.BEOficina;
 
-public class DAOficina extends DAOAbstract<BEOficina>{
+public class DAOficina extends DAAbstract<BEOficina>{
 
     public DAOficina(Connection conn) {
         setConnection(conn);

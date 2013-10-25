@@ -2,12 +2,12 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BERolUsuario;
 import org.sysconpat.rx.be.BEUsuario;
 
-public class DARolUsuario extends DAOAbstract<BERolUsuario> {
+public class DARolUsuario extends DAAbstract<BERolUsuario> {
 
     public DARolUsuario(Connection conn) {
         setConnection(conn);

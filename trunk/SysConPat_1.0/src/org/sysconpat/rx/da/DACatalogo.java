@@ -2,10 +2,10 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BECatalogo;
 
-public class DACatalogo extends DAOAbstract<BECatalogo>{
+public class DACatalogo extends DAAbstract<BECatalogo>{
 
     public DACatalogo(Connection conn) {
         setConnection(conn);

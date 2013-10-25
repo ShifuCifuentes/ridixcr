@@ -2,12 +2,12 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.SysConPat;
 import org.sysconpat.rx.be.BEArea;
 import static org.rx.cr.util.Utilitarios.*;
 
-public class DAArea extends DAOAbstract<BEArea> {
+public class DAArea extends DAAbstract<BEArea> {
     
     public DAArea(Connection conn) {
         setConnection(conn);

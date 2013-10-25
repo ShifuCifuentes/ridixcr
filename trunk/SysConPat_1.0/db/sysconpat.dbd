@@ -1,0 +1,660 @@
+<XMLDiagram>
+  <TDBADiagramController Locked="0">
+    <Elements>
+      <TDBADiagramObject id="1" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.local">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="600" top="150" width="200" height="377"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="2" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.area">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="900" top="460" width="200" height="97"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="3" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.oficina">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="920" top="280" width="200" height="111"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="4" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.personal">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="1240" top="170" width="200" height="167"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="5" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.area.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="80" top="80" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1020" y="490"/>
+                <Point x="730" y="490"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="6" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.oficina.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="96" top="96" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1020" y="340"/>
+                <Point x="700" y="340"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="7" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.oficina.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="112" top="112" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1000" y="330"/>
+                <Point x="1000" y="550"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="8" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.personal.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="128" top="128" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1340" y="250"/>
+                <Point x="720" y="250"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="9" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.personal.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="144" top="144" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1340" y="250"/>
+                <Point x="680" y="250"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="10" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.personal.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="160" top="160" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1360" y="320"/>
+                <Point x="1020" y="320"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="15" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.cuenta_contable">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="600" top="570" width="200" height="181"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="16" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.tipo_cuenta">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="940" top="680" width="200" height="69"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="17" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.cuenta_contable.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="272" top="272" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="740" y="710"/>
+                <Point x="1040" y="710"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="18" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="288" top="288" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="700" y="660"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="19" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.ubigeo">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="210" top="270" width="200" height="140"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="20" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="320" top="320" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="710" y="340"/>
+                <Point x="310" y="339"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="11" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.catalogo">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="600" top="810" width="200" height="195"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="12" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.catalogo.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="288" top="288" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="910"/>
+                <Point x="700" y="660"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="13" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.catalogo.foreign_key04">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="304" top="304" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="920"/>
+                <Point x="700" y="660"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="14" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.clase">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="210" top="980" width="210" height="90"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="21" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.catalogo.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="336" top="336" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="690" y="920"/>
+                <Point x="320" y="1035"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="22" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.grupo_generico">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="600" top="1080" width="270" height="90"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="23" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.catalogo.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="368" top="368" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="740" y="890"/>
+                <Point x="740" y="1130"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="24" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.entidad">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="210" top="710" width="200" height="133"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="25" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.entidad.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="400" top="400" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="310" y="780"/>
+                <Point x="310" y="340"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="26" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.correlativo">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="230" top="870" width="150" height="100"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="27" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.correlativo.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="432" top="432" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="310" y="920"/>
+                <Point x="310" y="780"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="28" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.correlativo.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="448" top="448" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="310" y="900"/>
+                <Point x="770" y="900"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="30" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.baja_bien_patrimonial">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="1240" top="590" width="210" height="180"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="32" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.baja_bien_patrimonial.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="512" top="512" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1410" y="660"/>
+                <Point x="750" y="660"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="33" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.baja_bien_patrimonial.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="528" top="528" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1320" y="700"/>
+                <Point x="1320" y="190"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="41" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.divicion_bien_patrimonial">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="920" top="970" width="260" height="160"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="45" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.rol_usuario">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="70" top="80" width="200" height="97"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="46" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.usuario">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="360" top="40" width="200" height="181"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="47" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.rol_usuario.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="752" top="752" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="170" y="130"/>
+                <Point x="460" y="130"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="29" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.bien_patrimonial">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="1250" top="830" width="200" height="700"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="31" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.baja_bien_patrimonial.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="592" top="592" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="680"/>
+                <Point x="1350" y="1182"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="34" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.divicion_bien_patrimonial.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="608" top="608" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1050" y="1050"/>
+                <Point x="1400" y="1072"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="35" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key01">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="624" top="624" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1320" y="1492"/>
+                <Point x="380" y="830"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="36" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="640" top="640" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1360" y="1092"/>
+                <Point x="730" y="440"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="37" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="656" top="656" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="1182"/>
+                <Point x="1080" y="470"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="38" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key04">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="672" top="672" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="1182"/>
+                <Point x="1090" y="320"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="39" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key05">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="688" top="688" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="1182"/>
+                <Point x="1340" y="250"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="40" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key06">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="704" top="704" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1370" y="1332"/>
+                <Point x="700" y="910"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="42" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key07">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="720" top="720" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1370" y="1082"/>
+                <Point x="1040" y="710"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="43" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.bien_patrimonial.foreign_key08">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="736" top="736" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1320" y="1032"/>
+                <Point x="700" y="660"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="44" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.baja_bien_patrimonial.foreign_key04">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="752" top="752" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="680"/>
+                <Point x="1040" y="710"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="52" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.contenedor">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="950" top="20" width="200" height="125"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="53" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.baja_bien_patrimonial.foreign_key05">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="848" top="848" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1350" y="680"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="54" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.divicion_bien_patrimonial.foreign_key02">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="864" top="864" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1050" y="1050"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="55" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.divicion_bien_patrimonial.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="880" top="880" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1050" y="1050"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="56" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key03">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="896" top="896" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="57" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key04">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="912" top="912" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="58" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key05">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="928" top="928" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="59" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key06">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="944" top="944" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="60" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.local.foreign_key07">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="960" top="960" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="700" y="340"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="61" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.personal.foreign_key04">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="976" top="976" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1340" y="250"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="62" propertiesclass="TDiagramForeignKeyProperties" objectname="dbo.personal.foreign_key05">
+        <TDiagramForeignKeyProperties>
+          <Relation>
+            <Geometry left="992" top="992" width="200" height="100"/>
+            <Glyph>
+              <Geometry>
+                <Point x="1340" y="250"/>
+                <Point x="1050" y="82"/>
+              </Geometry>
+            </Glyph>
+          </Relation>
+        </TDiagramForeignKeyProperties>
+      </TDBADiagramObject>
+      <TDBADiagramObject id="48" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.tipo">
+        <TDiagramMetaTableProperties>
+          <Glyph>
+            <Geometry left="290" top="1160" width="200" height="83"/>
+          </Glyph>
+        </TDiagramMetaTableProperties>
+      </TDBADiagramObject>
+    </Elements>
+    <Surface zoom="80" scrollx="162" scrolly="360"/>
+  </TDBADiagramController>
+</XMLDiagram>

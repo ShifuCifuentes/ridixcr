@@ -2,10 +2,10 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEGrupoGenerico;
 
-public class DAGrupoGenerico  extends DAOAbstract<BEGrupoGenerico> {
+public class DAGrupoGenerico  extends DAAbstract<BEGrupoGenerico> {
     
     public DAGrupoGenerico(Connection conn) {
         setConnection(conn);

@@ -2,12 +2,12 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BECuentaContable;
 import org.sysconpat.rx.be.BETipoCuenta;
 
-public class DAContenedor extends DAOAbstract<BEContenedor> {
+public class DAContenedor extends DAAbstract<BEContenedor> {
 
     public DAContenedor(Connection conn) {
         setConnection(conn);

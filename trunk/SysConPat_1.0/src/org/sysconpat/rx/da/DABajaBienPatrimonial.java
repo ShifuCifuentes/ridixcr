@@ -2,13 +2,13 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.SysConPat;
 import org.sysconpat.rx.be.BEBajaBienPatrimonial;
 import org.sysconpat.rx.be.BEBienPatrimonial;
 import static org.rx.cr.util.Utilitarios.*;
 
-public class DABajaBienPatrimonial extends DAOAbstract<BEBajaBienPatrimonial>{
+public class DABajaBienPatrimonial extends DAAbstract<BEBajaBienPatrimonial>{
 
     public DABajaBienPatrimonial(Connection conn) {
         setConnection(conn);

@@ -10,12 +10,5 @@ public class ResourceIDVendor {
         CLIENT_APP_ID=_int_$(CLIENT_APP_ID);
         VENDOR_ID=_int_$(VENDOR_ID);
         APP_ID=_int_$(APP_ID);
-    }
-    public static void main(String[] args) {
-        System.out.println(APP_ID);
-        System.out.println(CLIENT_APP_ID);
-        //System.out.println(VENDOR_ID);
-        System.out.println(encodeRx("CERCUS"));
-        System.out.println(encodeRx("Sistema de Control Patrimonial - CERCUS"));
-    }
+    }    
 }

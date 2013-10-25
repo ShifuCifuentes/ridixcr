@@ -6,7 +6,7 @@ import org.sysconpat.rx.be.BEBienPatrimonial;
 public class ModeloBienPatrimonial extends AbstractTableModel<BEBienPatrimonial>{
 
     public ModeloBienPatrimonial() {
-         setTitles(new String[]{"Cod. Patrimonial","Denominacion"});
+         setTitles(new String[]{"Cod. Pat.","Denominacion"});
     }
 
     

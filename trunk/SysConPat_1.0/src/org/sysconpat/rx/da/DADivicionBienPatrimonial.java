@@ -2,10 +2,10 @@ package org.sysconpat.rx.da;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEDivicionBienPatrimonial;
 
-public class DADivicionBienPatrimonial   extends DAOAbstract<BEDivicionBienPatrimonial> {
+public class DADivicionBienPatrimonial   extends DAAbstract<BEDivicionBienPatrimonial> {
 
     public DADivicionBienPatrimonial(Connection conn) {
         setConnection(conn);

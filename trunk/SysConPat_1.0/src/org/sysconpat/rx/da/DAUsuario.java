@@ -4,10 +4,10 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import org.sysconpat.rx.be.BEUsuario;
 
-public class DAUsuario extends DAOAbstract<BEUsuario> {
+public class DAUsuario extends DAAbstract<BEUsuario> {
 
     public DAUsuario(Connection conn) {
         setConnection(conn);
