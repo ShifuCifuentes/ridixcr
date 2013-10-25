@@ -20,7 +20,7 @@ import static org.rx.cr.util.Utilitarios.*;
  * @autor RidixCr
  * 
  */
-public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{    
+public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{    
     private boolean isfirst=true;
     private String str_pro="";
     private Connection conection=null;
@@ -133,7 +133,7 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
           try {                    
              return Utilitarios.byteToFile(getDataBytesStream(index),ref);
           } catch (IOException ex) {
-              Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+              Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
               return null;
           } 
         }
@@ -315,13 +315,13 @@ public abstract class DAOAbstract<Tipo> implements MVCGeneric<Tipo>{
         return TRANSACCION_EXITOSA;
     }
     public int rollback(Exception ex) throws Exception{
-        Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
         rollbackTransaction();
         close();
        return TRANSACCION_FALLIDA;
     }
     public int rollback(Exception ex,String msg) throws Exception{
-       Logger.getLogger(DAOAbstract.class.getName()).log(Level.SEVERE, null, ex);
+       Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
        rollbackTransaction();
        close();
        JOptionPane.showMessageDialog(null,msg,"Error",JOptionPane.INFORMATION_MESSAGE);

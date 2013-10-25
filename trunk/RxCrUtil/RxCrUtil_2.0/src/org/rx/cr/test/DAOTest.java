@@ -3,10 +3,10 @@ package org.rx.cr.test;
 import java.sql.Connection;
 import java.util.ArrayList;
 import org.RidixCr;
-import org.rx.cr.dao.DAOAbstract;
+import org.rx.cr.dao.DAAbstract;
 import static org.rx.cr.util.Utilitarios.*;
 
-public class DAOTest extends DAOAbstract<Object> {
+public class DAOTest extends DAAbstract<Object> {
 
     public DAOTest(Connection conn) {
     

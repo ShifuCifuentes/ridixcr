@@ -43,6 +43,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.AWTUtilitiesWrapper;
 import org.rx.cr.util.gui.JHourChooser;
 import org.rx.cr.util.gui.ShapeDecorated;
@@ -363,11 +366,11 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static void setIconoVentana(JInternalFrame vent,String resourcePath){           
           vent.setFrameIcon(getIconFromResource(resourcePath));
       }
-      /*
+      
       public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
           vent.setIconImage(getIconFromResource(resourcePath).getImage());
           vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
-      }*/
+      }
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
@@ -416,7 +419,7 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static ImageIcon getIconFromResource(String resource) { 
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
-      /*
+      
       public static ResizableIcon getResizableIconFromResource(String resource) {      
         return getResizableIconFromResource(resource,48,48);
       }
@@ -425,7 +428,7 @@ public final class Utilitarios extends JLabel implements Runnable{
       }
       public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
         return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-      }****/
+      }
       public static void aplicaTransparencia(Window window){
           AWTUtilitiesWrapper.setWindowOpaque(window,false);
       }
