@@ -1266,7 +1266,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
         if (!jTextField8.getText().trim().equals("")) {
-            if(Integer.parseInt(jTextField8.getText().trim())<=400){//co
+            if(Integer.parseInt(jTextField8.getText().trim())<=470){//co
                 jRadioButton1.setSelected(true);
             }else{//af
                 jRadioButton2.setSelected(true);
