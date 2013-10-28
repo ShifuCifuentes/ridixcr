@@ -89,6 +89,7 @@ public class main {
             conf.setPassword(DSUtil.PASSWORD);
             conf.setUser_db_root(DSUtil.USER_ROOT);
             conf.setPassword_db_root(DSUtil.PASSWORD_ROOT);
+            conf.setMax_clientes(DSUtil.MAX_CLIENTS);
             ConfigServerCMD cadmin = new ConfigServerCMD(conf,"lib"+File.separator+"structure_db_psql_1.5.jar","dbo.usuario");
             cadmin.saveConfServer();
             cadmin.validDBStructure();

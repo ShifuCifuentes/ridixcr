@@ -24,6 +24,7 @@ public class TestSEC {
 //        System.out.println(encodeRx("sysconpat123"));
 //        System.out.println(encodeRx("postgres"));
         System.out.println(encodeRx("cercus2013"));
+        System.out.println(encodeRx("10"));
 //        ///System.out.println(_Conneccion());
 //        System.out.println(new File(SystemInfo.getDirectorioArchivosPrograma()+File.separator+"PostgreSQL").exists());
 //        System.out.println(new File(SystemInfo.getDirectorioArchivosProgramaX86()+File.separator+"PostgreSQL").exists());
