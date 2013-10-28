@@ -50,8 +50,8 @@ public class PG_DBM_Tools {
     }
     public Process mk_BackUp_DB_PostgreSQL() throws IOException{ 
             FileOutputStream fos = new FileOutputStream(new File("mk_back_up_db.bat"));
-            renameFile(conf.getDir_backup_db()+File.separator+"*.backup");
-            String comand="\""+pg_dump_file()+"\""+" -h "+conf.getHost()+" -p "+conf.getPort()+" -i -U "+conf.getUser_db_root()+" -Fc -b -v -f"+" \""+conf.getDir_backup_db()+File.separator+"db_"+conf.getDb()+"_(%date:~3,2%-%date:~0,2%-%date:~6,4%)_(%time:~0,2%-%time:~3,2%-%time:~6,2%).backup\" "+conf.getDb()+"";            
+            renameFile(getConf().getDir_backup_db()+File.separator+"*.backup");
+            String comand="\""+pg_dump_file()+"\""+" -h "+getConf().getHost()+" -p "+getConf().getPort()+" -i -U "+getConf().getUser_db_root()+" -Fc -b -v -f"+" \""+getConf().getDir_backup_db()+File.separator+"db_"+getConf().getDb()+"_(%date:~3,2%-%date:~0,2%-%date:~6,4%)_(%time:~0,2%-%time:~3,2%-%time:~6,2%).backup\" "+getConf().getDb()+"";            
             fos.write(comand.getBytes());
             fos.close();
             //File bat_path = new File(si.getDirectorioActual()+File.separator+"mk_back_up_db.bat");
@@ -67,7 +67,7 @@ public class PG_DBM_Tools {
     }
     public Process restore_BackUp_DB_PostgreSQL() throws IOException{    
             FileOutputStream fos = new FileOutputStream(new File("restore_back_up_db.bat"));
-            String comand="\""+pg_restore_file()+"\""+" --host "+conf.getHost()+" --port "+conf.getPort()+" --username "+conf.getUser_db_root()+" --dbname "+conf.getDb()+" --verbose \""+getPg_db_file().getAbsolutePath()+"\"";
+            String comand="\""+pg_restore_file()+"\""+" --host "+getConf().getHost()+" --port "+getConf().getPort()+" --username "+getConf().getUser_db_root()+" --dbname "+getConf().getDb()+" --verbose \""+getPg_db_file().getAbsolutePath()+"\"";
             fos.write(comand.getBytes());
             fos.close();
             //File bat_path = new File(si.getDirectorioActual()+File.separator+"restore_back_up_db.bat");
@@ -88,7 +88,7 @@ public class PG_DBM_Tools {
               if (!postgres_dir_appdata.exists()) {
                  postgres_dir_appdata.mkdir(); 
               } 
-              String comand = conf.getHost()+":"+conf.getPort()+":"+conf.getDb()+":"+conf.getUser_db_root()+":"+conf.getPassword_db_root();
+              String comand = getConf().getHost()+":"+getConf().getPort()+":"+getConf().getDb()+":"+getConf().getUser_db_root()+":"+getConf().getPassword_db_root();
               FileOutputStream fos = new FileOutputStream(new File(postgres_dir_appdata.getAbsolutePath()+File.separator+"pgpass.conf"));
               fos.write(comand.getBytes());
               fos.close();
@@ -141,11 +141,11 @@ public class PG_DBM_Tools {
             pg_hba_conf_content+="\n";
             pg_hba_conf_content+="# IPv4 local connections:\n";
             pg_hba_conf_content+="host    all             all             127.0.0.1/32            md5\n";
-            int max_nro_clientes = Integer.parseInt(conf.getMax_clientes());
+            int max_nro_clientes = Integer.parseInt(getConf().getMax_clientes());
             for (int i = 1; i <= max_nro_clientes; i++) {
-                pg_hba_conf_content+="host    all             all             "+conf.getHost().substring(0,conf.getHost().lastIndexOf("."))+"."+i+"/32            md5\n";
+                pg_hba_conf_content+="host    all             all             "+getConf().getHost().substring(0,getConf().getHost().lastIndexOf("."))+"."+i+"/32            md5\n";
             }
-            pg_hba_conf_content+="host    all             all             "+conf.getHost()+"/32            md5\n";
+            pg_hba_conf_content+="host    all             all             "+getConf().getHost()+"/32            md5\n";
             pg_hba_conf_content+="# IPv6 local connections:\n";
             pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";
         }else{
@@ -157,5 +157,13 @@ public class PG_DBM_Tools {
         }                
         pg_hba.write(pg_hba_conf_content.getBytes());
         pg_hba.close();
+    }
+
+    public Config getConf() {
+        return conf;
+    }
+
+    public void setConf(Config conf) {
+        this.conf = conf;
     }
 }

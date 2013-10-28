@@ -87,6 +87,17 @@ public abstract class DAAbstractHibernate<Tipo> implements MVCGenericHibernate<T
         try { 	         
             initTransaction();  
             list.addAll((List<Tipo>)sesion.createQuery("from "+tabName).list());
+            //close();
+            return list;
+        }finally { 
+            close();
+        }  
+    }
+    protected List<Tipo> getListQuery(String query){
+        try { 	         
+            initTransaction();  
+            list.addAll((List<Tipo>)sesion.createQuery(query).list());
+            //close();
             return list;
         }finally { 
             close();

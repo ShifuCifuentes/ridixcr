@@ -26,8 +26,8 @@ public final class Config {
     
     private String user_db_root;
     private String passworddb_root;
-    private String dir_backup_db;
-    private String dir_db;
+    private String dir_backup_db="";
+    private String dir_db="";
     private String max_clientes;
     private int invocador;
         

@@ -152,6 +152,8 @@ public final class SystemInfo {
               while ((buff=is.read())>0) {            
                  programfilesdir+=(char)buff;
               }
+              programfilesdir=programfilesdir.replaceAll("(x86)","");
+              programfilesdir=programfilesdir.substring(0,programfilesdir.indexOf("()"));
               programfilesdir=programfilesdir.trim();
               is.close();
         } catch (IOException ex) {
