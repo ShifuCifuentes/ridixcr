@@ -12,6 +12,7 @@ import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.be.BEPersonal;
 import org.sysconpat.rx.bl.BLOficina;
 import org.sysconpat.rx.bl.BLPersonal;
+import org.sysconpat.rx.gui.bienes_activos.JP_AdministrarBienes;
 import org.sysconpat.rx.gui.models.ModeloPersonal;
 import org.sysconpat.rx.gui.principal.Principal;
 import org.sysconpat.rx.util.UtilContenedor;
@@ -106,6 +107,11 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox3.setEnabled(false);
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("LOCAL :");
@@ -311,7 +317,7 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,8 +378,34 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
-        // TODO add your handling code here:
+        if (jComboBox4.getSelectedIndex()>0) {
+            try {
+                utilContenedor.cargarOficinas(jComboBox5,((BEArea)jComboBox4.getSelectedItem()).getId_area());
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            jComboBox5.removeAllItems();
+            jComboBox5.addItem(new BEOficina());
+        }     
     }//GEN-LAST:event_jComboBox4ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        if (jComboBox3.getSelectedIndex()>0) {
+            try {
+                utilContenedor.cargarAreas(jComboBox4,((BELocal)jComboBox3.getSelectedItem()).getId_local());
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            jComboBox4.removeAllItems();
+            jComboBox4.addItem(new BEArea());
+            
+            jComboBox5.removeAllItems();
+            jComboBox5.addItem(new BEOficina());
+            
+        }     
+    }//GEN-LAST:event_jComboBox3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

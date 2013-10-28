@@ -1,5 +1,6 @@
 package org.sysconpat.rx.gui.locales;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,6 +10,7 @@ import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.bl.BLOficina;
+import org.sysconpat.rx.gui.bienes_activos.JP_AdministrarBienes;
 import org.sysconpat.rx.gui.models.ModeloOficina;
 import org.sysconpat.rx.gui.principal.Principal;
 import org.sysconpat.rx.util.UtilContenedor;
@@ -102,6 +104,11 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox7.setEnabled(false);
+        jComboBox7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox7ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setEnabled(false);
 
@@ -248,7 +255,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -307,6 +314,19 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
       jTextField1.requestFocus();
     }//GEN-LAST:event_formComponentShown
+
+    private void jComboBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox7ActionPerformed
+        if (jComboBox7.getSelectedIndex()>0) {
+            try {
+                utilContenedor.cargarAreas(jComboBox8,((BELocal)jComboBox7.getSelectedItem()).getId_local());
+            } catch (Exception ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            jComboBox8.removeAllItems();
+            jComboBox8.addItem(new BEArea());
+        }     
+    }//GEN-LAST:event_jComboBox7ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

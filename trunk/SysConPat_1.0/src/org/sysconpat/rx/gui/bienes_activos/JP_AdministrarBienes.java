@@ -370,7 +370,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jCheckBox2.setText("FICHADO");
         jCheckBox2.setEnabled(false);
 
-        jCheckBox1.setText("ASEDURADO");
+        jCheckBox1.setText("ASEGURADO");
         jCheckBox1.setEnabled(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

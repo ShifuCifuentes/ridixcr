@@ -14,6 +14,7 @@ import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import static org.rx.cr.util.Utilitarios.*;
 import org.rx.cr.util.gui.BackupRestore;
+import org.rx.cr.util.gui.ConfigServer;
 import org.rx.cr.util.gui.PanelCurvas;
 import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BEUsuario;
@@ -29,55 +30,22 @@ public final class JF_Loguin extends javax.swing.JFrame {
             SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());      
         }
     private Config config;   
-    //public ConfigAdmin configAdmin;   
-    private BackupRestore bcpr = null;  
-    private Connection connection = null;
-        
+    
     private BEUsuario beUsuario = null;
     private BLUsuario blUsuario = null;   
     private BLRolUsuario blRol = null;
     private ArrayList<BEContenedor> rolesUsuario=null;
     
-    public JF_Loguin() {
+    public JF_Loguin(Config config) {
+        setConfig(config);
         initComponents();
         centreaVentana(this);
         adaptarMovimiento(this);
         adaptarForma(this,15,15);
         setIconoVentana(this,"/org/sysconpat/rx/resource/SysRent_Min.png");
         addEnterFocusEvent(new Object[][]{{txfUsuario,txpClave}});
-        addEnterDoclickEvent(new Object[][]{{txpClave,jButton2}});
-        verificaConfiguracion();
-        if (getConfig()!=null){
-            //<editor-fold defaultstate="collapsed" desc="Verificacion de integridad de BD">
-            connection = new DSConeccion(getConfig()).getConeccion();
-            if(connection!=null){
-                try {connection.close();} catch (SQLException ex) {}
-//                if (!configAdmin.isValidDBStructure()) {  
-//                    bcpr = new BackupRestore(this,getConfig());
-//                    setIconoVentana(bcpr,"/org/sysconpat/rx/resource/SysRent_Min.png");
-//                    bcpr.validaRestauracionBackUp();
-//                }else{
-//                    setVisible(true); 
-//                }
-                 setVisible(true); 
-            }else{
-                JOptionPane.showMessageDialog(this,"El archivo de configuracion posee datos\nerroneos por favor corrijalos!.","Atencion",JOptionPane.ERROR_MESSAGE);
-//                configAdmin.setVisible(true); 
-//                configAdmin.preCargaDatosConfiguracion();
-            }
-            //</editor-fold>
-        }else{
-            JOptionPane.showMessageDialog(this,"Configure datos del servidor","Atencion",JOptionPane.ERROR_MESSAGE);
-            //configAdmin.setVisible(true);
-        }          
-    }    
-    private void verificaConfiguracion() {
-//        configAdmin = new ConfigAdmin(null,ResourceIDVendor.APP_ID);
-//        configAdmin.setModal(false);
-//        setIconoVentana(configAdmin,"/org/sysconpat/rx/resource/SysRent_Min.png");
-//        configAdmin.setUserTable("dbo.usuario");
-//        setConfig(configAdmin.getConfig()); 
-    }
+        addEnterDoclickEvent(new Object[][]{{txpClave,jButton2}});        
+    } 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

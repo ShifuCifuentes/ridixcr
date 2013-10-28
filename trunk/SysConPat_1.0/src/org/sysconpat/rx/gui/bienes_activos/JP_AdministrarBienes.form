@@ -639,7 +639,7 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="ASEDURADO"/>
+                <Property name="text" type="java.lang.String" value="ASEGURADO"/>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>

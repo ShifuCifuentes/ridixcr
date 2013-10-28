@@ -4,6 +4,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Random;
 import javax.swing.SwingWorker;
+import org.rx.cr.conf.Config;
 import org.rx.cr.util.Utilitarios;
 import org.sysconpat.rx.SysConPat;
 import org.sysconpat.rx.gui.seguridad.JF_Loguin;
@@ -11,15 +12,11 @@ import org.sysconpat.rx.util.ResourceIDVendor;
 import static org.rx.cr.util.Utilitarios.*;
 
 
-public class JF_Splash extends javax.swing.JFrame implements PropertyChangeListener{
-//    static {
-//        JFrame.setDefaultLookAndFeelDecorated(true);
-//        JDialog.setDefaultLookAndFeelDecorated(true);     
-//        SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());        
-//    }
+public final class JF_Splash extends javax.swing.JFrame implements PropertyChangeListener{
     private Task progress_gestor;   
-    
-    public JF_Splash() {
+    private Config config;  
+    public JF_Splash(Config config) {
+        setConfig(config);
         initComponents();
         Utilitarios.adaptarForma(this,30,30);
         Utilitarios.centreaVentana(this);
@@ -101,6 +98,14 @@ public class JF_Splash extends javax.swing.JFrame implements PropertyChangeListe
     private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
 
+    public Config getConfig() {
+        return config;
+    }
+
+    public void setConfig(Config config) {
+        this.config = config;
+    }
+
     public class Task extends SwingWorker<Void,Void> {
         @Override
         public Void doInBackground() {
@@ -131,7 +136,7 @@ public class JF_Splash extends javax.swing.JFrame implements PropertyChangeListe
            java.awt.EventQueue.invokeLater(new Runnable() {
                 @Override
                 public void run() {
-                    new JF_Loguin();
+                    new JF_Loguin(getConfig()).setVisible(true);
                     dispose();
                 }
             }); 

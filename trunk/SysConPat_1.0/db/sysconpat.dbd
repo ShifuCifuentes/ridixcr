@@ -4,7 +4,7 @@
       <TDBADiagramObject id="1" propertiesclass="TDiagramMetaTableProperties" objectname="dbo.local">
         <TDiagramMetaTableProperties>
           <Glyph>
-            <Geometry left="600" top="150" width="200" height="377"/>
+            <Geometry left="600" top="140" width="200" height="390"/>
           </Glyph>
         </TDiagramMetaTableProperties>
       </TDBADiagramObject>
@@ -36,7 +36,7 @@
             <Glyph>
               <Geometry>
                 <Point x="1020" y="490"/>
-                <Point x="730" y="490"/>
+                <Point x="730" y="487"/>
               </Geometry>
             </Glyph>
           </Relation>
@@ -49,7 +49,7 @@
             <Glyph>
               <Geometry>
                 <Point x="1020" y="340"/>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
               </Geometry>
             </Glyph>
           </Relation>
@@ -75,7 +75,7 @@
             <Glyph>
               <Geometry>
                 <Point x="1340" y="250"/>
-                <Point x="720" y="250"/>
+                <Point x="720" y="247"/>
               </Geometry>
             </Glyph>
           </Relation>
@@ -88,7 +88,7 @@
             <Glyph>
               <Geometry>
                 <Point x="1340" y="250"/>
-                <Point x="680" y="250"/>
+                <Point x="680" y="247"/>
               </Geometry>
             </Glyph>
           </Relation>
@@ -140,7 +140,7 @@
             <Geometry left="288" top="288" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="700" y="660"/>
               </Geometry>
             </Glyph>
@@ -160,7 +160,7 @@
             <Geometry left="320" top="320" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="710" y="340"/>
+                <Point x="710" y="337"/>
                 <Point x="310" y="339"/>
               </Geometry>
             </Glyph>
@@ -413,7 +413,7 @@
             <Glyph>
               <Geometry>
                 <Point x="1360" y="1092"/>
-                <Point x="730" y="440"/>
+                <Point x="730" y="437"/>
               </Geometry>
             </Glyph>
           </Relation>
@@ -562,7 +562,7 @@
             <Geometry left="896" top="896" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="1050" y="82"/>
               </Geometry>
             </Glyph>
@@ -575,7 +575,7 @@
             <Geometry left="912" top="912" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="1050" y="82"/>
               </Geometry>
             </Glyph>
@@ -588,7 +588,7 @@
             <Geometry left="928" top="928" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="1050" y="82"/>
               </Geometry>
             </Glyph>
@@ -601,7 +601,7 @@
             <Geometry left="944" top="944" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="1050" y="82"/>
               </Geometry>
             </Glyph>
@@ -614,7 +614,7 @@
             <Geometry left="960" top="960" width="200" height="100"/>
             <Glyph>
               <Geometry>
-                <Point x="700" y="340"/>
+                <Point x="700" y="337"/>
                 <Point x="1050" y="82"/>
               </Geometry>
             </Glyph>
@@ -655,6 +655,6 @@
         </TDiagramMetaTableProperties>
       </TDBADiagramObject>
     </Elements>
-    <Surface zoom="80" scrollx="162" scrolly="360"/>
+    <Surface zoom="80" scrollx="388" scrolly="0"/>
   </TDBADiagramController>
 </XMLDiagram>
