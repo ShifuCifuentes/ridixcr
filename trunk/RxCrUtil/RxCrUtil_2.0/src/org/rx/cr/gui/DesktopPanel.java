@@ -18,12 +18,14 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import org.rx.cr.be.LoguinUser;
 import org.rx.cr.util.SystemInfo;
 import org.rx.cr.util.Utilitarios;
 import org.rx.cr.util.gui.MonitorMemoria;
@@ -38,6 +40,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private double memoria_total = 0.0;
     private double memoria_libre = 0.0;
     private MonitorMemoria monitor_memoria = null;
+    private LoguinUser loguinUser;
     public DesktopPanel() {
         initComponents();
         hints = createRenderingHints();
@@ -209,9 +212,20 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jlb_version_jvm.setText(SystemInfo.getVersionEspecificaMaquinaVirtual().toUpperCase());
         jlb_propietario.setText(SystemInfo.getVendedorMaquinaVirtual().toUpperCase());
         jlb_web.setText(SystemInfo.getURLVendedor().toUpperCase());
-        
+            
         jPanel9.add(monitor_memoria, java.awt.BorderLayout.CENTER);
         monitor_memoria.surf.start();
+    }
+
+    public LoguinUser getLoguinUser() {
+        return loguinUser;
+    }
+
+    public void setLoguinUser(LoguinUser loguinUser) {
+        this.loguinUser = loguinUser;
+        user.setText(loguinUser.getUsuario());
+        user_name.setText(loguinUser.getApellidos()+", "+loguinUser.getNombres());
+        fotografia.setIcon(new ImageIcon(loguinUser.getFotografia()));
     }
 
     public class DesktopPaneBackground implements Border{
@@ -313,6 +327,10 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jLabel4 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        fotografia = new javax.swing.JLabel();
+        user = new javax.swing.JLabel();
+        user_name = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jlb_so = new javax.swing.JLabel();
@@ -326,6 +344,8 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jlb_lenguaje = new javax.swing.JLabel();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel9 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jlb_nombre_jre = new javax.swing.JLabel();
@@ -339,8 +359,6 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jlb_propietario = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jlb_web = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel9 = new javax.swing.JPanel();
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/Refresh.png"))); // NOI18N
         jMenuItem1.setText("Actualizar");
@@ -378,8 +396,8 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jPanel3.add(jPanel2);
         jPanel2.setBounds(5, 5, 135, 135);
 
+        jDesktopPane1.add(jPanel3);
         jPanel3.setBounds(710, 10, 145, 145);
-        jDesktopPane1.add(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
 
@@ -402,13 +420,14 @@ public final class DesktopPanel extends javax.swing.JPanel{
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(monitorMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(monitorMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,24 +441,65 @@ public final class DesktopPanel extends javax.swing.JPanel{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jDesktopPane1.add(jPanel8);
         jPanel8.setBounds(710, 170, 145, 80);
-        jDesktopPane1.add(jPanel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
+        jDesktopPane1.add(jLabel1);
         jLabel1.setBounds(750, 310, 100, 100);
-        jDesktopPane1.add(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("APP Name");
+        jDesktopPane1.add(jLabel4);
         jLabel4.setBounds(750, 420, 100, 40);
-        jDesktopPane1.add(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         jSplitPane1.setDividerLocation(180);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
         jSplitPane1.setOpaque(false);
+
+        fotografia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fotografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/IconRx.png"))); // NOI18N
+        fotografia.setOpaque(true);
+
+        user.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        user.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        user.setText("USER");
+
+        user_name.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        user_name.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        user_name.setText("USER");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fotografia, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(user, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(user_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(25, 25, 25)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(fotografia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(user_name, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Loguin", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel1); // NOI18N
 
         jPanel5.setOpaque(false);
         jPanel5.setLayout(null);
@@ -506,6 +566,12 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
         jTabbedPane1.addTab("Info. S.O.", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel5); // NOI18N
 
+        jSplitPane1.setTopComponent(jTabbedPane1);
+
+        jPanel9.setOpaque(false);
+        jPanel9.setLayout(new java.awt.BorderLayout());
+        jTabbedPane2.addTab("Info. Memoria", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel9); // NOI18N
+
         jPanel6.setOpaque(false);
         jPanel6.setLayout(null);
 
@@ -569,18 +635,12 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jPanel6.add(jlb_web);
         jlb_web.setBounds(70, 110, 120, 14);
 
-        jTabbedPane1.addTab("Info. Java", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel6); // NOI18N
-
-        jSplitPane1.setTopComponent(jTabbedPane1);
-
-        jPanel9.setOpaque(false);
-        jPanel9.setLayout(new java.awt.BorderLayout());
-        jTabbedPane2.addTab("Info. Memoria", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel9); // NOI18N
+        jTabbedPane2.addTab("Info. Java", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel6); // NOI18N
 
         jSplitPane1.setRightComponent(jTabbedPane2);
 
+        jDesktopPane1.add(jSplitPane1);
         jSplitPane1.setBounds(0, 0, 210, 360);
-        jDesktopPane1.add(jSplitPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -612,6 +672,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fotografia;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -630,6 +691,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
@@ -653,5 +715,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel jlb_version_jvm;
     private javax.swing.JLabel jlb_web;
     private javax.swing.JProgressBar monitorMemoria;
+    private javax.swing.JLabel user;
+    private javax.swing.JLabel user_name;
     // End of variables declaration//GEN-END:variables
 }

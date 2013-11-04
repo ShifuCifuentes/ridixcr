@@ -29,7 +29,7 @@ public abstract class BLAbstract<Tipo> implements MVCGeneric<Tipo>{
     }
     @RidixCr(author=RidixCr)
     @Deprecated
-    public Tipo autenticarUsuario(String user,String password){
+    public Tipo autenticarUsuario(String user,String password) throws Exception{
         throw new UnsupportedOperationException("Implementar si se requiere!");
     }
 

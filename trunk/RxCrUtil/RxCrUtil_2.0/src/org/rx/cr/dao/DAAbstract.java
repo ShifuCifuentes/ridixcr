@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.RidixCr;
 import org.rx.cr.generic.BeanAbstractUtil;
-import org.rx.cr.util.Utilitarios;
 import static org.rx.cr.util.Utilitarios.*;
 /* 
  * 
@@ -46,6 +45,22 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
       bean_parameter = new BeanAbstractUtil();
       bean_parameter.setData(file);
       bean_parameter.setSize((int)file.length());
+      list_parameter.add(bean_parameter);   
+    }       
+    public void setParameterBinaryStream(byte[] dat) throws SQLException{
+      pre_format_str_pro();
+      File tmp = getByteFile(dat);
+      bean_parameter = new BeanAbstractUtil();
+      bean_parameter.setData(tmp);
+      bean_parameter.setSize((int)tmp.length());
+      list_parameter.add(bean_parameter);   
+    }       
+    public void setParameterBinary(byte[] dat) throws SQLException{
+      pre_format_str_pro();
+      File tmp = getByteFile(dat);
+      bean_parameter = new BeanAbstractUtil();
+      bean_parameter.setData(tmp);
+      bean_parameter.setSize((int)tmp.length());
       list_parameter.add(bean_parameter);   
     }       
     public void setParameterBinaryStream(InputStream dat,long size) throws SQLException{
@@ -131,7 +146,7 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
     public File getDataBinaryStream(int index,String ref) throws SQLException{
         if (getDataBytesStream(index)!=null) {
           try {                    
-             return Utilitarios.byteToFile(getDataBytesStream(index),ref);
+             return byteToFile(getDataBytesStream(index),ref);
           } catch (IOException ex) {
               Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
               return null;
@@ -140,6 +155,9 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
         throw null;
     }
     public byte[] getDataBytesStream(int index) throws SQLException{
+      return rs.getBytes(index);
+    }
+    public byte[] getDataBinary(int index) throws SQLException{
       return rs.getBytes(index);
     }
     public String getDataString(int index) throws SQLException{
@@ -380,7 +398,7 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
      */
     @RidixCr(author=RidixCr)
     @Deprecated
-    public Tipo autenticarUsuario(String user,String password){
+    public Tipo autenticarUsuario(String user,String password)throws Exception{
         throw new UnsupportedOperationException("Implementar si se requiere!");
     }
 

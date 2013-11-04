@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
 
@@ -58,15 +58,17 @@
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelGadget(PanelGadget.THEME_DARK)"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="710" y="10" width="145" height="145" layer="0" position="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="710" y="10" width="145" height="145"/>
             </Constraint>
           </Constraints>
 
@@ -107,8 +109,8 @@
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new PanelGadget(PanelGadget.THEME_DARK)"/>
           </AuxValues>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="710" y="170" width="145" height="80" layer="0" position="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="710" y="170" width="145" height="80"/>
             </Constraint>
           </Constraints>
 
@@ -190,8 +192,8 @@
             </Property>
           </Properties>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="750" y="310" width="-1" height="-1" layer="0" position="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="750" y="310" width="-1" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -207,8 +209,8 @@
             <Property name="text" type="java.lang.String" value="APP Name"/>
           </Properties>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="750" y="420" width="100" height="40" layer="0" position="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="750" y="420" width="100" height="40"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -220,8 +222,8 @@
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-              <JLayeredPaneConstraints x="0" y="0" width="210" height="360" layer="0" position="-1"/>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="0" width="210" height="360"/>
             </Constraint>
           </Constraints>
 
@@ -236,6 +238,81 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
               <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel1">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Loguin">
+                        <Property name="tabTitle" type="java.lang.String" value="Loguin"/>
+                        <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/org/rx/cr/resource/help-browser.png"/>
+                        </Property>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="fotografia" pref="183" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                          <Component id="user" pref="139" max="32767" attributes="0"/>
+                                          <Component id="user_name" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="fotografia" min="-2" pref="100" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="user" min="-2" pref="13" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="user_name" min="-2" pref="13" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="fotografia">
+                      <Properties>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/org/rx/cr/resource/IconRx.png"/>
+                        </Property>
+                        <Property name="opaque" type="boolean" value="true"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="user">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="10" style="1"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
+                        <Property name="text" type="java.lang.String" value="USER"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="user_name">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="10" style="1"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="2"/>
+                        <Property name="text" type="java.lang.String" value="USER"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Container class="javax.swing.JPanel" name="jPanel5">
                   <Properties>
                     <Property name="opaque" type="boolean" value="false"/>
@@ -413,6 +490,34 @@
                     </Component>
                   </SubComponents>
                 </Container>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
+                  <JSplitPaneConstraints position="right"/>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel9">
+                  <Properties>
+                    <Property name="opaque" type="boolean" value="false"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Info. Memoria">
+                        <Property name="tabTitle" type="java.lang.String" value="Info. Memoria"/>
+                        <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/org/rx/cr/resource/help-browser.png"/>
+                        </Property>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+                </Container>
                 <Container class="javax.swing.JPanel" name="jPanel6">
                   <Properties>
                     <Property name="opaque" type="boolean" value="false"/>
@@ -589,34 +694,6 @@
                       </Constraints>
                     </Component>
                   </SubComponents>
-                </Container>
-              </SubComponents>
-            </Container>
-            <Container class="javax.swing.JTabbedPane" name="jTabbedPane2">
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JSplitPaneSupportLayout$JSplitPaneConstraintsDescription">
-                  <JSplitPaneConstraints position="right"/>
-                </Constraint>
-              </Constraints>
-
-              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
-              <SubComponents>
-                <Container class="javax.swing.JPanel" name="jPanel9">
-                  <Properties>
-                    <Property name="opaque" type="boolean" value="false"/>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Info. Memoria">
-                        <Property name="tabTitle" type="java.lang.String" value="Info. Memoria"/>
-                        <Property name="tabIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/org/rx/cr/resource/help-browser.png"/>
-                        </Property>
-                      </JTabbedPaneConstraints>
-                    </Constraint>
-                  </Constraints>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
                 </Container>
               </SubComponents>
             </Container>

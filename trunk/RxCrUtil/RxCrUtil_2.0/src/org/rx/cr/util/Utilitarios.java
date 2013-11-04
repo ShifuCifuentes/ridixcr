@@ -2653,6 +2653,29 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static String encodeRx(String data){return encodeBinaryBASE64(encodeBinaryHexa(encodeBinaryBASE64(data)));}
     public static String decodeRx(String data){return decodeBASE64Binary(decodeHexBinary(decodeBASE64Binary(data)));}    
     public static String _int_$(String _$$_int){return decodeRx(_$$_int);}
+    public static byte[] getFileByte(File src){
+      try {
+           byte[] data = new byte[(int)src.length()];            
+           FileInputStream fis = new FileInputStream(src);
+           fis.read(data,0,(int) src.length());
+           fis.close();
+           return data;
+        } catch (IOException ex) {
+            return new byte[]{};
+        }
+    }
+    public static File getByteFile(byte[] data){
+      try {
+           File src = new File(getCurentPath()+File.separator+"tmp_stream_file.bin");
+           FileOutputStream fos = new FileOutputStream(src);           
+           fos.write(data);
+           fos.flush();
+           fos.close();
+           return src;
+        } catch (IOException ex) {
+            return null;
+        }
+    }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="Resumen HASH Util">
     public static String resumenHash(byte[] data, String algoritmo){

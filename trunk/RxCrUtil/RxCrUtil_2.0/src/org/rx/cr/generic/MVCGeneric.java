@@ -13,21 +13,21 @@ public interface MVCGeneric<Tipo>
      * @return ( 1(Correcto) | -1(Error))
      */
     @RidixCr(author=RidixCr)
-    public int registrar(Tipo bean) throws Exception;
+    public long registrar(Tipo bean) throws Exception;
     /**
      *
      * @param obj
      * @return ( 1(Correcto) | -1(Error))
      */
     @RidixCr(author=RidixCr)
-    public int actualizarRegistro(Tipo bean) throws Exception;
+    public long actualizarRegistro(Tipo bean) throws Exception;
     /**
      *
      * @param obj
      * @return ( 1(Correcto) | -1(Error))
      */
     @RidixCr(author=RidixCr)
-    public int eliminarRegistro(Tipo bean) throws Exception;    
+    public long eliminarRegistro(Tipo bean) throws Exception;    
     /**
      *
      * @param referencia
@@ -47,5 +47,5 @@ public interface MVCGeneric<Tipo>
      * @return (Objeto Buscado | NULL)
      */
     @RidixCr(author=RidixCr)
-    public Tipo buscar(int id) throws Exception;     
+    public Tipo buscar(long id) throws Exception;     
 }
