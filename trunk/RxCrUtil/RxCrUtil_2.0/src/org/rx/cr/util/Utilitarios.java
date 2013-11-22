@@ -43,9 +43,9 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
-import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+//import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+//import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+//import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.AWTUtilitiesWrapper;
 import org.rx.cr.util.gui.JHourChooser;
 import org.rx.cr.util.gui.ShapeDecorated;
@@ -339,6 +339,9 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
        //jd.updateUI();
     }
+    public static void centreaInternalFrame(JInternalFrame jf,JDesktopPane jd){
+        jf.setLocation(((jd.getWidth()/2)-(jf.getWidth()/2)),((jd.getHeight()/2)-(jf.getHeight()/2)));
+    }
     public static void salir(Component parent){     
        int op =  JOptionPane.showConfirmDialog(parent,"Esta seguro que desea salir del sistema.","Atencion",JOptionPane.YES_NO_OPTION);        
        if (op==JOptionPane.YES_OPTION) {
@@ -367,10 +370,10 @@ public final class Utilitarios extends JLabel implements Runnable{
           vent.setFrameIcon(getIconFromResource(resourcePath));
       }
       
-      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
-          vent.setIconImage(getIconFromResource(resourcePath).getImage());
-          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
-      }
+//      public static void setIconoVentana(JRibbonFrame vent,String resourcePath){          
+//          vent.setIconImage(getIconFromResource(resourcePath).getImage());
+//          vent.setApplicationIcon(getResizableIconFromResource(resourcePath));
+//      }
       public static void maximizarAbsoluta(Frame ref){
           ref.setExtendedState(Frame.MAXIMIZED_BOTH);
       }
@@ -420,15 +423,15 @@ public final class Utilitarios extends JLabel implements Runnable{
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
       
-      public static ResizableIcon getResizableIconFromResource(String resource) {      
-        return getResizableIconFromResource(resource,48,48);
-      }
-      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
-        return getResizableIconFromResource(resource,size,size);
-      }
-      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
-        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-      }
+//      public static ResizableIcon getResizableIconFromResource(String resource) {      
+//        return getResizableIconFromResource(resource,48,48);
+//      }
+//      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
+//        return getResizableIconFromResource(resource,size,size);
+//      }
+//      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
+//        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
+//      }
       public static void aplicaTransparencia(Window window){
           AWTUtilitiesWrapper.setWindowOpaque(window,false);
       }
@@ -529,8 +532,26 @@ public final class Utilitarios extends JLabel implements Runnable{
       public static String convertDateString(int date){
           return Meses_Anio[date];
       }
-
-      private static String convertirNumero_Letras(String numero) {
+      private static String centimizaNumero(long num){
+          String nc=""+num;
+          if (nc.length()>=2) {
+              nc=""+num;
+          }else{
+              nc=""+num+"0";
+          }
+          return nc;
+      }
+      public static String convertirPrecio_Letras(double precio){
+          String sprecio = ""+precio,
+                 pe=sprecio.substring(0,sprecio.indexOf(".")),
+                 pf=sprecio.substring(sprecio.indexOf(".")+1,sprecio.length());
+          
+          return (convertirNumero_Letras(pe)+" con "+centimizaNumero(Long.parseLong(pf))+"/100 nuevos soles").toUpperCase();
+      }
+      public static String convertirNumero_Letras(int num){
+          return convertirNumero_Letras(""+num);
+      }
+      public static String convertirNumero_Letras(String numero) {
           String literal = "";
           String Num[] = numero.split(",");
 
@@ -849,6 +870,17 @@ public final class Utilitarios extends JLabel implements Runnable{
     public static String getComand(String inf){       
           return inf.substring((inf.indexOf("="))+1,inf.length());
     }
+    public static String subString(String ref,int lng){
+        return ref.length()>lng?ref.toUpperCase().substring(0,lng):ref;
+    }
+    public static String formateaPrecio(String r,int c){
+        int cnt = r.length()-3;
+        cnt=c-cnt;
+        for (int i = cnt; i >0; i--) {
+            r=" "+r;
+        }
+        return r;
+    }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="GUI Control Validator Util">   
     public static void enableComponent(Object[] lObj){
@@ -1130,26 +1162,25 @@ public final class Utilitarios extends JLabel implements Runnable{
         //</editor-fold>
     }
     public static void addEnterDoclickEvent(Object[][] lObj){
-        //<editor-fold defaultstate="collapsed" desc="addEnterFocus">        
-        for (int i = 0; i < lObj.length; i++) {            
-            if (lObj[i][0] instanceof JTextField) {
-                JTextField tmp = (JTextField)lObj[i][0]; 
-                final JButton tmp2 = (JButton)lObj[i][1];     
+        for (Object[] lObj1 : lObj) {
+            if (lObj1[0] instanceof JTextField) {
+                JTextField tmp = (JTextField) lObj1[0];
+                final JButton tmp2 = (JButton) lObj1[1];     
                 tmp.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         tmp2.doClick();
                     }
-                 });              
-            }else if(lObj[i][0] instanceof JPasswordField){
-                JPasswordField tmp = (JPasswordField)lObj[i][0];
-                final JButton tmp2 = (JButton)lObj[i][1];     
+                });
+            } else if (lObj1[0] instanceof JPasswordField) {
+                JPasswordField tmp = (JPasswordField) lObj1[0];
+                final JButton tmp2 = (JButton) lObj1[1];     
                 tmp.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         tmp2.doClick();
                     }
-                 });  
+                });  
             }
         }
         //</editor-fold>
@@ -1249,6 +1280,14 @@ public final class Utilitarios extends JLabel implements Runnable{
                 } 
             }else if(lObj[i][0] instanceof JDateChooser){
                 JDateChooser tmp = (JDateChooser)lObj[i][0];
+                rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
+                if (rsp_tmp) {
+                    resp&=rsp_tmp;
+                } else {
+                    return false;
+                } 
+            }else if(lObj[i][0] instanceof JSpinner){
+                JSpinner tmp = (JSpinner)lObj[i][0];
                 rsp_tmp = isValidoDatosControl(tmp,lObj[i][1].toString());
                 if (rsp_tmp) {
                     resp&=rsp_tmp;
@@ -1502,6 +1541,9 @@ public final class Utilitarios extends JLabel implements Runnable{
     private static boolean isValidoDatosControl(JDateChooser jdc,String msg){
         return !(alertControl(jdc)?setMsj(msg):false);
     }
+    private static boolean isValidoDatosControl(JSpinner jsp,String msg){
+        return !(alertControl(jsp)?setMsj(msg):false);
+    }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="addCharacterValidator">
     public static void addCharacterValidator(final JTextField txt,final int tp_chr,final int nro_chr){       
@@ -1658,6 +1700,16 @@ public final class Utilitarios extends JLabel implements Runnable{
             return true;
         }else{
             jdc.getDateEditor().getUiComponent().setBackground(Color.WHITE);
+            return false;
+        }
+    }
+     public static boolean alertControl(JSpinner jsp){
+        if(jsp.getValue().toString().equals("0")){          
+            jsp.setBackground(Color.RED);
+            jsp.requestFocus();
+            return true;
+        }else{
+            jsp.setBackground(Color.WHITE);
             return false;
         }
     }
@@ -2664,6 +2716,23 @@ public final class Utilitarios extends JLabel implements Runnable{
             return new byte[]{};
         }
     }
+    public InputStream getResourceStream(String rsc){
+     return getClass().getResourceAsStream(rsc);
+    }
+    public static byte[] getResourceByte(String rsc){
+      return getInputStreamByte(new Utilitarios().getResourceStream(rsc));
+    }
+    public static byte[] getInputStreamByte(InputStream is){
+      try {
+           int  size = is.available();
+           byte[] data = new byte[size];  
+           is.read(data,0,size);
+           is.close();
+           return data;
+        } catch (IOException ex) {
+            return new byte[]{};
+        }
+    }
     public static File getByteFile(byte[] data){
       try {
            File src = new File(getCurentPath()+File.separator+"tmp_stream_file.bin");
@@ -3046,5 +3115,14 @@ public final class Utilitarios extends JLabel implements Runnable{
         //txf=n_txf;
     }
     //</editor-fold>
-    //</editor-fold>
+    //<editor-fold defaultstate="collapsed" desc="NRO LOTE GENERATOR">
+    public static String genNroLote() {
+        Date current_date = new Date();
+        return numberFormat(current_date.getHours(),"####")
+              +"-"+numberFormat(current_date.getDate(),"##")
+              +numberFormat(current_date.getMonth()+1,"##")
+              +numberFormat(current_date.getYear()+1900,"####");
+    }
+    //</editor-fold>    
+//</editor-fold>
 }

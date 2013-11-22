@@ -206,7 +206,8 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
     public void setStoreProcedure(String strpc) throws SQLException{     
         conection.setAutoCommit(false);
         this.str_pro=strpc+"(";
-        //sprp = conection.prepareCall("{call "+strpc+"}");       
+        //sprp = conection.prepareCall("{call "+strpc+"}"); 
+        clear();
     }
     //<editor-fold defaultstate="collapsed" desc="FORMA DE USO">  
     /*

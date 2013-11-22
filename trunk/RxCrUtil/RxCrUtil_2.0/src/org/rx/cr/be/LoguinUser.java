@@ -1,6 +1,6 @@
 package org.rx.cr.be;
 
-public class LoguinUser {
+public abstract class LoguinUser {
     private String usuario = "";
     private byte[] fotografia = new byte[]{};
     private String nombres = "";

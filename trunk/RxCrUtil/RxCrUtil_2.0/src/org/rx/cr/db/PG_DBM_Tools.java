@@ -129,7 +129,7 @@ public class PG_DBM_Tools {
                     return false;
                 }
             }    
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             //Logger.getLogger(PG_DBM_Tools.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
@@ -147,13 +147,21 @@ public class PG_DBM_Tools {
             }
             pg_hba_conf_content+="host    all             all             "+getConf().getHost()+"/32            md5\n";
             pg_hba_conf_content+="# IPv6 local connections:\n";
-            pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";
+            pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";       
+            pg_hba_conf_content+="# Allow replication connections from localhost, by a user with the\n";
+            pg_hba_conf_content+="# replication privilege.\n";
+            pg_hba_conf_content+="#host    replication     postgres        127.0.0.1/32            md5\n";
+            pg_hba_conf_content+="#host    replication     postgres        ::1/128                 md5\n";
         }else{
             pg_hba_conf_content+="\n";
             pg_hba_conf_content+="# IPv4 local connections:\n";
             pg_hba_conf_content+="host    all             all             127.0.0.1/32            md5\n";          
             pg_hba_conf_content+="# IPv6 local connections:\n";
             pg_hba_conf_content+="host    all             all             ::1/128                 md5\n";
+            pg_hba_conf_content+="# Allow replication connections from localhost, by a user with the\n";
+            pg_hba_conf_content+="# replication privilege.\n";
+            pg_hba_conf_content+="#host    replication     postgres        127.0.0.1/32            md5\n";
+            pg_hba_conf_content+="#host    replication     postgres        ::1/128                 md5\n";
         }                
         pg_hba.write(pg_hba_conf_content.getBytes());
         pg_hba.close();

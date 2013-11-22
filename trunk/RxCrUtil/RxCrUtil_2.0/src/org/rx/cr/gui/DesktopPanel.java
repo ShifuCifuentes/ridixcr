@@ -25,6 +25,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.Timer;
 import javax.swing.border.Border;
+import org.rx.cr.be.CentralAdmin;
 import org.rx.cr.be.LoguinUser;
 import org.rx.cr.util.SystemInfo;
 import org.rx.cr.util.Utilitarios;
@@ -41,6 +42,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private double memoria_libre = 0.0;
     private MonitorMemoria monitor_memoria = null;
     private LoguinUser loguinUser;
+    private CentralAdmin centralAdmin;
     public DesktopPanel() {
         initComponents();
         hints = createRenderingHints();
@@ -175,7 +177,9 @@ public final class DesktopPanel extends javax.swing.JPanel{
     public void insertarInternalFrame(JInternalFrame jif){
         Utilitarios.insertaInternalFrame(jif,jDesktopPane1);
     }
-    
+    public void centreaInternalFrame(JInternalFrame jif){
+        Utilitarios.centreaInternalFrame(jif, jDesktopPane1);
+    }
     public void closeInternalFrame(JInternalFrame jif){
         try {
             Utilitarios.closeInternalFrame(jif,jDesktopPane1);
@@ -223,9 +227,22 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
     public void setLoguinUser(LoguinUser loguinUser) {
         this.loguinUser = loguinUser;
-        user.setText(loguinUser.getUsuario());
-        user_name.setText(loguinUser.getApellidos()+", "+loguinUser.getNombres());
-        fotografia.setIcon(new ImageIcon(loguinUser.getFotografia()));
+        user.setText(this.loguinUser.getUsuario());
+        user_name.setText(this.loguinUser.getApellidos()+", "+this.loguinUser.getNombres());
+        fotografia.setIcon(new ImageIcon(this.loguinUser.getFotografia()));
+    }
+
+    public CentralAdmin getCentralAdmin() {
+        return centralAdmin;
+    }
+
+    public void setCentralAdmin(CentralAdmin centralAdmin) {
+        this.centralAdmin = centralAdmin;
+        emp_nombre.setText(Utilitarios.subString(this.centralAdmin.getNombre(),23));
+        emp_ruc.setText(Utilitarios.subString(this.centralAdmin.getRuc(),23));
+        emp_telefono.setText(Utilitarios.subString(this.centralAdmin.getTelefono(),23));
+        emp_direccion.setText(Utilitarios.subString(this.centralAdmin.getDireccion(),23));
+        emp_logo.setIcon(new ImageIcon(this.centralAdmin.getLogo()));
     }
 
     public class DesktopPaneBackground implements Border{
@@ -359,6 +376,13 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jlb_propietario = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jlb_web = new javax.swing.JLabel();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        emp_telefono = new javax.swing.JLabel();
+        emp_direccion = new javax.swing.JLabel();
+        emp_ruc = new javax.swing.JLabel();
+        emp_nombre = new javax.swing.JLabel();
+        emp_logo = new javax.swing.JLabel();
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/Refresh.png"))); // NOI18N
         jMenuItem1.setText("Actualizar");
@@ -446,18 +470,19 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
         jDesktopPane1.add(jLabel1);
-        jLabel1.setBounds(750, 310, 100, 100);
+        jLabel1.setBounds(760, 440, 100, 100);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("APP Name");
         jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(750, 420, 100, 40);
+        jLabel4.setBounds(760, 550, 100, 40);
 
         jSplitPane1.setDividerLocation(180);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setEnabled(false);
+        jSplitPane1.setFocusable(false);
         jSplitPane1.setOpaque(false);
 
         fotografia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -499,7 +524,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Loguin", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel1); // NOI18N
+        jTabbedPane1.addTab("USUARIO", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel1); // NOI18N
 
         jPanel5.setOpaque(false);
         jPanel5.setLayout(null);
@@ -564,13 +589,13 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jPanel5.add(jlb_lenguaje);
         jlb_lenguaje.setBounds(93, 111, 100, 14);
 
-        jTabbedPane1.addTab("Info. S.O.", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel5); // NOI18N
+        jTabbedPane1.addTab("INF. S.O.", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel5); // NOI18N
 
         jSplitPane1.setTopComponent(jTabbedPane1);
 
         jPanel9.setOpaque(false);
         jPanel9.setLayout(new java.awt.BorderLayout());
-        jTabbedPane2.addTab("Info. Memoria", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel9); // NOI18N
+        jTabbedPane2.addTab("INF. MEMORIA", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel9); // NOI18N
 
         jPanel6.setOpaque(false);
         jPanel6.setLayout(null);
@@ -635,12 +660,62 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jPanel6.add(jlb_web);
         jlb_web.setBounds(70, 110, 120, 14);
 
-        jTabbedPane2.addTab("Info. Java", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel6); // NOI18N
+        jTabbedPane2.addTab("INF. JAVA", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel6); // NOI18N
 
         jSplitPane1.setRightComponent(jTabbedPane2);
 
         jDesktopPane1.add(jSplitPane1);
-        jSplitPane1.setBounds(0, 0, 210, 360);
+        jSplitPane1.setBounds(0, 240, 210, 360);
+
+        emp_telefono.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        emp_telefono.setText("973000000");
+
+        emp_direccion.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        emp_direccion.setText("AV. LAS CAUSARINAS 1024");
+
+        emp_ruc.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        emp_ruc.setText("20124579586974");
+
+        emp_nombre.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        emp_nombre.setText("EMPRESA S.A.C.");
+
+        emp_logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        emp_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emp_nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(emp_ruc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emp_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                    .addComponent(emp_telefono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emp_logo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emp_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(emp_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(emp_ruc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(emp_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(emp_telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane3.addTab("EMPRESA", new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/help-browser.png")), jPanel4); // NOI18N
+
+        jDesktopPane1.add(jTabbedPane3);
+        jTabbedPane3.setBounds(0, 0, 210, 240);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -650,7 +725,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -672,6 +747,11 @@ public final class DesktopPanel extends javax.swing.JPanel{
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel emp_direccion;
+    private javax.swing.JLabel emp_logo;
+    private javax.swing.JLabel emp_nombre;
+    private javax.swing.JLabel emp_ruc;
+    private javax.swing.JLabel emp_telefono;
     private javax.swing.JLabel fotografia;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
@@ -694,6 +774,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
@@ -702,6 +783,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel jlb_arquitectura;
     private javax.swing.JLabel jlb_escritorio;
     private javax.swing.JLabel jlb_lenguaje;

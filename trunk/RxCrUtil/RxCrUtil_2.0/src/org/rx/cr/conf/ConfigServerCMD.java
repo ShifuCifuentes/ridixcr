@@ -84,6 +84,6 @@ public final class ConfigServerCMD {
     public void saveConfServer() {    
        tools.getConf().saveConf();
        create_role_create_database(tools.getConf());
-       tools.configurar_ip_s_cliente();
+       //tools.configurar_ip_s_cliente();
     }    
 }

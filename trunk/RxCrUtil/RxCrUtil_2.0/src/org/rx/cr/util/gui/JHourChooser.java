@@ -1,14 +1,18 @@
 package org.rx.cr.util.gui;
 
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import static org.rx.cr.util.Utilitarios.*;
 
-public final class JHourChooser extends javax.swing.JPanel {
+public final class JHourChooser extends javax.swing.JPanel implements Runnable{
     private Date current_time = null;
+    private Thread hilo;
     public JHourChooser() {
         initComponents();   
         setCurrentTime(); 
-       
+       hilo = new Thread(this);
+       hilo.start();
     }
     @Override
     public void setEnabled(boolean enable){
@@ -92,4 +96,12 @@ public final class JHourChooser extends javax.swing.JPanel {
     private javax.swing.JSpinner js_hour;
     private javax.swing.JSpinner js_minute;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void run() {
+        while (true) {     
+            setCurrentTime();
+            try {Thread.sleep(1000);} catch (InterruptedException ex) {}
+        }
+    }
 }
