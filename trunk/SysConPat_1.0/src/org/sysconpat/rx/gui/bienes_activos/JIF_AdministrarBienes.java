@@ -18,9 +18,12 @@ public class JIF_AdministrarBienes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(1, 132, 205));
         setClosable(true);
         setIconifiable(true);
         setTitle("Modificar Bienes");
+
+        jScrollPane1.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

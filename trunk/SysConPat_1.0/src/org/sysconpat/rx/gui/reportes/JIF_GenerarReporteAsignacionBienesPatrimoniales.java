@@ -38,11 +38,13 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 117, 2));
         setClosable(true);
         setIconifiable(true);
         setTitle("Generar Reporte de Asignacion de Bienes Patrimoniales");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Asignacion Bienes Patrimoniales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
@@ -165,7 +167,7 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();

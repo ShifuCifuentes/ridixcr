@@ -53,6 +53,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         jComboBox7 = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
 
+        setBackground(java.awt.Color.yellow);
         setClosable(true);
         setIconifiable(true);
         setTitle("Administrar Areas de Entidad");
@@ -83,6 +84,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Areas Registradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +104,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
                 "Sigla", "Area"
             }
         ));
+        jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable1MouseReleased(evt);
@@ -157,6 +160,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Area", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");

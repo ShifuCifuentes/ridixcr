@@ -61,6 +61,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
             setParameterString(bean.getNro_tarjeta_propiedad());
             setParameterString(bean.getOtro());
             setParameterInt(bean.getForma_adquisicion());            
+            setParameterString(bean.getCiaf());
             return Integer.parseInt(commit().toString());
         }catch (Exception ex) {
             return rollback(ex);
@@ -115,6 +116,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
             setParameterString(bean.getNro_tarjeta_propiedad());
             setParameterString(bean.getOtro());
             setParameterInt(bean.getForma_adquisicion());            
+            setParameterString(bean.getCiaf());
             return Integer.parseInt(commit().toString());
         }catch (Exception ex) {
             return rollback(ex);
@@ -190,6 +192,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setGrupo_generico(getDataString(47));
                 bean.setClase_bien(getDataString(48));
                 bean.setClasificador(getDataString(49));
+                bean.setCiaf(getDataString(50));
                 add(bean);
             }
             close();
@@ -257,6 +260,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setGrupo_generico(getDataString(47));
                 bean.setClase_bien(getDataString(48));
                 bean.setClasificador(getDataString(49));
+                bean.setCiaf(getDataString(50));
                 add(bean);
             }
             close();
@@ -329,7 +333,8 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setDenominacion(getDataString(46));
                 bean.setGrupo_generico(getDataString(47));
                 bean.setClase_bien(getDataString(48));
-                bean.setClasificador(getDataString(49));                
+                bean.setClasificador(getDataString(49));            
+                bean.setCiaf(getDataString(50));
             }
             close();
            return bean;

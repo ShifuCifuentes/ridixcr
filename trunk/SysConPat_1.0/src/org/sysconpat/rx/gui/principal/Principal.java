@@ -1,70 +1,33 @@
 package org.sysconpat.rx.gui.principal;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.swing.JDialog;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JSeparator;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import javax.swing.SwingConstants;
-import org.pushingpixels.flamingo.api.common.JCommandButton;
-import org.pushingpixels.flamingo.api.common.JCommandMenuButton;
-import org.pushingpixels.flamingo.api.common.RichTooltip;
-import org.pushingpixels.flamingo.api.common.popup.JCommandPopupMenu;
-import org.pushingpixels.flamingo.api.common.popup.JPopupPanel;
-import org.pushingpixels.flamingo.api.common.popup.PopupPanelCallback;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary;
-import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
-import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
-import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
-import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
+import org.pushingpixels.flamingo.api.common.*;
+import org.pushingpixels.flamingo.api.common.popup.*;
+import org.pushingpixels.flamingo.api.ribbon.*;
+import org.pushingpixels.flamingo.api.ribbon.resize.*;
 import org.rx.cr.conf.Config;
 import org.rx.cr.gui.DesktopPanel;
 import org.rx.cr.report.ReportGeneric;
 import org.rx.cr.util.Utilitarios;
 import static org.rx.cr.util.Utilitarios.*;
-import org.rx.cr.util.gui.BackupCreator;
-import org.rx.cr.util.gui.BackupRestore;
-import org.rx.cr.util.gui.VisorPDF;
+import org.rx.cr.util.gui.*;
+import org.rx.cr.util.ribbon.UtilitariosRibbon;
+import static org.rx.cr.util.ribbon.UtilitariosRibbon.*;
 import org.sysconpat.rx.SysConPat;
-import org.sysconpat.rx.be.BEContenedor;
-import org.sysconpat.rx.gui.ayuda.JD_About;
-import org.sysconpat.rx.gui.ayuda.JD_Contacto;
-import org.sysconpat.rx.gui.baja_bienes.JIF_AdministrarBajaBienes;
-import org.sysconpat.rx.gui.bienes_activos.JIF_AdministrarBienes;
-import org.sysconpat.rx.gui.bienes_activos.JIF_TrasladarBienes;
-import org.sysconpat.rx.gui.catalogo.JIF_ActualizarCatalogo;
-import org.sysconpat.rx.gui.catalogo.JIF_ConsultarCatalogo;
-import org.sysconpat.rx.gui.catalogo.JIF_ConsultarCatalogoDetallado;
-import org.sysconpat.rx.gui.contabilidad.JIF_DepreciacionAnual;
-import org.sysconpat.rx.gui.contabilidad.JIF_Depreciacion;
-import org.sysconpat.rx.gui.contabilidad.JIF_DepreciacionIndividual;
-import org.sysconpat.rx.gui.locales.JIF_AdministrarAreasEntidad;
-import org.sysconpat.rx.gui.locales.JIF_AdministrarLocalesEntidad;
-import org.sysconpat.rx.gui.locales.JIF_AdministrarOficinasEntidad;
-import org.sysconpat.rx.gui.locales.JIF_AdministrarPersonalEntidad;
-import org.sysconpat.rx.gui.reportes.JIF_GenerarReporteAsignacionBienesPatrimoniales;
-import org.sysconpat.rx.gui.reportes.JIF_GenerarReporteBienesPatrimonialesLocal;
-import org.sysconpat.rx.gui.reportes.JIF_GenerarReporteFormatoDatosBienes;
-import org.sysconpat.rx.gui.reportes.JIF_GenerarReporteOtrosBP;
-import org.sysconpat.rx.gui.reportes.JIF_GenerarReportePersonalLocal;
-import org.sysconpat.rx.gui.seguridad.JF_Loguin;
-import org.sysconpat.rx.gui.seguridad.JIF_MantenerUsuario;
-import org.sysconpat.rx.gui.seguridad.JIF_RegistrarUsuario;
+import org.sysconpat.rx.be.*;
+import org.sysconpat.rx.gui.ayuda.*;
+import org.sysconpat.rx.gui.baja_bienes.*;
+import org.sysconpat.rx.gui.bienes_activos.*;
+import org.sysconpat.rx.gui.catalogo.*;
+import org.sysconpat.rx.gui.contabilidad.*;
+import org.sysconpat.rx.gui.locales.*;
+import org.sysconpat.rx.gui.reportes.*;
+import org.sysconpat.rx.gui.seguridad.*;
 import org.sysconpat.rx.util.ResourceIDVendor;
 
 public class Principal  extends JRibbonFrame{    
@@ -74,9 +37,7 @@ public class Principal  extends JRibbonFrame{
     }
     
     private Config config;
-    
-    private JF_Loguin jFLoguin = null;
-    
+        
     private RibbonApplicationMenuEntryPrimary menu_backup=null;
     private RibbonApplicationMenuEntrySecondary menu_backup_items[]=null;
     
@@ -139,7 +100,8 @@ public class Principal  extends JRibbonFrame{
     private void initWindow() {
         setTitle(ResourceIDVendor.CLIENT_APP_ID);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setIconoVentana(this,"/org/sysconpat/rx/resource/SysRent.png");              
+        setIconoVentana(this,"/org/sysconpat/rx/resource/SysRent.png");  
+        setApplicationIcon(UtilitariosRibbon.getResizableIconFromResource("/org/sysconpat/rx/resource/SysRent.png"));
         setMinimumSize(new Dimension(800,600));   
         adaptarForma(this,15,15);
         addComponentListener(new ComponentListener() {
@@ -202,7 +164,7 @@ public class Principal  extends JRibbonFrame{
         configuraInterfazSegunRoles();
     }
     public void setLoguin(JF_Loguin jFLoguin) {
-        this.jFLoguin = jFLoguin;
+        
     }
     public void configuraInterfazSegunRoles(){
         //<editor-fold defaultstate="collapsed" desc="Cuerpo">
@@ -312,7 +274,7 @@ public class Principal  extends JRibbonFrame{
                contact.setVisible(true);
             }
         });
-        getRibbon().addTaskbarComponent(button1_tsk);  
+        //getRibbon().addTaskbarComponent(button1_tsk);  
                 
         getRibbon().addTaskbarComponent(new JSeparator(SwingConstants.VERTICAL)); 
         
@@ -327,7 +289,7 @@ public class Principal  extends JRibbonFrame{
         //</editor-fold>
         //<editor-fold defaultstate="collapsed" desc="TAB'S">
         //<editor-fold defaultstate="collapsed" desc="Primer TAB">
-        JRibbonBand primer_tab_band[] = new JRibbonBand[1];
+        JRibbonBand primer_tab_band[] = new JRibbonBand[1];   
         //<editor-fold defaultstate="collapsed" desc="Primera Banda">
         JRibbonBand primera_banda_tb1 = new JRibbonBand("Entidad",getResizableIconFromResource("/org/sysconpat/rx/resource/Urbano.png"));
         
@@ -338,6 +300,8 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminLocal);
             }
         });
+        button1_tb1.setOpaque(true);
+        button1_tb1.setBackground(Color.YELLOW);
         JCommandButton button2_tb1 = new JCommandButton("Administrar Areas",getResizableIconFromResource("/org/sysconpat/rx/resource/ModificarPedioUrbano.png"));
         button2_tb1.addActionListener(new ActionListener() {
             @Override
@@ -345,6 +309,8 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminAreas);
             }
         });
+        button2_tb1.setOpaque(true);
+        button2_tb1.setBackground(Color.YELLOW);
         JCommandButton button3_tb1 = new JCommandButton("Administrar Oficinas",getResizableIconFromResource("/org/sysconpat/rx/resource/ModificarPedioRural.png"));
         button3_tb1.addActionListener(new ActionListener() {
             @Override
@@ -352,6 +318,8 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminOficina);
             }
         });
+        button3_tb1.setOpaque(true);
+        button3_tb1.setBackground(Color.YELLOW);
         JCommandButton button4_tb1 = new JCommandButton("Administrar Personal",getResizableIconFromResource("/org/sysconpat/rx/resource/ModificarUsuario.png"));
         button4_tb1.addActionListener(new ActionListener() {
             @Override
@@ -359,6 +327,8 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminPersonal);
             }
         });
+        button4_tb1.setOpaque(true);
+        button4_tb1.setBackground(Color.YELLOW);
         primera_banda_tb1.addCommandButton(button1_tb1,RibbonElementPriority.TOP);
         primera_banda_tb1.addCommandButton(button2_tb1,RibbonElementPriority.TOP);
         primera_banda_tb1.addCommandButton(button3_tb1,RibbonElementPriority.TOP);
@@ -367,7 +337,8 @@ public class Principal  extends JRibbonFrame{
         primera_banda_tb1.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tb1.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tb1.getControlPanel())));
-        
+        primera_banda_tb1.setOpaque(true);
+        primera_banda_tb1.setBackground(Color.YELLOW);
         primer_tab_band[0]=primera_banda_tb1;
         //</editor-fold> 
         this.locales = new RibbonTask("Locales",primer_tab_band);
@@ -384,6 +355,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminBienes);
             }
         });         
+        button1_tb2.setOpaque(true);
+        button1_tb2.setBackground(new Color(1,132,205));
+        button1_tb2.setForeground(Color.WHITE);
         JCommandButton button2_tb2 = new JCommandButton("Traslado de Bienes",getResizableIconFromResource("/org/sysconpat/rx/resource/RegistrarLicenciaFuncionamiento.png"));       
         button2_tb2.addActionListener(new ActionListener() {
             @Override
@@ -391,14 +365,17 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(traslBienes);
             }
         }); 
-        
+        button2_tb2.setOpaque(true);
+        button2_tb2.setBackground(new Color(1,132,205));
+        button2_tb2.setForeground(Color.WHITE);
         primera_banda_tb2.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tb2.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tb2.getControlPanel())));
         
         primera_banda_tb2.addCommandButton(button1_tb2,RibbonElementPriority.TOP);
         primera_banda_tb2.addCommandButton(button2_tb2,RibbonElementPriority.TOP);
-        
+        primera_banda_tb2.setOpaque(true);
+        primera_banda_tb2.setBackground(new Color(1,132,205));
         segundo_tab_band[0]=primera_banda_tb2;
         //</editor-fold>        
         this.bienes_activos = new RibbonTask("Bienes Activos",segundo_tab_band);          
@@ -415,13 +392,16 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(adminBajaBienes);
             }
         });
-                
+        button1_tb3.setOpaque(true);
+        button1_tb3.setBackground(new Color(160,120,46));
+        button1_tb3.setForeground(Color.WHITE);
         primera_banda_tb3.addCommandButton(button1_tb3,RibbonElementPriority.TOP);  
         
         primera_banda_tb3.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tb3.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tb3.getControlPanel())));
-        
+        primera_banda_tb3.setOpaque(true);
+        primera_banda_tb3.setBackground(new Color(160,120,46));
         tercer_tab_band[0]=primera_banda_tb3;
         //</editor-fold>
         this.baja_bienes = new RibbonTask("Baja de Bienes",tercer_tab_band);  
@@ -439,6 +419,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(genRepAsBp);
             }
         });
+        button1_tb6.setOpaque(true);
+        button1_tb6.setBackground(new Color(240,117,2));
+        button1_tb6.setForeground(Color.WHITE);
         JCommandButton button2_tb6 = new JCommandButton("Formato de Datos Bs",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button2_tb6.addActionListener(new ActionListener() {
             @Override
@@ -446,22 +429,31 @@ public class Principal  extends JRibbonFrame{
               insertarInternalFrames(genRepFormDatBp);
             }
         });         
+        button2_tb6.setOpaque(true);
+        button2_tb6.setBackground(new Color(240,117,2));
+        button2_tb6.setForeground(Color.WHITE);
         JCommandButton button3_tb6 = new JCommandButton("Bienes Activos",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button3_tb6.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_AND_POPUP_MAIN_ACTION);
         button3_tb6.setPopupCallback(new PopupPanelCallback() {
-						@Override
-						public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-							return new PopUpMenu(PopUpMenu.BIENES_ACTIVOS);
-						}
-					});
+        @Override
+        public JPopupPanel getPopupPanel(JCommandButton commandButton) {
+        return new PopUpMenu(PopUpMenu.BIENES_ACTIVOS);
+        }
+        });
+        button3_tb6.setOpaque(true);
+        button3_tb6.setBackground(new Color(240,117,2));
+        button3_tb6.setForeground(Color.WHITE);
         JCommandButton button4_tb6 = new JCommandButton("Formato de Bs",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button4_tb6.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_AND_POPUP_MAIN_ACTION);
         button4_tb6.setPopupCallback(new PopupPanelCallback() {
-						@Override
-						public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-							return new PopUpMenu(PopUpMenu.FORMATO_BIENES);
-						}
-					});
+        @Override
+        public JPopupPanel getPopupPanel(JCommandButton commandButton) {
+        return new PopUpMenu(PopUpMenu.FORMATO_BIENES);
+        }
+        });
+        button4_tb6.setOpaque(true);
+        button4_tb6.setBackground(new Color(240,117,2));
+        button4_tb6.setForeground(Color.WHITE);
         JCommandButton button5_tb6 = new JCommandButton("Bienes por Local",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button5_tb6.addActionListener(new ActionListener() {
             @Override
@@ -469,15 +461,20 @@ public class Principal  extends JRibbonFrame{
               insertarInternalFrames(genRepBpLoc);
             }
         }); 
+        button5_tb6.setOpaque(true);
+        button5_tb6.setBackground(new Color(240,117,2));
+        button5_tb6.setForeground(Color.WHITE);
         JCommandButton button6_tb6 = new JCommandButton("Bienes Dados de Baja",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button6_tb6.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_AND_POPUP_MAIN_ACTION);
         button6_tb6.setPopupCallback(new PopupPanelCallback() {
-					@Override
-						public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-							return new PopUpMenu(PopUpMenu.BIENES_DADOS_BAJA);
-						}
-					});
-        
+        @Override
+        public JPopupPanel getPopupPanel(JCommandButton commandButton) {
+        return new PopUpMenu(PopUpMenu.BIENES_DADOS_BAJA);
+        }
+        });
+        button6_tb6.setOpaque(true);
+        button6_tb6.setBackground(new Color(240,117,2));
+        button6_tb6.setForeground(Color.WHITE);
         JCommandButton button7_tb6 = new JCommandButton("Locales de la Entidad",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button7_tb6.addActionListener(new ActionListener() {
             @Override
@@ -485,6 +482,9 @@ public class Principal  extends JRibbonFrame{
               generarReporteLocalesEntidad();
             }
         }); 
+        button7_tb6.setOpaque(true);
+        button7_tb6.setBackground(new Color(240,117,2));
+        button7_tb6.setForeground(Color.WHITE);
         JCommandButton button8_tb6 = new JCommandButton("Areas de la Entidad",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button8_tb6.addActionListener(new ActionListener() {
             @Override
@@ -494,6 +494,9 @@ public class Principal  extends JRibbonFrame{
 
             
         }); 
+        button8_tb6.setOpaque(true);
+        button8_tb6.setBackground(new Color(240,117,2));
+        button8_tb6.setForeground(Color.WHITE);
         JCommandButton button9_tb6 = new JCommandButton("Personal de la Entidad",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button9_tb6.addActionListener(new ActionListener() {
             @Override
@@ -501,6 +504,9 @@ public class Principal  extends JRibbonFrame{
               insertarInternalFrames(genRepPersLoc);
             }
         }); 
+        button9_tb6.setOpaque(true);
+        button9_tb6.setBackground(new Color(240,117,2));
+        button9_tb6.setForeground(Color.WHITE);
         JCommandButton button10_tb6 = new JCommandButton("Estadisticas",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button10_tb6.addActionListener(new ActionListener() {
             @Override
@@ -508,7 +514,9 @@ public class Principal  extends JRibbonFrame{
               
             }
         }); 
-                
+        button10_tb6.setOpaque(true);
+        button10_tb6.setBackground(new Color(240,117,2)); 
+        button10_tb6.setForeground(Color.WHITE);
         primera_banda_tb6.addCommandButton(button1_tb6,RibbonElementPriority.TOP);
         primera_banda_tb6.addCommandButton(button2_tb6,RibbonElementPriority.TOP);      
         primera_banda_tb6.addCommandButton(button3_tb6,RibbonElementPriority.TOP);      
@@ -527,8 +535,11 @@ public class Principal  extends JRibbonFrame{
         segunda_banda_tb6.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(segunda_banda_tb6.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(segunda_banda_tb6.getControlPanel())));
-        
+        primera_banda_tb6.setOpaque(true);
+        primera_banda_tb6.setBackground(new Color(240,117,2));
         sexto_tab_band[0]=primera_banda_tb6;
+        segunda_banda_tb6.setOpaque(true);
+        segunda_banda_tb6.setBackground(new Color(240,117,2));
         sexto_tab_band[1]=segunda_banda_tb6;
         //</editor-fold>
         this.reportes = new RibbonTask("Reportes",sexto_tab_band); 
@@ -545,6 +556,9 @@ public class Principal  extends JRibbonFrame{
               insertarInternalFrames(dep);
             }
         });
+        button1_tb7.setOpaque(true);
+        button1_tb7.setBackground(new Color(124,188,25));
+        button1_tb7.setForeground(Color.WHITE);
         JCommandButton button2_tb7 = new JCommandButton("Depreciacion Anual",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button2_tb7.addActionListener(new ActionListener() {
             @Override
@@ -552,6 +566,9 @@ public class Principal  extends JRibbonFrame{
               insertarInternalFrames(depAnu);
             }
         });
+        button2_tb7.setOpaque(true);
+        button2_tb7.setBackground(new Color(124,188,25));     
+        button2_tb7.setForeground(Color.WHITE);
         JCommandButton button3_tb7 = new JCommandButton("Depreciacion Individual",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button3_tb7.addActionListener(new ActionListener() {
             @Override
@@ -559,6 +576,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(depIndiv);
             }
         });
+        button3_tb7.setOpaque(true);
+        button3_tb7.setBackground(new Color(124,188,25)); 
+        button3_tb7.setForeground(Color.WHITE);
         JCommandButton button4_tb7 = new JCommandButton("Resumen Depreciacion",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button4_tb7.addActionListener(new ActionListener() {
             @Override
@@ -566,6 +586,9 @@ public class Principal  extends JRibbonFrame{
                 generarReporteResumenDepreciacion();
             }
         });
+        button4_tb7.setOpaque(true);
+        button4_tb7.setBackground(new Color(124,188,25)); 
+        button4_tb7.setForeground(Color.WHITE);
         JCommandButton button5_tb7 = new JCommandButton("Resumen Contable",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button5_tb7.addActionListener(new ActionListener() {
             @Override
@@ -573,6 +596,9 @@ public class Principal  extends JRibbonFrame{
                 generarReporteResumenContable();
             }
         });
+        button5_tb7.setOpaque(true);
+        button5_tb7.setBackground(new Color(124,188,25)); 
+        button5_tb7.setForeground(Color.WHITE);
         JCommandButton button6_tb7 = new JCommandButton("Vehiculos",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button6_tb7.addActionListener(new ActionListener() {
             @Override
@@ -580,6 +606,9 @@ public class Principal  extends JRibbonFrame{
                 generarInventarioVehicular();
             }
         });
+        button6_tb7.setOpaque(true);
+        button6_tb7.setBackground(new Color(124,188,25));
+        button6_tb7.setForeground(Color.WHITE);
         JCommandButton button7_tb7 = new JCommandButton("Activo Fijo",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button7_tb7.addActionListener(new ActionListener() {
             @Override
@@ -587,6 +616,9 @@ public class Principal  extends JRibbonFrame{
                 generarReporteFormatoBsAF();
             }
         });
+        button7_tb7.setOpaque(true);
+        button7_tb7.setBackground(new Color(124,188,25)); 
+        button7_tb7.setForeground(Color.WHITE);
         JCommandButton button8_tb7 = new JCommandButton("Cuentas de Orden",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button8_tb7.addActionListener(new ActionListener() {
             @Override
@@ -594,6 +626,9 @@ public class Principal  extends JRibbonFrame{
                 generarReporteFormatoBsCO();
             }
         });
+        button8_tb7.setOpaque(true);
+        button8_tb7.setBackground(new Color(124,188,25)); 
+        button8_tb7.setForeground(Color.WHITE);
         JCommandButton button9_tb7 = new JCommandButton("Consolidacion",getResizableIconFromResource("/org/sysconpat/rx/resource/PagoTributario.png"));
         button9_tb7.addActionListener(new ActionListener() {
             @Override
@@ -601,6 +636,9 @@ public class Principal  extends JRibbonFrame{
                 generarReporteConciliacion();
             }
         });
+        button9_tb7.setOpaque(true);
+        button9_tb7.setBackground(new Color(124,188,25)); 
+        button9_tb7.setForeground(Color.WHITE);
         primera_banda_tb7.addCommandButton(button1_tb7,RibbonElementPriority.TOP);
         primera_banda_tb7.addCommandButton(button2_tb7,RibbonElementPriority.TOP);
         primera_banda_tb7.addCommandButton(button3_tb7,RibbonElementPriority.TOP);
@@ -614,7 +652,8 @@ public class Principal  extends JRibbonFrame{
         primera_banda_tb7.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tb7.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tb7.getControlPanel())));
-        
+        primera_banda_tb7.setOpaque(true);
+        primera_banda_tb7.setBackground(new Color(124,188,25)); 
         septimo_tab_band[0]=primera_banda_tb7;
         //</editor-fold>        
         this.contabilidad = new RibbonTask("Contabilidad",septimo_tab_band);          
@@ -631,14 +670,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(consCat);             
             }
         });
-//        JCommandButton button2_tbr = new JCommandButton("Listado de Bienes",getResizableIconFromResource("/org/sysconpat/rx/resource/office2010.png"));
-//        button2_tbr.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_AND_POPUP_MAIN_ACTION);
-//        button2_tbr.setPopupCallback(new PopupPanelCallback() {
-//						@Override
-//						public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-//							return new PopUpMenu(PopUpMenu.LISTADO_BIENES);
-//						}
-//					});
+        button1_tbr.setOpaque(true);
+        button1_tbr.setBackground(new Color(67,59,143)); 
+        button1_tbr.setForeground(Color.WHITE);
         JCommandButton button3_tbr = new JCommandButton("Consulta de Catalogo Detallado",getResizableIconFromResource("/org/sysconpat/rx/resource/RealizarOrdenPagoDT.png"));
         button3_tbr.addActionListener(new ActionListener() {
             @Override
@@ -646,6 +680,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(consCatDet);             
             }
         });
+        button3_tbr.setOpaque(true);
+        button3_tbr.setBackground(new Color(67,59,143)); 
+        button3_tbr.setForeground(Color.WHITE);
 //        JCommandButton button4_tbr = new JCommandButton("Buscar Clasificadores",getResizableIconFromResource("/org/sysconpat/rx/resource/RealizarOrdenPagoDT.png"));
 //        button4_tbr.addActionListener(new ActionListener() {
 //            @Override
@@ -660,6 +697,9 @@ public class Principal  extends JRibbonFrame{
                insertarInternalFrames(actuCat);             
             }
         });
+        button5_tbr.setOpaque(true);
+        button5_tbr.setBackground(new Color(67,59,143)); 
+        button5_tbr.setForeground(Color.WHITE);
         JCommandButton button6_tbr = new JCommandButton("Etiquetado Manual",getResizableIconFromResource("/org/sysconpat/rx/resource/RealizarOrdenPagoDT.png"));
         button6_tbr.addActionListener(new ActionListener() {
             @Override
@@ -667,7 +707,9 @@ public class Principal  extends JRibbonFrame{
                             
             }
         });
-        
+        button6_tbr.setOpaque(true);
+        button6_tbr.setBackground(new Color(67,59,143)); 
+        button6_tbr.setForeground(Color.WHITE);
         primera_banda_tbr.addCommandButton(button1_tbr,RibbonElementPriority.TOP);
         //primera_banda_tbr.addCommandButton(button2_tbr,RibbonElementPriority.TOP);
         primera_banda_tbr.addCommandButton(button3_tbr,RibbonElementPriority.TOP);
@@ -678,7 +720,8 @@ public class Principal  extends JRibbonFrame{
         primera_banda_tbr.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tbr.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tbr.getControlPanel())));
-        
+        primera_banda_tbr.setOpaque(true);
+        primera_banda_tbr.setBackground(new Color(67,59,143)); 
         report_tab_band[0]=primera_banda_tbr;
         //</editor-fold>        
         this.catalogo = new RibbonTask("Catalogo",report_tab_band);          
@@ -695,6 +738,9 @@ public class Principal  extends JRibbonFrame{
                backUpCraetor();                
             }
         });        
+        button1_tbsept.setOpaque(true);
+        button1_tbsept.setBackground(new Color(101,91,143));
+        button1_tbsept.setForeground(Color.WHITE);
         JCommandButton button2_tbsept = new JCommandButton("Restaurar Backup BD",getResizableIconFromResource("/org/sysconpat/rx/resource/backup_restore_min.png"));
         button2_tbsept.addActionListener(new ActionListener() {
             @Override
@@ -702,14 +748,17 @@ public class Principal  extends JRibbonFrame{
                 backUpRestorer();                
             }
         });       
-        
+        button2_tbsept.setOpaque(true);
+        button2_tbsept.setBackground(new Color(101,91,143));
+        button2_tbsept.setForeground(Color.WHITE);
         primera_banda_tbsept.addCommandButton(button1_tbsept,RibbonElementPriority.TOP);
         primera_banda_tbsept.addCommandButton(button2_tbsept,RibbonElementPriority.TOP);
         
         primera_banda_tbsept.setResizePolicies((List) Arrays.asList(
                             new CoreRibbonResizePolicies.None(primera_banda_tbsept.getControlPanel()),                            
                             new IconRibbonBandResizePolicy(primera_banda_tbsept.getControlPanel())));
-        
+        primera_banda_tbsept.setOpaque(true);
+        primera_banda_tbsept.setBackground(new Color(101,91,143));
         sept_tab_band[0]=primera_banda_tbsept;
         //</editor-fold>        
         this.servicios = new RibbonTask("Servicios",sept_tab_band);          
@@ -810,17 +859,17 @@ public class Principal  extends JRibbonFrame{
         button7_tb9.setCommandButtonKind(JCommandButton.CommandButtonKind.ACTION_AND_POPUP_MAIN_ACTION);
         
         RichTooltip mainRichTooltip = new RichTooltip();
-		mainRichTooltip.setTitle("Microsoft Office");
-		mainRichTooltip.addDescriptionSection("Suite Office Basico");
-	button7_tb9.setActionRichTooltip(mainRichTooltip);
+        mainRichTooltip.setTitle("Microsoft Office");
+        mainRichTooltip.addDescriptionSection("Suite Office Basico");
+        button7_tb9.setActionRichTooltip(mainRichTooltip);
         button7_tb9.setPopupKeyTip("O");
         
          button7_tb9.setPopupCallback(new PopupPanelCallback() {
-						@Override
-						public JPopupPanel getPopupPanel(JCommandButton commandButton) {
-							return new PopUpMenu(PopUpMenu.MSOFFICE);
-						}
-					});
+        @Override
+        public JPopupPanel getPopupPanel(JCommandButton commandButton) {
+        return new PopUpMenu(PopUpMenu.MSOFFICE);
+        }
+        });
                        
         segunda_banda_tb9.addCommandButton(button4_tb9,RibbonElementPriority.TOP);
         segunda_banda_tb9.addCommandButton(button5_tb9,RibbonElementPriority.TOP);
@@ -1137,6 +1186,7 @@ public class Principal  extends JRibbonFrame{
     private void initContent() throws Exception {
         //<editor-fold defaultstate="collapsed" desc="initContent">
         escritorio = new DesktopPanel();
+        escritorio.quitaPanelesInfo();
         escritorio.setImageApp("/org/sysconpat/rx/resource/APP_Icon.png");
         escritorio.setAppName(ResourceIDVendor.APP_ID);
         getContentPane().add(escritorio);

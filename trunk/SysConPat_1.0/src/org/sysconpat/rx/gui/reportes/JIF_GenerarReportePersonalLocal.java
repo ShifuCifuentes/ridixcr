@@ -29,11 +29,13 @@ public final class JIF_GenerarReportePersonalLocal extends javax.swing.JInternal
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 117, 2));
         setClosable(true);
         setIconifiable(true);
         setTitle("Generar reporte del personal por local");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jLabel1.setText("local :");
 

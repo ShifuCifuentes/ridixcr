@@ -23,11 +23,14 @@ public class JIF_ActualizarCatalogo extends javax.swing.JInternalFrame {
         jProgressBar1 = new javax.swing.JProgressBar();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(67, 59, 143));
         setClosable(true);
         setIconifiable(true);
         setTitle("Actualizar Catalogo Bienes Patrimoniales");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Archivo fuente de datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Archivo fuente de datos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
 
         jButton1.setText("Seleccionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -36,6 +39,7 @@ public class JIF_ActualizarCatalogo extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Archivo :");
 
         jTextField1.setEditable(false);
@@ -63,7 +67,8 @@ public class JIF_ActualizarCatalogo extends javax.swing.JInternalFrame {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Progreso de actualizacion del catalogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Progreso de actualizacion del catalogo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
+        jPanel2.setOpaque(false);
 
         jProgressBar1.setStringPainted(true);
 

@@ -55,6 +55,7 @@ public final class BEBienPatrimonial {
   private String certificado_soat;
   private String nro_tarjeta_propiedad;
   private String otro;
+  private String ciaf;
 
     public BEBienPatrimonial() {
         setId_bien_patrimonial(0);
@@ -107,6 +108,7 @@ public final class BEBienPatrimonial {
         setClasificador("");
         setGrupo_generico("");
         setClase_bien("");
+        setCiaf("");
     }
 
     public int getId_bien_patrimonial() {
@@ -507,6 +509,20 @@ public final class BEBienPatrimonial {
 
     public void setClase_bien(String clase_bien) {
         this.clase_bien = clase_bien;
+    }
+
+    /**
+     * @return the ciaf
+     */
+    public String getCiaf() {
+        return ciaf;
+    }
+
+    /**
+     * @param ciaf the ciaf to set
+     */
+    public void setCiaf(String ciaf) {
+        this.ciaf = ciaf;
     }
   
   

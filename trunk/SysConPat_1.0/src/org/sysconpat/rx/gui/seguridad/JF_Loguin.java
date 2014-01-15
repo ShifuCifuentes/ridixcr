@@ -10,6 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 import org.pushingpixels.substance.api.skin.OfficeBlack2007Skin;
+import org.pushingpixels.substance.api.skin.OfficeSilver2007Skin;
 import org.rx.cr.conf.Config;
 import org.rx.cr.ds.DSConeccion;
 import static org.rx.cr.util.Utilitarios.*;
@@ -27,7 +28,7 @@ public final class JF_Loguin extends javax.swing.JFrame {
     static {
             JFrame.setDefaultLookAndFeelDecorated(true);
             JDialog.setDefaultLookAndFeelDecorated(true);     
-            SubstanceLookAndFeel.setSkin(new OfficeBlack2007Skin());      
+//            SubstanceLookAndFeel.setSkin(new OfficeSilver2007Skin());      
         }
     private Config config;   
     

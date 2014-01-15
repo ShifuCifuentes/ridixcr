@@ -29,11 +29,13 @@ public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swin
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(240, 117, 2));
         setClosable(true);
         setIconifiable(true);
         setTitle("Generar Reporte de Bienes Parimoniales por Local");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local de asignacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,7 +108,7 @@ public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swin
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pack();

@@ -5,6 +5,11 @@
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
   </NonVisualComponents>
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="cd" green="84" red="1" type="rgb"/>
+    </Property>
+  </Properties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -105,6 +110,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -166,6 +172,7 @@
                     <Column editable="true" title="BIEN" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                   <JTableSelectionModel selectionMode="0"/>
                 </Property>
@@ -218,6 +225,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -272,6 +280,13 @@
                                       </Group>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jComboBox1" min="-2" pref="292" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel27" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jTextField6" max="32767" attributes="0"/>
+                              </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jTextField9" min="-2" pref="151" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -282,16 +297,15 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jComboBox10" min="-2" pref="151" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabel12" min="-2" pref="40" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jDateChooser1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel13" min="-2" pref="62" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jTextField13" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="jComboBox1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -367,6 +381,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel27" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -585,6 +601,7 @@
                 </TitledBorder>
               </Border>
             </Property>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
 
           <Layout>
@@ -748,6 +765,16 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JLabel" name="jLabel27">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="CIAF :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField6">
+          <Properties>
+            <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JButton" name="jButton5">
@@ -774,6 +801,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -865,7 +893,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel40" pref="127" max="32767" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField34" min="-2" pref="178" max="-2" attributes="0"/>
+                                  <Component id="txt_nro_chasis" min="-2" pref="178" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel42" max="32767" attributes="0"/>
@@ -973,7 +1001,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel40" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField34" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txt_nro_chasis" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -1140,7 +1168,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField34">
+        <Component class="javax.swing.JTextField" name="txt_nro_chasis">
           <Properties>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
@@ -1294,6 +1322,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -1355,6 +1384,7 @@
                     <Column editable="true" title="BIEN" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                   <JTableSelectionModel selectionMode="0"/>
                 </Property>
@@ -1376,6 +1406,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -1533,6 +1564,7 @@
                 </TitledBorder>
               </Border>
             </Property>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
 
           <Layout>
@@ -1571,6 +1603,7 @@
                         <Column editable="true" title="PRECIO ADQ." type="java.lang.Object"/>
                       </Table>
                     </Property>
+                    <Property name="opaque" type="boolean" value="false"/>
                     <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                       <JTableSelectionModel selectionMode="0"/>
                     </Property>

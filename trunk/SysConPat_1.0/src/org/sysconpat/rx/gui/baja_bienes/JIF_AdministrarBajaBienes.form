@@ -2,6 +2,9 @@
 
 <Form version="1.6" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="2e" green="78" red="a0" type="rgb"/>
+    </Property>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Administrar Baja de Bienes Patrimoniales"/>
@@ -91,6 +94,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -152,6 +156,7 @@
                     <Column editable="true" title="BIEN" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                   <JTableSelectionModel selectionMode="0"/>
                 </Property>
@@ -173,6 +178,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -531,6 +537,7 @@
                 </TitledBorder>
               </Border>
             </Property>
+            <Property name="opaque" type="boolean" value="false"/>
           </Properties>
 
           <Layout>
@@ -705,6 +712,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -880,6 +888,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -941,6 +950,7 @@
                     <Column editable="true" title="BIEN" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
                 <Property name="selectionModel" type="javax.swing.ListSelectionModel" editor="org.netbeans.modules.form.editors2.JTableSelectionModelEditor">
                   <JTableSelectionModel selectionMode="0"/>
                 </Property>

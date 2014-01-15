@@ -59,6 +59,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         jButton5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.yellow);
         setClosable(true);
         setIconifiable(true);
         setTitle("Administrar Oficinas de Entidad");
@@ -91,6 +92,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Oficina", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
@@ -160,6 +162,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Oficinas Registradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -179,6 +182,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
                 "Sigla", "Oficina"
             }
         ));
+        jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable1MouseReleased(evt);

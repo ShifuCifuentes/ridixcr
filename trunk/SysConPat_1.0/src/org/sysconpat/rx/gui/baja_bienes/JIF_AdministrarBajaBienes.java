@@ -119,11 +119,13 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(160, 120, 46));
         setClosable(true);
         setIconifiable(true);
         setTitle("Administrar Baja de Bienes Patrimoniales");
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bienes patrimoniales registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel5.setOpaque(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +145,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
                 "COD. PATRIMONIAL", "BIEN"
             }
         ));
+        jTable2.setOpaque(false);
         jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -177,6 +180,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Bien", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("DENOMINACION :");
@@ -253,6 +257,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
         jLabel14.setText("ESTADO :");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Escoja un estado de movimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setOpaque(false);
 
         jCheckBox4.setText("EN TRANSITO");
         jCheckBox4.setEnabled(false);
@@ -493,6 +498,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Acta de Baja del Bien Patrimonial", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jLabel19.setText("RESOLUCION DE BAJA :");
 
@@ -598,6 +604,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
         });
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bienes patrimoniales dados de baja", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel6.setOpaque(false);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -617,6 +624,7 @@ public final class JIF_AdministrarBajaBienes extends javax.swing.JInternalFrame 
                 "COD. PATRIMONIAL", "BIEN"
             }
         ));
+        jTable3.setOpaque(false);
         jTable3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {

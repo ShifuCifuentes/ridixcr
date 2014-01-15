@@ -99,4 +99,18 @@ public class DACatalogo extends DAAbstract<BECatalogo>{
             return rollback(ex);      
         }
     }   
+     public int ultimo_correlativo_bien_patrimonial() throws Exception {
+        try { 
+            int ul_correlativo=0;
+            setStoreProcedure("dbo.ultimo_correlativo_bien_patrimonial");
+            commitc();
+            while (existResult()) {
+                ul_correlativo=getDataInt(1);
+            }
+            close();
+           return ul_correlativo;
+        } catch (Exception ex) {
+            return rollback(ex);      
+        }
+    }   
 }

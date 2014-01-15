@@ -9,6 +9,9 @@
     </Component>
   </NonVisualComponents>
   <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="0" green="ff" id="yellow" palette="1" red="ff" type="palette"/>
+    </Property>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
     <Property name="title" type="java.lang.String" value="Administrar Personal de Entidad"/>
@@ -80,6 +83,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -319,6 +323,7 @@
             </TitledBorder>
           </Border>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -380,6 +385,7 @@
                     <Column editable="true" title="Personal" type="java.lang.Object"/>
                   </Table>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseReleased"/>

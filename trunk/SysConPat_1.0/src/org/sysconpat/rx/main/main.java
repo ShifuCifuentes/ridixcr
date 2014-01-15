@@ -11,7 +11,7 @@ import org.rx.cr.util.gui.IPServer;
 import org.sysconpat.rx.SysConPat;
 import org.sysconpat.rx.ds.DSUtil;
 import org.sysconpat.rx.gui.principal.JF_Splash;
-import org.sysconpat.rx.util.ResourceIDVendor;
+import static org.sysconpat.rx.util.ResourceIDVendor.*;
 
 public class main {
     static {
@@ -30,7 +30,7 @@ public class main {
     private static void initGUI() {  
         //<editor-fold defaultstate="collapsed" desc="Cuerpo">
         final Config conf =  new Config(Config.CLIENT);
-        conf.setApp_name(ResourceIDVendor.APP_ID);
+        conf.setApp_name(APP_ID);
         try {            
             conf.loadConf();
             if (DSUtil._DSConneccion(conf).getConeccion()!=null) {
@@ -52,25 +52,26 @@ public class main {
                     java.util.logging.Logger.getLogger(JF_Splash.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
                 java.awt.EventQueue.invokeLater(new Runnable() {
+                    @Override
                     public void run() {
                         new JF_Splash(conf).setVisible(true);
                     }
                 });
                  //</editor-fold>
             }else{            
-                conf.setHost(new IPServer().getIp_server());
-                conf.setPort(DSUtil.PORT);
-                conf.setDb(DSUtil.DB);
-                conf.setUser(DSUtil.USER);
-                conf.setPassword(DSUtil.PASSWORD);
+                conf.setHost(HOST);
+                conf.setPort(PORT);
+                conf.setDb(DB);
+                conf.setUser(USER);
+                conf.setPassword(PASSWORD);
                 conf.saveConf();
             }
         } catch (Exception e) {            
-            conf.setHost(new IPServer().getIp_server());
-            conf.setPort(DSUtil.PORT);
-            conf.setDb(DSUtil.DB);
-            conf.setUser(DSUtil.USER);
-            conf.setPassword(DSUtil.PASSWORD);
+            conf.setHost(HOST);
+            conf.setPort(PORT);
+            conf.setDb(DB);
+            conf.setUser(USER);
+            conf.setPassword(PASSWORD);
             conf.saveConf();
         }
         //</editor-fold>
@@ -81,26 +82,26 @@ public class main {
         Config conf;
         if (args[1].equals("server")) {
             conf = new Config(Config.SERVER);
-            conf.setApp_name(ResourceIDVendor.APP_ID);
-            conf.setHost(InetAddress.getLocalHost().getHostAddress().trim());
-            conf.setPort(DSUtil.PORT);
-            conf.setDb(DSUtil.DB);
-            conf.setUser(DSUtil.USER);
-            conf.setPassword(DSUtil.PASSWORD);
-            conf.setUser_db_root(DSUtil.USER_ROOT);
-            conf.setPassword_db_root(DSUtil.PASSWORD_ROOT);
-            conf.setMax_clientes(DSUtil.MAX_CLIENTS);
+            conf.setApp_name(APP_ID);
+            //conf.setHost(InetAddress.getLocalHost().getHostAddress().trim());
+            conf.setPort(PORT);
+            conf.setDb(DB);
+            conf.setUser(USER);
+            conf.setPassword(PASSWORD);
+            conf.setUser_db_root(USER_ROOT);
+            conf.setPassword_db_root(PASSWORD_ROOT);
+            conf.setMax_clientes(MAX_CLIENTS);
             ConfigServerCMD cadmin = new ConfigServerCMD(conf,"lib"+File.separator+"structure_db_psql_1.5.jar","dbo.usuario");
             cadmin.saveConfServer();
             cadmin.validDBStructure();
         }else if(args[1].equals("client")){
             conf = new Config(Config.CLIENT);
-            conf.setApp_name(ResourceIDVendor.APP_ID);            
-            conf.setHost(new IPServer().getIp_server());
-            conf.setPort(DSUtil.PORT);
-            conf.setDb(DSUtil.DB);
-            conf.setUser(DSUtil.USER);
-            conf.setPassword(DSUtil.PASSWORD);
+            conf.setApp_name(APP_ID);            
+            //conf.setHost(new IPServer().getIp_server());
+            conf.setPort(PORT);
+            conf.setDb(DB);
+            conf.setUser(USER);
+            conf.setPassword(PASSWORD);
             conf.saveConf();
         }        
         //</editor-fold>

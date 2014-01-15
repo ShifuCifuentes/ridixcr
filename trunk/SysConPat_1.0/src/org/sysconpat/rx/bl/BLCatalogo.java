@@ -62,5 +62,9 @@ public class BLCatalogo extends BLAbstract<BECatalogo>{
         dao = new DACatalogo(getConeccion());
         return dao.ultimo_correlativo_bien_patrimonial(cod_pat, cod_gg, cod_clase);
     }
+    public int ultimo_correlativo_bien_patrimonial() throws Exception{
+        dao = new DACatalogo(getConeccion());
+        return dao.ultimo_correlativo_bien_patrimonial();
+    }
     
 }

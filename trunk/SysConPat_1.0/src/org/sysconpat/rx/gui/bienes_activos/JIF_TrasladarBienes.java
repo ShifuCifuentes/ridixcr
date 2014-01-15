@@ -69,11 +69,13 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(1, 132, 205));
         setClosable(true);
         setIconifiable(true);
         setTitle("Trasladar Bienes");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ubicacion origen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
@@ -116,6 +118,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de bienes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setOpaque(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -128,6 +131,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
                 "Codigo", "Descripcion"
             }
         ));
+        jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable1MouseReleased(evt);
@@ -197,6 +201,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ubicacion origen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setOpaque(false);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("LOCAL :");
@@ -239,6 +244,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
         });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de bienes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setOpaque(false);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -251,6 +257,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
                 "Codigo", "Descripcion"
             }
         ));
+        jTable2.setOpaque(false);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTable2MouseReleased(evt);
@@ -425,7 +432,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();

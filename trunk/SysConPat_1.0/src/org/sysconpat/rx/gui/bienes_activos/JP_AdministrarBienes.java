@@ -117,6 +117,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jComboBox6 = new javax.swing.JComboBox();
         jComboBox9 = new javax.swing.JComboBox();
         jComboBox10 = new javax.swing.JComboBox();
+        jLabel27 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -141,7 +143,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jLabel38 = new javax.swing.JLabel();
         jTextField32 = new javax.swing.JTextField();
         jTextField33 = new javax.swing.JTextField();
-        jTextField34 = new javax.swing.JTextField();
+        txt_nro_chasis = new javax.swing.JTextField();
         jTextField35 = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
         jLabel40 = new javax.swing.JLabel();
@@ -191,6 +193,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(1, 132, 205));
+
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Guardar_Min.png"))); // NOI18N
         jButton6.setEnabled(false);
@@ -203,6 +207,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Catalogo de bienes patrimoniales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +227,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 "COD. PATRIMONIAL", "BIEN"
             }
         ));
+        jTable1.setOpaque(false);
         jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -277,6 +283,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Bien", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setOpaque(false);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("DENOMINACION :");
@@ -360,6 +367,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jLabel14.setText("ESTADO :");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Escoja un estado de movimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setOpaque(false);
 
         jCheckBox4.setText("EN TRANSITO");
         jCheckBox4.setEnabled(false);
@@ -448,6 +456,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox10.setEnabled(false);
 
+        jLabel27.setText("CIAF :");
+
+        jTextField6.setEnabled(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -493,6 +505,12 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField11))))
                             .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField6))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRadioButton1)
@@ -501,15 +519,14 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13)
+                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13))
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jTextField13))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -567,7 +584,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -610,6 +629,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos adicionales del bien", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setOpaque(false);
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("MARCA :");
@@ -666,7 +686,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
 
         jTextField33.setEnabled(false);
 
-        jTextField34.setEnabled(false);
+        txt_nro_chasis.setEnabled(false);
 
         jTextField35.setEnabled(false);
 
@@ -809,7 +829,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_nro_chasis, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -895,7 +915,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel40)
-                            .addComponent(jTextField34, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_nro_chasis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel42)
@@ -930,6 +950,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bienes patrimoniales registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel5.setOpaque(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -949,6 +970,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 "COD. PATRIMONIAL", "BIEN"
             }
         ));
+        jTable2.setOpaque(false);
         jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -983,6 +1005,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Divicion del bien/Partes individuales depreciables", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel6.setOpaque(false);
 
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("Denominacion :");
@@ -1020,6 +1043,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         });
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Partes divicionales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel7.setOpaque(false);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1032,6 +1056,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 "DENOMINACION", "FECHA ADQ.", "PRECIO ADQ."
             }
         ));
+        jTable3.setOpaque(false);
         jTable3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -1266,10 +1291,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
 
     private void jTextField8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField8KeyReleased
         if (!jTextField8.getText().trim().equals("")) {
-            if(Integer.parseInt(jTextField8.getText().trim())<=470){//co
-                jRadioButton1.setSelected(true);
-            }else{//af
+            if(Integer.parseInt(jTextField8.getText().trim())<=460){//co
                 jRadioButton2.setSelected(true);
+            }else{//af
+                jRadioButton1.setSelected(true);
             }
         }
     }//GEN-LAST:event_jTextField8KeyReleased
@@ -1319,6 +1344,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1384,7 +1410,6 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
-    private javax.swing.JTextField jTextField34;
     private javax.swing.JTextField jTextField35;
     private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField37;
@@ -1399,8 +1424,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txt_nro_chasis;
     private javax.swing.JTextField txt_ult_correlativo;
     // End of variables declaration//GEN-END:variables
     //</editor-fold>
@@ -1428,9 +1455,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
-            jTextField34,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
+            txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jTextField6
         });        
     }
     private void habilitar_controles_datos(){  
@@ -1440,9 +1467,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
-            jTextField34,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
+            txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6
        });    
        jTextField2.requestFocus();
     }
@@ -1453,9 +1480,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jComboBox3,jComboBox4,jComboBox5,jComboBox6,jTextField14,jTextField24,jTextField26,
             jTextField28,jTextField30,jTextField32,jTextField35,jTextField36,jTextField39,jTextField40,
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
-            jTextField34,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
+            txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6
         });
          jTextField1.requestFocus();
     }
@@ -1466,9 +1493,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             {jTextField8,"Ingrese valor de adquisicion"},            
             {jTextField9,"Ingrese la cantidad."},                   
             {jComboBox1,"Seleccione la cuenta contable."},                   
+            {jTextField6,"Ingrese codigo CIAF."},                   
             {jComboBox10,"Seleccione la forma de adquisicion."},                   
             {jDateChooser1,"Ingrese la fecha de adquisicion."},                   
-            {jTextField13,"Ingrese documento de adquisicion."},                   
+            {jTextField13,"Ingrese documento de adquisicion."}              
         }) 
         &&
         isAlgunaOpcionElegida(new JCheckBox[]{
@@ -1520,7 +1548,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             {jTextField27,ALFABETICO_NUMERICO_SPB,15},            
             {jTextField29,NUMERICO,4},            
             {jTextField33,ALFABETICO_NUMERICO_SPB,15},            
-            {jTextField34,NUMERICO,8},            
+            {txt_nro_chasis,ALFABETICO_NUMERICO,20},            
             {jTextField37,NUMERICO_REAL,8},            
             {jTextField38,ALFABETICO_NUMERICO_SPB,15},            
             {jTextField41,ALFABETICO_NUMERICO_SPB,15},            
@@ -1540,7 +1568,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 jTextField3.setText(be2.getGrupo_generico());
                 jTextField4.setText(be2.getClase_bien());
                 jTextField5.setText(be2.getCodigo_patrimonial());
-                txt_ult_correlativo.setText(""+be2.getUl_correlativo());
+                buscarUltimoCorrelativo();
                 utilContenedor.seleccionarItemComboTipoCuenta(jComboBox9,be2.getTipo_cuenta());
                 jTextField8.setText(""+be2.getValor_adquisicion());
                 jTextField11.setText(be2.getClasificador());
@@ -1576,13 +1604,14 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 jTextField27.setText(be2.getRaza());
                 jTextField29.setText(""+be2.getAnio());
                 jTextField33.setText(be2.getPais());
-                jTextField34.setText(""+be2.getNro_chasis());
+                txt_nro_chasis.setText(""+be2.getNro_chasis());
                 jTextField37.setText(""+be2.getDimencion());
                 jTextField38.setText(be2.getCarroceria());
                 jTextField41.setText(be2.getTipo_combustible());
                 jTextField42.setText(""+be2.getAltura());
                 jTextField44.setText(be2.getCertificado_soat());
                 jTextField46.setText(be2.getOtro());
+                jTextField6.setText(be2.getCiaf());
                 listarPartesDivisionariasBienPatrimonial();
             } catch (Exception ex) {
                 Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
@@ -1634,13 +1663,14 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
            be2.setRaza(jTextField27.getText());        
            be2.setAnio(!jTextField29.getText().equals("")?Integer.parseInt(jTextField29.getText()):0);        
            be2.setPais(jTextField33.getText());
-           be2.setNro_chasis(!jTextField34.getText().equals("")?Integer.parseInt(jTextField34.getText()):0);
+           be2.setNro_chasis(!txt_nro_chasis.getText().equals("")?Integer.parseInt(txt_nro_chasis.getText()):0);
            be2.setDimencion(!jTextField37.getText().equals("")?Double.parseDouble(jTextField37.getText()):0);
            be2.setCarroceria(jTextField38.getText());
            be2.setTipo_combustible(jTextField41.getText());
            be2.setAltura(!jTextField42.getText().equals("")?Double.parseDouble(jTextField42.getText()):0);
            be2.setCertificado_soat(jTextField44.getText());
            be2.setOtro(jTextField46.getText());
+           be2.setCiaf(jTextField6.getText());
            rs = bl.registrar(be2);
            for (BEDivicionBienPatrimonial bdbp : model3.getList()) {
                bdbp.setId_bien_patrimonial(rs);
@@ -1696,13 +1726,14 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         be2.setRaza(jTextField27.getText());        
         be2.setAnio(!jTextField29.getText().equals("")?Integer.parseInt(jTextField29.getText()):0);        
         be2.setPais(jTextField33.getText());
-        be2.setNro_chasis(!jTextField34.getText().equals("")?Integer.parseInt(jTextField34.getText()):0);
+        be2.setNro_chasis(!txt_nro_chasis.getText().equals("")?Integer.parseInt(txt_nro_chasis.getText()):0);
         be2.setDimencion(!jTextField37.getText().equals("")?Double.parseDouble(jTextField37.getText()):0);
         be2.setCarroceria(jTextField38.getText());
         be2.setTipo_combustible(jTextField41.getText());
         be2.setAltura(!jTextField42.getText().equals("")?Double.parseDouble(jTextField42.getText()):0);
         be2.setCertificado_soat(jTextField44.getText());
         be2.setOtro(jTextField46.getText());
+        be2.setCiaf(jTextField6.getText());
         bl2 = new BLDivicionBienPatrimonial(root.getConfig());
         int rs = bl.actualizarRegistro(be2);
         bl2.eliminar_diviciones_bien_patrimonial(be2.getId_bien_patrimonial());
@@ -1763,7 +1794,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jTextField4.setText(be1.getClase());
             jTextField5.setText(be1.getCodigo_patrimonial());
             jTextField11.setText(be1.getClasificador());
-            buscarUltimoCorrelativo(be1.getCodigo_patrimonial(),0,0);
+            utilContenedor.seleccionarItemComboCuenta(jComboBox1,be1.getId_cuenta_contable());
+            buscarUltimoCorrelativo();
         }        
     }
 
@@ -1803,10 +1835,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         formateaAnchoColumnaTabla(0,jTable2,70);
     }
 
-    private void buscarUltimoCorrelativo(String  cp,int cc, int cgg){
+    private void buscarUltimoCorrelativo(){
         try {
             BLCatalogo blc = new BLCatalogo();
-            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(cp, cgg, cc),"####"));
+            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(),"####"));
         } catch (Exception ex) {
             Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
         }

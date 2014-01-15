@@ -26,11 +26,13 @@ public class JIF_DepreciacionAnual extends javax.swing.JInternalFrame {
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jButton6 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(124, 188, 25));
         setClosable(true);
         setIconifiable(true);
         setTitle("Depreciacion Anual");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parametros de depreciacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setOpaque(false);
 
         jLabel1.setText("Año de depreciacion :");
 
