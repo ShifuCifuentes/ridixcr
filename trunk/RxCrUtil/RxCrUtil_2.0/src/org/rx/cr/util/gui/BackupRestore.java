@@ -140,8 +140,6 @@ public class BackupRestore extends javax.swing.JDialog{
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Puerto :");
 
-        jTextField3.setEditable(false);
-
         jTextField2.setEditable(false);
 
         jLabel6.setText("Fecha de Respaldo :");

@@ -20,14 +20,14 @@ public interface MVCGenericHibernate<Tipo>
      * @return ( 1(Correcto) | -1(Error))
      */
     @RidixCr(author=RidixCr)
-    public int actualizarRegistro(Tipo bean);
+    public long actualizarRegistro(Tipo bean);
     /**
      *
      * @param obj
      * @return ( 1(Correcto) | -1(Error))
      */
     @RidixCr(author=RidixCr)
-    public int eliminarRegistro(Tipo bean);    
+    public long eliminarRegistro(Tipo bean);    
     /**
      *
      * @param referencia
@@ -47,5 +47,5 @@ public interface MVCGenericHibernate<Tipo>
      * @return (Objeto Buscado | NULL)
      */
     @RidixCr(author=RidixCr)
-    public Tipo buscar(int id);     
+    public Tipo buscar(long id);     
 }

@@ -1,13 +1,8 @@
 package org.rx.cr.conf;
 
 import java.io.*;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.xml.bind.DatatypeConverter;
-import org.rx.cr.util.ResourceMetadataDB;
-import org.rx.cr.util.Utilitarios;
+import static org.rx.cr.util.Utilitarios.*;
+import static org.rx.cr.util.UtilNetwork.*;
 
 public final class Config {
     public static final int NUEVALINEA=10,SERVER=1,CLIENT=2,META_DATOS_SOFT=3;
@@ -32,16 +27,17 @@ public final class Config {
     private int invocador;
         
     public Config(int invocador){      
-        try {
+//        try {
             setInvocador(invocador);
-            ip = InetAddress.getLocalHost().getHostAddress();
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            //ip = InetAddress.getLocalHost().getHostAddress();
+            ip = IP_LOOP;
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(Config.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     public boolean loadConf(){
         try {            
-            ftmp = new File(Utilitarios.getCurentPath()+File.separator+"conf"+File.separator+getAppConfigFileName());               
+            ftmp = new File(getCurentPath()+File.separator+"conf"+File.separator+getAppConfigFileName());               
             isr = new InputStreamReader(new FileInputStream(ftmp));  
             load();           
             isr.close();
@@ -53,8 +49,8 @@ public final class Config {
     }
     private void load() throws IOException, Exception{               
         String line;  
-        while (isr.ready()) {
-            line = decodeStringBase64ASSCII(readLine().trim());            
+        while (isr.ready()) {            
+            line = decodeBASE64Binary(readLine().trim());            
             line=line.trim();
             switch(getInvocador()){
                 case SERVER:
@@ -146,7 +142,7 @@ public final class Config {
             if (!ftmp.exists()) {
                ftmp.mkdir(); 
             }
-            ftmp = new File(Utilitarios.getCurentPath()+File.separator+"conf"+File.separator+getAppConfigFileName());
+            ftmp = new File(getCurentPath()+File.separator+"conf"+File.separator+getAppConfigFileName());
             osw = new OutputStreamWriter(new FileOutputStream(ftmp));
             save();
             osw.close();
@@ -158,41 +154,34 @@ public final class Config {
     private void save() throws IOException{
       switch(getInvocador()){
           case SERVER:      
-                osw.write(encodeStringASSCIIBase64("host="+getHost()) +"\n");      
-                osw.write(encodeStringASSCIIBase64("port="+getPort()) +"\n");
-                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
-                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
-                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");
-                osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
-                osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
-                osw.write(encodeStringASSCIIBase64("dir_backup_db="+getDir_backup_db())+"\n");       
-                osw.write(encodeStringASSCIIBase64("dir_db="+getDir_db())+"\n");       
-                osw.write(encodeStringASSCIIBase64("max_clients="+getMax_clientes())+"\n");       
+                osw.write(encodeBinaryBASE64("host="+getHost()) +"\n");      
+                osw.write(encodeBinaryBASE64("port="+getPort()) +"\n");
+                osw.write(encodeBinaryBASE64("db="+getDb()) +"\n");
+                osw.write(encodeBinaryBASE64("user="+getUser()) +"\n");
+                osw.write(encodeBinaryBASE64("password="+getPassword())+"\n");
+                osw.write(encodeBinaryBASE64("user_db_root="+getUser_db_root())+"\n");
+                osw.write(encodeBinaryBASE64("passworddb_root="+getPassword_db_root())+"\n");
+                osw.write(encodeBinaryBASE64("dir_backup_db="+getDir_backup_db())+"\n");       
+                osw.write(encodeBinaryBASE64("dir_db="+getDir_db())+"\n");       
+                osw.write(encodeBinaryBASE64("max_clients="+getMax_clientes())+"\n");       
               break;
           case CLIENT:   
-                osw.write(encodeStringASSCIIBase64("host="+getHost()) +"\n");      
-                osw.write(encodeStringASSCIIBase64("port="+getPort()) +"\n");
-                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
-                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
-                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");                
+                osw.write(encodeBinaryBASE64("host="+getHost()) +"\n");      
+                osw.write(encodeBinaryBASE64("port="+getPort()) +"\n");
+                osw.write(encodeBinaryBASE64("db="+getDb()) +"\n");
+                osw.write(encodeBinaryBASE64("user="+getUser()) +"\n");
+                osw.write(encodeBinaryBASE64("password="+getPassword())+"\n");                
               break;  
           case META_DATOS_SOFT: 
-                osw.write(encodeStringASSCIIBase64("db="+getDb()) +"\n");
-                osw.write(encodeStringASSCIIBase64("user="+getUser()) +"\n");
-                osw.write(encodeStringASSCIIBase64("password="+getPassword())+"\n");   
-                osw.write(encodeStringASSCIIBase64("user_db_root="+getUser_db_root())+"\n");
-                osw.write(encodeStringASSCIIBase64("passworddb_root="+getPassword_db_root())+"\n");
+                osw.write(encodeBinaryBASE64("db="+getDb()) +"\n");
+                osw.write(encodeBinaryBASE64("user="+getUser()) +"\n");
+                osw.write(encodeBinaryBASE64("password="+getPassword())+"\n");   
+                osw.write(encodeBinaryBASE64("user_db_root="+getUser_db_root())+"\n");
+                osw.write(encodeBinaryBASE64("passworddb_root="+getPassword_db_root())+"\n");
               break;  
       }    
     }
 
-    
-    public String encodeStringASSCIIBase64(String ref){    
-       return DatatypeConverter.printBase64Binary(ref.getBytes());
-    }
-    public String decodeStringBase64ASSCII(String ref){
-       return new String(DatatypeConverter.parseBase64Binary(ref));
-    }
     public String getUser() {
         return user.trim();
     }

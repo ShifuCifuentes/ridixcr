@@ -8,6 +8,7 @@ public class TestDesktop extends javax.swing.JFrame {
     public TestDesktop() {
         initComponents();
         panel = new DesktopPanel();
+        panel.quitaPanelesInfo();
         getContentPane().add(panel);
         pack();
     }

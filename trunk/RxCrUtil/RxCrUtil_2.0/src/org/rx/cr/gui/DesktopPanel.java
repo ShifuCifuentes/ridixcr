@@ -47,9 +47,6 @@ public final class DesktopPanel extends javax.swing.JPanel{
         initComponents();
         hints = createRenderingHints();
         monitor_memoria = new MonitorMemoria();
-//        jSplitPane1.setVisible(false);
-//        jPanel3.setVisible(false);
-//        jPanel8.setVisible(false);
         reubicaGadguets();
         iniciaAnimacionCurvas();
         preparaMonitorMemoria();
@@ -666,6 +663,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
         jDesktopPane1.add(jSplitPane1);
         jSplitPane1.setBounds(0, 240, 210, 360);
+        //jSplitPane1.setVisible(false);
 
         emp_telefono.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         emp_telefono.setText("973000000");
@@ -716,6 +714,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
         jDesktopPane1.add(jTabbedPane3);
         jTabbedPane3.setBounds(0, 0, 210, 240);
+        //jTabbedPane3.setVisible(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -800,4 +799,10 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel user;
     private javax.swing.JLabel user_name;
     // End of variables declaration//GEN-END:variables
+    public void quitaPanelesInfo(){
+        jTabbedPane3.setVisible(false);
+        jSplitPane1.setVisible(false);        
+//        jPanel3.setVisible(false);
+//        jPanel8.setVisible(false);
+    }
 }

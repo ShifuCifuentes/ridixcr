@@ -16,6 +16,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.awt.print.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,6 +35,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.CaretListener;
@@ -43,9 +45,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.DatatypeConverter;
-//import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
-//import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-//import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 import org.rx.cr.util.gui.AWTUtilitiesWrapper;
 import org.rx.cr.util.gui.JHourChooser;
 import org.rx.cr.util.gui.ShapeDecorated;
@@ -423,15 +422,6 @@ public final class Utilitarios extends JLabel implements Runnable{
         return new ImageIcon(Class.class.getClass().getResource(resource));
       }
       
-//      public static ResizableIcon getResizableIconFromResource(String resource) {      
-//        return getResizableIconFromResource(resource,48,48);
-//      }
-//      public static ResizableIcon getResizableIconFromResource(String resource,int size) {      
-//        return getResizableIconFromResource(resource,size,size);
-//      }
-//      public static ResizableIcon getResizableIconFromResource(String resource,int width,int height) {      
-//        return ImageWrapperResizableIcon.getIcon(Class.class.getClass().getResourceAsStream(resource),new Dimension(width,height));
-//      }
       public static void aplicaTransparencia(Window window){
           AWTUtilitiesWrapper.setWindowOpaque(window,false);
       }
@@ -3114,6 +3104,17 @@ public final class Utilitarios extends JLabel implements Runnable{
         //</editor-fold>
         //txf=n_txf;
     }
+    public static void setFondoEscritorio(JDesktopPane dp,String ref){
+        BufferedImage imagen = null;       
+        URL path = Class.class.getResource(ref);        
+        try {
+            imagen = ImageIO.read(path);            
+            dp.setBorder(new DesktopPaneBackground(imagen));
+            
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+  }
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="NRO LOTE GENERATOR">
     public static String genNroLote() {

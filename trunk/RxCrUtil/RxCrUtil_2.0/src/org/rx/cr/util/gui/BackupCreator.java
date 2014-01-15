@@ -9,9 +9,11 @@ import java.net.UnknownHostException;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.rx.cr.conf.Config;
 import org.rx.cr.db.PG_DBM_Tools;
+import org.rx.cr.util.UtilNetwork;
 import static org.rx.cr.util.Utilitarios.*;
 
 public class BackupCreator extends javax.swing.JDialog{
@@ -20,10 +22,14 @@ public class BackupCreator extends javax.swing.JDialog{
     private Config conf=null;
     private Process process=null;
     private boolean isFinsh=false;
+    private File dbc=null;
+    private JFileChooser jfc=null;
     
     public BackupCreator(Frame parent,Config conf) {
-        super(parent,true);
+        super(parent,true);        
         initComponents();
+        jfc = new JFileChooser();
+        jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         setIconoVentana(this,"/org/rx/cr/resource/advancedsettings_min.png");
         this.conf = conf;
         adaptarMovimiento(this);
@@ -49,6 +55,7 @@ public class BackupCreator extends javax.swing.JDialog{
         jTextField4 = new javax.swing.JTextField();
         jDateChooser1 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
         jProgressBar1 = new javax.swing.JProgressBar();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
@@ -94,6 +101,13 @@ public class BackupCreator extends javax.swing.JDialog{
 
         jLabel6.setText("Fecha de Respaldo :");
 
+        jButton3.setText("...");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -110,9 +124,12 @@ public class BackupCreator extends javax.swing.JDialog{
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
-                    .addComponent(jTextField4)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(jTextField1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jTextField4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -132,12 +149,13 @@ public class BackupCreator extends javax.swing.JDialog{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jButton3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jProgressBar1.setString("El Proceso tardara mas de la cuenta tenga paciencia");
@@ -242,7 +260,7 @@ public class BackupCreator extends javax.swing.JDialog{
                         .addComponent(jLabel9))
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -273,7 +291,7 @@ public class BackupCreator extends javax.swing.JDialog{
 
     public void validaCreacionBackUp(){
         try {
-            if (conf.getHost().equals(InetAddress.getLocalHost().getHostAddress().trim())) {
+            if (conf.getHost().equals(UtilNetwork.IP_LOOP) || conf.getHost().equals(InetAddress.getLocalHost().getHostAddress().trim())) {
               jTextField1.setText(conf.getDb());
               jTextField2.setText(conf.getHost());
               jTextField3.setText(conf.getPort());
@@ -304,7 +322,16 @@ public class BackupCreator extends javax.swing.JDialog{
     }//GEN-LAST:event_formWindowClosing
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ejecutaProceso();
+        if (conf.getInvocador()!= Config.CLIENT) {            
+            if (dbc!=null) {
+                ejecutaProceso();
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor seleccione un directorio de respaldo!.", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,"Esta operacion solo se puede ejecutar con credenciales de servidor!!!", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -313,10 +340,15 @@ public class BackupCreator extends javax.swing.JDialog{
         } catch (Exception ex) {}
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        seleccionarDirectorio();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -361,7 +393,7 @@ public class BackupCreator extends javax.swing.JDialog{
                log_back_up+=(char)buff; 
             }
             is.close();
-            ejecutaComando("cmd.exe /C echo Copia de Seguridad DB SysBotica finalizada correctamente el (%date:~3,2%-%date:~0,2%-%date:~6,4%) a las (%time:~0,2%-%time:~3,2%-%time:~6,2%) por favor guarde su copia de respaldo en un lugar seguro para evitar cualquier catastrofe y perdida de informacion. "+log_back_up+">"+conf.getDir_backup_db()+File.separator+"backup_db_sirec.log");
+            ejecutaComando("cmd.exe /C echo Copia de Seguridad DB SysBotica finalizada correctamente el (%date:~3,2%-%date:~0,2%-%date:~6,4%) a las (%time:~0,2%-%time:~3,2%-%time:~6,2%) por favor guarde su copia de respaldo en un lugar seguro para evitar cualquier catastrofe y perdida de informacion. "+log_back_up+">"+jTextField4.getText()+File.separator+"backup_db_sirec.log");
             jProgressBar1.setIndeterminate(false);
             jProgressBar1.setValue(100);
             jProgressBar1.setString("Proceso de creacion copia de respaldo al 100%");
@@ -382,6 +414,17 @@ public class BackupCreator extends javax.swing.JDialog{
             }            
         } catch (IOException ex) {
             Logger.getLogger(BackupCreator.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void seleccionarDirectorio() {
+        int op = jfc.showOpenDialog(this);
+        if (op==JFileChooser.APPROVE_OPTION) {
+          dbc = jfc.getSelectedFile();          
+          jTextField4.setText(dbc.getPath());
+        }else{
+          dbc = null;
+          jTextField4.setText("");
         }
     }
 }

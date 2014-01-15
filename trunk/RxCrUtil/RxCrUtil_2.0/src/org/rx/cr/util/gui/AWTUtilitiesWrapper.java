@@ -6,8 +6,6 @@ import java.awt.Shape;
 import java.awt.Window;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComponent;
 
 public class AWTUtilitiesWrapper {
@@ -35,12 +33,8 @@ public class AWTUtilitiesWrapper {
             //mSetComponentShape = awtUtilitiesClass.getMethod("setComponentShape",JComponent.class, Shape.class);
             mSetWindowOpacity = awtUtilitiesClass.getMethod("setWindowOpacity", Window.class, float.class);
             mSetWindowOpaque = awtUtilitiesClass.getMethod("setWindowOpaque", Window.class, boolean.class);
-        } catch (NoSuchMethodException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SecurityException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchMethodException | SecurityException | ClassNotFoundException ex) {
+           // Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -59,12 +53,8 @@ public class AWTUtilitiesWrapper {
             if (ret instanceof Boolean) {
                 return ((Boolean)ret).booleanValue();
             }
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+           // Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
@@ -82,18 +72,13 @@ public class AWTUtilitiesWrapper {
     
     private static void set(Method method, Window window, Object value) {
         if (awtUtilitiesClass == null ||
-                method == null)
-        {
+            method == null){
             return;
         }
         try {
             method.invoke(null, window, value);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            //Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     private static void set(Method method,JComponent component, Object value) {
@@ -104,12 +89,8 @@ public class AWTUtilitiesWrapper {
         }
         try {
             method.invoke(null,component, value);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvocationTargetException ex) {
-            Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
+            //Logger.getLogger(AWTUtilitiesWrapper.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public static void setWindowShape(Window window, Shape shape) {

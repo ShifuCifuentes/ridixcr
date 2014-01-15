@@ -1,24 +1,21 @@
 package org.rx.cr.util.gui;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static org.rx.cr.util.Utilitarios.*;
+import static org.rx.cr.util.UtilNetwork.*;
 
 public class IPServer extends javax.swing.JFrame {
     private String ip_server;
     public IPServer() {
-        try {            
+//        try {            
             initComponents();
             setIconoVentana(this,"/org/rx/cr/resource/advancedsettings_min.png");
-            this.ip_server = InetAddress.getLocalHost().getHostAddress().trim();
+            this.ip_server = IP_LOOP;
             addEvents();
             centreaVentana(this);
             setVisible(true);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(IPServer.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(IPServer.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
