@@ -167,7 +167,6 @@ public class JF_Principal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 102));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -605,8 +604,9 @@ public class JF_Principal extends javax.swing.JFrame {
         catalogo.add(jMenuItem33);
 
         jMenu12.setBackground(new java.awt.Color(67, 59, 143));
-        jMenu12.setForeground(new java.awt.Color(51, 51, 255));
+        jMenu12.setForeground(new java.awt.Color(255, 255, 255));
         jMenu12.setText("TIPO DE CUENTA");
+        jMenu12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenuItem40.setBackground(new java.awt.Color(67, 59, 143));
         jMenuItem40.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -633,8 +633,9 @@ public class JF_Principal extends javax.swing.JFrame {
         catalogo.add(jMenu12);
 
         jMenu13.setBackground(new java.awt.Color(67, 59, 143));
-        jMenu13.setForeground(new java.awt.Color(51, 51, 255));
+        jMenu13.setForeground(new java.awt.Color(255, 255, 255));
         jMenu13.setText("CLASIFICADOR");
+        jMenu13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jMenuItem45.setBackground(new java.awt.Color(67, 59, 143));
         jMenuItem45.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
