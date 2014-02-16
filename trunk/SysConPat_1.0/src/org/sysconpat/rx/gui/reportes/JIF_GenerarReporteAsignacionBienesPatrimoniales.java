@@ -9,13 +9,13 @@ import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.be.BEPersonal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax.swing.JInternalFrame {
     private UtilContenedor utilContenedor = null;
-    private Principal root;
-    public JIF_GenerarReporteAsignacionBienesPatrimoniales(Principal root) {
+    private JF_Principal root;
+    public JIF_GenerarReporteAsignacionBienesPatrimoniales(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -43,9 +43,11 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
         setIconifiable(true);
         setTitle("Generar Reporte de Asignacion de Bienes Patrimoniales");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Asignacion Bienes Patrimoniales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de Asignacion Bienes Patrimoniales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
 
@@ -56,6 +58,8 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("AREA :");
 
@@ -73,9 +77,13 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("OFICINA :");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("PERSONAL :");
 
@@ -99,7 +107,7 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, 278, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, 0, 274, Short.MAX_VALUE)
                     .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboBox4, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -250,7 +258,7 @@ public final class JIF_GenerarReporteAsignacionBienesPatrimoniales extends javax
         ReportGeneric report = new ReportGeneric(root.getConfig());
         report.setReportParent("/org/sysconpat/rx/report/");
         JInternalFrame reportFrame = report.mkReportToInternalFrame("asignacion_bp_personal", new String[]{"p_id_personal"}, new Object[]{be.getId_personal()}, "Asignacion de Bienes Patrimoniales");
-        reportFrame.setFrameIcon(getFrameIcon());
+        //reportFrame.setFrameIcon(getFrameIcon());
         root.insertarInternalFrames(reportFrame);
         resetControl();
     }

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="1024" pageHeight="848" columnWidth="984" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c08cb264-d900-43a3-8f75-daaa8b487d19">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="19"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT anio,clasificador,descripcion
+FROM dbo.clasificador
+where clasificador like '2%'
+order by clasificador]]>
+	</queryString>
+	<field name="anio" class="java.lang.Integer"/>
+	<field name="clasificador" class="java.lang.String"/>
+	<field name="descripcion" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="2004f0db-97b3-4306-a392-7559e75933c2" mode="Opaque" x="-20" y="-20" width="1024" height="92" backcolor="#00CD00"/>
+				<staticText>
+					<reportElement uuid="ab28c395-626e-461f-a922-57b81886939e" x="121" y="19" width="406" height="33" forecolor="#000000"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDADA DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="915b2419-d319-48fe-9bdf-f2d6545cb2b5" x="126" y="52" width="207" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CLASIFIADOR DE INGRESOS]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement uuid="3d6fd22a-8470-4fa2-88c0-62381a2e947d" x="12" y="0" width="99" height="92"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="9e419bdd-5218-44bc-8bd9-708098d54902" x="-20" y="20" width="1024" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="f1063c13-cb96-4b4d-88e8-08b5c7350b57" mode="Opaque" x="0" y="0" width="79" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a05e3c18-f4a1-4159-9e76-e842c3f240f1" mode="Opaque" x="79" y="0" width="152" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASIFICADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1083b578-e3fe-4507-9deb-f2423cac0ca8" mode="Opaque" x="231" y="0" width="753" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="859cacdb-5688-42ff-8234-f604dbb604a8" positionType="FixRelativeToBottom" x="0" y="19" width="984" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3e563bef-6776-447b-a24f-e5a68351b79a" x="0" y="0" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="64f57f89-6047-483b-8530-ff5b175a1cac" x="79" y="0" width="152" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clasificador}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="600ce0fa-77d7-4e56-a7c0-cc726475c329" x="231" y="0" width="753" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="49b74e32-f9c1-4301-8b2f-fbf2944bc778" mode="Opaque" x="0" y="4" width="944" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="e79a046f-00a8-43d9-909c-bef197ad4e5a" mode="Opaque" x="944" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yy">
+				<reportElement uuid="2b3e4bc1-0e9a-4ef7-a00e-e917e3e86245" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -87,8 +87,8 @@ public class DACatalogo extends DAAbstract<BECatalogo>{
             int ul_correlativo=0;
             setStoreProcedure("dbo.ultimo_correlativo_bien_patrimonial"); 
             setParameterString(cod_pat);
-            setParameterInt(cod_gg);
             setParameterInt(cod_clase);
+            setParameterInt(cod_gg);            
             commitc();
             while (existResult()) {
                 ul_correlativo=getDataInt(1);

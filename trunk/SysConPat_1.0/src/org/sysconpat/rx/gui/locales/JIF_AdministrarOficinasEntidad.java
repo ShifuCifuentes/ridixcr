@@ -1,6 +1,5 @@
 package org.sysconpat.rx.gui.locales;
 
-import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,13 +9,12 @@ import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.bl.BLOficina;
-import org.sysconpat.rx.gui.bienes_activos.JP_AdministrarBienes;
 import org.sysconpat.rx.gui.models.ModeloOficina;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     
     private UtilContenedor utilContenedor = null;
     private ModeloOficina model = null;
@@ -26,7 +24,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
     private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=-1;
     private int operacion=DESCONOCIDO;
     
-    public JIF_AdministrarOficinasEntidad(Principal root) {
+    public JIF_AdministrarOficinasEntidad(JF_Principal root) {
         initComponents();
         this.root = root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -40,6 +38,8 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jButton7 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -58,6 +58,14 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+
+        jMenuItem1.setText("Eliminar Bien Seleccionado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setBackground(java.awt.Color.yellow);
         setClosable(true);
@@ -94,14 +102,18 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos de la Oficina", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel2.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("NOMBRE DE AREA :");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("SIGLA :");
 
+        jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField3.setEnabled(false);
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -112,8 +124,10 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
             }
         });
 
+        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField2.setEnabled(false);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("AREA :");
 
@@ -164,6 +178,8 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Oficinas Registradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel1.setOpaque(false);
 
+        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -182,6 +198,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
                 "Sigla", "Oficina"
             }
         ));
+        jTable1.setComponentPopupMenu(jPopupMenu1);
         jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -211,7 +228,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
                     .addComponent(jButton1)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -259,7 +276,7 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,6 +349,10 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
         }     
     }//GEN-LAST:event_jComboBox7ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
@@ -344,8 +365,10 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -458,6 +481,23 @@ public final class JIF_AdministrarOficinasEntidad extends javax.swing.JInternalF
             model.addAll(lista);
         } catch (Exception ex) {
             Logger.getLogger(JIF_AdministrarAreasEntidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void eliminar() {
+        if (jTable1.getSelectedRow()>=0) {
+            try { 
+                bl = new BLOficina(root.getConfig());
+                int rs = bl.eliminarRegistro(model.get(jTable1.getSelectedRow()));
+                if(rs>=0){  
+                    listarOficinas();
+                    JOptionPane.showMessageDialog(root,"Correctamente eliminado.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(root,"Error de Eliminacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

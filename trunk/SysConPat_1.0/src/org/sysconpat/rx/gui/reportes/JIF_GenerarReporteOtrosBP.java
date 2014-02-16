@@ -10,13 +10,13 @@ import org.sysconpat.rx.be.BEClase;
 import org.sysconpat.rx.be.BEGrupoGenerico;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.be.BEOficina;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame {
     private UtilContenedor utilContenedor = null;
-    private Principal root;
-    public JIF_GenerarReporteOtrosBP(Principal root) {
+    private JF_Principal root;
+    public JIF_GenerarReporteOtrosBP(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -54,7 +54,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
         setIconifiable(true);
         setTitle("Generar Otros Reportes - Bien Patrimonial");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local de asignacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local de asignacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -65,6 +65,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Local :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -87,7 +88,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
                 .addGap(0, 11, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tipo de reporte", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel3.setOpaque(false);
 
         jTabbedPane1.setBackground(new java.awt.Color(240, 117, 2));
@@ -95,8 +96,9 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
         jTabbedPane1.setOpaque(true);
 
         jPanel2.setBackground(new java.awt.Color(240, 117, 2));
-        jPanel2.setOpaque(false);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Grupo Generico :");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -109,7 +111,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, 0, 254, Short.MAX_VALUE)
+                .addComponent(jComboBox2, 0, 242, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -124,8 +126,9 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
 
         jTabbedPane1.addTab("Por Grupo Generico", jPanel2);
 
-        jPanel4.setOpaque(false);
+        jPanel4.setBackground(new java.awt.Color(240, 117, 2));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("Area :");
 
@@ -154,8 +157,10 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
 
         jTabbedPane1.addTab("Por Area", jPanel4);
 
-        jPanel5.setOpaque(false);
+        jPanel5.setBackground(new java.awt.Color(240, 117, 2));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Area :");
 
@@ -173,6 +178,8 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Oficina :");
 
@@ -207,9 +214,11 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
 
         jTabbedPane1.addTab("Por Oficina", jPanel5);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clases definidas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Clases definidas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel6.setOpaque(false);
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Clase :");
 
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -400,8 +409,8 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
                 be2 = (BEGrupoGenerico) jComboBox2.getSelectedItem();
                 report = new ReportGeneric(root.getConfig());
                 report.setReportParent("/org/sysconpat/rx/report/");
-                reportFrame = report.mkReportToInternalFrame("bienes_patrimoniales_otros_gg", new String[]{"p_id_local","p_id_grupo_generico","p_id_clase","p_grupo_generico"}, new Object[]{be.getId_local(),be2.getId_grupo_generico(),be3.getId_clase(),be2.getDenominacion().toUpperCase()}, "Bienes Patrimoniales por Grupo Generico");
-                reportFrame.setFrameIcon(getFrameIcon());
+                reportFrame = report.mkReportToInternalFrame("bienes_patrimoniales_otros_gg", new String[]{"p_id_local"}, new Object[]{be.getId_local(),be2.getId_grupo_generico(),be3.getId_clase(),be2.getDenominacion().toUpperCase()}, "Bienes Patrimoniales por Grupo Generico");
+                //reportFrame.setFrameIcon(getFrameIcon());
                 root.insertarInternalFrames(reportFrame);
                 resetControl();
                 break;
@@ -410,7 +419,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
                 report = new ReportGeneric(root.getConfig());
                 report.setReportParent("/org/sysconpat/rx/report/");
                 reportFrame = report.mkReportToInternalFrame("bienes_patrimoniales_otros_area", new String[]{"p_id_local","p_id_area","p_id_clase","p_area"}, new Object[]{be.getId_local(),be4.getId_area(),be3.getId_clase(),be2.getDenominacion().toUpperCase()}, "Bienes Patrimoniales por Area");
-                reportFrame.setFrameIcon(getFrameIcon());
+                //reportFrame.setFrameIcon(getFrameIcon());
                 root.insertarInternalFrames(reportFrame);
                 resetControl();
                 break;
@@ -419,7 +428,7 @@ public final class JIF_GenerarReporteOtrosBP extends javax.swing.JInternalFrame 
                 report = new ReportGeneric(root.getConfig());
                 report.setReportParent("/org/sysconpat/rx/report/");
                 reportFrame = report.mkReportToInternalFrame("bienes_patrimoniales_otros_oficina", new String[]{"p_id_local","p_id_oficina","p_id_clase","p_oficina"}, new Object[]{be.getId_local(),be5.getId_oficina(),be3.getId_clase(),be5.getNombre_oficina().toUpperCase()}, "Bienes Patrimoniales por Oficina");
-                reportFrame.setFrameIcon(getFrameIcon());
+                //reportFrame.setFrameIcon(getFrameIcon());
                 root.insertarInternalFrames(reportFrame);
                 resetControl();
                 break;

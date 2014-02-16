@@ -9,11 +9,11 @@ import org.sysconpat.rx.be.BEArea;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.bl.BLArea;
 import org.sysconpat.rx.gui.models.ModeloArea;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     private UtilContenedor utilContenedor = null;
     private ModeloArea model = null;
     
@@ -22,7 +22,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
     private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=-1;
     private int operacion=DESCONOCIDO;
     
-    public JIF_AdministrarAreasEntidad(Principal root) {
+    public JIF_AdministrarAreasEntidad(JF_Principal root) {
         initComponents();
         this.root = root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -36,6 +36,8 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jButton8 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -52,6 +54,14 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         jTextField3 = new javax.swing.JTextField();
         jComboBox7 = new javax.swing.JComboBox();
         jTextField2 = new javax.swing.JTextField();
+
+        jMenuItem1.setText("Eliminar Bien Seleccionado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setBackground(java.awt.Color.yellow);
         setClosable(true);
@@ -104,6 +114,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
                 "Sigla", "Area"
             }
         ));
+        jTable1.setComponentPopupMenu(jPopupMenu1);
         jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -162,19 +173,24 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Area", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel2.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("NOMBRE DE AREA :");
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("SIGLA :");
 
+        jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField3.setEnabled(false);
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox7.setEnabled(false);
 
+        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField2.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -236,7 +252,7 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -296,6 +312,10 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
         jTextField1.requestFocus();
     }//GEN-LAST:event_formComponentShown
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton5;
@@ -306,8 +326,10 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -417,5 +439,21 @@ public final class JIF_AdministrarAreasEntidad extends javax.swing.JInternalFram
             {jTextField2,CARACTERES_COMPLETOS,100},
             {jTextField3,ALFABETICO_NUMERICO_SPB,10}            
         });        
+    }
+    private void eliminar() {
+        if (jTable1.getSelectedRow()>=0) {
+            try { 
+                bl = new BLArea(root.getConfig());
+                int rs = bl.eliminarRegistro(model.get(jTable1.getSelectedRow()));
+                if(rs>=0){  
+                    listarAreas();
+                    JOptionPane.showMessageDialog(root,"Correctamente eliminado.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(root,"Error de Eliminacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

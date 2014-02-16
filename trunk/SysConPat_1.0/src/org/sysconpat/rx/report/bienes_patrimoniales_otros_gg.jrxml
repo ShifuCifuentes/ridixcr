@@ -8,16 +8,7 @@
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
 		<defaultValueExpression><![CDATA["I:\\SysConPat_1.0\\src\\org\\sysconpat\\rx\\report\\"]]></defaultValueExpression>
-	</parameter>
-	<parameter name="p_id_grupo_generico" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="p_id_clase" class="java.lang.Integer">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<parameter name="p_grupo_generico" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
+	</parameter>	
 	<queryString>
 		<![CDATA[SELECT
      upper(LOC.nombre) as local,

@@ -12,17 +12,17 @@ import org.sysconpat.rx.be.BEPersonal;
 import org.sysconpat.rx.bl.BLBienPatrimonial;
 import org.sysconpat.rx.gui.locales.JIF_AdministrarAreasEntidad;
 import org.sysconpat.rx.gui.models.ModeloBienPatrimonial;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     
     private UtilContenedor utilContenedor = null;
     private ModeloBienPatrimonial model1 = null;
     private ModeloBienPatrimonial model2 = null;
     
-    public JIF_TrasladarBienes(Principal root) {
+    public JIF_TrasladarBienes(JF_Principal root) {
         initComponents();
         this.root = root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -74,9 +74,11 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Trasladar Bienes");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ubicacion origen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "UBICACION ORIGEN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("LOCAL :");
 
@@ -87,6 +89,8 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("AREA :");
 
@@ -104,9 +108,13 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("OFICINA :");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("PERSONAL :");
 
@@ -117,7 +125,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de bienes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTADO DE BIENES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel2.setOpaque(false);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -200,9 +208,11 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ubicacion origen", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "UBICACION DESTINO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel3.setOpaque(false);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("LOCAL :");
 
@@ -213,6 +223,8 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("AREA :");
 
@@ -230,9 +242,13 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("OFICINA :");
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("PERSONAL :");
 
@@ -243,7 +259,7 @@ public final class JIF_TrasladarBienes extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Listado de bienes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTADO DE BIENES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel4.setOpaque(false);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(

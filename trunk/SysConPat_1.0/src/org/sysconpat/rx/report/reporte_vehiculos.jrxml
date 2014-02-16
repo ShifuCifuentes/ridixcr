@@ -82,16 +82,16 @@ order by BP.ul_correlativo]]>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement uuid="6710bb84-489f-405b-bea4-6564b7ceb8fc" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="6710bb84-489f-405b-bea4-6564b7ceb8fc" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#00CC00"/>
 				<staticText>
-					<reportElement uuid="013aa977-7282-4ff7-ad01-4d5e8d6e93ec" x="20" y="20" width="425" height="43" forecolor="#FFFFFF"/>
+					<reportElement uuid="013aa977-7282-4ff7-ad01-4d5e8d6e93ec" x="20" y="20" width="425" height="43" forecolor="#000000"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[INVENTARIO VEHICULAR]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="baf7c6b3-2ad4-470d-ace2-961009c571f2" x="20" y="63" width="180" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="baf7c6b3-2ad4-470d-ace2-961009c571f2" x="20" y="63" width="180" height="20" forecolor="#000000"/>
 					<textElement textAlignment="Left">
 						<font size="14" isBold="false"/>
 					</textElement>

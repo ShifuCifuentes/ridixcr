@@ -41,7 +41,7 @@ public class JD_About extends javax.swing.JDialog {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("CERGUS");
+        jLabel3.setText("CERCUS");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/sysrent_icon.png"))); // NOI18N

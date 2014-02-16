@@ -6,7 +6,7 @@ import org.sysconpat.rx.be.BECatalogo;
 public class ModeloCatalogo extends AbstractTableModel<BECatalogo>{
 
     public ModeloCatalogo() {
-        setTitles(new String[]{"Cod. Pat.","Denominacion"});
+        setTitles(new String[]{"COD. PAT.","DENOMINACION"});
     }
     
     @Override

@@ -174,16 +174,16 @@ order by ARE.id_area,OFC.id_oficina,upper(PR.apellidos)||', '||initcap(PR.nombre
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement uuid="d7833624-83f7-446d-854d-eea0923a81c0" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="d7833624-83f7-446d-854d-eea0923a81c0" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#00CC00"/>
 				<staticText>
-					<reportElement uuid="3f052a9d-4c5b-44a4-b125-1a1b779301e2" x="20" y="20" width="515" height="43" forecolor="#FFFFFF"/>
+					<reportElement uuid="3f052a9d-4c5b-44a4-b125-1a1b779301e2" x="20" y="20" width="515" height="43" forecolor="#000000"/>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
 					<text><![CDATA[PERSONALES DE LA ENTIDAD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="083e0e00-1ee3-42f9-9693-a0d019bef4d1" x="20" y="63" width="199" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="083e0e00-1ee3-42f9-9693-a0d019bef4d1" x="20" y="63" width="199" height="20" forecolor="#000000"/>
 					<textElement textAlignment="Left">
 						<font size="14" isBold="false"/>
 					</textElement>

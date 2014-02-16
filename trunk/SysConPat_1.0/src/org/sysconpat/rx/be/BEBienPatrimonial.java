@@ -56,6 +56,7 @@ public final class BEBienPatrimonial {
   private String nro_tarjeta_propiedad;
   private String otro;
   private String ciaf;
+  private String pecosa;
 
     public BEBienPatrimonial() {
         setId_bien_patrimonial(0);
@@ -109,6 +110,7 @@ public final class BEBienPatrimonial {
         setGrupo_generico("");
         setClase_bien("");
         setCiaf("");
+        setPecosa("");
     }
 
     public int getId_bien_patrimonial() {
@@ -523,6 +525,14 @@ public final class BEBienPatrimonial {
      */
     public void setCiaf(String ciaf) {
         this.ciaf = ciaf;
+    }
+
+    public String getPecosa() {
+        return pecosa;
+    }
+
+    public void setPecosa(String pecosa) {
+        this.pecosa = pecosa;
     }
   
   

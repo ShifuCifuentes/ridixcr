@@ -62,6 +62,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
             setParameterString(bean.getOtro());
             setParameterInt(bean.getForma_adquisicion());            
             setParameterString(bean.getCiaf());
+            setParameterString(bean.getPecosa());
             return Integer.parseInt(commit().toString());
         }catch (Exception ex) {
             return rollback(ex);
@@ -117,6 +118,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
             setParameterString(bean.getOtro());
             setParameterInt(bean.getForma_adquisicion());            
             setParameterString(bean.getCiaf());
+            setParameterString(bean.getPecosa());
             return Integer.parseInt(commit().toString());
         }catch (Exception ex) {
             return rollback(ex);
@@ -193,6 +195,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setClase_bien(getDataString(48));
                 bean.setClasificador(getDataString(49));
                 bean.setCiaf(getDataString(50));
+                bean.setPecosa(getDataString(51));
                 add(bean);
             }
             close();
@@ -261,6 +264,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setClase_bien(getDataString(48));
                 bean.setClasificador(getDataString(49));
                 bean.setCiaf(getDataString(50));
+                bean.setPecosa(getDataString(51));
                 add(bean);
             }
             close();
@@ -335,6 +339,7 @@ public class DABienPatrimonial  extends DAAbstract<BEBienPatrimonial> {
                 bean.setClase_bien(getDataString(48));
                 bean.setClasificador(getDataString(49));            
                 bean.setCiaf(getDataString(50));
+                bean.setPecosa(getDataString(51));
             }
             close();
            return bean;

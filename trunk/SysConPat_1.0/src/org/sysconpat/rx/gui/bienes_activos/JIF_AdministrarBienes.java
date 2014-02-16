@@ -1,11 +1,11 @@
 
 package org.sysconpat.rx.gui.bienes_activos;
 
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class JIF_AdministrarBienes extends javax.swing.JInternalFrame {
     private JP_AdministrarBienes panel =null;
-    public JIF_AdministrarBienes(Principal root) {
+    public JIF_AdministrarBienes(JF_Principal root) {
         initComponents();
         panel = new JP_AdministrarBienes(root);
         jScrollPane1.setViewportView(panel);
@@ -23,9 +23,11 @@ public class JIF_AdministrarBienes extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Modificar Bienes");
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Administracion de  Bienes Patrimoniales");
 
@@ -34,14 +36,14 @@ public class JIF_AdministrarBienes extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 995, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1056, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE))
         );
 
         pack();

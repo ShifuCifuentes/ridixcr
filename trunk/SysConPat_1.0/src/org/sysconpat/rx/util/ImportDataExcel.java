@@ -22,7 +22,7 @@ import org.sysconpat.rx.bl.BLCatalogo;
 import org.sysconpat.rx.bl.BLClase;
 import org.sysconpat.rx.bl.BLCuentaContable;
 import org.sysconpat.rx.bl.BLGrupoGenerico;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class ImportDataExcel implements Runnable{
     private JFileChooser jfc = null;
@@ -35,7 +35,7 @@ public class ImportDataExcel implements Runnable{
     private boolean isExporting=false;
     private boolean isInitExport=false;    
     private int cont_items=1;
-    private Principal root;
+    private JF_Principal root;
     private Thread hilo = null;
     
     private BECatalogo be=null;
@@ -47,7 +47,7 @@ public class ImportDataExcel implements Runnable{
     private BEClase be4=null;
     private BLClase bl4=null;
 
-    public ImportDataExcel(Principal root,JProgressBar jpb,JButton jb1) {   
+    public ImportDataExcel(JF_Principal root,JProgressBar jpb,JButton jb1) {   
      this.root=root;
      this.progess_bar=jpb;
      this.jbt1=jb1;    

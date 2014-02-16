@@ -5,14 +5,14 @@ import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
 import org.rx.cr.report.ReportGeneric;
 import org.sysconpat.rx.be.BELocal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 import static org.rx.cr.util.Utilitarios.*;
 
 public final class JIF_GenerarReportePersonalLocal extends javax.swing.JInternalFrame {
     private UtilContenedor utilContenedor = null;
-    private Principal root;
-    public JIF_GenerarReportePersonalLocal(Principal root) {
+    private JF_Principal root;
+    public JIF_GenerarReportePersonalLocal(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -34,9 +34,11 @@ public final class JIF_GenerarReportePersonalLocal extends javax.swing.JInternal
         setIconifiable(true);
         setTitle("Generar reporte del personal por local");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("local :");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -54,7 +56,7 @@ public final class JIF_GenerarReportePersonalLocal extends javax.swing.JInternal
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, 0, 256, Short.MAX_VALUE)
+                .addComponent(jComboBox1, 0, 252, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -157,7 +159,7 @@ public final class JIF_GenerarReportePersonalLocal extends javax.swing.JInternal
                 reportFrame = report.mkReportToInternalFrame("personal_entidad", 
                                                              new String[]{"p_id_local","p_local","p_direccion","p_nro","p_manzana","p_lote"}, 
                                                              new Object[]{be.getId_local(),be.getNombre(),be.getDireccion(),be.getNro(),be.getManzana(),be.getLote()},"Personales de la Entidad");
-                reportFrame.setFrameIcon(getFrameIcon());
+                //reportFrame.setFrameIcon(getFrameIcon());
                 root.insertarInternalFrames(reportFrame);
                 resetControl();
     }

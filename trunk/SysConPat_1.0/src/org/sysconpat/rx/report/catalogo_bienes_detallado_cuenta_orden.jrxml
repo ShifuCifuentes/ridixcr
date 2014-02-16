@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="1700" pageHeight="842" columnWidth="1660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="663bf354-76b2-4c07-9b77-4cfa475f5d70">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT 
+CAT.codigo_patrimonial,
+upper(CAT.denominacion) as bien,
+CTA.nro_cuenta_contable as cuenta,
+upper(CTA.nombre_cuenta_contable) as nombre_cuenta,
+CAT.clasificador,
+CAT.cod_grupogenerico as cod_gen,
+upper(GG.denominacion_grupo_generico) as grupo_generico,
+CAT.codigo_clase,
+upper(CLA.denominacion_clase) as clase,
+CAT.anio_vida
+FROM dbo.catalogo CAT
+inner join dbo.clase CLA
+on CAT.id_clase=CLA.id_clase
+inner join dbo.cuenta_contable CTA
+on CAT.id_cuenta_contable_co=CTA.id_cuenta_contable
+inner join dbo.grupo_generico GG
+on CAT.id_grupogenerico=GG.id_grupo_generico
+where CTA.tipo='CO'
+order by CAT.codigo_patrimonial,CAT.denominacion]]>
+	</queryString>
+	<field name="codigo_patrimonial" class="java.lang.String"/>
+	<field name="bien" class="java.lang.String"/>
+	<field name="cuenta" class="java.lang.String"/>
+	<field name="nombre_cuenta" class="java.lang.String"/>
+	<field name="clasificador" class="java.lang.String"/>
+	<field name="cod_gen" class="java.lang.Integer"/>
+	<field name="grupo_generico" class="java.lang.String"/>
+	<field name="codigo_clase" class="java.lang.Integer"/>
+	<field name="clase" class="java.lang.String"/>
+	<field name="anio_vida" class="java.lang.Integer"/>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="cbefe277-abdc-4257-8142-4a1a6524272b" mode="Opaque" x="-20" y="-20" width="1700" height="92" backcolor="#00CD00"/>
+				<staticText>
+					<reportElement uuid="11ccaea5-dd8e-42cc-8864-dc1a28022174" x="132" y="40" width="414" height="24" forecolor="#000000"/>
+					<textElement>
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CATALOGO DE BIENES]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="0becc6e2-e855-4d5b-81e4-3d95e058b272" x="132" y="63" width="414" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUENTA DE ORDEN]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="4b47003e-1fb6-46d7-9e0c-8d4f8c491609" x="132" y="10" width="414" height="30"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDADA DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement uuid="72d41178-13d0-4f58-a62f-849a56803894" x="10" y="0" width="101" height="92"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<line>
+				<reportElement uuid="637d5fce-1074-49ed-b665-930390ff7183" x="-20" y="20" width="1700" height="1" forecolor="#666666"/>
+			</line>
+			<staticText>
+				<reportElement uuid="35208d66-5b2b-4ab4-b4d9-32ede563dd47" mode="Opaque" x="0" y="0" width="123" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD. PATRIM.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3d311e54-965a-4f78-bd8d-944f9df6dae8" mode="Opaque" x="123" y="0" width="452" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DENOMINACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bcd0ac50-8674-435b-ac96-697ffb07a734" mode="Opaque" x="575" y="0" width="73" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84d1fbcf-a212-4dbc-80cf-76d1eff59df9" mode="Opaque" x="648" y="0" width="293" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOM. CUENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b404a664-fa6c-4885-ac3c-7f82472afb12" mode="Opaque" x="941" y="0" width="94" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASIFICADOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4f8f6e74-be39-493d-9270-6a770a15a641" mode="Opaque" x="1034" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD. GEN.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1ea5a6b9-7f56-45eb-841c-b7de6d8db24f" mode="Opaque" x="1089" y="0" width="269" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[GRUPO GENERICO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="93f25a4a-b74b-4eda-ad31-fa49a87c19af" mode="Opaque" x="1358" y="0" width="55" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COD. CLASE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="acfd0f65-45a9-42ff-8b1f-546bf52efa17" mode="Opaque" x="1413" y="0" width="180" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a43a0c59-f5bb-4713-92f4-b9ce68f48612" mode="Opaque" x="1593" y="0" width="67" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AÑOS VIDA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="d5c901ed-fd56-4614-bd82-99161e5419bf" positionType="FixRelativeToBottom" x="0" y="19" width="1660" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="f98f39fd-1c9d-4221-8a80-a9f3e3f0c7ce" x="0" y="0" width="123" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_patrimonial}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="67f22ae1-17cb-4c99-a35e-bc5f2ad4e08c" x="123" y="0" width="452" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="7f02d7ec-fe1f-4567-8243-057bd0cf210c" x="575" y="0" width="73" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="70d09c2a-f295-409a-90f4-2de4586ecd95" x="648" y="0" width="293" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_cuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="fba7f3a3-44ab-46bb-b5fe-8da8d1c3a05b" x="941" y="0" width="94" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clasificador}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="901f927c-a61f-4418-b91c-3c3a967b0bd6" x="1034" y="0" width="55" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_gen}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="90e75c17-b6d7-4d34-ac02-13b88df75cf8" x="1089" y="0" width="269" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo_generico}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="3893d37e-18a5-4a4a-bff8-bab76b221827" x="1358" y="0" width="55" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_clase}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="45fa63df-068f-44a6-9d76-3a4f3dd31536" x="1413" y="0" width="180" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clase}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="cfe09e49-ca20-4b69-b4c3-e66e746b152d" x="1593" y="0" width="67" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{anio_vida}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="7c616725-ce5a-4144-8f5b-2c678727a791" x="-1" y="-1" width="1" height="20"/>
+			</line>
+			<line>
+				<reportElement uuid="7c616725-ce5a-4144-8f5b-2c678727a791" x="1659" y="0" width="1" height="19"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="df7e06db-608f-48c2-930c-5265db37c4be" mode="Opaque" x="0" y="4" width="1620" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="2bdd7d87-7b25-4ff1-94ac-1b0724b8486a" mode="Opaque" x="1620" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="15f516d5-431e-4129-a28d-e6d1eb3af18f" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="depreciacion_individual_detallado_sub" language="groovy" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3513c100-7d24-4a0f-b483-2dbcd142aff1">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_fecha_calculo" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="p_id_bien_patrimonial" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT o_periodo,o_valor_actualizado,o_valor_mensual,o_valor_acumulado,o_valor_neto  
+FROM dbo.depreciar_mensualmente_bien_patrimonial($P{p_id_bien_patrimonial},$P{p_fecha_calculo});]]>
+	</queryString>
+	<field name="o_periodo" class="java.lang.String"/>
+	<field name="o_valor_actualizado" class="java.lang.Double"/>
+	<field name="o_valor_mensual" class="java.lang.Double"/>
+	<field name="o_valor_acumulado" class="java.lang.Double"/>
+	<field name="o_valor_neto" class="java.lang.Double"/>
+	<background>
+		<band/>
+	</background>
+	<columnHeader>
+		<band height="41">
+			<staticText>
+				<reportElement uuid="3fc65bce-e5d0-470d-ba73-76b40cf25f95" mode="Opaque" x="0" y="1" width="111" height="40" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERIODO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8e19e91c-9d3b-4a06-a1b3-201e81b3fe96" mode="Opaque" x="111" y="1" width="111" height="40" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR ACTULIZADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e95b120f-f834-43a1-a0db-ff8e24ad7122" mode="Opaque" x="222" y="21" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MENSUAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2b43bbf6-cd3c-4f4e-9e62-a22bc8c82714" mode="Opaque" x="333" y="21" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACUMULADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="70c0c593-ce86-4de2-9fef-c775af38e8dd" mode="Opaque" x="444" y="21" width="111" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR NETO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c07b8d44-b033-4eef-a656-2e98ad66a2a2" mode="Opaque" x="222" y="1" width="333" height="20" forecolor="#006699" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEPRECIACION]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="66431acd-6b98-4cad-a441-6d15386d5101" positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="db8d4b0e-a29a-45a5-b811-fc68916bc3e2" x="0" y="0" width="111" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{o_periodo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="5d829a87-4614-42c0-ac48-70f6f3d020e7" x="111" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{o_valor_actualizado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="57b493de-5bab-4c6f-b04c-662a8e635b5b" x="222" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{o_valor_mensual}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="606fe633-db59-4bef-ab96-c61628f2c873" x="333" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{o_valor_acumulado}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="e441aebe-de48-4869-80b7-d1b116760efe" x="444" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{o_valor_neto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

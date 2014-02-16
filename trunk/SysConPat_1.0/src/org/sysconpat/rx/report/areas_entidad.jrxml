@@ -109,26 +109,37 @@ order by ARE.id_area]]>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement uuid="288df3a5-ecc0-4121-8583-876591b8f240" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="288df3a5-ecc0-4121-8583-876591b8f240" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#00CC00"/>
 				<staticText>
-					<reportElement uuid="24958cae-cc21-4090-b7ed-678e23624031" x="20" y="20" width="394" height="43" forecolor="#FFFFFF"/>
+					<reportElement uuid="24958cae-cc21-4090-b7ed-678e23624031" x="143" y="39" width="194" height="24" forecolor="#000000"/>
 					<textElement>
-						<font size="34" isBold="true"/>
+						<font size="16" isBold="true"/>
 					</textElement>
 					<text><![CDATA[AREAS DE LA ENTIDAD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="a3cacfb8-6c28-40d4-bfc9-4754701acae1" x="21" y="63" width="180" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="a3cacfb8-6c28-40d4-bfc9-4754701acae1" x="144" y="63" width="180" height="20" forecolor="#000000"/>
 					<textElement textAlignment="Left">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Reporte detallado de Areas]]></text>
 				</staticText>
 				<textField pattern="dd/MM/yyyy">
-					<reportElement uuid="2429b9ba-ceba-4ee9-ad80-7d692582c606" x="483" y="58" width="100" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="2429b9ba-ceba-4ee9-ad80-7d692582c606" x="483" y="58" width="100" height="20" forecolor="#000000"/>
 					<textElement textAlignment="Center" verticalAlignment="Middle"/>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
+				<staticText>
+					<reportElement uuid="117db49b-e495-4dcc-86e8-1daa9b6f331c" x="143" y="10" width="397" height="29" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="20" isBold="false"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDADA DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement uuid="42fc22bf-03e8-40ba-bf0a-c6be85cebc18" x="16" y="0" width="118" height="92"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>

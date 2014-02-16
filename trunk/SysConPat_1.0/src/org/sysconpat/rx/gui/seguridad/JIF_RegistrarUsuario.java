@@ -13,10 +13,10 @@ import org.sysconpat.rx.bl.BLContenedor;
 import org.sysconpat.rx.bl.BLRolUsuario;
 import org.sysconpat.rx.bl.BLUsuario;
 import org.sysconpat.rx.gui.models.TModeloRol;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class JIF_RegistrarUsuario extends javax.swing.JInternalFrame {
-    private Principal root=null;
+    private JF_Principal root=null;
     private TModeloRol tabMD = null;
     private TModeloRol tabMA = null;
     
@@ -29,7 +29,7 @@ public class JIF_RegistrarUsuario extends javax.swing.JInternalFrame {
     private BERolUsuario be2 = null;
     
     
-    public JIF_RegistrarUsuario(Principal root) throws Exception {
+    public JIF_RegistrarUsuario(JF_Principal root) throws Exception {
         initComponents();
         this.root=root;
         adaptarMovimiento(this);

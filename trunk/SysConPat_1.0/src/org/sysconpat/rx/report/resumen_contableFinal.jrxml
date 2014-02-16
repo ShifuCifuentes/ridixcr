@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="1024" pageHeight="848" columnWidth="984" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="189a2974-cfff-4334-b3be-2469bd77fe8d">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="p_fecha_calculo" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+case
+    when CC.tipo='AF' then
+     'ACTIVO FIJO' 
+    else
+      'NO DEPRECIABLE'
+end as tipo_cta,
+CC.nro_cuenta_contable as cuenta,
+upper(CC.nombre_cuenta_contable) as descripcion_cuenta,
+sum(BP.valor_adquisicion) as valor_adquisicion,
+sum(dbo.depreciar_bien_patrimonial($P{p_fecha_calculo},BP.valor_adquisicion,BP.fecha_adquisicion,CC.nro_cuenta_contable)) as depreciacion_acumulada,
+sum((BP.valor_adquisicion-dbo.depreciar_bien_patrimonial($P{p_fecha_calculo},BP.valor_adquisicion,BP.fecha_adquisicion,CC.nro_cuenta_contable))) as valor_neto
+from dbo.bien_patrimonial BP
+inner join dbo.cuenta_contable CC
+on BP.id_cta_contable=CC.id_cuenta_contable
+group by BP.eleccion_af_co,CC.tipo,CC.nro_cuenta_contable,CC.nombre_cuenta_contable
+order by CC.nro_cuenta_contable;]]>
+	</queryString>
+	<field name="tipo_cta" class="java.lang.String"/>
+	<field name="cuenta" class="java.lang.String"/>
+	<field name="descripcion_cuenta" class="java.lang.String"/>
+	<field name="valor_adquisicion" class="java.lang.Double"/>
+	<field name="depreciacion_acumulada" class="java.lang.Double"/>
+	<field name="valor_neto" class="java.lang.Double"/>
+	<variable name="valor_adquisicion_SUM" class="java.lang.Double" resetType="Group" resetGroup="tipo_cta" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_adquisicion}]]></variableExpression>
+	</variable>
+	<variable name="depreciacion_acumulada_SUM" class="java.lang.Double" resetType="Group" resetGroup="tipo_cta" calculation="Sum">
+		<variableExpression><![CDATA[$F{depreciacion_acumulada}]]></variableExpression>
+	</variable>
+	<variable name="valor_neto_SUM" class="java.lang.Double" resetType="Group" resetGroup="tipo_cta" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor_neto}]]></variableExpression>
+	</variable>
+	<group name="tipo_cta">
+		<groupExpression><![CDATA[$F{tipo_cta}]]></groupExpression>
+		<groupHeader>
+			<band height="53">
+				<line>
+					<reportElement uuid="6a177295-6889-4c6a-8549-e58f77e50c3d" x="-20" y="32" width="1004" height="1" forecolor="#666666"/>
+				</line>
+				<staticText>
+					<reportElement uuid="cd8e831d-4f99-4a2d-84d7-06a27a8e4c2a" mode="Opaque" x="0" y="33" width="111" height="20" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Center">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[CUENTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="9cb84e53-15af-47c1-ae03-294a4839b604" mode="Opaque" x="111" y="33" width="540" height="20" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DESCRIPCION CUENTA]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="5a5f8f3e-c702-4df5-abaf-b0a5d8d44261" mode="Opaque" x="651" y="33" width="111" height="20" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR ADQ.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="a3412a2b-6594-490c-a8dd-60b893f70f74" mode="Opaque" x="762" y="33" width="111" height="20" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DEP. ACU.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="08d25b9c-291f-44ed-94a0-62c4083c33a9" mode="Opaque" x="873" y="33" width="111" height="20" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement textAlignment="Right">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[VALOR NETO]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="5f6b8565-d8f1-416e-9454-fabfcf183167" mode="Opaque" x="0" y="0" width="651" height="32" forecolor="#000000" backcolor="#E6E6E6"/>
+					<textElement>
+						<font size="24" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{tipo_cta}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="50bb693b-383d-47cb-b03b-7d548d258f64" x="530" y="0" width="121" height="32" forecolor="#000000"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<text><![CDATA[SUB / TOTAL:]]></text>
+				</staticText>
+				<textField evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="60f700c7-0ac2-4df0-b46e-2f7a2f775f4e" x="651" y="0" width="111" height="34"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double($V{valor_adquisicion_SUM}.doubleValue() )]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="f589ef95-c426-48c0-aebd-7ed8c201731b" x="762" y="0" width="111" height="32"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double($V{depreciacion_acumulada_SUM}.doubleValue() )]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Auto" pattern="#,##0.00;-#,##0.00">
+					<reportElement uuid="568b8311-f333-4ce4-a7ea-a1eb82e51a93" x="873" y="0" width="111" height="32"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="16" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new Double($V{valor_neto_SUM}.doubleValue() )]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="72">
+			<frame>
+				<reportElement uuid="40502996-d335-412f-82f8-cfd15e917379" mode="Opaque" x="-20" y="-20" width="1024" height="92" backcolor="#00CC00"/>
+				<staticText>
+					<reportElement uuid="c1f80b26-b116-4331-ae3a-b2ddd7b43d57" x="112" y="8" width="668" height="43" forecolor="#000000"/>
+					<textElement>
+						<font size="34" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDAD  DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="017a24b7-929f-4154-bcc2-2f8d1e93a6f9" x="112" y="51" width="180" height="20" forecolor="#000000"/>
+					<textElement textAlignment="Left">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[RESUMEN CONTABLE]]></text>
+				</staticText>
+				<image>
+					<reportElement uuid="77c360ec-bc80-456b-9459-fb29ea33e1be" x="12" y="0" width="88" height="92"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="1"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="1">
+			<line>
+				<reportElement uuid="75c693e6-3549-4e61-a6f4-6d70ad1fed2a" x="-20" y="0" width="1022" height="1" forecolor="#666666"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20">
+			<line>
+				<reportElement uuid="515ddf3b-d2c6-4fd7-976e-158ad6eb3468" positionType="FixRelativeToBottom" x="0" y="19" width="984" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="b1b1602b-e2a9-4380-a5f6-ff893d17c95b" x="0" y="0" width="111" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement uuid="a6998457-fd06-4ecf-9b4b-69ef522051fc" x="111" y="0" width="540" height="20"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descripcion_cuenta}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="a2d086c3-a2b0-418d-a435-2c4578b3e4e0" x="651" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_adquisicion}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="53a09670-3192-47b4-8489-becfe1bb2a73" x="762" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{depreciacion_acumulada}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00">
+				<reportElement uuid="0749332e-2546-4f9a-9272-f1f9389ce34e" x="873" y="0" width="111" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor_neto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band/>
+	</columnFooter>
+	<pageFooter>
+		<band height="14">
+			<textField>
+				<reportElement uuid="9a24c0ed-1bbe-470a-b60c-d029dfb302de" mode="Opaque" x="0" y="1" width="944" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="113bb15d-e601-4f8e-9e42-2c73950c62b9" mode="Opaque" x="944" y="1" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd &apos;de&apos; MMMMM &apos;del&apos; yyyy">
+				<reportElement uuid="c6387f90-f6ac-4633-a819-3fd4429b7ae2" x="0" y="1" width="180" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>

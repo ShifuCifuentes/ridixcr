@@ -6,12 +6,12 @@ import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import org.rx.cr.report.ReportGeneric;
 import org.sysconpat.rx.bl.BLBienPatrimonial;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class JIF_DepreciacionAnual extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     private BLBienPatrimonial bl = null;
-    public JIF_DepreciacionAnual(Principal root) {
+    public JIF_DepreciacionAnual(JF_Principal root) {
         initComponents();
         this.root=root;
         bl = new BLBienPatrimonial(root.getConfig());
@@ -31,9 +31,11 @@ public class JIF_DepreciacionAnual extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Depreciacion Anual");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parametros de depreciacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parametros de depreciacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Año de depreciacion :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -45,7 +47,7 @@ public class JIF_DepreciacionAnual extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jYearChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

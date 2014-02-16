@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.rx.cr.ds.DSConeccion;
 import static org.rx.cr.util.Utilitarios.*;
 import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BERolUsuario;
@@ -14,10 +13,10 @@ import org.sysconpat.rx.bl.BLRolUsuario;
 import org.sysconpat.rx.bl.BLUsuario;
 import org.sysconpat.rx.gui.models.TModeloRol;
 import org.sysconpat.rx.gui.models.TModeloUsuario;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class JIF_MantenerUsuario extends javax.swing.JInternalFrame {
-    private Principal root=null;
+    private JF_Principal root=null;
     private TModeloRol tabMD = null;
     private TModeloRol tabMA = null;
     
@@ -33,7 +32,7 @@ public class JIF_MantenerUsuario extends javax.swing.JInternalFrame {
     
     private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=0;
     private int operacion=0;
-    public JIF_MantenerUsuario(Principal root) {
+    public JIF_MantenerUsuario(JF_Principal root) {
         initComponents();
         this.root=root;
         adaptarMovimiento(this);

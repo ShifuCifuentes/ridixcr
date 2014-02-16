@@ -6,13 +6,13 @@ import javax.swing.JInternalFrame;
 import org.rx.cr.report.ReportGeneric;
 import static org.rx.cr.util.Utilitarios.*;
 import org.sysconpat.rx.be.BELocal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swing.JInternalFrame {
     private UtilContenedor utilContenedor = null;
-    private Principal root;
-    public JIF_GenerarReporteBienesPatrimonialesLocal(Principal root) {
+    private JF_Principal root;
+    public JIF_GenerarReporteBienesPatrimonialesLocal(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -34,7 +34,7 @@ public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swin
         setIconifiable(true);
         setTitle("Generar Reporte de Bienes Parimoniales por Local");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local de asignacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Local de asignacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -45,6 +45,7 @@ public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swin
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Local :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -154,7 +155,7 @@ public final class JIF_GenerarReporteBienesPatrimonialesLocal extends javax.swin
         ReportGeneric report = new ReportGeneric(root.getConfig());
         report.setReportParent("/org/sysconpat/rx/report/");
         JInternalFrame reportFrame = report.mkReportToInternalFrame("bienes_patrimoniales_local", new String[]{"p_id_local"}, new Object[]{be.getId_local()}, "Asignacion de Bienes Patrimoniales por Local");
-        reportFrame.setFrameIcon(getFrameIcon());
+        //reportFrame.setFrameIcon(getFrameIcon());
         root.insertarInternalFrames(reportFrame);
         resetControl();
     }

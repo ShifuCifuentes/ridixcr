@@ -1,12 +1,12 @@
 package org.sysconpat.rx.gui.catalogo;
 
 import java.io.File;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.ImportDataExcel;
 
 public class JIF_ActualizarCatalogo extends javax.swing.JInternalFrame {
     private ImportDataExcel importData=null;
-    public JIF_ActualizarCatalogo(Principal root) {
+    public JIF_ActualizarCatalogo(JF_Principal root) {
         initComponents();
        importData = new ImportDataExcel(root,jProgressBar1,jButton1);
     }

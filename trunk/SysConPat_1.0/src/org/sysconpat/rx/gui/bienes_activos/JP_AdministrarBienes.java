@@ -25,11 +25,11 @@ import org.sysconpat.rx.gui.locales.JIF_AdministrarAreasEntidad;
 import org.sysconpat.rx.gui.models.ModeloBienPatrimonial;
 import org.sysconpat.rx.gui.models.ModeloCatalogo;
 import org.sysconpat.rx.gui.models.ModeloDivicionBienPatrimonial;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JP_AdministrarBienes extends javax.swing.JPanel {
-    private Principal root;
+    private JF_Principal root;
     
     private UtilContenedor utilContenedor = null;
     private ModeloBienPatrimonial model = null;
@@ -46,7 +46,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=-1;
     private int operacion=DESCONOCIDO;
     
-    public JP_AdministrarBienes(Principal root) {
+    public JP_AdministrarBienes(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -65,6 +65,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jButton6 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -97,7 +99,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jTextField11 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         jLabel13 = new javax.swing.JLabel();
         jTextField13 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
@@ -119,6 +121,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jComboBox10 = new javax.swing.JComboBox();
         jLabel27 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -180,7 +184,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jLabel22 = new javax.swing.JLabel();
         jTextField18 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         jLabel24 = new javax.swing.JLabel();
         jComboBox7 = new javax.swing.JComboBox();
         jLabel25 = new javax.swing.JLabel();
@@ -193,7 +197,15 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
 
-        setBackground(new java.awt.Color(1, 132, 205));
+        jMenuItem1.setText("Eliminar Bien Seleccionado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
+        setBackground(new java.awt.Color(0, 153, 102));
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Guardar_Min.png"))); // NOI18N
@@ -206,7 +218,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Catalogo de bienes patrimoniales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CATALOGO DE BIENES PATRIMONIALES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
@@ -282,44 +295,70 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Bien", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL BIEN", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel2.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("DENOMINACION :");
 
         jTextField2.setEditable(false);
-        jTextField2.setEnabled(false);
+        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("GRUPO GENERICO :");
 
         jTextField3.setEditable(false);
-        jTextField3.setEnabled(false);
+        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("CLASE :");
 
         jTextField4.setEditable(false);
-        jTextField4.setEnabled(false);
+        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("COD. PATRIMONIAL :");
 
         jTextField5.setEditable(false);
-        jTextField5.setEnabled(false);
+        jTextField5.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("ULT. CORR. :");
 
-        txt_ult_correlativo.setEnabled(false);
+        txt_ult_correlativo.setEditable(false);
+        txt_ult_correlativo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txt_ult_correlativo.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("TIPO DE CUENTA :");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("VAL. ADQ.:");
 
+        jTextField8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField8.setEnabled(false);
         jTextField8.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -327,59 +366,96 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("CANTIDAD :");
 
+        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField9.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField9.setEnabled(false);
 
         buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setSelected(true);
         jRadioButton1.setText("ACT. FIJO ESTATAL");
-        jRadioButton1.setEnabled(false);
+        jRadioButton1.setOpaque(false);
 
         buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("CUENTA ORDEN");
-        jRadioButton2.setEnabled(false);
+        jRadioButton2.setOpaque(false);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("CUENTA CONTABLE :");
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox1.setEnabled(false);
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("CLASIFICADOR :");
 
         jTextField11.setEditable(false);
-        jTextField11.setEnabled(false);
+        jTextField11.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("FORMA DE ADQ. :");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("FECHA :");
 
         jDateChooser1.setEnabled(false);
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("DOC. ADQ. :");
 
+        jTextField13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField13.setEnabled(false);
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("ESTADO :");
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Escoja un estado de movimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESTADO DE BIEN PATRIMONIAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel3.setOpaque(false);
 
+        jCheckBox4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox4.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox4.setText("EN TRANSITO");
         jCheckBox4.setEnabled(false);
+        jCheckBox4.setOpaque(false);
 
+        jCheckBox3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox3.setText("INVENTARIADO");
         jCheckBox3.setEnabled(false);
+        jCheckBox3.setOpaque(false);
 
+        jCheckBox2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox2.setText("FICHADO");
         jCheckBox2.setEnabled(false);
+        jCheckBox2.setOpaque(false);
 
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
         jCheckBox1.setText("ASEGURADO");
         jCheckBox1.setEnabled(false);
+        jCheckBox1.setOpaque(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -390,7 +466,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 .addComponent(jCheckBox1)
                 .addGap(75, 75, 75)
                 .addComponent(jCheckBox2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jCheckBox3)
                 .addGap(43, 43, 43)
                 .addComponent(jCheckBox4)
@@ -411,6 +487,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox2.setEnabled(false);
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("LOCAL :");
 
@@ -422,6 +500,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("AREA :");
 
@@ -433,6 +513,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("OFICINA :");
 
@@ -444,6 +526,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("PERSONAL :");
 
@@ -456,9 +540,21 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox10.setEnabled(false);
 
+        jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("CIAF :");
 
+        jTextField6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField6.setEnabled(false);
+
+        jLabel28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("PECOSA :");
+
+        jTextField7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
+        jTextField7.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -473,7 +569,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                             .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -481,21 +577,51 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                                        .addComponent(jLabel27))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(jLabel12)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField13)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel28)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField7))))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(jComboBox9, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jRadioButton1)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jRadioButton2)
+                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(txt_ult_correlativo)
                                     .addComponent(jTextField4)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -503,30 +629,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField11))))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel27)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField6))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField13))))
+                                        .addComponent(jTextField11))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -586,17 +689,19 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                     .addComponent(jLabel9)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel27)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(jLabel12)
                         .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -628,127 +733,223 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos adicionales del bien", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS ADICIONALES BIEN PATRIMONIAL", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel4.setOpaque(false);
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("MARCA :");
 
+        jTextField14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField14.setEnabled(false);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("MODELO :");
 
+        jTextField15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField15.setEnabled(false);
 
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel29.setText("TIPO :");
 
+        jTextField24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField24.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField24.setEnabled(false);
 
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel30.setText("COLOR :");
 
+        jTextField25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField25.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField25.setEnabled(false);
 
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel31.setText("RAZA :");
 
+        jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel32.setText("SERIE :");
 
+        jTextField26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField26.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField26.setEnabled(false);
 
+        jTextField27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField27.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField27.setEnabled(false);
 
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel33.setText("CLASE :");
 
+        jTextField28.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField28.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField28.setEnabled(false);
 
+        jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel34.setText("AÑO FABRICACION :");
 
+        jTextField29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField29.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField29.setEnabled(false);
 
+        jLabel35.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel35.setText("ESPECIE :");
 
+        jTextField30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField30.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField30.setEnabled(false);
 
+        jLabel37.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel37.setText("PAIS :");
 
+        jLabel38.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(255, 255, 255));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel38.setText("PLACA :");
 
+        jTextField32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField32.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField32.setEnabled(false);
 
+        jTextField33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField33.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField33.setEnabled(false);
 
+        txt_nro_chasis.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        txt_nro_chasis.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         txt_nro_chasis.setEnabled(false);
 
+        jTextField35.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField35.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField35.setEnabled(false);
 
+        jLabel39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel39.setForeground(new java.awt.Color(255, 255, 255));
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel39.setText("NRO MOTOR :");
 
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel40.setForeground(new java.awt.Color(255, 255, 255));
         jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel40.setText("NRO CHASIS :");
 
+        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(255, 255, 255));
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel41.setText("MATRICULA :");
 
+        jTextField36.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField36.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField36.setEnabled(false);
 
+        jLabel42.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(255, 255, 255));
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel42.setText("DIMENCION :");
 
+        jTextField37.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField37.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField37.setEnabled(false);
 
+        jTextField38.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField38.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField38.setEnabled(false);
 
+        jTextField39.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField39.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField39.setEnabled(false);
 
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(255, 255, 255));
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel43.setText("CARROCERIA :");
 
+        jLabel44.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(255, 255, 255));
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel44.setText("LONGITUD :");
 
+        jLabel45.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(255, 255, 255));
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel45.setText("ANCHO :");
 
+        jTextField40.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField40.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField40.setEnabled(false);
 
+        jLabel46.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(255, 255, 255));
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel46.setText("TIPO COMBUSTIBLE :");
 
+        jTextField41.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField41.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField41.setEnabled(false);
 
+        jLabel47.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel47.setText("ALTURA :");
 
+        jTextField42.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField42.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField42.setEnabled(false);
 
+        jLabel48.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel48.setText("TRANSMICION :");
 
+        jTextField43.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField43.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField43.setEnabled(false);
 
+        jLabel49.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel49.setText("CERTIFICADO SOAT:");
 
+        jTextField44.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField44.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField44.setEnabled(false);
 
+        jTextField45.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField45.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField45.setEnabled(false);
 
+        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel50.setText("NRO TARJ. PROP.");
 
+        jLabel51.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel51.setForeground(new java.awt.Color(255, 255, 255));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel51.setText("OTRO :");
 
+        jTextField46.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField46.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField46.setEnabled(false);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -763,7 +964,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -827,7 +1028,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                                .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txt_nro_chasis, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -949,7 +1150,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 .addGap(0, 8, Short.MAX_VALUE))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Bienes patrimoniales registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BIENES PATRIMONIALES REGISTRADOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel5.setOpaque(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
@@ -970,6 +1171,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 "COD. PATRIMONIAL", "BIEN"
             }
         ));
+        jTable2.setComponentPopupMenu(jPopupMenu1);
         jTable2.setOpaque(false);
         jTable2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1004,32 +1206,46 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Divicion del bien/Partes individuales depreciables", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIVICION DEL BIEN/PARTES INDIVIDUALES DEPRECIABLES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel6.setOpaque(false);
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel21.setText("Denominacion :");
+        jLabel21.setText("DENOMINACION :");
 
+        jTextField17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField17.setEnabled(false);
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel22.setText("Precio de Adquisicion :");
+        jLabel22.setText("PRECIO ADQ.:");
 
+        jTextField18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField18.setEnabled(false);
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel23.setText("Fecha adquisicion :");
+        jLabel23.setText("FECHA ADQ.:");
 
         jDateChooser2.setEnabled(false);
 
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel24.setText("Estado :");
+        jLabel24.setText("ESTADO :");
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox7.setEnabled(false);
 
+        jLabel25.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel25.setText("Sistema contenedor :");
+        jLabel25.setText("SISTEMA CONT :");
 
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox8.setEnabled(false);
@@ -1042,7 +1258,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             }
         });
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Partes divicionales", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PARTES ADICIONALES", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel7.setOpaque(false);
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -1071,7 +1287,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1081,11 +1297,15 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel26.setText("Observacion :");
+        jLabel26.setText("OBSERVACION :");
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextArea1.setEnabled(false);
         jScrollPane4.setViewportView(jTextArea1);
 
@@ -1299,6 +1519,10 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jTextField8KeyReleased
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     //<editor-fold defaultstate="collapsed" desc="Variables Auto Generadas">
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -1345,6 +1569,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -1374,6 +1599,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1381,6 +1607,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1425,6 +1652,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField46;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField txt_nro_chasis;
@@ -1457,7 +1685,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
             txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jTextField6
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jTextField6,jTextField7
         });        
     }
     private void habilitar_controles_datos(){  
@@ -1469,7 +1697,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
             txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6,jTextField7
        });    
        jTextField2.requestFocus();
     }
@@ -1482,7 +1710,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             jTextField43,jTextField45,jTextField15,jTextField25,jTextField27,jTextField29,jTextField33,
             txt_nro_chasis,jTextField37,jTextField38,jTextField41,jTextField42,jTextField44,jTextField46,
             jTextField17,jTextField18,jDateChooser2,jComboBox7,jComboBox8,jTextArea1,jTable3,
-            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6
+            jCheckBox1,jCheckBox2,jCheckBox3,jCheckBox4,jButton3,jTextField6,jTextField7
         });
          jTextField1.requestFocus();
     }
@@ -1494,6 +1722,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             {jTextField9,"Ingrese la cantidad."},                   
             {jComboBox1,"Seleccione la cuenta contable."},                   
             {jTextField6,"Ingrese codigo CIAF."},                   
+            {jTextField7,"Ingrese codigo PECOSA."},                   
             {jComboBox10,"Seleccione la forma de adquisicion."},                   
             {jDateChooser1,"Ingrese la fecha de adquisicion."},                   
             {jTextField13,"Ingrese documento de adquisicion."}              
@@ -1556,7 +1785,9 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             {jTextField44,ALFABETICO_NUMERICO_SPB,15},            
             {jTextField46,ALFABETICO_NUMERICO_SPB,15},            
             {jTextField17,ALFABETICO_NUMERICO_SPB,15},            
-            {jTextField18,NUMERICO_REAL,8},            
+            {jTextField18,NUMERICO_REAL,8},          
+            {jTextField6,NUMERICO,8},          
+            {jTextField7,NUMERICO,8}          
         });  
         Utilitarios.saltoLineaTextArea(jTextArea1);
     }
@@ -1568,12 +1799,16 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 jTextField3.setText(be2.getGrupo_generico());
                 jTextField4.setText(be2.getClase_bien());
                 jTextField5.setText(be2.getCodigo_patrimonial());
-                buscarUltimoCorrelativo();
+                txt_ult_correlativo.setText(numberFormat(be2.getUl_correlativo(),"####"));
                 utilContenedor.seleccionarItemComboTipoCuenta(jComboBox9,be2.getTipo_cuenta());
                 jTextField8.setText(""+be2.getValor_adquisicion());
                 jTextField11.setText(be2.getClasificador());
-                jTextField9.setText(""+be2.getCantidad());
-                jRadioButton1.setSelected(be2.isEleccion_af_co());
+                jTextField9.setText(""+be2.getCantidad());                
+                if (be2.isEleccion_af_co()) {
+                    jRadioButton1.setSelected(true);
+                } else {
+                    jRadioButton2.setSelected(true);
+                }
                 utilContenedor.seleccionarItemComboCuenta(jComboBox1,be2.getId_cta_contable());
                 utilContenedor.seleccionarItemComboContenedor(jComboBox10,be2.getForma_adquisicion());
                 jDateChooser1.setDate(Utilitarios.castDate_SQL_UTIL(be2.getFecha_adquisicion()));
@@ -1612,6 +1847,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
                 jTextField44.setText(be2.getCertificado_soat());
                 jTextField46.setText(be2.getOtro());
                 jTextField6.setText(be2.getCiaf());
+                jTextField7.setText(be2.getPecosa());
                 listarPartesDivisionariasBienPatrimonial();
             } catch (Exception ex) {
                 Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
@@ -1671,13 +1907,15 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
            be2.setCertificado_soat(jTextField44.getText());
            be2.setOtro(jTextField46.getText());
            be2.setCiaf(jTextField6.getText());
+           be2.setPecosa(jTextField7.getText());
            rs = bl.registrar(be2);
            for (BEDivicionBienPatrimonial bdbp : model3.getList()) {
                bdbp.setId_bien_patrimonial(rs);
                bl2.registrar(bdbp);
            }      
         }  
-        if(rs>=0){            
+        if(rs>=0){   
+            jButton5.doClick();
             resetControl();
             deshabilitar_controles_datos();
             operacion=DESCONOCIDO;
@@ -1734,6 +1972,7 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         be2.setCertificado_soat(jTextField44.getText());
         be2.setOtro(jTextField46.getText());
         be2.setCiaf(jTextField6.getText());
+        be2.setPecosa(jTextField7.getText());
         bl2 = new BLDivicionBienPatrimonial(root.getConfig());
         int rs = bl.actualizarRegistro(be2);
         bl2.eliminar_diviciones_bien_patrimonial(be2.getId_bien_patrimonial());
@@ -1741,7 +1980,8 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
             bdbp.setId_bien_patrimonial(be2.getId_bien_patrimonial());
             bl2.registrar(bdbp);
         }        
-        if(rs>=0){            
+        if(rs>=0){          
+            jButton5.doClick();
             resetControl();
             deshabilitar_controles_datos();
             operacion=DESCONOCIDO;
@@ -1835,12 +2075,37 @@ public final class JP_AdministrarBienes extends javax.swing.JPanel {
         formateaAnchoColumnaTabla(0,jTable2,70);
     }
 
+//    private void buscarUltimoCorrelativo(){
+//        try {
+//            BLCatalogo blc = new BLCatalogo();
+//            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(),"####"));
+//        } catch (Exception ex) {
+//            Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
     private void buscarUltimoCorrelativo(){
         try {
             BLCatalogo blc = new BLCatalogo();
-            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(),"####"));
+            txt_ult_correlativo.setText(numberFormat(blc.ultimo_correlativo_bien_patrimonial(jTextField5.getText().trim(),be1.getCodigo_clase(),be1.getCod_grupogenerico()),"####"));
         } catch (Exception ex) {
             Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void eliminar() {
+        if (jTable2.getSelectedRow()>=0) {
+            try { 
+                bl = new BLBienPatrimonial(root.getConfig());
+                int rs = bl.eliminarRegistro(model.get(jTable2.getSelectedRow()));
+                if(rs>=0){  
+                    listarBienesPatrimoniales();
+                    JOptionPane.showMessageDialog(root,"Correctamente eliminado.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(root,"Error de Eliminacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(JP_AdministrarBienes.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

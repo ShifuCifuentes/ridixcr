@@ -7,13 +7,13 @@ import org.rx.cr.report.ReportGeneric;
 import static org.rx.cr.util.Utilitarios.*;
 import org.sysconpat.rx.be.BEGrupoGenerico;
 import org.sysconpat.rx.be.BELocal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
     private UtilContenedor utilContenedor = null;
-    private Principal root;
-    public JIF_ConsultarCatalogo(Principal root) {
+    private JF_Principal root;
+    public JIF_ConsultarCatalogo(JF_Principal root) {
         initComponents();
         this.root=root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -49,8 +49,10 @@ public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel2.setOpaque(false);
+        jPanel2.setBackground(new java.awt.Color(67, 59, 143));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Grupo Generico :");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
@@ -68,7 +70,7 @@ public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, 0, 252, Short.MAX_VALUE)
+                .addComponent(jComboBox1, 0, 240, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -83,10 +85,14 @@ public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
 
         jTabbedPane1.addTab("Por grupo generico", jPanel2);
 
-        jPanel3.setOpaque(false);
+        jPanel3.setBackground(new java.awt.Color(67, 59, 143));
+        jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Referencia :");
 
+        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -101,7 +107,7 @@ public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -111,7 +117,7 @@ public final class JIF_ConsultarCatalogo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Por codigo de bien / denominacion", jPanel3);

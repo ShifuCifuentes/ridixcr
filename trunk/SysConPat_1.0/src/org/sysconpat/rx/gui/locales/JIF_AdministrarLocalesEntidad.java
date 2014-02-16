@@ -12,12 +12,12 @@ import org.sysconpat.rx.be.BETipoCuenta;
 import org.sysconpat.rx.be.BEUbigeo;
 import org.sysconpat.rx.bl.BLLocal;
 import org.sysconpat.rx.gui.models.ModeloLocal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 import org.sysconpat.rx.util.UtilUbigeo;
 
 public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     private ModeloLocal model;
     private UtilContenedor utilContenedor=null;
      private UtilUbigeo utilUbigeo=null;
@@ -28,7 +28,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
      private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=-1;
      private int operacion=DESCONOCIDO;
      
-    public JIF_AdministrarLocalesEntidad(Principal root) {
+    public JIF_AdministrarLocalesEntidad(JF_Principal root) {
         try {
             initComponents();
             this.root = root;
@@ -48,6 +48,8 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -112,6 +114,14 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+        jMenuItem1.setText("Eliminar Bien Seleccionado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
         setBackground(java.awt.Color.yellow);
         setClosable(true);
         setIconifiable(true);
@@ -124,6 +134,8 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Locales Registrados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel1.setOpaque(false);
+
+        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +155,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                 "Local", "Direccion"
             }
         ));
+        jTable1.setComponentPopupMenu(jPopupMenu1);
         jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -179,11 +192,15 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Local", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel2.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("NOMBRE DEL LOCAL :");
 
+        jTextField2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField2.setEnabled(false);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("TIPO DE PROPIEDAD :");
 
@@ -195,10 +212,13 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("AREA :");
 
+        jTextField3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField3.setEnabled(false);
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setText("UNIDAD METRICA :");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "M²", "HA" }));
@@ -207,26 +227,35 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "ALAMEDA", "AVENIDA", "BLOQUE", "CALLE", "CARRETERA", "JIRON", "MALECON", "OVALO", "PARQUE", "PASAJE", "PLAZA", "PROLONGACION", "OTRO" }));
         jComboBox3.setEnabled(false);
 
+        jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField4.setEnabled(false);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("DIRECCION :");
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("NUMERO :");
 
+        jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField5.setEnabled(false);
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("MANZANA :");
 
+        jTextField6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField6.setEnabled(false);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("LOTE :");
 
+        jTextField7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField7.setEnabled(false);
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("REGION :");
 
@@ -238,6 +267,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
             }
         });
 
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel10.setText("PROVINCIA :");
 
@@ -249,6 +279,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("DISTRITO :");
 
@@ -262,12 +293,15 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
 
         txt_cod_departamento.setEditable(false);
         txt_cod_departamento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_cod_departamento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
         txt_cod_provincia.setEditable(false);
         txt_cod_provincia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_cod_provincia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
         txt_cod_distrito.setEditable(false);
         txt_cod_distrito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txt_cod_distrito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -285,7 +319,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                     .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,8 +334,8 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox2, 0, 121, Short.MAX_VALUE))
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                                .addComponent(jComboBox2, 0, 99, Short.MAX_VALUE))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -309,12 +343,12 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))))
+                                .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbx_distrito, javax.swing.GroupLayout.Alignment.LEADING, 0, 391, Short.MAX_VALUE)
-                            .addComponent(cbx_provincia, javax.swing.GroupLayout.Alignment.LEADING, 0, 391, Short.MAX_VALUE)
-                            .addComponent(cbx_departamento, 0, 391, Short.MAX_VALUE))
+                            .addComponent(cbx_distrito, javax.swing.GroupLayout.Alignment.LEADING, 0, 381, Short.MAX_VALUE)
+                            .addComponent(cbx_provincia, javax.swing.GroupLayout.Alignment.LEADING, 0, 381, Short.MAX_VALUE)
+                            .addComponent(cbx_departamento, 0, 381, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,12 +399,13 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                     .addComponent(jLabel11)
                     .addComponent(cbx_distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_cod_distrito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos Complementarios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel3.setOpaque(false);
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("TIPO DE CUENTA :");
 
@@ -382,63 +417,84 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
             }
         });
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel14.setText("CUENTA :");
 
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox9.setEnabled(false);
 
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("VALOR CONTABLE :");
 
+        jTextField10.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField10.setEnabled(false);
 
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel16.setText("OFIC. REGISTRAL :");
 
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>", "REGISTROS PUBLICOS", "REGISTRO PREDIAL" }));
         jComboBox10.setEnabled(false);
 
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel17.setText("TOMO :");
 
+        jTextField11.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField11.setEnabled(false);
 
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel18.setText("FOJAS :");
 
+        jTextField12.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField12.setEnabled(false);
 
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("ASIENTO :");
 
+        jTextField13.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField13.setEnabled(false);
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("CODIGO PREDIO :");
 
+        jTextField14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField14.setEnabled(false);
 
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel21.setText("PRT. ELECT:");
 
+        jTextField15.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField15.setEnabled(false);
 
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel22.setText("REG. SINABIP:");
 
+        jTextField16.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField16.setEnabled(false);
 
+        jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel23.setText("PROP. REGISTRAL :");
 
+        jTextField17.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField17.setEnabled(false);
 
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel24.setText("BENEFICIA.:");
 
+        jTextField18.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField18.setEnabled(false);
 
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel13.setText("TIPO DE MONEDA :");
 
@@ -484,20 +540,20 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
+                                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addComponent(jLabel22)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))))
-                            .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
+                                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))))
+                            .addComponent(jTextField18, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox9, 0, 253, Short.MAX_VALUE))
+                        .addComponent(jComboBox9, 0, 251, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox8, 0, 207, Short.MAX_VALUE)))
+                        .addComponent(jComboBox8, 0, 200, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -622,7 +678,7 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -703,6 +759,10 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         jTextField1.requestFocus();
     }//GEN-LAST:event_formComponentShown
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
     
     
     //<editor-fold defaultstate="collapsed" desc="Variables Declaradas">    
@@ -746,9 +806,11 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -988,22 +1050,38 @@ public final class JIF_AdministrarLocalesEntidad extends javax.swing.JInternalFr
             {jTextField3,"Ingrese el area."},
             {jComboBox2,"Seleccione la unidad metrica."},
             {jTextField4,"Ingrese la direccion."},
-            {jTextField5,"Ingrese el nro de la Direccion."},            
-            {jTextField6,"Ingrese la manzana."},            
-            {jTextField7,"Ingrese el lote."},   
+            //{jTextField5,"Ingrese el nro de la Direccion."},            
+            //{jTextField6,"Ingrese la manzana."},            
+            //{jTextField7,"Ingrese el lote."},   
             {jComboBox7,"Seleccione el tipo de cuenta."},   
             {jComboBox8,"Seleccione el tipo de moneda."},   
             {jTextField10,"Ingrese el valor contable."},     
             {jComboBox9,"Seleccione la cuenta contable."},     
-            {jComboBox10,"Seleccione la oficina registral."},     
-            {jTextField11,"Ingrese el nro de tomo."},     
-            {jTextField12,"Ingrese el nro fojas."},     
-            {jTextField13,"Ingrese el asiento."},     
-            {jTextField14,"Ingrese el codigo de predio."},     
-            {jTextField15,"Ingrese la partida electoral."},     
-            {jTextField16,"Ingrese el codigo de registro de sinabip."},     
-            {jTextField17,"Ingrese la propiedad registral."},     
-            {jTextField18,"Ingrese los datos del beneficiario."}     
+            {jComboBox10,"Seleccione la oficina registral."}     
+            //{jTextField11,"Ingrese el nro de tomo."},     
+            //{jTextField12,"Ingrese el nro fojas."},     
+            //{jTextField13,"Ingrese el asiento."},     
+            //{jTextField14,"Ingrese el codigo de predio."},     
+            //{jTextField15,"Ingrese la partida electoral."},     
+            //{jTextField16,"Ingrese el codigo de registro de sinabip."},     
+            //{jTextField17,"Ingrese la propiedad registral."},     
+            //{jTextField18,"Ingrese los datos del beneficiario."}     
         });
     }    
+    private void eliminar() {
+        if (jTable1.getSelectedRow()>=0) {
+            try { 
+                bl = new BLLocal(root.getConfig());
+                int rs = bl.eliminarRegistro(model.get(jTable1.getSelectedRow()));
+                if(rs>=0){  
+                    listarLocales();
+                    JOptionPane.showMessageDialog(root,"Correctamente eliminado.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(root,"Error de Eliminacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }

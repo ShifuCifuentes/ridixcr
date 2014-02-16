@@ -65,21 +65,32 @@ on LOC.tipo_moneda=CNT3.id_contenedor]]>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement uuid="70fcc3ba-4db9-49ff-9544-62542e3f1f32" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="70fcc3ba-4db9-49ff-9544-62542e3f1f32" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#00CC00"/>
 				<staticText>
-					<reportElement uuid="82ba15b3-04e1-4231-889d-6342cd52db66" x="20" y="20" width="444" height="43" forecolor="#FFFFFF"/>
+					<reportElement uuid="82ba15b3-04e1-4231-889d-6342cd52db66" x="151" y="38" width="224" height="25" forecolor="#000000"/>
 					<textElement>
-						<font size="34" isBold="true"/>
+						<font size="16" isBold="true"/>
 					</textElement>
 					<text><![CDATA[LOCALES DE LA ENTIDAD]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="1b6cbe34-6391-43b5-9a3e-414e67b67f8a" x="20" y="63" width="189" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="1b6cbe34-6391-43b5-9a3e-414e67b67f8a" x="151" y="63" width="189" height="20" forecolor="#000000"/>
 					<textElement textAlignment="Left">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Reporte detallado de Locales]]></text>
 				</staticText>
+				<staticText>
+					<reportElement uuid="466785f5-2331-4be2-a9b9-b3f0aab9a550" x="151" y="10" width="402" height="28" forecolor="#000000"/>
+					<textElement>
+						<font size="20" isBold="true"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDAD  DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
+				<image scaleImage="FillFrame">
+					<reportElement uuid="1c820a2f-dfe9-443f-a6a7-525cbc0f8d80" x="16" y="0" width="107" height="92"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
 			</frame>
 		</band>
 	</title>

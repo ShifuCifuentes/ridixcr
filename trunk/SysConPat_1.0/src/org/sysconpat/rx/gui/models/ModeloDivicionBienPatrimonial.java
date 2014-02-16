@@ -7,7 +7,7 @@ import org.sysconpat.rx.be.BEDivicionBienPatrimonial;
 public class ModeloDivicionBienPatrimonial  extends AbstractTableModel<BEDivicionBienPatrimonial>{
 
     public ModeloDivicionBienPatrimonial() {
-        setTitles(new String[]{"Denominacion","Fecha de adq.","Precio adq."});
+        setTitles(new String[]{"DENOMINACION","FECHA ADQ.","PRECIO ADQ."});
     }
     
     @Override

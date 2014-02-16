@@ -58,9 +58,9 @@ public class BLCatalogo extends BLAbstract<BECatalogo>{
         dao = new DACatalogo(getConeccion());
         return dao.actualizar(be);
     }
-    public int ultimo_correlativo_bien_patrimonial(String cod_pat,int cod_gg,int cod_clase) throws Exception{
+    public int ultimo_correlativo_bien_patrimonial(String cod_pat,int cod_clase,int cod_gg) throws Exception{
         dao = new DACatalogo(getConeccion());
-        return dao.ultimo_correlativo_bien_patrimonial(cod_pat, cod_gg, cod_clase);
+        return dao.ultimo_correlativo_bien_patrimonial(cod_pat, cod_clase, cod_gg);
     }
     public int ultimo_correlativo_bien_patrimonial() throws Exception{
         dao = new DACatalogo(getConeccion());

@@ -10,15 +10,13 @@ import org.sysconpat.rx.be.BEContenedor;
 import org.sysconpat.rx.be.BELocal;
 import org.sysconpat.rx.be.BEOficina;
 import org.sysconpat.rx.be.BEPersonal;
-import org.sysconpat.rx.bl.BLOficina;
 import org.sysconpat.rx.bl.BLPersonal;
-import org.sysconpat.rx.gui.bienes_activos.JP_AdministrarBienes;
 import org.sysconpat.rx.gui.models.ModeloPersonal;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 import org.sysconpat.rx.util.UtilContenedor;
 
 public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     
     private UtilContenedor utilContenedor = null;
     private ModeloPersonal model = null;
@@ -28,7 +26,7 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
     private static final int NUEVO=1,MODIFICAR=2,DESCONOCIDO=-1;
     private int operacion=DESCONOCIDO;
     
-    public JIF_AdministrarPersonalEntidad(Principal root) {
+    public JIF_AdministrarPersonalEntidad(JF_Principal root) {
         initComponents();
         this.root = root;
         utilContenedor = new UtilContenedor(root.getConfig());
@@ -42,6 +40,8 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -70,6 +70,14 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
 
         jLabel2.setText("jLabel2");
 
+        jMenuItem1.setText("Eliminar Bien Seleccionado");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
         setBackground(java.awt.Color.yellow);
         setClosable(true);
         setIconifiable(true);
@@ -83,24 +91,31 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del Personal", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel2.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("NOMBRES :");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("APELLIDOS :");
 
+        jTextField4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField4.setEnabled(false);
 
+        jTextField5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField5.setEnabled(false);
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("TIPO DOC. :");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox1.setEnabled(false);
 
+        jTextField2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
         jTextField2.setEnabled(false);
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("MODALIDAD :");
 
@@ -115,9 +130,11 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("LOCAL :");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("AREA :");
 
@@ -132,6 +149,7 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "<Seleccionar>" }));
         jComboBox5.setEnabled(false);
 
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("OFICINA :");
 
@@ -224,6 +242,8 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Personal Registradas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
         jPanel1.setOpaque(false);
 
+        jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, java.awt.Color.darkGray, java.awt.Color.darkGray, java.awt.Color.white, java.awt.Color.white));
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/sysconpat/rx/resource/Buscar.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,6 +262,7 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
                 "DNI", "Personal"
             }
         ));
+        jTable1.setComponentPopupMenu(jPopupMenu1);
         jTable1.setOpaque(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -321,7 +342,7 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -411,6 +432,10 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
         }     
     }//GEN-LAST:event_jComboBox3ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        eliminar();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -430,8 +455,10 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
@@ -569,6 +596,23 @@ public final class JIF_AdministrarPersonalEntidad extends javax.swing.JInternalF
             model.addAll(lista);
         } catch (Exception ex) {
             Logger.getLogger(JIF_AdministrarAreasEntidad.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void eliminar() {
+        if (jTable1.getSelectedRow()>=0) {
+            try { 
+                bl = new BLPersonal(root.getConfig());
+                int rs = bl.eliminarRegistro(model.get(jTable1.getSelectedRow()));
+                if(rs>=0){  
+                    listarPersonal();
+                    JOptionPane.showMessageDialog(root,"Correctamente eliminado.", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(root,"Error de Eliminacion.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

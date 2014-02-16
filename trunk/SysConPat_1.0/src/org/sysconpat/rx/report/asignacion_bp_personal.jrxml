@@ -34,26 +34,37 @@ where PR.id_personal = $P{p_id_personal}]]>
 	<title>
 		<band height="72">
 			<frame>
-				<reportElement uuid="c2f66fee-9408-4460-a567-13eb520b6a35" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#006699"/>
+				<reportElement uuid="c2f66fee-9408-4460-a567-13eb520b6a35" mode="Opaque" x="-20" y="-20" width="595" height="92" backcolor="#00CD00"/>
 				<staticText>
-					<reportElement uuid="92410743-6e77-456d-929e-934e957c5d62" x="20" y="20" width="555" height="43" forecolor="#FFFFFF"/>
+					<reportElement uuid="92410743-6e77-456d-929e-934e957c5d62" x="119" y="38" width="385" height="26" forecolor="#000000" backcolor="#000000"/>
 					<textElement>
-						<font size="22" isBold="true"/>
+						<font size="16" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Ficha de asignacion de bienes patrimoniales]]></text>
 				</staticText>
 				<staticText>
-					<reportElement uuid="92002133-a4fa-4c70-bb25-1c0249bda0d9" x="20" y="63" width="212" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="92002133-a4fa-4c70-bb25-1c0249bda0d9" x="119" y="60" width="212" height="20" forecolor="#000000" backcolor="#000000"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Mobiliario, Maquinarias y Equipos]]></text>
 				</staticText>
 				<textField pattern="dd/MM/yyyy">
-					<reportElement uuid="7ef5ff1e-a316-416d-90c9-9c4f346bf902" x="475" y="63" width="100" height="20" forecolor="#FFFFFF"/>
+					<reportElement uuid="7ef5ff1e-a316-416d-90c9-9c4f346bf902" x="475" y="63" width="100" height="20" forecolor="#000000"/>
 					<textElement/>
 					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 				</textField>
+				<image scaleImage="FillFrame">
+					<reportElement uuid="8e0061ac-f433-4803-be0c-fcf03c6c72a8" x="11" y="0" width="99" height="92" backcolor="#00CD00"/>
+					<imageExpression><![CDATA[new javax.swing.ImageIcon(Class.class.getClass().getResource("/org/sysconpat/rx/resource/EscudoKimbiri.jpg")).getImage()]]></imageExpression>
+				</image>
+				<staticText>
+					<reportElement uuid="ef73ba91-b661-491c-98df-8ff04eb8bd1c" x="119" y="10" width="464" height="28"/>
+					<textElement>
+						<font size="20"/>
+					</textElement>
+					<text><![CDATA[MUNICIPALIDADA DISTRITAL DE KIMBIRI]]></text>
+				</staticText>
 			</frame>
 		</band>
 	</title>

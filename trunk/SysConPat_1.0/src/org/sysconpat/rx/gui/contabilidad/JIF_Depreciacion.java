@@ -1,5 +1,6 @@
 package org.sysconpat.rx.gui.contabilidad;
 
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -7,12 +8,12 @@ import javax.swing.JOptionPane;
 import org.rx.cr.report.ReportGeneric;
 import org.rx.cr.util.Utilitarios;
 import org.sysconpat.rx.bl.BLBienPatrimonial;
-import org.sysconpat.rx.gui.principal.Principal;
+import org.sysconpat.rx.gui.principal.*;
 
 public class JIF_Depreciacion extends javax.swing.JInternalFrame {
-    private Principal root;
+    private JF_Principal root;
     private BLBienPatrimonial bl = null;
-    public JIF_Depreciacion(Principal root) {
+    public JIF_Depreciacion(JF_Principal root) {
         initComponents();
         this.root=root;
         bl = new BLBienPatrimonial(root.getConfig());
@@ -24,7 +25,7 @@ public class JIF_Depreciacion extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser("dd/MM/yyyy", "##/##/####", '_');
         jButton6 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(124, 188, 25));
@@ -32,11 +33,14 @@ public class JIF_Depreciacion extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setTitle("Depreciacion");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parametros de depreciacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Parametros de depreciacion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11), java.awt.Color.white)); // NOI18N
         jPanel1.setOpaque(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Fecha de depreciacion :");
 
+        jDateChooser1.setDate(new Date());
         jDateChooser1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jDateChooser1PropertyChange(evt);
