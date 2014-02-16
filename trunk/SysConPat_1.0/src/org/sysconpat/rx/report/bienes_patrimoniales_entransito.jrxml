@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="800" pageHeight="842" columnWidth="760" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ea984d17-5f13-4a54-beb1-bdb1e7ea9684">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="485"/>
+	<property name="ireport.x" value="276"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[SELECT 
@@ -187,7 +187,7 @@ where BP.entransito=true]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{doc_adquisicion}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="###0.00;###0.00-">
+			<textField isStretchWithOverflow="true" pattern="##0000;###0-">
 				<reportElement uuid="e23ee205-2c05-4ee4-a797-4bf0f58fd27a" x="522" y="0" width="109" height="20" forecolor="#999999"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
