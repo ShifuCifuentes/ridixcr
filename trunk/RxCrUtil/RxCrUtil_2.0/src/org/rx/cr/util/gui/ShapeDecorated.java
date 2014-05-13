@@ -5,18 +5,19 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.RoundRectangle2D;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 public class ShapeDecorated {
-  private boolean isShapingSupported;
-  private ComponentListener shapeListener = null;
-  private Shape shp = null;
-  private float arcw=30,arch=30;
-    public ShapeDecorated() {
-      isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
-    }
+  private static boolean isShapingSupported;
+  private static ComponentListener shapeListener = null;
+  private static Shape shp = null;
+  private static float arcw=30,arch=30;
+    
+//  public ShapeDecorated() {
+//      isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
+//    }
+  
     public void applyShape(JFrame fm){
       isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
       if (!isShapingSupported) {
@@ -37,7 +38,7 @@ public class ShapeDecorated {
             }
             });
     }
-    public void applyShape(JFrame fm,float aw,float ah){
+    public static void applyShape(JFrame fm,float aw,float ah){
       isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
       if (!isShapingSupported) {
             return;
@@ -46,8 +47,8 @@ public class ShapeDecorated {
             shapeListener.componentResized(null);
             return;
         }
-//         fm.setUndecorated(true);
         final JFrame fd = fm;
+//        fm.setUndecorated(true);
               arcw=aw;
               arch=ah;
               
@@ -60,7 +61,8 @@ public class ShapeDecorated {
             }
             });
     }
-    public void applyShape(JFrame fm,Shape sp){
+    public static void applyShape(JFrame fm,Shape sp){
+      isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
       if (!isShapingSupported) {
             return;
         }
@@ -70,6 +72,7 @@ public class ShapeDecorated {
         }
 
         final JFrame fd = fm;
+//        fm.setUndecorated(true);
               shp = sp;
         fd.addComponentListener(shapeListener = new ComponentAdapter() {
             @Override
@@ -89,7 +92,7 @@ public class ShapeDecorated {
         }
 
         final JDialog fd = dl;
-
+//        dl.setUndecorated(true);
         fd.addComponentListener(shapeListener = new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent evt) {
@@ -99,7 +102,7 @@ public class ShapeDecorated {
             }
           });
     }
-    public void applyShape(JDialog dl,float aw,float ah){
+    public static void applyShape(JDialog dl,float aw,float ah){
       isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
       if (!isShapingSupported) {
             return;
@@ -110,6 +113,7 @@ public class ShapeDecorated {
         }
 
         final JDialog fd = dl;
+//        dl.setUndecorated(true);
               arcw=aw;
               arch=ah;
         fd.addComponentListener(shapeListener = new ComponentAdapter() {
@@ -121,7 +125,8 @@ public class ShapeDecorated {
             }
           });
     }
-    public void applyShape(JDialog fm,Shape sp){
+    public static void applyShape(JDialog fm,Shape sp){
+      isShapingSupported = AWTUtilitiesWrapper.isTranslucencySupported(AWTUtilitiesWrapper.PERPIXEL_TRANSPARENT);
       if (!isShapingSupported) {
             return;
         }
@@ -131,6 +136,7 @@ public class ShapeDecorated {
         }
 
         final JDialog fd = fm;
+//              fm.setUndecorated(true);
               shp = sp;
         fd.addComponentListener(shapeListener = new ComponentAdapter() {
             @Override

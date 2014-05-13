@@ -8,7 +8,9 @@ public class TestDesktop extends javax.swing.JFrame {
     public TestDesktop() {
         initComponents();
         panel = new DesktopPanel();
+        //panel.setInfoContact(new String[]{"x.p@p.com","f.com/x","987654321"});
         panel.quitaPanelesInfo();
+        panel.setDibujaCurbas(true);
         getContentPane().add(panel);
         pack();
     }

@@ -10,10 +10,13 @@ import javax.swing.JInternalFrame;
 
 public class UndecoratedMove {
     private static Point pnt;
-public UndecoratedMove() {
-        pnt = new Point();
-    }
-public void MoveAdapter(final JFrame jp){
+    
+//    public UndecoratedMove() {
+//        pnt = new Point();
+//    }
+    
+public static void MoveAdapter(final JFrame jp){
+      pnt = new Point();
       jp.addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
@@ -29,7 +32,8 @@ public void MoveAdapter(final JFrame jp){
       }
       });
  }
-public void MoveAdapter(final JDialog jp){
+public static void MoveAdapter(final JDialog jp){
+    pnt = new Point();
    jp.addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {
@@ -45,7 +49,8 @@ public void MoveAdapter(final JDialog jp){
       }
       });
  }
-public void MoveAdapter(final JInternalFrame jp){
+public static void MoveAdapter(final JInternalFrame jp){
+    pnt = new Point();
    jp.addMouseListener(new MouseAdapter() {
       @Override
       public void mousePressed(MouseEvent e) {

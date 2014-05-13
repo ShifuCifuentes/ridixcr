@@ -36,7 +36,7 @@ public class ConfigServer extends javax.swing.JDialog {
         conf = new Config(Config.SERVER);  
         conf.setApp_name(app_name+"_server");
         jTextField1.setText(conf.getHost());
-        jSpinner1.setValue(DBA.portDB());                
+        //jSpinner1.setValue(DBA.portDB());                
         existConfFile=conf.loadConf();  
          jfc=new JFileChooser();
              

@@ -1694,7 +1694,7 @@ public final class Utilitarios extends JLabel implements Runnable{
         }
     }
      public static boolean alertControl(JSpinner jsp){
-        if(jsp.getValue().toString().equals("0")){          
+        if(Double.parseDouble(jsp.getValue().toString())<=0){          
             jsp.setBackground(Color.RED);
             jsp.requestFocus();
             return true;
@@ -3124,6 +3124,60 @@ public final class Utilitarios extends JLabel implements Runnable{
               +numberFormat(current_date.getMonth()+1,"##")
               +numberFormat(current_date.getYear()+1900,"####");
     }
-    //</editor-fold>    
+    //</editor-fold>  
+    //<editor-fold defaultstate="collapsed" desc="DATE">
+    /*(12/04/2014) => Date()*/
+    public Date createDate(String dt) {  
+        //<editor-fold defaultstate="collapsed" desc="Cuerpo">
+        try {
+            if (dt.length()==10) {
+                int d=Integer.parseInt(dt.substring(0,2));
+                int m=Integer.parseInt(dt.substring(3,5));
+                int a=Integer.parseInt(dt.substring(6,dt.length()));
+                int DIAS_MES[] = {31,a%4==0?29:28,31,30,31,30,31,31,30,31,30,31};
+                return (m>=1 && m<=12)?(d>=1 && d<=DIAS_MES[m-1])?new Date(a-1900,m-1,d):null:null;
+            }else{
+                return null;
+            }                        
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        //</editor-fold>
+    }
+    /*(Thu Feb 27 17:33:42 COT 2014)GMT => Date()*/
+    public Date createGMTDate(String ref) {
+        //<editor-fold defaultstate="collapsed" desc="Cuerpo">
+        String dia,mes = null,anio;
+        dia=ref.substring(7,10);
+        if (ref.indexOf("Jan")>=0) { 
+            mes="01";
+        }else if (ref.indexOf("Feb")>=0){
+            mes="02";
+        }else if (ref.indexOf("Mar")>=0){
+            mes="03";
+        }else if (ref.indexOf("Apr")>=0){
+            mes="04";
+        }else if (ref.indexOf("May")>=0){
+            mes="05";
+        }else if (ref.indexOf("Jun")>=0){
+            mes="06";
+        }else if (ref.indexOf("Jul")>=0){
+            mes="07";
+        }else if (ref.indexOf("Aug")>=0){
+            mes="08";
+        }else if (ref.indexOf("Sep")>=0){
+            mes="09";
+        }else if (ref.indexOf("Oct")>=0){
+            mes="10";
+        }else if (ref.indexOf("Nov")>=0){
+            mes="11";
+        }else if (ref.indexOf("Dec")>=0){
+            mes="12";
+        }        
+        anio=ref.substring(24,28);      
+        return new Date((Integer.parseInt(anio.trim())-1900),(Integer.parseInt(mes.trim())-1),Integer.parseInt(dia.trim()));
+        //</editor-fold>
+    }
+    //</editor-fold>
 //</editor-fold>
 }

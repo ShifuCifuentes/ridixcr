@@ -43,6 +43,8 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private MonitorMemoria monitor_memoria = null;
     private LoguinUser loguinUser;
     private CentralAdmin centralAdmin;
+    private boolean dibujaCurbas=true;
+    private boolean isPanelInfo=true;
     public DesktopPanel() {
         initComponents();
         hints = createRenderingHints();
@@ -128,46 +130,47 @@ public final class DesktopPanel extends javax.swing.JPanel{
             float speed,
             boolean invert) {
         //<editor-fold defaultstate="collapsed" desc="dibujaCurvas">  
-        float width = getWidth();
+        if (dibujaCurbas) {
+            float width = getWidth();
+            float offset = (float) Math.sin(counter / (speed * Math.PI));
 
-        float offset = (float) Math.sin(counter / (speed * Math.PI));
+            float start_x = 0.0f;
+            float start_y = offset * y1_offset + y1;
+            float end_x = width;
+            float end_y = offset * y2_offset + y2;
 
-        float start_x = 0.0f;
-        float start_y = offset * y1_offset + y1;
-        float end_x = width;
-        float end_y = offset * y2_offset + y2;
+            float ctrl1_x = offset * cx1_offset + cx1;
+            float ctrl1_y = offset * cy1_offset + cy1;
+            float ctrl2_x = offset * cx2_offset + cx2;
+            float ctrl2_y = offset * cy2_offset + cy2;
 
-        float ctrl1_x = offset * cx1_offset + cx1;
-        float ctrl1_y = offset * cy1_offset + cy1;
-        float ctrl2_x = offset * cx2_offset + cx2;
-        float ctrl2_y = offset * cy2_offset + cy2;
+            GeneralPath thickCurve = new GeneralPath();
+            thickCurve.moveTo(start_x, start_y);
+            thickCurve.curveTo(ctrl1_x, ctrl1_y,
+                    ctrl2_x, ctrl2_y,
+                    end_x, end_y);
+            thickCurve.lineTo(end_x, end_y + thickness);
+            thickCurve.curveTo(ctrl2_x, ctrl2_y + thickness,
+                    ctrl1_x, ctrl1_y + thickness,
+                    start_x, start_y + thickness);
+            thickCurve.lineTo(start_x, start_y);
 
-        GeneralPath thickCurve = new GeneralPath();
-        thickCurve.moveTo(start_x, start_y);
-        thickCurve.curveTo(ctrl1_x, ctrl1_y,
-                ctrl2_x, ctrl2_y,
-                end_x, end_y);
-        thickCurve.lineTo(end_x, end_y + thickness);
-        thickCurve.curveTo(ctrl2_x, ctrl2_y + thickness,
-                ctrl1_x, ctrl1_y + thickness,
-                start_x, start_y + thickness);
-        thickCurve.lineTo(start_x, start_y);
+            Rectangle bounds = thickCurve.getBounds();
+            if (!bounds.intersects(g2.getClipBounds())) {
+                return;
+            }
 
-        Rectangle bounds = thickCurve.getBounds();
-        if (!bounds.intersects(g2.getClipBounds())) {
-            return;
+            GradientPaint painter = new GradientPaint(0, bounds.y,
+                    invert ? color_fin : color_inicio,
+                    0, bounds.y + bounds.height,
+                    invert ? color_inicio : color_fin);
+
+            Paint oldPainter = g2.getPaint();
+            g2.setPaint(painter);
+            g2.fill(thickCurve);
+
+            g2.setPaint(oldPainter);
         }
-
-        GradientPaint painter = new GradientPaint(0, bounds.y,
-                invert ? color_fin : color_inicio,
-                0, bounds.y + bounds.height,
-                invert ? color_inicio : color_fin);
-
-        Paint oldPainter = g2.getPaint();
-        g2.setPaint(painter);
-        g2.fill(thickCurve);
-
-        g2.setPaint(oldPainter);
         //</editor-fold>
     }
     
@@ -196,8 +199,11 @@ public final class DesktopPanel extends javax.swing.JPanel{
        jPanel8.setBounds(jDesktopPane1.getWidth()-(jPanel8.getWidth()+10),jPanel3.getHeight()+10,jPanel8.getWidth(),jPanel8.getHeight());       
        jPanel3.setBounds(jDesktopPane1.getWidth()-(jPanel3.getWidth()+10),5,jPanel3.getWidth(),jPanel3.getHeight());  
        ///////////////////APP ICON  + NAME ///////////////
-       jLabel1.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel1.getHeight()+30),jLabel1.getWidth(),jLabel1.getHeight()); 
-       jLabel4.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel4.getHeight()),jLabel4.getWidth(),jLabel4.getHeight()); 
+//       jLabel1.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel1.getHeight()+30),jLabel1.getWidth(),jLabel1.getHeight()); 
+//       jLabel4.setBounds(jDesktopPane1.getWidth()-(jLabel1.getWidth()+10),jDesktopPane1.getHeight()-(jLabel4.getHeight()),jLabel4.getWidth(),jLabel4.getHeight()); 
+       if(isPanelInfo){
+           info_panel.setBounds(jDesktopPane1.getWidth()-(info_panel.getWidth()),jDesktopPane1.getHeight()-(info_panel.getHeight()),info_panel.getWidth(),info_panel.getHeight());
+       }   
     }
 
     private void cargarInfoBasico() {
@@ -240,6 +246,10 @@ public final class DesktopPanel extends javax.swing.JPanel{
         emp_telefono.setText(Utilitarios.subString(this.centralAdmin.getTelefono(),23));
         emp_direccion.setText(Utilitarios.subString(this.centralAdmin.getDireccion(),23));
         emp_logo.setIcon(new ImageIcon(this.centralAdmin.getLogo()));
+    }
+
+    public void setDibujaCurbas(boolean dibujaCurbas) {
+        this.dibujaCurbas = dibujaCurbas;
     }
 
     public class DesktopPaneBackground implements Border{
@@ -337,8 +347,6 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jLabel2 = new  Utilitarios(Utilitarios.HORA_SISTEMA);
         jLabel3 = new  Utilitarios(Utilitarios.FECHA_SISTEMA);
         monitorMemoria = new javax.swing.JProgressBar();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -380,6 +388,16 @@ public final class DesktopPanel extends javax.swing.JPanel{
         emp_ruc = new javax.swing.JLabel();
         emp_nombre = new javax.swing.JLabel();
         emp_logo = new javax.swing.JLabel();
+        info_panel = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/Refresh.png"))); // NOI18N
         jMenuItem1.setText("Actualizar");
@@ -464,17 +482,6 @@ public final class DesktopPanel extends javax.swing.JPanel{
 
         jDesktopPane1.add(jPanel8);
         jPanel8.setBounds(710, 170, 145, 80);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
-        jDesktopPane1.add(jLabel1);
-        jLabel1.setBounds(760, 440, 100, 100);
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("APP Name");
-        jDesktopPane1.add(jLabel4);
-        jLabel4.setBounds(760, 550, 100, 40);
 
         jSplitPane1.setDividerLocation(180);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -716,6 +723,98 @@ public final class DesktopPanel extends javax.swing.JPanel{
         jTabbedPane3.setBounds(0, 0, 210, 240);
         //jTabbedPane3.setVisible(false);
 
+        info_panel.setOpaque(false);
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel17.setText("CORREO-E :");
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel18.setText("PABCH.04.06.89@GMAIL.COM");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel19.setText("FACEBOOK :");
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel20.setText("FACEBOOK.COM/RIDIXCR");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel21.setText("TELF./CEL. :");
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel22.setText("973844881");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setText("© DERECHOS RESERVADOS - 2014");
+        jLabel24.setText("© DERECHOS RESERVADOS - "+(new java.util.Date().getYear()+1900));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/rx/cr/resource/app.png"))); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("APP Name");
+
+        javax.swing.GroupLayout info_panelLayout = new javax.swing.GroupLayout(info_panel);
+        info_panel.setLayout(info_panelLayout);
+        info_panelLayout.setHorizontalGroup(
+            info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, info_panelLayout.createSequentialGroup()
+                        .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(info_panelLayout.createSequentialGroup()
+                                .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        info_panelLayout.setVerticalGroup(
+            info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, info_panelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(jLabel20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(info_panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel24)
+                .addContainerGap())
+        );
+
+        jDesktopPane1.add(info_panel);
+        info_panel.setBounds(620, 360, 250, 240);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -752,6 +851,7 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel emp_ruc;
     private javax.swing.JLabel emp_telefono;
     private javax.swing.JLabel fotografia;
+    private javax.swing.JPanel info_panel;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -761,7 +861,14 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -799,9 +906,18 @@ public final class DesktopPanel extends javax.swing.JPanel{
     private javax.swing.JLabel user;
     private javax.swing.JLabel user_name;
     // End of variables declaration//GEN-END:variables
+    public void setInfoContact(String info[]){
+        if(info!=null && info.length==3){
+            jLabel18.setText(info[0].toUpperCase());
+            jLabel20.setText(info[1].toUpperCase());
+            jLabel22.setText(info[2].toUpperCase());
+        }        
+    }
     public void quitaPanelesInfo(){
         jTabbedPane3.setVisible(false);
-        jSplitPane1.setVisible(false);        
+        jSplitPane1.setVisible(false); 
+        isPanelInfo=false;
+        info_panel.setBounds(5,5,info_panel.getWidth(),info_panel.getHeight());
 //        jPanel3.setVisible(false);
 //        jPanel8.setVisible(false);
     }

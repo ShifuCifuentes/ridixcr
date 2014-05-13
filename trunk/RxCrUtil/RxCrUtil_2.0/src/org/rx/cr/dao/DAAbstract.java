@@ -239,8 +239,9 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
         } catch (Exception e) {}        
         conection.commit();
     }
-    private void rollbackTransaction() throws Exception{
-        conection.rollback();
+    private void rollbackTransaction(){
+        try {conection.rollback();} 
+        catch (SQLException ex) {}
     }
     private void conectionClose(){
         try {
@@ -333,13 +334,13 @@ public abstract class DAAbstract<Tipo> implements MVCGeneric<Tipo>{
         JOptionPane.showMessageDialog(null,msg,"Atencion",JOptionPane.INFORMATION_MESSAGE);
         return TRANSACCION_EXITOSA;
     }
-    public int rollback(Exception ex) throws Exception{
+    public int rollback(Exception ex) {
         Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
         rollbackTransaction();
         close();
        return TRANSACCION_FALLIDA;
     }
-    public int rollback(Exception ex,String msg) throws Exception{
+    public int rollback(Exception ex,String msg){
        Logger.getLogger(DAAbstract.class.getName()).log(Level.SEVERE, null, ex);
        rollbackTransaction();
        close();

@@ -346,21 +346,20 @@ public class BackupRestore extends javax.swing.JDialog{
     }// </editor-fold>//GEN-END:initComponents
 
     public void validaRestauracionBackUp(){
-        try {
-            if (conf.getHost().equals(InetAddress.getLocalHost().getHostAddress().trim())) {
+//        try {
+//            if (conf.getHost().equals(InetAddress.getLocalHost().getHostAddress().trim())) {
               jTextField1.setText(conf.getDb());
               jTextField2.setText(conf.getHost());
               jTextField3.setText(conf.getPort());              
               jDateChooser1.setDate(new Date());              
               setVisible(true);  
-            } else {
-              JOptionPane.showMessageDialog(null,"La restauracion de copias de seguridad\ndebe ser ejecutada en el Servidor.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
-              dispose();
-              //System.exit(0);
-            }
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//            } else {
+//              JOptionPane.showMessageDialog(null,"La restauracion de copias de seguridad\ndebe ser ejecutada en el Servidor.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
+//              dispose();
+//            }
+//        } catch (UnknownHostException ex) {
+//            Logger.getLogger(BackupRestore.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
     private void restauraDBLocalBackUp(){

@@ -1126,7 +1126,7 @@ public class VisorPDF extends JFrame
             openFile(manual_file);
             setVisible(true);            
         }else {
-          JOptionPane.showMessageDialog(this,"No existe ningun archivo de ayuda asociado al sistema.","Atencion",JOptionPane.INFORMATION_MESSAGE);  
+          JOptionPane.showMessageDialog(this,"No existe ningun archivo de ayuda!","Atencion",JOptionPane.INFORMATION_MESSAGE);  
         }
        }catch (IOException ex) {
           Logger.getLogger(VisorPDF.class.getName()).log(Level.SEVERE, null, ex);

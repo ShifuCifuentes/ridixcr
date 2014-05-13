@@ -33,7 +33,7 @@ public class ConfigClient extends javax.swing.JDialog {
         conf = new Config(Config.CLIENT);
         conf.setApp_name(app_name+"_client");
         jTextField1.setText(conf.getHost());
-        jSpinner1.setValue(DBA.portDB());            
+        //jSpinner1.setValue(DBA.portDB());            
         existConfFile=conf.loadConf();  
         
     }
